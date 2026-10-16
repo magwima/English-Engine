@@ -1,0 +1,42 @@
+{
+  "week": "2026-W42",
+  "title": "Ten minutes a day",
+  "level": "B1–B2",
+  "minutes": 6,
+  "intro": "A short magazine-style article about a woman who learned Spanish in small steps. It was written for English Engine; Marta is a made-up example.",
+  "paras": [
+    "When Marta, a nurse from Gdańsk, decided to learn Spanish at the age of forty-two, her friends were not exactly encouraging. \"You work night shifts,\" one of them reminded her. \"When exactly are you going to study?\" Marta didn't have an answer. She only knew that she had always wanted to read Spanish novels in the original, and that she was tired of waiting for the perfect moment.",
+    "Her solution was almost embarrassingly simple: ten minutes a day, every day, no matter what. On busy days she listened to a short podcast on the bus. On quiet days she wrote three sentences in a notebook about what she had done. She never allowed herself to skip a day, but she also never forced herself to do more than ten minutes. \"If I felt like continuing, I continued,\" she says. \"But the promise was only ten minutes. That made it impossible to say no.\"",
+    "At first, progress was slow. After three months she could order food and ask for directions, but she still froze whenever someone answered her quickly. The turning point came in the second year, when she found an online conversation partner in Valencia who wanted to practise Polish. They met on video twice a week, spending half an hour in each language. Mistakes, she discovered, were not a disaster. \"My partner made as many mistakes in Polish as I did in Spanish. We laughed a lot, and that took the fear away.\"",
+    "Three years later, Marta is reading her fourth Spanish novel. She admits that she still uses a dictionary and that her grammar is far from perfect. However, she believes the small daily habit taught her something more valuable than any language rule. \"Big goals scare us,\" she says. \"Small ones don't. Ten minutes doesn't sound like much, but ten minutes every day for three years is more than a hundred and eighty hours.\"",
+    "Her advice to other adult learners is simple: choose a time that is so small you cannot fail, attach it to something you already do every day, and find someone to talk to as soon as possible. \"Don't wait until you are ready,\" she says. \"Nobody ever feels ready.\""
+  ],
+  "gloss": [
+    {"w": "night shift", "m": "work that happens at night, for example in a hospital"},
+    {"w": "embarrassingly simple", "m": "so simple that it seems almost silly"},
+    {"w": "freeze (froze)", "m": "suddenly stop and be unable to speak or move, often from fear"},
+    {"w": "turning point", "m": "the moment when a situation starts to change"},
+    {"w": "far from perfect", "m": "not perfect at all"}
+  ],
+  "tfng": [
+    {"s": "Marta's friends thought her plan was a great idea.", "a": "F", "why": "They were \"not exactly encouraging\"."},
+    {"s": "Marta sometimes studied for longer than ten minutes.", "a": "T", "why": "\"If I felt like continuing, I continued.\""},
+    {"s": "Marta took a Spanish course at a language school.", "a": "NG", "why": "The text mentions a podcast, a notebook and a conversation partner, but not a school."},
+    {"s": "After three months, Marta could understand fast speakers easily.", "a": "F", "why": "She \"still froze whenever someone answered her quickly\"."},
+    {"s": "Her conversation partner was learning Polish.", "a": "T", "why": "The partner \"wanted to practise Polish\"."},
+    {"s": "Marta now reads Spanish without a dictionary.", "a": "F", "why": "\"She still uses a dictionary.\""}
+  ],
+  "mc": [
+    {"q": "Why did Marta choose only ten minutes a day?", "a": "Because such a small promise was easy to keep", "o": ["Because such a small promise was easy to keep", "Because her teacher told her to", "Because she was only free for ten minutes", "Because longer study is less effective"], "why": "\"The promise was only ten minutes. That made it impossible to say no.\""},
+    {"q": "What was the turning point in her learning?", "a": "Starting regular conversations with a partner", "o": ["Starting regular conversations with a partner", "Moving to Valencia", "Reading her first novel", "Passing an exam"], "why": "The turning point came when she found an online conversation partner."},
+    {"q": "How did the conversation partner help her with mistakes?", "a": "They both made mistakes and laughed about them", "o": ["They both made mistakes and laughed about them", "The partner corrected every mistake", "The partner never noticed her mistakes", "They agreed to speak only Spanish"], "why": "\"My partner made as many mistakes in Polish as I did in Spanish. We laughed a lot.\""},
+    {"q": "What is the main message of the article?", "a": "Small, regular habits can lead to big results", "o": ["Small, regular habits can lead to big results", "Adults cannot learn languages well", "Grammar is the most important part of learning", "You should wait until you feel ready"], "why": "The whole article shows how ten minutes a day added up over three years."}
+  ],
+  "words": [
+    {"q": "In paragraph 1, \"not exactly encouraging\" means…", "a": "rather negative", "o": ["rather negative", "very excited", "completely silent", "a little jealous"]},
+    {"q": "In paragraph 2, \"no matter what\" means…", "a": "in every situation", "o": ["in every situation", "only when it is easy", "if she remembered", "for no reason"]},
+    {"q": "In paragraph 4, \"admits\" means…", "a": "agrees that something is true, even if it's not positive", "o": ["agrees that something is true, even if it's not positive", "complains loudly", "forgets", "pretends"]},
+    {"q": "In paragraph 5, \"attach it to something you already do\" means…", "a": "link it to a daily routine", "o": ["link it to a daily routine", "write it on a piece of paper", "do it instead of your routine", "ask a friend to do it"]}
+  ],
+  "respond": {"prompt": "Write 60–100 words: Which small daily habit could help you with your English? When and where would you do it?", "min": 60, "max": 100}
+}
