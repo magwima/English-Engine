@@ -1,0 +1,290 @@
+{
+ "week": "2026-W42",
+ "title": "The benefits of a bilingual brain",
+ "channel": "TED-Ed",
+ "speaker": "Mia Nacamulli",
+ "yt": "MMmOLN5zBLY",
+ "length": "4:48",
+ "level": "B1–B2",
+ "intro": "A short animated lesson about what happens in your brain when you speak more than one language, and why it is never too late to start.",
+ "summary": "The lesson explains that knowing more than one language can change how the brain is built and how it works. It describes how language skills are measured (active and passive skills), three types of bilingual people, and how children and adults process language differently. It then covers research on grey matter, attention and task switching, and the finding that bilingualism may delay Alzheimer's and dementia. It ends by noting that bilingualism was once wrongly seen as a problem for children, and that adults can still benefit from learning a language.",
+ "vocab": [
+  {
+   "w": "bilingual",
+   "m": "able to speak two languages well"
+  },
+  {
+   "w": "hemisphere",
+   "m": "one of the two halves of the brain"
+  },
+  {
+   "w": "grey matter",
+   "m": "the brain tissue full of nerve cells that processes information"
+  },
+  {
+   "w": "onset",
+   "m": "the beginning of something unpleasant, such as an illness"
+  },
+  {
+   "w": "executive function",
+   "m": "the brain skills you use to plan, focus and switch between tasks"
+  },
+  {
+   "w": "refute",
+   "m": "to prove that an idea or claim is wrong"
+  }
+ ],
+ "questions": [
+  {
+   "q": "How does the video group language skills?",
+   "a": "Active skills (speaking and writing) and passive skills (listening and reading)",
+   "o": [
+    "Active skills (speaking and writing) and passive skills (listening and reading)",
+    "Spoken skills and written skills only",
+    "Grammar skills and vocabulary skills",
+    "Formal skills and informal skills"
+   ],
+   "why": "Speaking and writing are active because you produce language; listening and reading are passive because you receive it."
+  },
+  {
+   "q": "How many types of bilingual people does the video describe?",
+   "a": "Three",
+   "o": [
+    "Two",
+    "Three",
+    "Four",
+    "Five"
+   ],
+   "why": "The video names three types: compound, coordinate and subordinate bilinguals."
+  },
+  {
+   "q": "What decides which type of bilingual a person is?",
+   "a": "How and when they learned their languages",
+   "o": [
+    "How and when they learned their languages",
+    "How many languages their parents speak",
+    "How well they can spell",
+    "Which country they live in now"
+   ],
+   "why": "The three types depend on how each language was acquired, for example together from birth or one after the other."
+  },
+  {
+   "q": "How do children and most adults differ when they process language?",
+   "a": "Children use both hemispheres; most adults rely mainly on the left one",
+   "o": [
+    "Children use both hemispheres; most adults rely mainly on the left one",
+    "Adults use both hemispheres; children use only the right one",
+    "Both groups use only the right hemisphere",
+    "There is no difference at all"
+   ],
+   "why": "Brain imaging suggests language is spread across both sides in childhood but is mostly handled by the left side in adults."
+  },
+  {
+   "q": "Which advantage does the video connect with bilingualism?",
+   "a": "Being better at switching tasks and ignoring distractions",
+   "o": [
+    "Being better at switching tasks and ignoring distractions",
+    "Having better eyesight",
+    "Always having a higher IQ",
+    "Reading faster in your first language"
+   ],
+   "why": "Bilingualism is linked to stronger executive function, such as task switching and filtering out distractions. It does not simply make people more intelligent."
+  },
+  {
+   "q": "What can bilingualism do for Alzheimer's and dementia?",
+   "a": "Delay their onset by up to about five years",
+   "o": [
+    "Delay their onset by up to about five years",
+    "Cure them completely",
+    "Make them start earlier",
+    "It has no effect"
+   ],
+   "why": "Research mentioned in the video suggests the onset can be delayed by as much as five years."
+  },
+  {
+   "q": "What did people once wrongly believe about bilingual children?",
+   "a": "That speaking two languages held them back",
+   "o": [
+    "That speaking two languages held them back",
+    "That they were always top of the class",
+    "That they could only learn one alphabet",
+    "That they needed less sleep"
+   ],
+   "why": "Bilingualism used to be seen as a handicap for children, based on flawed studies that later research refuted."
+  },
+  {
+   "q": "What is the video's message for adults?",
+   "a": "It's never too late: adults can still benefit from learning a language",
+   "o": [
+    "It's never too late: adults can still benefit from learning a language",
+    "Only children can benefit",
+    "Adults should not learn more than one extra language",
+    "Adults learn every part of a language faster than children"
+   ],
+   "why": "The lesson ends by encouraging people of any age to start learning a language."
+  }
+ ],
+ "listen": [
+  {
+   "q": "Write what you heard about the three types of bilingual people. Name each type and add one detail.",
+   "hint": "Name all three types.",
+   "keys": [
+    [
+     "compound"
+    ],
+    [
+     "coordinate"
+    ],
+    [
+     "subordinate"
+    ]
+   ],
+   "model": "Compound bilinguals learn two languages at the same time as small children. Coordinate bilinguals use each language in a different setting, for example one at home and one at school. Subordinate bilinguals learn a second language through their first one."
+  },
+  {
+   "q": "Write what you heard about how children's and adults' brains deal with language.",
+   "hint": "Mention both groups and the brain's halves.",
+   "keys": [
+    [
+     "child",
+     "kid"
+    ],
+    [
+     "adult"
+    ],
+    [
+     "hemisphere",
+     "left",
+     "both sides",
+     "both halves"
+    ]
+   ],
+   "model": "Children seem to use both hemispheres for language, while most adults use mainly the left hemisphere. Children also pick up the social and emotional side of a language more easily."
+  },
+  {
+   "q": "Write what you heard about the benefits for older people's health.",
+   "hint": "Which illnesses, and by how much?",
+   "keys": [
+    [
+     "alzheimer",
+     "dementia"
+    ],
+    [
+     "delay",
+     "later",
+     "postpone"
+    ],
+    [
+     "five",
+     "5"
+    ]
+   ],
+   "model": "Being bilingual may delay the start of Alzheimer's disease and dementia by up to five years."
+  }
+ ],
+ "tasks": {
+  "syn": {
+   "title": "Summarise with synonyms",
+   "prompt": "Write your own summary of the video in 70–120 words. Replace every underlined word with a synonym.",
+   "text": "Research [shows] that a second language can [change] the brain in [important] ways. Bilingualism was once seen as a [problem] for children, but its [benefits] can last into [old age].",
+   "words": [
+    {
+     "w": "shows",
+     "syn": [
+      "demonstrates",
+      "reveals",
+      "indicates",
+      "suggests",
+      "proves"
+     ]
+    },
+    {
+     "w": "change",
+     "syn": [
+      "alter",
+      "transform",
+      "reshape",
+      "modify"
+     ]
+    },
+    {
+     "w": "important",
+     "syn": [
+      "significant",
+      "crucial",
+      "vital",
+      "essential",
+      "major"
+     ]
+    },
+    {
+     "w": "problem",
+     "syn": [
+      "drawback",
+      "disadvantage",
+      "handicap",
+      "obstacle",
+      "barrier"
+     ]
+    },
+    {
+     "w": "benefits",
+     "syn": [
+      "advantages",
+      "gains",
+      "rewards",
+      "positive effects"
+     ]
+    },
+    {
+     "w": "old age",
+     "syn": [
+      "later life",
+      "later years",
+      "senior years",
+      "retirement"
+     ]
+    }
+   ],
+   "min": 70,
+   "model": "Studies demonstrate that learning a second language can alter the way the brain is built and works in significant ways. The video explains that language skills can be active or passive, and that there are three kinds of bilingual people. Bilingualism was once considered a handicap for young children, but this idea came from poor research. In fact, people who speak two languages often switch between tasks more easily and ignore distractions better. These advantages may continue into later life, because bilingualism can delay Alzheimer's and dementia by several years."
+  },
+  "adv": {
+   "title": "Use three adverbs",
+   "prompt": "Summarise the video in 60–100 words. Use all three adverbs below.",
+   "adverbs": [
+    "remarkably",
+    "gradually",
+    "consequently"
+   ],
+   "min": 60,
+   "model": "The video explains that speaking two languages can remarkably change the brain. Children use both halves of the brain for language, but as they grow up, language gradually moves mainly to the left side. Bilingual people tend to have more grey matter and are better at switching between tasks; consequently, they may stay mentally sharp for longer. The lesson ends by reminding adults that it is never too late to start learning."
+  },
+  "rep": {
+   "title": "Formal account in reported speech",
+   "prompt": "Imagine you are writing a short report for your manager. Give a formal account of what the narrator said, in reported speech (80–120 words). Use at least two different reporting verbs and no contractions.",
+   "verbs": [
+    "explained",
+    "stated",
+    "argued",
+    "claimed",
+    "pointed out",
+    "suggested",
+    "noted",
+    "emphasised",
+    "emphasized",
+    "reported",
+    "maintained",
+    "added",
+    "concluded",
+    "mentioned",
+    "observed",
+    "described"
+   ],
+   "min": 80,
+   "model": "The narrator explained that knowing more than one language could change both the structure and the function of the brain. She pointed out that language ability was usually measured through active skills, such as speaking and writing, and passive skills, such as listening and reading. She described three types of bilingual speakers and noted that children used both hemispheres of the brain for language, whereas most adults relied mainly on the left one. Furthermore, she stated that bilingualism might delay the onset of Alzheimer's disease by up to five years. Finally, she concluded that it was never too late to learn a new language."
+  }
+ },
+ "past": [],
+ "doc": "https://claude.ai/code/artifact/b22ef9e7-f91f-4179-9aa9-8c602ccc5764"
+}
