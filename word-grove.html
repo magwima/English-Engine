@@ -1124,6 +1124,15 @@ GAMES.cross = {
 /* ================= Boot ================= */
 (function boot() {
   const h = (location.hash || "").slice(1);
+  // Solo mode (word-grove.html?solo#rush): show one game on its own, without the other tabs. Used by the portfolio.
+  if (new URLSearchParams(location.search).has("solo") && GAMES[h]) {
+    $(".tabs").hidden = true;
+    const name = $(`#tab-${h}`).textContent.trim();
+    document.title = name + " · Word Grove";
+    const sub = $(".brand small"); if (sub) sub.textContent = name;
+    showTab(h, false);
+    return;
+  }
   showTab(GAMES[h] ? h : store.get("tab", "hunt"), false);
 })();
 
