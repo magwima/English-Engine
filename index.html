@@ -725,6 +725,42 @@ mark.dmark{background:var(--sage-soft);color:inherit;border-bottom:3px solid var
 @media (max-width:860px){ .psotoast{bottom:calc(84px + env(safe-area-inset-bottom,0px))} .psotoast .pso{width:76px} .psotoast .psobub{margin-bottom:44px;font-size:.88rem} }
 @media (max-width:600px){ .herpso{width:112px;right:10px} .herpso .psobub{font-size:.8rem;margin-right:10px;max-width:170px} .psoend .pso{width:88px} }
 @media (prefers-reduced-motion: reduce){ .psotoast{transition:none} }
+/* ---------- Badges ---------- */
+.medal{display:block;width:100%;height:auto}
+.bggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-top:16px}
+.bgcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;box-shadow:var(--shadow)}
+.bgcard .medal{width:120px}
+.bgcard h3{margin:6px 0 0;font-size:1.12rem}
+.bgcard .bgen{margin:0;color:var(--muted);font-size:.9rem}
+.bgcard .bgdesc{margin:6px 0 0;font-size:.88rem;color:var(--muted);min-height:2.4em}
+.bgcard.locked .medal{opacity:.55;filter:grayscale(1)}
+.bgtiers{display:flex;gap:6px;margin:8px 0 2px}
+.bgtiers i{width:12px;height:12px;border-radius:50%;background:var(--sunk);border:1px solid var(--line)}
+.bgtiers i.b{background:#B87A45;border-color:#8E5A2E}.bgtiers i.s{background:#AEB9C2;border-color:#7F8B95}.bgtiers i.g{background:#D9A441;border-color:#A97A22}
+.bgbar{width:100%;height:8px;border-radius:99px;background:var(--sunk);overflow:hidden;margin-top:6px}
+.bgbar i{display:block;height:100%;background:var(--sage);border-radius:inherit}
+.bgnext{font-size:.82rem;color:var(--muted);margin:4px 0 0;font-variant-numeric:tabular-nums}
+.bgsum{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 0}
+.bgpop{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:16px;background:color-mix(in srgb,var(--ink) 45%,transparent);animation:bgfade .25s ease}
+.bgpopcard{position:relative;background:var(--surface);border-radius:22px;padding:26px 24px 22px;max-width:400px;width:100%;text-align:center;box-shadow:0 20px 60px rgb(0 0 0 / .3);animation:bgpopin .5s cubic-bezier(.3,1.5,.5,1)}
+.bgpopcard .eyebrow{margin:0}
+.bgpopcard h2{margin:4px 0 0;font-size:1.6rem}
+.bgpopcard .bgen{margin:0 0 6px;color:var(--muted)}
+.bgpopcard .bigmedal{width:170px;margin:6px auto 4px;animation:bgspin 1s cubic-bezier(.3,1.3,.5,1)}
+.bgpopcard .bgtierlbl{display:inline-block;margin:2px 0 8px;padding:3px 12px;border-radius:99px;font-weight:600;font-size:.88rem;color:#2B1D14}
+.bgpopcard .bgpso{display:flex;align-items:flex-end;justify-content:center;gap:6px;margin:8px 0 4px}
+.bgpopcard .bgpso .pso{width:86px;flex:none}
+.bgpopcard .bgpso .psobub{margin-bottom:34px;font-size:.92rem}
+.bgpopcard .row{justify-content:center;margin-top:10px}
+.bgmini{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:10px 0}
+.bgmini figure{margin:0;width:96px}
+.bgmini figcaption{font-size:.8rem;color:var(--muted);line-height:1.25}
+.pill.bgpill{cursor:pointer}
+@keyframes bgfade{from{opacity:0}}
+@keyframes bgpopin{from{transform:scale(.7);opacity:0}}
+@keyframes bgspin{from{transform:rotateY(180deg) scale(.6)}}
+@media (prefers-reduced-motion: reduce){ .bgpop,.bgpopcard,.bgpopcard .bigmedal{animation:none} }
+.herpso .pso{pointer-events:auto;cursor:pointer}
 </style>
 
 <div class="shell">
@@ -2067,7 +2103,7 @@ function isoWeek(d){ const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.ge
 function wk(){ const k=isoWeek(new Date()); if(!act.weeks[k]) act.weeks[k]={sec:0,ans:0,cor:0}; return act.weeks[k]; }
 function saveAct(){ const keys=Object.keys(act.weeks).sort(); keys.slice(0,Math.max(0,keys.length-12)).forEach(k=>delete act.weeks[k]);
   try{ localStorage.setItem(ACT_STORE, JSON.stringify(act)); }catch(e){} }
-function track(ok){ const w=wk(); w.ans++; if(ok) w.cor++; saveAct(); if(typeof psoReact==="function") psoReact(ok); }
+function track(ok){ const w=wk(); w.ans++; if(ok) w.cor++; saveAct(); if(typeof psoReact==="function") psoReact(ok); if(typeof bgNote==="function") bgNote(ok); }
 let lastInput=Date.now();
 ["pointerdown","keydown","wheel","touchstart"].forEach(ev=>document.addEventListener(ev,()=>{ lastInput=Date.now(); },{passive:true,capture:true}));
 setInterval(()=>{ if(document.visibilityState==="visible" && Date.now()-lastInput<90000 && act.nick && route!=="game"){ wk().sec+=15; saveAct(); } },15000);
@@ -2086,7 +2122,7 @@ function progressCode(){
   const w={}; Object.keys(act.weeks).sort().forEach(k=>{ const x=act.weeks[k]; w[k]=[x.sec,x.ans,x.cor]; });
   const L=typeof lab!=="undefined"?lab:{xp:0,level:2};
   const vid=typeof vidForCode==="function"?vidForCode():{};
-  const json=JSON.stringify({v:1,id:act.id,n:act.nick,ts:Date.now(),xp:L.xp||0,lv:+L.level||0,k:Object.values(state.known).filter(Boolean).length,c,a,w,vid});
+  const json=JSON.stringify({v:1,id:act.id,n:act.nick,ts:Date.now(),xp:L.xp||0,lv:+L.level||0,k:Object.values(state.known).filter(Boolean).length,c,a,w,vid,b:(typeof bg!=="undefined"?bg.got:{})});
   return "EW1."+b64url(json)+"."+sum36(json+"|eight-words");
 }
 
@@ -2158,6 +2194,7 @@ const ICON = {
   archive:'<rect x="3.5" y="4" width="17" height="4.5" rx="1.2"/><path d="M5 8.5v10a1.5 1.5 0 001.5 1.5h11a1.5 1.5 0 001.5-1.5v-10M10 12.5h4"/>',
   game:'<path d="M4.5 9.5h11v4.5a5 5 0 01-5 5h-1a5 5 0 01-5-5z"/><path d="M15.5 11h1.25a2.5 2.5 0 010 5H15"/><path d="M3.5 21h13"/><path d="M8 3.5c-.7.9-.7 1.8 0 2.7M11.5 3.5c-.7.9-.7 1.8 0 2.7"/>',
   exam:'<path d="M2.5 9.5L12 5l9.5 4.5L12 14z"/><path d="M6.5 11.5v4.5c3 2.5 8 2.5 11 0v-4.5M21.5 9.5v5"/>',
+  badges:'<circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5L7 21l5-2.5 5 2.5-1.5-7.5"/><path d="M12 6.5l.8 1.6 1.7.3-1.2 1.2.3 1.7-1.6-.8-1.6.8.3-1.7-1.2-1.2 1.7-.3z" fill="currentColor" stroke="none"/>',
   sound:'<path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M15.5 9a4 4 0 010 6M18 6.5a7.5 7.5 0 010 11"/>'
 };
 const ico = (k,cls="") => `<svg class="ico ${cls}" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg>`;
@@ -2166,10 +2203,10 @@ const blankOut = (s, w) => { const m = s.match(w.stem); return m ? {txt:s.replac
 
 /* ---------- Navigation ---------- */
 const NAV = [["today","Today"],["words","Words"],["lab","Grammar lab","Grammar"],["verbs","Irregular verbs","Verbs"],["video","Video","Video"],["sounds","Pronunciation","Sounds"],["use","Use it"]];
-const MORE = [["practise","Practise"],["exam","Exam corner"],["progress","Progress"],["archive","Previous vocabulary"],["game","Game"]];
+const MORE = [["practise","Practise"],["exam","Exam corner"],["progress","Progress"],["archive","Previous vocabulary"],["badges","Badges"],["game","Game"]];
 let navMore = (()=>{ try{ return localStorage.getItem("ee-navmore")==="1"; }catch(e){ return false; } })();
 let morePop = false, forceClosed = false;
-let route = ["lab","verbs"].includes(state.route) ? "lab" : ["today","words","video","practise","use","progress","game","archive","sounds","exam"].includes(state.route) ? state.route : "today";
+let route = ["lab","verbs"].includes(state.route) ? "lab" : ["today","words","video","practise","use","progress","game","archive","sounds","exam","badges"].includes(state.route) ? state.route : "today";
 const section = r => r==="word" ? "words" : r==="lab" ? (typeof lab!=="undefined" && lab.room==="verbs" ? "verbs" : "lab") : (r==="flash"||r==="round"||r==="order") ? "practise" : r.startsWith("use:") ? "use" : r;
 function go(r){
   morePop=false; forceClosed=false;
@@ -2180,10 +2217,10 @@ function paintNav(){
   const sec=section(route), inMore=MORE.some(([id])=>id===sec), open=navMore||(inMore&&!forceClosed);
   const item=([id,l])=>`<li><button class="nav" type="button" data-go="${id}" ${sec===id?'aria-current="page"':""}>${ico(id)}<span>${navLabel(id,l)}</span></button></li>`;
   $("#railNav").innerHTML = NAV.map(item).join("") +
-    `<li><button class="nav" type="button" data-more aria-expanded="${open}" aria-controls="navSub" aria-label="More: Practise, Exam corner, Progress, Previous vocabulary and Game">${ico("more")}<span>${navLabel("more","More")}</span>${ico("chev","chev")}</button>
+    `<li><button class="nav" type="button" data-more aria-expanded="${open}" aria-controls="navSub" aria-label="More: Practise, Exam corner, Progress, Previous vocabulary, Badges and Game">${ico("more")}<span>${navLabel("more","More")}</span>${ico("chev","chev")}</button>
       ${open?`<ul class="navsub" id="navSub">${MORE.map(item).join("")}</ul>`:""}</li>`;
   $("#tabbar").innerHTML = NAV.map(([id,l,sh])=>`<button class="tbtn" type="button" data-go="${id}" ${sec===id?'aria-current="page"':""}><span class="ic">${ico(id)}</span>${navLabel(id,sh||l,true)}</button>`).join("") +
-    `<button class="tbtn" type="button" data-more aria-expanded="${morePop}" aria-label="More: Practise, Exam corner, Progress, Previous vocabulary and Game" ${inMore?'aria-current="page"':""}><span class="ic">${ico("more")}</span>${navLabel("more","More",true)}</button>`;
+    `<button class="tbtn" type="button" data-more aria-expanded="${morePop}" aria-label="More: Practise, Exam corner, Progress, Previous vocabulary, Badges and Game" ${inMore?'aria-current="page"':""}><span class="ic">${ico("more")}</span>${navLabel("more","More",true)}</button>`;
   let pop=$("#morePop");
   if(morePop){ if(!pop){ pop=document.createElement("div"); pop.id="morePop"; pop.className="morepop"; pop.setAttribute("role","menu"); document.body.appendChild(pop); }
     pop.innerHTML=MORE.map(([id,l])=>`<button class="nav" type="button" role="menuitem" data-go="${id}" ${sec===id?'aria-current="page"':""}>${ico(id)}<span>${navLabel(id,l)}</span></button>`).join(""); }
@@ -2204,9 +2241,10 @@ const backBtn = (to,label) => `<button class="back" type="button" data-go="${to}
 function render(){
   paintNav();
   const V = {today:viewToday, words:viewWords, word:viewWord, practise:viewPractise, flash:viewFlash, round:viewRound, order:viewOrder, lab:viewLab, progress:viewProgress, use:viewUse,
-    video:viewVideo, game:viewGame, archive:viewArchive, sounds:viewSounds, exam:viewExam, "use:conv":viewConv, "use:write":viewWrite, "use:ask":viewAsk, "use:studio":viewStudio, "use:upgrade":viewUpgrade, "use:story":viewStory, "use:speak":viewSpeak};
+    video:viewVideo, game:viewGame, archive:viewArchive, sounds:viewSounds, badges:viewBadges, exam:viewExam, "use:conv":viewConv, "use:write":viewWrite, "use:ask":viewAsk, "use:studio":viewStudio, "use:upgrade":viewUpgrade, "use:story":viewStory, "use:speak":viewSpeak};
   (V[route]||viewToday)();
   if(VSET.archived && ["today","practise","use","word","flash","round","order"].includes(route) && !$("#view .setbanner")) $("#view").insertAdjacentHTML("afterbegin", setNote());
+  if(typeof bgCheck==="function") bgCheck();
   window.scrollTo({top:0});
   const h=$("#view h1"); if(h){ h.setAttribute("tabindex","-1"); h.focus({preventScroll:true}); }
 }
@@ -2550,6 +2588,7 @@ function viewToday(){
     <span class="pill"><b>${Math.round(wkx.sec/60)}</b> min this week</span>
     <span class="pill"><b>${doneN}/3</b> steps today</span>
     <span class="pill"><b>${LV[state.vlv]}</b> words · <button class="linkbtn" type="button" data-go="words">change level</button></span>
+    <button class="pill bgpill" type="button" data-go="badges"><b>${typeof bgEarned==="function"?bgEarned():0}</b> badges</button>
   </div></div>${psoOn()?`<div class="herpso" aria-hidden="true"><p class="psobub">${esc(pl)}</p>${psotek(pm)}</div>`:""}</section>
   ${newOnes.length?`<section class="newbanner">
     <div><p class="tag">New</p><h2>${newOnes.length} new ${newOnes.length===1?"word":"words"}: ${esc(listJoin(newOnes.map(id=>W[id].word)))}</h2>
@@ -2780,7 +2819,7 @@ function roundEnd(){
   ${backBtn("practise","Practise")}
   <header class="pagehead tight"><h1>Round finished</h1></header>
   <div class="panel endpanel">
-    ${psoOn()?psoEnd(n?round.score/n*100:0):""}
+    ${bgPerfect(round, n>0&&round.score===n)}${psoOn()?psoEnd(n?round.score/n*100:0):""}
     <p class="score">${round.score} <span>/ ${n}</span></p>
     <p class="lede">${m.length? `Look again at ${esc(listJoin(words))}. Retrying straight away helps it stick.` : "Every answer right first time."}</p>
     <div class="row">
@@ -2855,7 +2894,7 @@ function flashEnd(){
   ${backBtn("practise","Practise")}
   <header class="pagehead tight"><h1>Cards done</h1></header>
   <div class="panel endpanel">
-    ${psoOn()?psoEnd(f.total?f.right/f.total*100:100):""}
+    ${bgPerfect(f, f.total>0&&f.right===f.total)}${psoOn()?psoEnd(f.total?f.right/f.total*100:100):""}
     <p class="score">${f.right} <span>/ ${f.total}</span></p>
     <p class="lede">${nd?`Your next card is due ${new Date(nd).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}. Words you remember come back less often.`:"Come back tomorrow for your next review."}</p>
     <div class="row"><button class="btn" type="button" data-go="today">Back to today</button><button class="btn ghost" type="button" id="toMix">Do a mixed review</button></div>
@@ -3194,7 +3233,7 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape" && !$("#disp").hidd
 const L1 = {
   pl: {
     name:"Polski", flag:"PL",
-    nav:{today:"Dziś",sounds:"Wymowa",words:"Słówka",lab:"Gramatyka",exam:"Egzaminy",verbs:"Czasowniki nieregularne",video:"Wideo",practise:"Ćwiczenia",use:"Użyj słów",progress:"Postępy",archive:"Poprzednie słówka",game:"Gra",more:"Więcej"},
+    nav:{today:"Dziś",sounds:"Wymowa",words:"Słówka",lab:"Gramatyka",exam:"Egzaminy",verbs:"Czasowniki nieregularne",video:"Wideo",practise:"Ćwiczenia",use:"Użyj słów",progress:"Postępy",archive:"Poprzednie słówka",badges:"Odznaki",game:"Gra",more:"Więcej"},
     short:{today:"Dziś",sounds:"Wymowa",words:"Słówka",lab:"Gramatyka",verbs:"Czasown.",video:"Wideo",practise:"Ćwicz",use:"Użyj",more:"Więcej"},
     ui:{help:"Po polsku: jak to działa",show:"Pokaż po polsku",hide:"Ukryj tłumaczenie",ff:"Fałszywy przyjaciel",tip:"Najpierw spróbuj zrozumieć angielską definicję. Tłumaczenie to pomoc, nie skrót."},
     help:{
@@ -3244,14 +3283,14 @@ const L1 = {
       "verbs:blitz":"60 sekund: odpowiedz na jak najwięcej pytań o formy czasowników.",
       video:"Obejrzyj film tygodnia, odpowiedz na pytania, zapisz, co usłyszałeś, i napisz trzy krótkie streszczenia. Na końcu wyślij swój kod nauczycielowi.",
       progress:"Tu widzisz swoje postępy. Skopiuj kod postępów i wyślij go nauczycielowi, żeby zobaczył twoje wyniki i czas nauki.",
-      archive:"Słówka z poprzednich miesięcy. Wybierz zestaw i kliknij „Practise these words”, żeby wszystkie ćwiczenia używały tych słów.",
+      badges:"Twoje odznaki. Ćwicz, a Psotek przyzna ci brąz, srebro i złoto. Jedna odznaka jest tajna.",archive:"Słówka z poprzednich miesięcy. Wybierz zestaw i kliknij „Practise these words”, żeby wszystkie ćwiczenia używały tych słów.",
       game:"Krótka przerwa: wybierz grę. Czas gry nie liczy się do czasu nauki.",
       sounds:"Wymowa: najpierw ucho, potem usta. „Which word?” – posłuchaj i wybierz słowo (ship czy sheep?). „Word stress” – wskaż akcentowaną sylabę. „Weak forms” – zaznacz słowa wymawiane słabo. „Say it” – powiedz słowo, a przeglądarka sprawdzi, co usłyszała."
     }
   },
   ro: {
     name:"Română", flag:"RO",
-    nav:{today:"Astăzi",sounds:"Pronunție",words:"Vocabular",lab:"Gramatică",exam:"Examene",verbs:"Verbe neregulate",video:"Video",practise:"Exerciții",use:"Folosește cuvintele",progress:"Progres",archive:"Vocabular anterior",game:"Joc",more:"Mai mult"},
+    nav:{today:"Astăzi",sounds:"Pronunție",words:"Vocabular",lab:"Gramatică",exam:"Examene",verbs:"Verbe neregulate",video:"Video",practise:"Exerciții",use:"Folosește cuvintele",progress:"Progres",archive:"Vocabular anterior",badges:"Insigne",game:"Joc",more:"Mai mult"},
     short:{today:"Astăzi",sounds:"Sunete",words:"Cuvinte",lab:"Gramatică",verbs:"Verbe",video:"Video",practise:"Exerciții",use:"Aplică",more:"Mai mult"},
     ui:{help:"În română: cum funcționează",show:"Arată în română",hide:"Ascunde traducerea",ff:"Prieten fals",tip:"Încearcă mai întâi să înțelegi definiția în engleză. Traducerea e un ajutor, nu o scurtătură."},
     help:{
@@ -3301,7 +3340,7 @@ const L1 = {
       "verbs:blitz":"60 de secunde: răspunde la cât mai multe întrebări despre formele verbelor.",
       video:"Urmărește filmul săptămânii, răspunde la întrebări, notează ce ai auzit și scrie trei rezumate scurte. La final, trimite-i profesorului codul tău.",
       progress:"Aici îți vezi progresul. Copiază codul de progres și trimite-l profesorului, ca să-ți vadă rezultatele și timpul de studiu.",
-      archive:"Cuvintele din lunile trecute. Alege un set și apasă „Practise these words”, ca toate exercițiile să folosească acele cuvinte.",
+      badges:"Insignele tale. Exersează și Psotek îți dă bronz, argint și aur. O insignă e secretă.",archive:"Cuvintele din lunile trecute. Alege un set și apasă „Practise these words”, ca toate exercițiile să folosească acele cuvinte.",
       game:"O pauză scurtă: alege un joc. Timpul de joc nu se adaugă la timpul de studiu.",
       sounds:"Pronunție: întâi urechea, apoi gura. „Which word?” – ascultă și alege cuvântul (ship sau sheep?). „Word stress” – alege silaba accentuată. „Weak forms” – marchează cuvintele pronunțate slab. „Say it” – spune cuvântul, iar browserul verifică ce a auzit."
     }
@@ -3426,6 +3465,161 @@ function psoReact(ok){
 function psoEnd(pct){
   const [m,line] = pct>=90 ? ["champ","Mistrz! That was perfect."] : pct>=60 ? ["happy","Not bad at all. Again?"] : ["cheeky","Serio? We go again. Right now."];
   return `<div class="psoend">${psotek(m)}<p class="psobub">${esc(line)}</p></div>`;
+}
+
+/* ---------- Badges ----------
+   Counters live in their own key so nothing else changes. Each badge has three tiers (bronze, silver, gold); the secret one has one. */
+const BG_STORE="psotek-badges-v1";
+let bg={got:{}, n:{night:{}, early:{}, ans:0, perfect:0, wr:{}, vid:{}, pokes:0, best:0}};
+try{ const s=JSON.parse(localStorage.getItem(BG_STORE)||"null"); if(s){ bg.got=s.got||{}; Object.assign(bg.n,s.n||{}); } }catch(e){}
+const saveBg=()=>{ try{ localStorage.setItem(BG_STORE,JSON.stringify(bg)); }catch(e){} };
+const TIERS=[["Brąz","Bronze","#B87A45","#E7C39C"],["Srebro","Silver","#9AA7B1","#E3E9EE"],["Złoto","Gold","#D9A441","#F6E2A8"]];
+const convGood=()=>{ try{ return Object.values(JSON.parse(localStorage.getItem("vocab5-conv")||"{}")).filter(x=>x>=85).length; }catch(e){ return 0; } };
+const BADGES=[
+  {id:"streak", pl:"Kolczasty Upór", en:"Spiky Stubbornness", d:n=>`${n} days in a row`, t:[7,30,100], v:()=>bg.n.best, art:"flame", line:"You just don't give up, do you?"},
+  {id:"words", pl:"Słownikożerca", en:"Word Eater", d:n=>`${n} words learned`, t:[20,60,150], v:()=>ALLW.filter(w=>state.known[w.id]||box(w.id)>=4).length, art:"chef", line:"Mmm. Words. Delicious."},
+  {id:"grammar", pl:"Mistrz Gramatyki", en:"Grammar Master", d:n=>`${n} XP in the Grammar lab`, t:[100,400,1000], v:()=>(typeof lab!=="undefined"?lab.xp:0), art:"cap", line:"Present perfect? Perfect."},
+  {id:"perfect", pl:"Bez Pudła", en:"Bullseye", d:n=>n===1?"a perfect round (no mistakes)":`${n} perfect rounds`, t:[1,10,50], v:()=>bg.n.perfect, art:"target", line:"Not one mistake. Suspicious."},
+  {id:"speed", pl:"Szybki Jeż", en:"Speedy Hedgehog", d:n=>`a score of ${n} in a 60-second game`, t:[10,20,30], v:()=>Math.max(lab.best.rush||0,lab.best.vblitz||0), art:"race", line:"Gaz do dechy!"},
+  {id:"night", pl:"Nocny Marek", en:"Night Owl", d:n=>`${n} days practising after 10 pm`, t:[3,10,25], v:()=>Object.keys(bg.n.night).length, art:"nightcap", line:"Shh… go to bed after this one."},
+  {id:"early", pl:"Ranny Ptaszek", en:"Early Bird", d:n=>`${n} days practising before 8 am`, t:[3,10,25], v:()=>Object.keys(bg.n.early).length, art:"sun", line:"Coffee first? Fine. Then English."},
+  {id:"film", pl:"Kinoman", en:"Film Buff", d:n=>n===1?"one video of the week finished":`${n} videos of the week finished`, t:[1,4,12], v:()=>Object.keys(bg.n.vid).length, art:"beret", line:"Popcorn's on me."},
+  {id:"pen", pl:"Złote Pióro", en:"Golden Pen", d:n=>n===1?"one writing task passed":`${n} writing tasks passed`, t:[1,5,15], v:()=>Object.keys(bg.n.wr).length, art:"quill", line:"Shakespeare is nervous."},
+  {id:"chat", pl:"Gaduła", en:"Chatterbox", d:n=>`${n} conversations at 85% or more`, t:[2,5,8], v:convGood, art:"bubbles", line:"Bla bla bla… in perfect English."},
+  {id:"work", pl:"Pracowity Jeż", en:"Hard-working Hedgehog", d:n=>`${n} answers`, t:[100,1000,5000], v:()=>bg.n.ans, art:"hardhat", line:"Hard hat on. Back to work."},
+  {id:"secret", pl:"Psotny Sekret", en:"Cheeky Secret", d:()=>"", t:[10], v:()=>bg.n.pokes, art:"secret", secret:true, line:"Stop poking me! …Fine, have a badge."}
+];
+const BGI=Object.fromEntries(BADGES.map(b=>[b.id,b]));
+const tierOf=b=>{ const v=b.v()||0; let t=-1; b.t.forEach((x,i)=>{ if(v>=x) t=i; }); return t; };
+const tierIdx=(b,t)=>b.t.length===1?2:t; /* the one-tier badge is gold */
+
+/* Psotek head in his own coordinates, with a costume for each badge */
+function psoHead(art){
+  const ink="#2B1D14", st=`stroke="${ink}" stroke-width="3" fill="none" stroke-linecap="round"`;
+  const happy=`<path d="M131 113 Q138 104 145 113" ${st}/><path d="M153 111 Q160 102 167 111" ${st}/><ellipse cx="150" cy="132" rx="7" ry="4" fill="#E58F6B" opacity=".7"/><path d="M158 141 Q171 158 184 138 Q171 147 158 141 Z" fill="${ink}"/>`;
+  const cheeky=`<path d="M128 97 Q138 88 148 95" ${st}/><circle cx="138" cy="111" r="7" fill="${ink}"/><circle cx="140" cy="108" r="2.2" fill="#fff"/><path d="M153 112 Q160 106 168 112" ${st}/><ellipse cx="150" cy="132" rx="7" ry="4" fill="#E58F6B" opacity=".6"/><path d="M160 146 Q171 151 181 140" ${st}/>`;
+  const sleepy=`<path d="M130 112 Q138 117 146 112" ${st}/><path d="M152 110 Q160 115 168 110" ${st}/><ellipse cx="150" cy="132" rx="7" ry="4" fill="#E58F6B" opacity=".6"/><path d="M164 145 Q171 148 178 143" ${st}/>`;
+  const eyes=`<circle cx="139" cy="112" r="6" fill="${ink}"/><circle cx="141" cy="110" r="2" fill="#fff"/><circle cx="160" cy="110" r="6" fill="${ink}"/><circle cx="162" cy="108" r="2" fill="#fff"/><ellipse cx="150" cy="132" rx="7" ry="4" fill="#E58F6B" opacity=".6"/>`;
+  const race=`<path d="M100 94 L176 86" stroke="#2B2B2B" stroke-width="5" stroke-linecap="round"/><circle cx="132" cy="90" r="10" fill="#9CC3D5" stroke="${ink}" stroke-width="3"/><circle cx="157" cy="87" r="10" fill="#9CC3D5" stroke="${ink}" stroke-width="3"/><path d="M130 103 L146 107" ${st}/><path d="M154 106 L168 101" ${st}/><circle cx="139" cy="114" r="6" fill="${ink}"/><circle cx="161" cy="112" r="6" fill="${ink}"/><path d="M160 143 L182 141" ${st}/>`;
+  const face={flame:cheeky, chef:happy, cap:happy, target:eyes+`<path d="M160 142 Q171 152 182 140" ${st}/>`, race, nightcap:sleepy, sun:happy, beret:cheeky, quill:happy, bubbles:happy, hardhat:eyes+`<path d="M160 144 L182 141" ${st}/>`, secret:cheeky}[art]||happy;
+  const back={
+
+    sun:`<g transform="translate(174 58) scale(.8)"><g stroke="#E8A93A" stroke-width="4" stroke-linecap="round"><path d="M0 -26v8M0 18v8M-26 0h8M18 0h8M-18 -18l5 5M13 13l5 5M18 -18l-5 5M-13 13l-5 5"/></g><circle r="13" fill="#F2B33D"/></g>`,
+    
+    
+    
+    
+    quill:`<g transform="translate(30 16)"><path d="M112 84 C96 54 92 26 104 6 C118 26 120 56 116 84 Z" fill="#E8C24E" stroke="#B88A1E" stroke-width="2"/><path d="M114 84 L104 10" stroke="#B88A1E" stroke-width="2"/></g>`,
+    x:""
+  }[art]||"";
+  const top={
+    chef:`<path d="M96 84 L100 64 C86 62 84 42 100 40 C102 26 124 24 130 36 C140 26 160 32 156 48 C170 50 168 70 152 70 L150 84 Z" fill="#fff" stroke="#C9CFC2" stroke-width="2"/><path d="M97 78 L151 78" stroke="#C9CFC2" stroke-width="2"/><text x="124" y="64" font-size="18" font-weight="700" font-family="Georgia,serif" fill="#4A6A22" text-anchor="middle">Aa</text>`,
+    cap:`<path d="M104 80 L106 66 L156 62 L158 76 Z" fill="#2B2B2B"/><path d="M80 62 L130 44 L180 58 L130 76 Z" fill="#333"/><circle cx="130" cy="60" r="4" fill="#D9A441"/><path d="M130 60 L170 64 L172 86" stroke="#D9A441" stroke-width="3" fill="none"/><circle cx="172" cy="90" r="5" fill="#D9A441"/>`,
+    nightcap:`<path d="M98 88 C100 62 122 46 150 40 C168 36 182 44 190 58 C176 54 166 60 160 70 L170 84 Z" fill="#3B5A8C"/><path d="M96 90 L172 82" stroke="#fff" stroke-width="9" stroke-linecap="round"/><circle cx="192" cy="60" r="9" fill="#fff"/>`,
+    beret:`<ellipse cx="128" cy="70" rx="40" ry="14" fill="#8C2F2B" transform="rotate(-10 128 70)"/><path d="M126 56 l2 -10" stroke="#8C2F2B" stroke-width="4" stroke-linecap="round"/>`,
+    hardhat:`<path d="M92 84 C92 56 112 42 132 42 C152 42 170 56 170 80 Z" fill="#F2B33D"/><path d="M84 84 L178 78" stroke="#D99A1E" stroke-width="8" stroke-linecap="round"/><path d="M130 44 L132 78" stroke="#D99A1E" stroke-width="5"/>`,
+    film:``
+  }[art]||"";
+  const front = {
+    flame:`<g transform="translate(40 6) scale(.85)"><path d="M78 78 C62 54 84 40 80 18 C98 30 112 46 104 64 C112 58 116 50 114 40 C128 56 126 78 108 88 Z" fill="#E0662B"/><path d="M88 80 C80 66 92 58 90 46 C100 54 106 64 100 76 Z" fill="#F2B33D"/></g>`,
+    target:`<g transform="translate(174 54)"><circle r="18" fill="#fff" stroke="#A84D24" stroke-width="5"/><circle r="11" fill="none" stroke="#A84D24" stroke-width="5"/><circle r="4" fill="#A84D24"/><path d="M-30 -22 L-2 -2" stroke="${ink}" stroke-width="3"/><path d="M-34 -28 l6 2 l-2 6z" fill="${ink}"/></g>`,
+    nightcap:`<text x="180" y="78" font-size="14" font-weight="700" fill="#3B5A8C" font-family="Georgia,serif">z</text><text x="190" y="66" font-size="11" font-weight="700" fill="#3B5A8C" font-family="Georgia,serif">z</text>`,
+    bubbles:`<g transform="translate(156 46) scale(.72)"><path d="M8 0 h34 a8 8 0 0 1 8 8 v14 a8 8 0 0 1 -8 8 h-20 l-10 8 l2 -8 h-6 a8 8 0 0 1 -8 -8 v-14 a8 8 0 0 1 8 -8z" fill="#fff" stroke="${ink}" stroke-width="3"/><g fill="${ink}"><circle cx="15" cy="15" r="3"/><circle cx="25" cy="15" r="3"/><circle cx="35" cy="15" r="3"/></g></g>`,
+    secret:`<text x="182" y="80" font-size="56" font-weight="800" font-family="Georgia,serif" fill="#A84D24" text-anchor="middle">?</text>`,
+    beret:`<g transform="translate(160 140) rotate(-8) scale(.85)"><rect width="46" height="32" rx="3" fill="#2B2B2B"/><path d="M0 0 L46 0 L46 10 L0 10Z" fill="#fff"/><path d="M8 0 L14 10 M22 0 L28 10 M36 0 L42 10" stroke="#2B2B2B" stroke-width="4"/></g>`
+  }[art]||"";
+  return `${back}<path d="${PSO_SPIKES}" fill="#4A2F1E"/><ellipse cx="95" cy="115" rx="60" ry="50" fill="#6B4329"/>
+    <circle cx="120" cy="86" r="11" fill="#E8C79C"/><ellipse cx="138" cy="122" rx="44" ry="38" fill="#F1D6B0"/><ellipse cx="172" cy="130" rx="18" ry="13" fill="#F1D6B0"/>
+    <circle cx="188" cy="126" r="7" fill="${ink}"/><circle cx="186" cy="124" r="2" fill="#fff"/>${face}
+    <path d="M106 145 Q140 162 172 145 L174 156 Q140 174 104 157 Z" fill="#4F6F2E"/>${top}${front}`;
+}
+let medalN=0;
+function medal(b, t, cls="medal"){
+  const ti = t<0 ? -1 : tierIdx(b,t); const T = ti<0 ? ["","","#B9C1B0","#E6EBDD"] : TIERS[ti]; const id="mc"+(medalN++);
+  const lockedSecret = b.secret && t<0;
+  return `<svg class="${cls}" viewBox="0 0 120 120" role="img" aria-label="${esc(lockedSecret?"Secret badge":b.pl+(ti<0?" (locked)":", "+TIERS[ti][1]))}">
+    <defs><clipPath id="${id}"><circle cx="60" cy="60" r="44"/></clipPath></defs>
+    <circle cx="60" cy="60" r="57" fill="${T[2]}"/><circle cx="60" cy="60" r="51" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2" stroke-dasharray="3 5"/>
+    <circle cx="60" cy="60" r="46" fill="${T[3]}"/>
+    <g clip-path="url(#${id})">${lockedSecret?`<text x="60" y="78" font-size="52" font-weight="800" font-family="Georgia,serif" fill="#8A9480" text-anchor="middle">?</text>`:`<svg x="2" y="2" width="116" height="116" viewBox="22 -6 220 220">${psoHead(b.art)}</svg>`}</g>
+    ${ti>=0?`<path d="M60 104 l5 9 l-5 -3 l-5 3z" fill="${T[2]}"/>`:""}</svg>`;
+}
+const tierDots=(b,t)=>b.t.length===1?`<span class="bgtiers" aria-hidden="true"><i class="${t>=0?"g":""}"></i></span>`:`<span class="bgtiers" aria-hidden="true">${b.t.map((x,i)=>`<i class="${i<=t?["b","s","g"][i]:""}"></i>`).join("")}</span>`;
+function bgDesc(b,t){
+  if(b.secret) return t>=0 ? "You found Psotek's secret." : "A secret. Psotek won't tell.";
+  const nx=b.t[t+1]; return nx!=null ? `${TIERS[tierIdx(b,t+1)][1]}: ${b.d(nx)}.` : `Gold for ${b.d(b.t[b.t.length-1])}. The top!`;
+}
+const bgEarned=()=>BADGES.reduce((n,b)=>n+(Math.max(-1,tierOf(b))+1),0);
+const bgTotal=BADGES.reduce((n,b)=>n+b.t.length,0);
+
+/* Counting: called from track() and other places */
+function bgNote(ok){
+  const h=new Date().getHours(), k=dayKey();
+  if(h>=22||h<4) bg.n.night[k]=1; else if(h>=4&&h<8) bg.n.early[k]=1;
+  bg.n.ans=(bg.n.ans||0)+1; saveBg(); bgCheck();
+}
+const bgSeen=new WeakSet();
+function bgPerfect(obj, ok){ if(!obj||bgSeen.has(obj)) return ""; bgSeen.add(obj); if(ok){ bg.n.perfect=(bg.n.perfect||0)+1; saveBg(); setTimeout(bgCheck,600); } return ""; }
+function bgWrite(key){ if(bg.n.wr[key]) return; bg.n.wr[key]=1; saveBg(); bgCheck(); }
+
+let bgQueue=[], bgTimer=0;
+function bgCheck(){
+  try{
+    bg.n.best=Math.max(bg.n.best||0, streak());
+    if(typeof vidS!=="undefined") Object.entries(vidS.weeks).forEach(([k,S])=>{ const n=Object.keys(S.mc||{}).length; if(n>=6 && (k!==VIDEO.week || n>=VIDEO.questions.length)) bg.n.vid[k]=1; });
+    let changed=false;
+    BADGES.forEach(b=>{ const t=tierOf(b), had=bg.got[b.id]??-1; if(t>had){ bg.got[b.id]=t; changed=true; bgQueue.push([b,t]); } });
+    if(changed) saveBg();
+    if(bgQueue.length){ clearTimeout(bgTimer); bgTimer=setTimeout(bgShow,700); }
+  }catch(e){}
+}
+function bgShow(){
+  if(!bgQueue.length || $("#bgPop")) return;
+  if((typeof rush!=="undefined"&&rush) || (typeof blitz!=="undefined"&&blitz) || route==="game" || !$("#gate").hidden){ bgTimer=setTimeout(bgShow,4000); return; }
+  const list=bgQueue.splice(0); const last=new Map(); list.forEach(([b,t])=>last.set(b.id,[b,t])); const items=[...last.values()];
+  const pop=document.createElement("div"); pop.className="bgpop"; pop.id="bgPop"; pop.setAttribute("role","dialog"); pop.setAttribute("aria-modal","true"); pop.setAttribute("aria-labelledby","bgPopT");
+  let body;
+  if(items.length===1){ const [b,t]=items[0], T=TIERS[tierIdx(b,t)];
+    body=`<p class="eyebrow">Nowa odznaka · New badge</p>${medal(b,t,"medal bigmedal")}
+      <h2 id="bgPopT">${esc(b.pl)}</h2><p class="bgen">${esc(b.en)}</p>
+      <span class="bgtierlbl" style="background:${T[3]}">${T[0]} · ${T[1]}</span>
+      <p style="margin:0;color:var(--muted)">${b.secret?"You found Psotek's secret.":esc(cap(b.d(b.t[t])))+"."}</p>
+      ${psoOn()?`<div class="bgpso">${psotek("happy")}<p class="psobub">${esc(b.line)}</p></div>`:""}`;
+  } else {
+    body=`<p class="eyebrow">Nowe odznaki · New badges</p><h2 id="bgPopT">${items.length} badges at once!</h2>
+      <div class="bgmini">${items.map(([b,t])=>`<figure>${medal(b,t)}<figcaption><b>${esc(b.pl)}</b><br>${TIERS[tierIdx(b,t)][1]}</figcaption></figure>`).join("")}</div>
+      ${psoOn()?`<div class="bgpso">${psotek("champ")}<p class="psobub">Look at you! A whole collection.</p></div>`:""}`;
+  }
+  pop.innerHTML=`<div class="bgpopcard">${body}<div class="row"><button class="btn" type="button" id="bgOk">Super!</button>${route!=="badges"?`<button class="btn ghost" type="button" id="bgAll">See all badges</button>`:""}</div></div>`;
+  document.body.appendChild(pop);
+  const close=()=>{ pop.remove(); document.removeEventListener("keydown",esc1); if(bgQueue.length) setTimeout(bgShow,300); };
+  const esc1=e=>{ if(e.key==="Escape") close(); };
+  document.addEventListener("keydown",esc1);
+  pop.addEventListener("click",e=>{ if(e.target===pop) close(); });
+  $("#bgOk").onclick=close; const a=$("#bgAll"); if(a) a.onclick=()=>{ close(); go("badges"); };
+  $("#bgOk").focus({preventScroll:true});
+  setTimeout(()=>burst(pop.querySelector(".medal"),18),250);
+  if(route==="badges") viewBadges();
+}
+/* The hidden one: poke Psotek on the Today page */
+document.addEventListener("click",e=>{ if(!e.target.closest(".herpso .pso")) return; bg.n.pokes=(bg.n.pokes||0)+1; saveBg();
+  const lines=["Hey!","Stop it.","That tickles!","I'm spiky, you know.","Seriously?","Ow.","Psst… keep going."];
+  if(bg.n.pokes<10) psoSay("cheeky", lines[Math.min(lines.length-1,bg.n.pokes-1)]); bgCheck(); });
+
+function viewBadges(){
+  medalN=0;
+  const rows=BADGES.map(b=>({b,t:tierOf(b),v:b.v()||0}));
+  const got=rows.filter(r=>r.t>=0).length;
+  $("#view").innerHTML=`<header class="pagehead"><p class="eyebrow">Odznaki</p><h1>Badges</h1>
+    <p class="lede">Practise and collect Psotek's badges. Each one has bronze, silver and gold. One is a secret.</p>
+    <div class="bgsum"><span class="pill"><b>${got}</b> of ${BADGES.length} badges</span><span class="pill"><b>${bgEarned()}</b> of ${bgTotal} medals</span><span class="pill"><b>${bg.n.best}</b> best streak</span></div></header>
+  <div class="bggrid">${rows.map(({b,t,v})=>{ const sec=b.secret&&t<0; const nx=b.t[t+1]; const prev=t>=0?b.t[t]:0; const pct=nx!=null?Math.max(0,Math.min(100,Math.round((v-prev)/(nx-prev)*100))):100;
+    return `<article class="bgcard${t<0?" locked":""}">${medal(b,t)}
+      <h3>${sec?"???":esc(b.pl)}</h3><p class="bgen">${sec?"Secret badge":esc(b.en)}</p>${tierDots(b,t)}
+      <p class="bgdesc">${esc(bgDesc(b,t))}</p>
+      ${!b.secret&&nx!=null?`<div class="bgbar" role="progressbar" aria-valuemin="0" aria-valuemax="${nx}" aria-valuenow="${Math.min(v,nx)}" aria-label="${esc(b.en)} progress"><i style="width:${pct}%"></i></div><p class="bgnext">${Math.min(v,nx)} / ${nx}</p>`:""}
+    </article>`; }).join("")}</div>
+  <p class="hintline" style="margin-top:18px">Your badges go into your progress code, so your teacher can see them too.</p>`;
 }
 
 /* Lab progress */
@@ -4125,7 +4319,7 @@ function huntEnd(){
   const best=hunt.score>lab.best.hunt; if(best){ lab.best.hunt=hunt.score; saveLab(); }
   const msg = hunt.score===10?"Perfect. Do and does hold no secrets for you.":hunt.score>=7?"Strong work. A couple more rounds and it'll be automatic.":hunt.score>=4?"Getting there. Check who the subject is before you choose.":"Keep going. Remember: he, she, it → does / doesn't.";
   $("#room").innerHTML=`<div class="panel endcard">
-    ${psoOn()?psoEnd(hunt.score*10):""}
+    ${bgPerfect(hunt, hunt.score===10)}${psoOn()?psoEnd(hunt.score*10):""}
     <p class="score">${hunt.score} / 10</p>
     <p style="margin:4px 0 4px">${msg}</p>
     <p class="counter">${best?"New best score!":`Best: ${lab.best.hunt} / 10`}</p>
@@ -5002,7 +5196,7 @@ function viewVideoWatch(){
     $(`[data-vchk="${k}"]`).onclick=()=>{ const t=ta.value; if(!t.trim()){ ta.focus(); return; } const items=vidChecks(k,t); const ul=$("#vk_"+k);
       ul.hidden=false; ul.innerHTML=items.map(x=>`<li class="${x.warn?"warn":x.ok?"pass":"fail"}">${esc(x.txt)}</li>`).join("");
       const ok=items.every(x=>x.ok); S.texts[k]=t; S.at=Date.now();
-      if(ok && !S.ok["t_"+k]){ S.ok["t_"+k]=1; track(true); burst(ul,10); } else if(!ok) track(false);
+      if(ok && !S.ok["t_"+k]){ S.ok["t_"+k]=1; bgWrite("v:"+VIDEO.week+":"+k); track(true); burst(ul,10); } else if(!ok) track(false);
       saveVid(); markDay(); save(); };
     $("#vai_"+k).onclick=()=>{ const t=ta.value.trim(); if(!t){ ta.focus(); return; } vidAI(k,t,$("#vo_"+k),$("#vai_"+k)); };
     $(`[data-vmod="${k}"]`).onclick=()=>{ $("#vm_"+k).hidden=!$("#vm_"+k).hidden; }; });
@@ -5422,7 +5616,7 @@ function viewConv(){
     const pct=Math.round(cv.pts/max*100);
     try{ const s=JSON.parse(localStorage.getItem("vocab5-conv")||"{}"); s[c.id]=Math.max(s[c.id]||0,pct); localStorage.setItem("vocab5-conv",JSON.stringify(s)); }catch(e){}
     $("#view").innerHTML=`${backBtn("use","Use it")}<header class="pagehead tight"><h1>${esc(c.t)}</h1></header>
-      <div class="panel endcard">${psoOn()?psoEnd(pct):""}<p class="score">${pct}%</p><p style="margin:4px 0">${pct>=85?"You sound natural and polite.":pct>=60?"Good. Check the replies marked in orange.":"Try it again: the explanations will help."}</p>
+      <div class="panel endcard">${bgPerfect(cv.picks, pct===100)}${psoOn()?psoEnd(pct):""}<p class="score">${pct}%</p><p style="margin:4px 0">${pct>=85?"You sound natural and polite.":pct>=60?"Good. Check the replies marked in orange.":"Try it again: the explanations will help."}</p>
         <div class="row" style="justify-content:center">${canSpeak?`<button class="btn ghost" type="button" id="cvHear">${ico("sound")} Hear the best version</button>`:""}<button class="btn" type="button" id="cvAgain">Try again</button><button class="btn ghost" type="button" id="cvList">Another conversation</button></div></div>
       <div class="convlog">${log}</div>`;
     $("#cvAgain").onclick=()=>{ Object.assign(cv,{i:0,pts:0,picks:[],done:false}); viewConv(); };
@@ -5598,7 +5792,7 @@ function viewWrite(){
   const ta=$("#wText");
   const paint=()=>{ const cs=writeChecks(G, ta.value); $("#wChecks").innerHTML=cs.map(c=>`<li class="${c.ok?"pass":"fail"}">${esc(c.txt)}</li>`).join(""); return cs.every(c=>c.ok); };
   ta.addEventListener("input",()=>{ wst.texts[wst.g]=ta.value; saveW(); });
-  $("#wChk").onclick=()=>{ const ok=paint(); if(ok){ burst($("#wChk"),8); track(true); } };
+  $("#wChk").onclick=()=>{ const ok=paint(); if(ok){ burst($("#wChk"),8); bgWrite("w:"+wst.g+":"+dayKey()); track(true); } };
   const ab=$("#wAI"); if(ab) ab.onclick=()=>{ if(wcountT(ta.value)<20) return; writeAI(`${G.t}: ${G.prompt} (${G.min}–${G.max} words${G.formal?", formal style":""})`, ta.value, $("#wOut"), ab); };
   $("#wModel").onclick=()=>{ const m=$("#wM"); m.hidden=!m.hidden; $("#wModel").textContent=m.hidden?"See the model answer":"Hide the model answer";
     if(!m.hidden) m.innerHTML=G.model.split(/\n\n/).map(p=>`<p>${esc(p).replace(/\n/g,"<br>").replace(new RegExp(`\\b(${LINKERS.map(l=>l.replace(/ /g,"\\s+")).join("|")})\\b`,"gi"),"<mark class=\"dmark\">$1</mark>")}</p>`).join("")+`<p class="hintline">Highlighted: linking words.</p>`; };
