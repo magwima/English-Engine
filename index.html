@@ -881,6 +881,7 @@ h1{letter-spacing:0}
 @keyframes bgspin{from{transform:rotateY(180deg) scale(.6)}}
 @media (prefers-reduced-motion: reduce){ .bgpop,.bgpopcard,.bgpopcard .bigmedal{animation:none} }
 .herpso .pso{pointer-events:auto;cursor:pointer}
+@media (min-width:601px){ .todayhero .herobody .chips-row{padding-right:170px} }
 </style>
 
 <div class="shell">
@@ -2787,13 +2788,7 @@ function viewToday(){
       <button class="btn ${isPlanDone(s.k)?"ghost":""}" type="button" data-step="${i}">${isPlanDone(s.k)?"Do it again":s.b}</button>
     </li>`).join("")}
   </ol>
-  <h2 class="sec">Jump back in</h2>
-  <div class="cards three">
-    <button class="card" type="button" data-go="words"><h3>Vocabulary</h3><p>Four new words every day at your level, A1 to C2: two formal and two informal.</p></button>
-    <button class="card" type="button" data-go="grammar"><h3>Grammar and tenses</h3><p>All 12 tenses, plus articles, modals, conditionals, prepositions and irregular verbs.</p><span class="meta2"><span>${typeof lab!=="undefined"?lab.xp:0} XP</span></span></button>
-    <button class="card" type="button" data-go="video"><h3>Video of the week</h3><p>${esc(VIDEO.title)} · ${esc(VIDEO.length)}</p></button>
-    <button class="card" type="button" data-go="progress"><h3>Send progress</h3><p>Make a code for your teacher.</p></button>
-  </div>`;
+`;
   $$("[data-step]").forEach(b=>b.onclick=()=>{ const s=steps[+b.dataset.step]; if(s.fn) s.fn(); else { flash=null; flashPlan=true; go(s.go); } });
 }
 
