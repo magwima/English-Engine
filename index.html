@@ -7,42 +7,42 @@
 <style>
 /* Layout: left rail on wide screens, top bar + bottom tab bar on phones; one calm column of content. Moss green leads. */
 :root{
-  --paper:#FFF9EE; --surface:#FFFFFF; --sunk:#F5EEDD; --ink:#1F2A1A; --muted:#5D6855;
-  --sage:#2A7F38; --sage-deep:#1D5E27; --sage-soft:#E1F3D3; --slate:#3E6E95; --slate-soft:#E2EFFA;
-  --ok:#2A7F38; --ok-soft:#DDF3D0; --err:#C2412A; --err-soft:#FFE3DA; --line:#EADFC8;
-  --on-accent:#FFFFFF; --shadow:0 1px 2px rgb(60 45 10 / .05), 0 8px 24px rgb(60 45 10 / .07);
+  --paper:#FFFCF5; --surface:#FFFFFF; --sunk:#F5F1E6; --ink:#1B2140; --muted:#5B6380;
+  --sage:#1A56E8; --sage-deep:#1440B8; --sage-soft:#E3EBFF; --slate:#3E5BA8; --slate-soft:#E6ECFA;
+  --ok:#15803D; --ok-soft:#DCF5E3; --err:#C93A22; --err-soft:#FFE4DC; --line:#E9E2D1;
+  --on-accent:#FFFFFF; --shadow:0 1px 2px rgb(27 33 64 / .05), 0 8px 24px rgb(27 33 64 / .07);
   --serif:"Baloo 2", "Instrument Sans", system-ui, sans-serif;
   --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --moss-wash:#CFE8B4; --plain-wash:#FFF9EE;
-  --sun:#F5B020; --sun-deep:#B87A00; --sun-soft:#FFF1CC; --sun-ink:#7A4E00;
-  --sky:#1E8FD6; --sky-deep:#136BA3; --sky-soft:#DDF0FC; --sky-ink:#0E5482;
-  --coral:#EF5F3E; --coral-deep:#B8432A; --coral-soft:#FFE4DB; --coral-ink:#A3361F;
-  --plum:#9B59D0; --plum-deep:#7440A0; --plum-soft:#F2E6FB; --plum-ink:#6A3796;
-  --leaf-soft:#E1F3D3; --leaf-ink:#1D5E27;
+  --moss-wash:#DCE6FF; --plain-wash:#FFFCF5;
+  --sun:#FFCE32; --sun-deep:#C99A00; --sun-soft:#FFF3C4; --sun-ink:#8A5A00;
+  --sky:#0EA5B7; --sky-deep:#0B7C8A; --sky-soft:#DDF6F8; --sky-ink:#0B6E7A;
+  --coral:#E8452C; --coral-deep:#C93A22; --coral-soft:#FFE4DC; --coral-ink:#B23519;
+  --plum:#7C4DFF; --plum-deep:#5B2FD9; --plum-soft:#EEE8FF; --plum-ink:#5B2FD9;
+  --leaf-soft:#DCF5E3; --leaf-ink:#15803D;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --paper:#151A12; --surface:#1E251A; --sunk:#283122; --ink:#EEF3E6; --muted:#ACB89E;
-    --sage:#7FCB55; --sage-deep:#4E9530; --sage-soft:#26381C; --slate:#9CC9EE; --slate-soft:#1F2F3C;
-    --ok:#8FD66A; --ok-soft:#21351A; --err:#FF9C82; --err-soft:#45231A; --line:#38452E;
-    --on-accent:#10200A; --shadow:none; --moss-wash:#24321B; --plain-wash:#151A12; color-scheme:dark;
-    --sun:#FFC94D; --sun-deep:#B88A1A; --sun-soft:#3A2F12; --sun-ink:#FFD877;
-    --sky:#5BB8F2; --sky-deep:#2E83BC; --sky-soft:#16303F; --sky-ink:#9BD6FA;
-    --coral:#FF8A6B; --coral-deep:#C25B40; --coral-soft:#40221A; --coral-ink:#FFB49F;
-    --plum:#C493F0; --plum-deep:#8E5FBC; --plum-soft:#2E2140; --plum-ink:#DDBCFA;
-    --leaf-soft:#26381C; --leaf-ink:#A6E08A;
+    --paper:#121630; --surface:#1C2142; --sunk:#262C55; --ink:#EEF1FF; --muted:#A3ABCF;
+    --sage:#7AA2FF; --sage-deep:#4C74DB; --sage-soft:#233064; --slate:#A9BDF5; --slate-soft:#232B55;
+    --ok:#4ADE80; --ok-soft:#173826; --err:#FF8A70; --err-soft:#45221C; --line:#343B6A;
+    --on-accent:#0E1330; --shadow:none; --moss-wash:#1F2A5A; --plain-wash:#121630; color-scheme:dark;
+    --sun:#FFD54A; --sun-deep:#C49A12; --sun-soft:#3A3216; --sun-ink:#FFE08A;
+    --sky:#4FD6E3; --sky-deep:#2BA3AF; --sky-soft:#15343D; --sky-ink:#8BE6EE;
+    --coral:#FF8A70; --coral-deep:#D2604A; --coral-soft:#42231E; --coral-ink:#FFB3A1;
+    --plum:#B39BFF; --plum-deep:#8A6BE6; --plum-soft:#2C2552; --plum-ink:#CDBDFF;
+    --leaf-soft:#173826; --leaf-ink:#86EFAC;
   }
 }
 :root[data-theme="dark"]{
-  --paper:#151A12; --surface:#1E251A; --sunk:#283122; --ink:#EEF3E6; --muted:#ACB89E;
-  --sage:#7FCB55; --sage-deep:#4E9530; --sage-soft:#26381C; --slate:#9CC9EE; --slate-soft:#1F2F3C;
-  --ok:#8FD66A; --ok-soft:#21351A; --err:#FF9C82; --err-soft:#45231A; --line:#38452E;
-  --on-accent:#10200A; --shadow:none; --moss-wash:#24321B; --plain-wash:#151A12; color-scheme:dark;
-  --sun:#FFC94D; --sun-deep:#B88A1A; --sun-soft:#3A2F12; --sun-ink:#FFD877;
-  --sky:#5BB8F2; --sky-deep:#2E83BC; --sky-soft:#16303F; --sky-ink:#9BD6FA;
-  --coral:#FF8A6B; --coral-deep:#C25B40; --coral-soft:#40221A; --coral-ink:#FFB49F;
-  --plum:#C493F0; --plum-deep:#8E5FBC; --plum-soft:#2E2140; --plum-ink:#DDBCFA;
-  --leaf-soft:#26381C; --leaf-ink:#A6E08A;
+  --paper:#121630; --surface:#1C2142; --sunk:#262C55; --ink:#EEF1FF; --muted:#A3ABCF;
+  --sage:#7AA2FF; --sage-deep:#4C74DB; --sage-soft:#233064; --slate:#A9BDF5; --slate-soft:#232B55;
+  --ok:#4ADE80; --ok-soft:#173826; --err:#FF8A70; --err-soft:#45221C; --line:#343B6A;
+  --on-accent:#0E1330; --shadow:none; --moss-wash:#1F2A5A; --plain-wash:#121630; color-scheme:dark;
+  --sun:#FFD54A; --sun-deep:#C49A12; --sun-soft:#3A3216; --sun-ink:#FFE08A;
+  --sky:#4FD6E3; --sky-deep:#2BA3AF; --sky-soft:#15343D; --sky-ink:#8BE6EE;
+  --coral:#FF8A70; --coral-deep:#D2604A; --coral-soft:#42231E; --coral-ink:#FFB3A1;
+  --plum:#B39BFF; --plum-deep:#8A6BE6; --plum-soft:#2C2552; --plum-ink:#CDBDFF;
+  --leaf-soft:#173826; --leaf-ink:#86EFAC;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{font-size:var(--fs,100%)}
@@ -86,20 +86,20 @@ main{min-width:0;padding-block:36px 80px;padding-left:max(16px,env(safe-area-ins
 .gamewrap.tall{aspect-ratio:auto;height:min(88vh,920px);max-height:none;background:#e9ecdf}
 /* Today wallpaper */
 .todayhero{position:relative;overflow:hidden;border-radius:22px;margin:0 0 22px;isolation:isolate;border:1px solid var(--line);
-  --sky1:#CFE3EC;--sky2:#EDF3E2;--sun:#F6D57A;--glow:rgb(246 213 122 / .45);--h1:#CFDDB4;--h2:#AFC78A;--h3:#86A85E;--h4:#5E8240;--tree:#3F5F2A;--tree2:#6E8F4A;--cloud:#FFFFFF;--hink:var(--ink);--hmuted:var(--muted)}
+  --sky1:#BFE3FF;--sky2:#EAF6FF;--sun:#FFCE32;--glow:rgb(255 206 50 / .5);--h1:#C9F0B4;--h2:#9BE07E;--h3:#6CC757;--h4:#3FA544;--tree:#2E8B3E;--tree2:#58B85A;--cloud:#FFFFFF;--hink:var(--ink);--hmuted:var(--muted)}
 .todayhero[data-tod="morning"]{--sky1:#F7E3C4;--sky2:#EAF1DC;--sun:#F2B65A;--glow:rgb(242 182 90 / .45)}
-.todayhero[data-tod="evening"]{--sky1:#E9B98F;--sky2:#F3DCC4;--sun:#E38B4F;--glow:rgb(227 139 79 / .5);--h1:#C9C79E;--h2:#9FB07A;--h3:#738F52;--h4:#4F6B37;--tree:#344A25;--tree2:#5A7240;--cloud:#FBE6D6}
+.todayhero[data-tod="evening"]{--sky1:#FFC59E;--sky2:#FFE7D1;--sun:#FF8A4C;--glow:rgb(255 138 76 / .5);--h1:#D6E8A8;--h2:#A9D57E;--h3:#7DBE5C;--h4:#4E9E44;--tree:#2E7A38;--tree2:#5BA552;--cloud:#FFF0E3}
 .todayhero[data-tod="night"]{--sky1:#1C2633;--sky2:#34443A;--sun:#F1EBD0;--glow:rgb(241 235 208 / .22);--h1:#3A4B3A;--h2:#2E3E2C;--h3:#243322;--h4:#1B2719;--tree:#121B10;--tree2:#1E2B1A;--hink:#EEF2E6;--hmuted:#C3CCB6}
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .todayhero{--sky1:#22323A;--sky2:#1E2A1C;--sun:#D9C27A;--glow:rgb(217 194 122 / .22);--h1:#2C3B24;--h2:#26341F;--h3:#1F2B19;--h4:#182214;--tree:#10180D;--tree2:#1B2616;--cloud:#3A4A44;--hink:var(--ink);--hmuted:var(--muted)}
-  :root:not([data-theme="light"]) .todayhero[data-tod="morning"]{--sky1:#3A3426;--sky2:#20291C;--sun:#D9A85A}
-  :root:not([data-theme="light"]) .todayhero[data-tod="evening"]{--sky1:#42281E;--sky2:#24261B;--sun:#D98250;--glow:rgb(217 130 80 / .3)}
-  :root:not([data-theme="light"]) .todayhero[data-tod="night"]{--sky1:#121A24;--sky2:#1D2820}
+  :root:not([data-theme="light"]) .todayhero{--sky1:#1E2A5C;--sky2:#172048;--sun:#FFD54A;--glow:rgb(255 213 74 / .25);--h1:#25455A;--h2:#1F3B4C;--h3:#19323F;--h4:#142834;--tree:#0D1C26;--tree2:#16303B;--cloud:#2E3A6A;--hink:var(--ink);--hmuted:var(--muted)}
+  :root:not([data-theme="light"]) .todayhero[data-tod="morning"]{--sky1:#3B3462;--sky2:#1B2250;--sun:#D9A85A}
+  :root:not([data-theme="light"]) .todayhero[data-tod="evening"]{--sky1:#4A2A4E;--sky2:#1E2250;--sun:#D98250;--glow:rgb(217 130 80 / .3)}
+  :root:not([data-theme="light"]) .todayhero[data-tod="night"]{--sky1:#0E1430;--sky2:#1A2350}
 }
-:root[data-theme="dark"] .todayhero{--sky1:#22323A;--sky2:#1E2A1C;--sun:#D9C27A;--glow:rgb(217 194 122 / .22);--h1:#2C3B24;--h2:#26341F;--h3:#1F2B19;--h4:#182214;--tree:#10180D;--tree2:#1B2616;--cloud:#3A4A44;--hink:var(--ink);--hmuted:var(--muted)}
-:root[data-theme="dark"] .todayhero[data-tod="morning"]{--sky1:#3A3426;--sky2:#20291C;--sun:#D9A85A}
-:root[data-theme="dark"] .todayhero[data-tod="evening"]{--sky1:#42281E;--sky2:#24261B;--sun:#D98250;--glow:rgb(217 130 80 / .3)}
-:root[data-theme="dark"] .todayhero[data-tod="night"]{--sky1:#121A24;--sky2:#1D2820}
+:root[data-theme="dark"] .todayhero{--sky1:#1E2A5C;--sky2:#172048;--sun:#FFD54A;--glow:rgb(255 213 74 / .25);--h1:#25455A;--h2:#1F3B4C;--h3:#19323F;--h4:#142834;--tree:#0D1C26;--tree2:#16303B;--cloud:#2E3A6A;--hink:var(--ink);--hmuted:var(--muted)}
+:root[data-theme="dark"] .todayhero[data-tod="morning"]{--sky1:#3B3462;--sky2:#1B2250;--sun:#D9A85A}
+:root[data-theme="dark"] .todayhero[data-tod="evening"]{--sky1:#4A2A4E;--sky2:#1E2250;--sun:#D98250;--glow:rgb(217 130 80 / .3)}
+:root[data-theme="dark"] .todayhero[data-tod="night"]{--sky1:#0E1430;--sky2:#1A2350}
 .heroart{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block}
 .heroart .hs1{stop-color:var(--sky1)} .heroart .hs2{stop-color:var(--sky2)}
 .heroart .hg1{stop-color:var(--glow)} .heroart .hg2{stop-color:var(--glow);stop-opacity:0}
@@ -433,25 +433,25 @@ td.w{font-family:var(--serif);font-size:1.05rem}
 .meter i{display:block;height:100%;background:var(--sage)}
 
 /* ---------- Moss mode (Tense lab) ---------- */
-:root{--moss-wash:#B9C98F;--plain-wash:#E7EBE7}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--moss-wash:#26331A;--plain-wash:#1D2221}}
-:root[data-theme="dark"]{--moss-wash:#26331A;--plain-wash:#1D2221}
+:root{--moss-wash:#DCE6FF;--plain-wash:#FFFCF5}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--moss-wash:#1F2A5A;--plain-wash:#121630}}
+:root[data-theme="dark"]{--moss-wash:#1F2A5A;--plain-wash:#121630}
 body.moss{
-  --paper:#C3D19B; --surface:#E4EBCB; --sunk:#B2C385; --ink:#1F2C16; --muted:#4A5B37;
-  --sage:#4E6B26; --sage-soft:#D0DCA9; --slate:#5E7A2E; --slate-soft:#D4DFB0;
-  --ok:#2F6B2C; --ok-soft:#CFE3BC; --err:#9B4E33; --err-soft:#F0D7C8; --line:#9FB271;
+  --paper:#EAF1FF; --surface:#F7FAFF; --sunk:#DCE6FF; --ink:#1B2140; --muted:#4E5878;
+  --sage:#1A56E8; --sage-deep:#1440B8; --sage-soft:#DCE6FF; --slate:#3E5BA8; --slate-soft:#DCE6FF;
+  --ok:#15803D; --ok-soft:#DCF5E3; --err:#C93A22; --err-soft:#FFE4DC; --line:#C6D5F5;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]) body.moss{
-    --paper:#1E2915; --surface:#28361D; --sunk:#334426; --ink:#E4EDCF; --muted:#A9BA8C;
-    --sage:#9FC062; --sage-soft:#3A4D27; --slate:#B7CC7E; --slate-soft:#354726;
-    --ok:#A2D28C; --ok-soft:#2F4626; --err:#E8A68A; --err-soft:#4C3022; --line:#45583A;
+    --paper:#172048; --surface:#1F2A5A; --sunk:#283468; --ink:#EEF1FF; --muted:#AAB4DA;
+    --sage:#8AAEFF; --sage-deep:#5A80E0; --sage-soft:#2B3A75; --slate:#B3C5FA; --slate-soft:#2B3A75;
+    --ok:#4ADE80; --ok-soft:#173826; --err:#FF8A70; --err-soft:#45221C; --line:#3A4886;
   }
 }
 :root[data-theme="dark"] body.moss{
-  --paper:#1E2915; --surface:#28361D; --sunk:#334426; --ink:#E4EDCF; --muted:#A9BA8C;
-  --sage:#9FC062; --sage-soft:#3A4D27; --slate:#B7CC7E; --slate-soft:#354726;
-  --ok:#A2D28C; --ok-soft:#2F4626; --err:#E8A68A; --err-soft:#4C3022; --line:#45583A;
+  --paper:#172048; --surface:#1F2A5A; --sunk:#283468; --ink:#EEF1FF; --muted:#AAB4DA;
+  --sage:#8AAEFF; --sage-deep:#5A80E0; --sage-soft:#2B3A75; --slate:#B3C5FA; --slate-soft:#2B3A75;
+  --ok:#4ADE80; --ok-soft:#173826; --err:#FF8A70; --err-soft:#45221C; --line:#3A4886;
 }
 body,aside,.panel,.tab,.btn,.opt,.wordbtn,.chip,.pick,.room,.tcell,.tin,textarea{transition:background-color .5s ease,border-color .5s ease,color .5s ease}
 .ripple{position:fixed;inset:0;z-index:50;pointer-events:none;clip-path:circle(0 at var(--x) var(--y));animation:wash .6s cubic-bezier(.6,0,.3,1) forwards}
@@ -771,7 +771,7 @@ h1{letter-spacing:0}
 .pick[aria-pressed="true"]{background:var(--sage);border-color:var(--sage);color:var(--on-accent)}
 .lvbtns{border:2px solid var(--line)}
 .tag{font-weight:700}
-.newbanner{background:linear-gradient(135deg,var(--sun-soft),var(--leaf-soft));border:2px solid var(--line)}
+.newbanner{background:linear-gradient(135deg,var(--sun-soft),var(--sage-soft));border:2px solid var(--line)}
 .newbanner .tag{background:var(--sun);color:#3A2600}
 .plan .step:nth-child(1) .num{background:var(--sun-soft);color:var(--sun-ink)}
 .plan .step:nth-child(2) .num{background:var(--sky-soft);color:var(--sky-ink)}
@@ -781,7 +781,7 @@ h1{letter-spacing:0}
 .pill{border-width:2px}
 .chips-row .pill:nth-child(1) b{color:var(--coral-ink)}
 .chips-row .pill:nth-child(2) b{color:var(--sky-ink)}
-.chips-row .pill:nth-child(3) b{color:var(--leaf-ink)}
+.chips-row .pill:nth-child(3) b{color:var(--sage)}
 .pill.bgpill{background:var(--sun-soft);border-color:var(--sun)}
 .pill.bgpill b{color:var(--sun-ink)}
 .room{border-width:2px;border-radius:16px;background:var(--surface)}
@@ -805,8 +805,8 @@ h1{letter-spacing:0}
 .vf.v2::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);clip-path:polygon(50% 0,100% 100%,0 100%)}
 .vf.v2::after{content:"";position:absolute;inset:3px 4px 2px;z-index:-1;background:var(--surface);clip-path:polygon(50% 0,100% 100%,0 100%)}
 .vf.ing{border-style:dashed}
-.ttblock{--c:var(--sage);--cs:var(--leaf-soft);--ci:var(--leaf-ink);margin:0 0 22px}
-.tt-past{--c:var(--sky);--cs:var(--sky-soft);--ci:var(--sky-ink)}
+.ttblock{--c:var(--ok);--cs:var(--ok-soft);--ci:var(--leaf-ink);margin:0 0 22px}
+.tt-past{--c:var(--sage);--cs:var(--sage-soft);--ci:var(--sage)}
 .tt-future{--c:var(--sun);--cs:var(--sun-soft);--ci:var(--sun-ink)}
 .tt-cond{--c:var(--plum);--cs:var(--plum-soft);--ci:var(--plum-ink)}
 .tt-imp{--c:var(--coral);--cs:var(--coral-soft);--ci:var(--coral-ink)}
@@ -882,11 +882,12 @@ h1{letter-spacing:0}
 @media (prefers-reduced-motion: reduce){ .bgpop,.bgpopcard,.bgpopcard .bigmedal{animation:none} }
 .herpso .pso{pointer-events:auto;cursor:pointer}
 @media (min-width:601px){ .todayhero .herobody .chips-row{padding-right:170px} }
+@media (max-width:600px){ .todayhero .herobody{padding-bottom:190px} }
 </style>
 
 <div class="shell">
   <nav class="rail" aria-label="Main">
-    <div class="brand"><svg class="brand-mark" viewBox="70 46 134 134" aria-hidden="true"><path d="M149,90 L168,74 L142,80 L157,61 L133,72 L142,50 L122,66 L125,43 L110,62 L107,39 L97,60 L88,38 L84,61 L69,41 L71,64 L52,48 L59,70 L37,58 L50,78 L24,70 L42,87 L15,84 L37,98 L10,100 L35,109 L9,116 L36,121 L12,132 L40,132 L20,147 L46,142 L70,160 L120,164 Z" fill="#4A2F1E"/><ellipse cx="95" cy="115" rx="60" ry="50" fill="#6B4329"/><circle cx="120" cy="86" r="11" fill="#E8C79C"/><ellipse cx="138" cy="122" rx="44" ry="38" fill="#F1D6B0"/><ellipse cx="172" cy="130" rx="18" ry="13" fill="#F1D6B0"/><circle cx="188" cy="126" r="7" fill="#2B1D14"/><path d="M128 97 Q138 88 148 95" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="138" cy="111" r="7.5" fill="#2B1D14"/><circle cx="140" cy="108" r="2.4" fill="#fff"/><path d="M153 112 Q160 106 168 112" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M160 146 Q171 151 181 140" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M106 145 Q140 162 172 145 L174 156 Q140 174 104 157 Z" fill="#4F6F2E"/></svg><span><b>Psotek</b><small>Cheeky English practice</small></span></div>
+    <div class="brand"><svg class="brand-mark" viewBox="70 46 134 134" aria-hidden="true"><path d="M149,90 L168,74 L142,80 L157,61 L133,72 L142,50 L122,66 L125,43 L110,62 L107,39 L97,60 L88,38 L84,61 L69,41 L71,64 L52,48 L59,70 L37,58 L50,78 L24,70 L42,87 L15,84 L37,98 L10,100 L35,109 L9,116 L36,121 L12,132 L40,132 L20,147 L46,142 L70,160 L120,164 Z" fill="#4A2F1E"/><ellipse cx="95" cy="115" rx="60" ry="50" fill="#6B4329"/><circle cx="120" cy="86" r="11" fill="#E8C79C"/><ellipse cx="138" cy="122" rx="44" ry="38" fill="#F1D6B0"/><ellipse cx="172" cy="130" rx="18" ry="13" fill="#F1D6B0"/><circle cx="188" cy="126" r="7" fill="#2B1D14"/><path d="M128 97 Q138 88 148 95" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="138" cy="111" r="7.5" fill="#2B1D14"/><circle cx="140" cy="108" r="2.4" fill="#fff"/><path d="M153 112 Q160 106 168 112" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M160 146 Q171 151 181 140" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M106 145 Q140 162 172 145 L174 156 Q140 174 104 157 Z" fill="#1A56E8"/></svg><span><b>Psotek</b><small>Cheeky English practice</small></span></div>
     <ul class="navlist" id="railNav"></ul>
     <div class="rail-foot">
       <p class="whoami" id="whoami"></p>
@@ -894,7 +895,7 @@ h1{letter-spacing:0}
     </div>
   </nav>
   <div class="topbar">
-    <div class="brand"><svg class="brand-mark" viewBox="70 46 134 134" aria-hidden="true"><path d="M149,90 L168,74 L142,80 L157,61 L133,72 L142,50 L122,66 L125,43 L110,62 L107,39 L97,60 L88,38 L84,61 L69,41 L71,64 L52,48 L59,70 L37,58 L50,78 L24,70 L42,87 L15,84 L37,98 L10,100 L35,109 L9,116 L36,121 L12,132 L40,132 L20,147 L46,142 L70,160 L120,164 Z" fill="#4A2F1E"/><ellipse cx="95" cy="115" rx="60" ry="50" fill="#6B4329"/><circle cx="120" cy="86" r="11" fill="#E8C79C"/><ellipse cx="138" cy="122" rx="44" ry="38" fill="#F1D6B0"/><ellipse cx="172" cy="130" rx="18" ry="13" fill="#F1D6B0"/><circle cx="188" cy="126" r="7" fill="#2B1D14"/><path d="M128 97 Q138 88 148 95" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="138" cy="111" r="7.5" fill="#2B1D14"/><circle cx="140" cy="108" r="2.4" fill="#fff"/><path d="M153 112 Q160 106 168 112" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M160 146 Q171 151 181 140" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M106 145 Q140 162 172 145 L174 156 Q140 174 104 157 Z" fill="#4F6F2E"/></svg><span><b>Psotek</b></span></div>
+    <div class="brand"><svg class="brand-mark" viewBox="70 46 134 134" aria-hidden="true"><path d="M149,90 L168,74 L142,80 L157,61 L133,72 L142,50 L122,66 L125,43 L110,62 L107,39 L97,60 L88,38 L84,61 L69,41 L71,64 L52,48 L59,70 L37,58 L50,78 L24,70 L42,87 L15,84 L37,98 L10,100 L35,109 L9,116 L36,121 L12,132 L40,132 L20,147 L46,142 L70,160 L120,164 Z" fill="#4A2F1E"/><ellipse cx="95" cy="115" rx="60" ry="50" fill="#6B4329"/><circle cx="120" cy="86" r="11" fill="#E8C79C"/><ellipse cx="138" cy="122" rx="44" ry="38" fill="#F1D6B0"/><ellipse cx="172" cy="130" rx="18" ry="13" fill="#F1D6B0"/><circle cx="188" cy="126" r="7" fill="#2B1D14"/><path d="M128 97 Q138 88 148 95" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="138" cy="111" r="7.5" fill="#2B1D14"/><circle cx="140" cy="108" r="2.4" fill="#fff"/><path d="M153 112 Q160 106 168 112" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M160 146 Q171 151 181 140" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M106 145 Q140 162 172 145 L174 156 Q140 174 104 157 Z" fill="#1A56E8"/></svg><span><b>Psotek</b></span></div>
     <button class="dispbtn" type="button" data-disp aria-label="Display settings"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></button>
   </div>
   <main><div class="page" id="view"></div></main>
@@ -3604,7 +3605,7 @@ function burst(el, n=8){
   if(reducedMotion() || !el) return;
   const r=el.getBoundingClientRect(); const cx=r.left+r.width/2, cy=r.top+r.height/2;
   for(let i=0;i<n;i++){
-    const l=document.createElement("span"); l.className="leaf";
+    const l=document.createElement("span"); l.className="leaf"; l.style.background=["var(--sun)","var(--coral)","var(--sage)","var(--plum)","var(--ok)"][i%5];
     const a=Math.random()*Math.PI*2, d=50+Math.random()*70;
     l.style.left=cx+"px"; l.style.top=cy+"px";
     l.style.setProperty("--dx", Math.cos(a)*d+"px"); l.style.setProperty("--dy", (Math.sin(a)*d-30)+"px");
@@ -3632,7 +3633,7 @@ function psotek(mood="cheeky"){
     <ellipse cx="80" cy="168" rx="15" ry="7" fill="#4A2F1E"/><ellipse cx="126" cy="169" rx="15" ry="7" fill="#4A2F1E"/>
     <circle cx="120" cy="86" r="11" fill="#E8C79C"/><ellipse cx="138" cy="122" rx="44" ry="38" fill="#F1D6B0"/><ellipse cx="172" cy="130" rx="18" ry="13" fill="#F1D6B0"/>
     <circle cx="188" cy="126" r="7" fill="${ink}"/><circle cx="186" cy="124" r="2" fill="#fff"/>${face}
-    <path d="M106 145 Q140 162 172 145 L174 156 Q140 174 104 157 Z" fill="#4F6F2E"/><path d="M116 155 L106 182 L121 178 L130 158 Z" fill="#4F6F2E"/>${trophy}</svg>`;
+    <path d="M106 145 Q140 162 172 145 L174 156 Q140 174 104 157 Z" fill="#1A56E8"/><path d="M116 155 L106 182 L121 178 L130 158 Z" fill="#1A56E8"/>${trophy}</svg>`;
 }
 const PSO_LINES = {
   ok:["Brawo!","Nice one!","See? Easy.","Look at you go!","Psotek approves.","Too easy for you?","That's the one!"],
@@ -3728,7 +3729,7 @@ function psoHead(art){
   return `${back}<path d="${PSO_SPIKES}" fill="#4A2F1E"/><ellipse cx="95" cy="115" rx="60" ry="50" fill="#6B4329"/>
     <circle cx="120" cy="86" r="11" fill="#E8C79C"/><ellipse cx="138" cy="122" rx="44" ry="38" fill="#F1D6B0"/><ellipse cx="172" cy="130" rx="18" ry="13" fill="#F1D6B0"/>
     <circle cx="188" cy="126" r="7" fill="${ink}"/><circle cx="186" cy="124" r="2" fill="#fff"/>${face}
-    <path d="M106 145 Q140 162 172 145 L174 156 Q140 174 104 157 Z" fill="#4F6F2E"/>${top}${front}`;
+    <path d="M106 145 Q140 162 172 145 L174 156 Q140 174 104 157 Z" fill="#1A56E8"/>${top}${front}`;
 }
 let medalN=0;
 function medal(b, t, cls="medal"){
@@ -3993,7 +3994,7 @@ function viewLab(){
     <div><p class="eyebrow">${isT?"Tenses":"Grammar"}</p><h2 style="margin:0">${isT?"All 12 tenses: explore, build and play":"Articles, modals, conditionals, the passive, prepositions and irregular verbs"}</h2></div>
     <div class="xp" id="xp" aria-live="polite"></div>
   </div>
-  <p class="lede">Explore, build and play. Every right answer grows your moss. Use the menu to go back to your words at any time.</p>
+  <p class="lede">Explore, build and play. Every right answer earns XP. Use the menu to go back to your words at any time.</p>
   <div class="levels"><span class="lvlabel">Level</span>
     <div class="lvbtns" role="radiogroup" aria-label="Practice level">${LV.map((l,i)=>`<button class="lvb" type="button" role="radio" data-lv="${i}" aria-checked="${i===lvl()}">${l}</button>`).join("")}</div>
     <span class="lvdesc">${esc(LVDESC[lvl()])}</span></div>
