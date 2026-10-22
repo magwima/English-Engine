@@ -711,10 +711,10 @@ mark.dmark{background:var(--sage-soft);color:inherit;border-bottom:3px solid var
 /* ---------- Psotek, the cheeky hedgehog ---------- */
 .pso{display:block;width:100%;height:auto;overflow:visible}
 .psobub{position:relative;margin:0;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px 16px 16px 4px;padding:8px 13px;font-weight:600;font-size:.95rem;line-height:1.35;box-shadow:var(--shadow);max-width:230px}
-.psotoast{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:55;display:flex;align-items:flex-end;gap:4px;pointer-events:none;transform:translateY(150%);transition:transform .4s cubic-bezier(.3,1.4,.5,1)}
+.psotoast{position:fixed;right:max(16px,env(safe-area-inset-right,0px));top:calc(12px + env(safe-area-inset-top,0px));z-index:55;display:flex;align-items:flex-start;gap:4px;pointer-events:none;transform:translateY(calc(-100% - 40px));transition:transform .45s cubic-bezier(.3,1.4,.5,1)}
 .psotoast.on{transform:none}
 .psotoast .pso{width:96px;flex:none}
-.psotoast .psobub{border-radius:16px 16px 4px 16px;margin-bottom:58px}
+.psotoast .psobub{border-radius:16px 4px 16px 16px;margin-top:30px}
 .herpso{position:absolute;right:22px;bottom:6px;width:160px;z-index:1;display:flex;flex-direction:column;align-items:flex-end;gap:2px;pointer-events:none}
 .herpso .psobub{font-size:.88rem;margin-right:36px;border-radius:16px 16px 4px 16px}
 .psoend{display:flex;align-items:center;gap:12px;margin:0 0 10px}
@@ -722,7 +722,7 @@ mark.dmark{background:var(--sage-soft);color:inherit;border-bottom:3px solid var
 .endcard .psoend{justify-content:center}
 .gatepso{display:flex;align-items:center;gap:10px;margin:0 0 14px}
 .gatepso .pso{width:84px;flex:none}
-@media (max-width:860px){ .psotoast{bottom:calc(84px + env(safe-area-inset-bottom,0px))} .psotoast .pso{width:76px} .psotoast .psobub{margin-bottom:44px;font-size:.88rem} }
+@media (max-width:860px){ .psotoast{top:calc(62px + env(safe-area-inset-top,0px))} .psotoast .pso{width:72px} .psotoast .psobub{margin-top:22px;font-size:.88rem} }
 @media (max-width:600px){ .herpso{width:112px;right:10px} .herpso .psobub{font-size:.8rem;margin-right:10px;max-width:170px} .psoend .pso{width:88px} }
 @media (prefers-reduced-motion: reduce){ .psotoast{transition:none} }
 /* ---------- Moving to psotnyjez.com ---------- */
@@ -2033,7 +2033,21 @@ Object.assign(PITFALLS, {
   fancy:[{re:/\bfancy to\b/i,msg:"Use fancy + noun or -ing: fancy going, not fancy to go."}],
   provide:[{re:/\bprovid(e|es|ed) (me|you|him|her|us|them) (a|an|the|some|free)\b/i,msg:"Use provide someone with something."}]
 });
-function levelWords(L){ return ALLW.filter(w=>w.lv===L).sort((a,b)=>(a.reg==="formal"?0:1)-(b.reg==="formal"?0:1)); }
+/* ---------- Daily words ----------
+   Each day brings 2 formal + 2 informal new words per level, taken in order from the set's word list.
+   Practice uses today's words plus the last RECENT_DAYS days' words. Older words come back through review (the word bank). */
+const DAILY_NEW = 2, RECENT_DAYS = 5;
+function dayNum(){ const s=(typeof VSET!=="undefined" && (VSET.daily||VSET.start)) || "2026-10-22"; const [y,m,d]=s.split("-").map(Number);
+  const a=new Date(y,m-1,d), b=new Date(); b.setHours(0,0,0,0); return Math.max(0, Math.round((b-a)/864e5)); }
+function dayIds(L, d){ const out=[];
+  ["formal","informal"].forEach(reg=>{ const P=ALLW.filter(w=>w.lv===L && w.reg===reg); const n=P.length; if(!n) return;
+    for(let k=0;k<Math.min(DAILY_NEW,n);k++) out.push(P[(((d*DAILY_NEW+k)%n)+n)%n].id); }); return out; }
+const todayIds = (L=state.vlv) => dayIds(L, dayNum());
+function recentIds(L=state.vlv){ const d=dayNum(), t=new Set(dayIds(L,d)), out=[];
+  for(let i=1;i<=RECENT_DAYS;i++) dayIds(L,d-i).forEach(id=>{ if(!t.has(id) && !out.includes(id)) out.push(id); }); return out; }
+function levelWords(L){
+  if(typeof VSET!=="undefined" && VSET.archived) return ALLW.filter(w=>w.lv===L).sort((a,b)=>(a.reg==="formal"?0:1)-(b.reg==="formal"?0:1));
+  return [...new Set([...dayIds(L,dayNum()), ...recentIds(L)])].map(id=>ALLW.find(w=>w.id===id)).filter(Boolean); }
 let VDESC=["Starter: polite phrases and friendly everyday words.","Everyday formal verbs and casual chat.","Formal email language and relaxed British English.","Academic adjectives and common informal expressions.","Advanced formal words and business idioms.","Rare formal vocabulary and expressive idioms."];
 
 const W = Object.fromEntries(ALLW.map(w=>[w.id,w]));
@@ -2055,12 +2069,14 @@ if(!WORDS.some(w=>w.id===state.cur)) state.cur = WORDS[0].id;
 function setVocabLevel(L){ state.vlv=L; WORDS=levelWords(L); ALL=WORDS.map(w=>w.word); if(!WORDS.some(w=>w.id===state.cur)) state.cur=WORDS[0].id;
   round=null; flash=null; askState=null; story=null; up.order=null; spk.w=null; studio.w=null; scr={i:0,built:[],bank:[],solved:{}}; scrCache=null; save(); }
 function save(){ try{ localStorage.setItem(STORE, JSON.stringify(state)); }catch(e){} }
+let shownDay = null;
+document.addEventListener("visibilitychange",()=>{ if(document.visibilityState!=="visible") return; const d=dayNum(); if(shownDay!==null && d!==shownDay){ shownDay=d; setVocabLevel(state.vlv); if(typeof render==="function") render(); } });
 
 /* ---------- Monthly word sets ----------
    The words above are the built-in copy of the set below. Each month a new set is published as vocab.json;
    old sets move to vocab-archive/<set>.json and are listed in vocab-archive/index.json ("Previous vocabulary"). */
-const VSET_INLINE = {set:"2026-10", label:"October 2026", start:"2026-10-01", end:"2026-10-31"};
-let VSET = VSET_INLINE, VCURRENT = {meta:VSET_INLINE, words:null}, VARCH = null;
+var VSET_INLINE = {set:"2026-10", label:"October 2026", start:"2026-10-01", end:"2026-10-31", daily:"2026-10-22"};
+var VSET = VSET_INLINE; let VCURRENT = {meta:VSET_INLINE, words:null}, VARCH = null;
 const INLINE_WORDS = ALLW.slice(), INLINE_VDESC = VDESC.slice();
 function normWord(o){
   const w = {...o};
@@ -2104,14 +2120,14 @@ async function useArchivedSet(key){
 }
 (async function bootSets(){
   try{ const r=await fetch("vocab.json",{cache:"no-store"}); if(r.ok){ const j=await r.json();
-      if(j && j.set && Array.isArray(j.words) && j.words.length && j.set!==VSET_INLINE.set){
-        VCURRENT={meta:{set:j.set,label:j.label,start:j.start,end:j.end}, words:j.words.map(normWord), desc:j.desc};
+      if(j && j.set && Array.isArray(j.words) && j.words.length && (j.set!==VSET_INLINE.set || j.words.length!==INLINE_WORDS.length || j.daily)){
+        VCURRENT={meta:{set:j.set,label:j.label,start:j.start,end:j.end,daily:j.daily}, words:j.words.map(normWord), desc:j.desc};
         if(!state.vset) { applySet(VCURRENT.meta, VCURRENT.words, VCURRENT.desc); if(typeof render==="function") render(); } } } }catch(e){}
   if(state.vset && state.vset!==VCURRENT.meta.set){ const ok=await useArchivedSet(state.vset); if(!ok){ state.vset=null; save(); } if(typeof render==="function") render(); }
   else if(state.vset){ state.vset=null; save(); }
 })();
 function setNote(){
-  if(!VSET.archived) return `<p class="setnote">This month's words: <b>${esc(VSET.label)}</b>. <button class="linkbtn" type="button" data-go="archive">Previous vocabulary</button></p>`;
+  if(!VSET.archived) return `<p class="setnote">New words every day. <button class="linkbtn" type="button" data-go="archive">Previous months</button></p>`;
   return `<div class="setbanner"><span>You're practising <b>previous vocabulary: ${esc(VSET.label)}</b>.</span><button class="btn ghost" type="button" data-setnow>Back to this month's words</button></div>`;
 }
 document.addEventListener("click",e=>{ if(!e.target.closest("[data-setnow]")) return; useCurrentSet(); render(); });
@@ -2241,7 +2257,8 @@ const ICON = {
   use:'<path d="M4 20h4L19.5 8.5l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>',
   progress:'<path d="M5 20v-7M12 20V5M19 20v-10"/>',
   display:'<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>',
-  lab:'<path d="M9.5 3.5h5M10.5 3.5v5.5L5.2 18a2 2 0 001.7 3h10.2a2 2 0 001.7-3l-5.3-9V3.5"/><path d="M7.6 15h8.8"/>',
+  lab:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+  grammar:'<path d="M9.5 3.5h5M10.5 3.5v5.5L5.2 18a2 2 0 001.7 3h10.2a2 2 0 001.7-3l-5.3-9V3.5"/><path d="M7.6 15h8.8"/>',
   video:'<rect x="3" y="5.5" width="18" height="13" rx="3"/><path d="M10.5 9.5v5l4-2.5z" fill="currentColor"/>',
   verbs:'<path d="M4 8h12M12.5 4.5L16 8l-3.5 3.5"/><path d="M20 16H8M11.5 12.5L8 16l3.5 3.5"/>',
   back:'<path d="M15 5l-7 7 7 7"/>',
@@ -2259,16 +2276,18 @@ const segs = (n,max=5,label="") => `<span class="seg" role="img" aria-label="${l
 const blankOut = (s, w) => { const m = s.match(w.stem); return m ? {txt:s.replace(m[0],"____"), ans:m[0]} : null; };
 
 /* ---------- Navigation ---------- */
-const NAV = [["today","Today"],["words","Words"],["lab","Grammar lab","Grammar"],["verbs","Irregular verbs","Verbs"],["video","Video","Video"],["sounds","Pronunciation","Sounds"],["use","Use it"]];
+const TENSE_ROOMS = ["map","machine","hunt","detective","time"];
+const NAV = [["today","Today"],["words","Words"],["lab","Tenses","Tenses"],["grammar","Grammar","Grammar"],["video","Video","Video"],["sounds","Pronunciation","Sounds"],["use","Use it"]];
 const MORE = [["practise","Practise"],["exam","Exam corner"],["progress","Progress"],["archive","Previous vocabulary"],["badges","Badges"],["game","Game"]];
 let navMore = (()=>{ try{ return localStorage.getItem("ee-navmore")==="1"; }catch(e){ return false; } })();
 let morePop = false, forceClosed = false;
-let route = ["lab","verbs"].includes(state.route) ? "lab" : ["today","words","video","practise","use","progress","game","archive","sounds","exam","badges"].includes(state.route) ? state.route : "today";
-const section = r => r==="word" ? "words" : r==="lab" ? (typeof lab!=="undefined" && lab.room==="verbs" ? "verbs" : "lab") : (r==="flash"||r==="round"||r==="order") ? "practise" : r.startsWith("use:") ? "use" : r;
+let route = ["lab","verbs","grammar"].includes(state.route) ? "lab" : ["today","words","video","practise","use","progress","game","archive","sounds","exam","badges"].includes(state.route) ? state.route : "today";
+const section = r => r==="word" ? "words" : r==="lab" ? (typeof lab!=="undefined" && !TENSE_ROOMS.includes(lab.room) ? "grammar" : "lab") : (r==="flash"||r==="round"||r==="order") ? "practise" : r.startsWith("use:") ? "use" : r;
 function go(r){
   morePop=false; forceClosed=false;
-  if(r==="verbs"){ lab.room="verbs"; saveLab(); r="lab"; }
-  else if(r==="lab" && lab.room==="verbs"){ lab.room=lab.troom||"map"; saveLab(); }
+  if(r==="verbs"){ lab.room="verbs"; lab.groom="verbs"; saveLab(); r="lab"; }
+  else if(r==="grammar"){ lab.room=lab.groom||"articles"; saveLab(); r="lab"; }
+  else if(r==="lab" && !TENSE_ROOMS.includes(lab.room)){ lab.room=TENSE_ROOMS.includes(lab.troom)?lab.troom:"map"; saveLab(); }
   route=r; state.route=section(r); save(); render(); }
 function paintNav(){
   const sec=section(route), inMore=MORE.some(([id])=>id===sec), open=navMore||(inMore&&!forceClosed);
@@ -2614,13 +2633,13 @@ function heroArt(tod){
 function pickWeakest(){
   const tried = WORDS.filter(w=>state.stats[w.id].a>=3).sort((a,b)=>acc(a.id)-acc(b.id));
   const fresh = WORDS.filter(w=>state.stats[w.id].a===0);
-  if(fresh.length) return fresh[0];
+  if(fresh.length) return fresh[0]; /* WORDS lists today's words first */
   return tried[0] && acc(tried[0].id)<85 ? tried[0] : WORDS.slice().sort((a,b)=>box(a.id)-box(b.id))[0];
 }
 const leastUsed = () => WORDS.slice().sort((a,b)=>state.uses[a.id]-state.uses[b.id] || box(a.id)-box(b.id))[0];
 function viewToday(){
   const oldN = oldDue().length; const due = [...WORDS.filter(w=>isDue(w.id)), ...oldDue().map(id=>W[id])]; const weak = pickWeakest(); const useW = leastUsed();
-  const newOnes = NEW_IDS.filter(id=>state.stats[id].a===0 && !state.known[id] && WORDS.some(w=>w.id===id));
+  shownDay = dayNum(); const newOnes = (VSET.archived ? NEW_IDS : todayIds()).filter(id=>W[id] && state.stats[id] && state.stats[id].a===0 && !state.known[id] && WORDS.some(w=>w.id===id));
   const st = streak(); const wkx = act.weeks[isoWeek(new Date())] || {sec:0,ans:0};
   const dateTxt = new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
   const nd = nextDue();
@@ -2649,9 +2668,9 @@ function viewToday(){
     <button class="pill bgpill" type="button" data-go="badges"><b>${typeof bgEarned==="function"?bgEarned():0}</b> badges</button>
   </div></div>${psoOn()?`<div class="herpso" aria-hidden="true"><p class="psobub">${esc(pl)}</p>${psotek(pm)}</div>`:""}</section>
   ${newOnes.length?`<section class="newbanner">
-    <div><p class="tag">New</p><h2>${newOnes.length} new ${newOnes.length===1?"word":"words"}: ${esc(listJoin(newOnes.map(id=>W[id].word)))}</h2>
-    <p>They're part of your current level.</p></div>
-    <button class="btn" type="button" data-go="word" data-w="${newOnes[0]}">Meet the new words</button>
+    <div><p class="tag">Today</p><h2>${newOnes.length} new ${newOnes.length===1?"word":"words"}: ${esc(listJoin(newOnes.map(id=>W[id].word)))}</h2>
+    <p>Fresh ${LV[state.vlv]} words for today. New ones arrive tomorrow.</p></div>
+    <button class="btn" type="button" data-go="word" data-w="${newOnes[0]}">Meet today's words</button>
   </section>`:""}
   <ol class="plan" aria-label="Today's plan">
     ${steps.map((s,i)=>`<li class="step ${isPlanDone(s.k)?"done":""}">
@@ -2662,8 +2681,8 @@ function viewToday(){
   </ol>
   <h2 class="sec">Jump back in</h2>
   <div class="cards three">
-    <button class="card" type="button" data-go="words"><h3>Vocabulary</h3><p>Ten formal and ten informal words at every level, A1 to C2. New words every month.</p></button>
-    <button class="card" type="button" data-go="lab"><h3>Grammar lab</h3><p>Tenses, articles, modals, conditionals, prepositions and irregular verbs.</p><span class="meta2"><span>${typeof lab!=="undefined"?lab.xp:0} XP</span></span></button>
+    <button class="card" type="button" data-go="words"><h3>Vocabulary</h3><p>Four new words every day at your level, A1 to C2: two formal and two informal.</p></button>
+    <button class="card" type="button" data-go="grammar"><h3>Grammar and tenses</h3><p>All 12 tenses, plus articles, modals, conditionals, prepositions and irregular verbs.</p><span class="meta2"><span>${typeof lab!=="undefined"?lab.xp:0} XP</span></span></button>
     <button class="card" type="button" data-go="video"><h3>Video of the week</h3><p>${esc(VIDEO.title)} · ${esc(VIDEO.length)}</p></button>
     <button class="card" type="button" data-go="progress"><h3>Send progress</h3><p>Make a code for your teacher.</p></button>
   </div>`;
@@ -2683,15 +2702,20 @@ function viewWords(){
       </span></button>`; };
   const sec=(reg,title,sub)=>`<section class="regsec"><h2 class="regh"><span class="tag ${reg==="formal"?"reg-f":"reg-i"}">${title}</span><span>${sub}</span></h2>
     <div class="cards words">${WORDS.filter(w=>w.reg===reg).map(cardHTML).join("")}</div></section>`;
+  const tIds=new Set(todayIds(L)), tw=WORDS.filter(w=>tIds.has(w.id)), rw=WORDS.filter(w=>!tIds.has(w.id));
+  const regTag=w=>`<span class="tag ${w.reg==="formal"?"reg-f":"reg-i"}">${cap(w.reg)}</span>`;
+  const dailyHTML = `<section class="regsec"><h2 class="regh"><span class="tag">Today</span><span>${tw.length} new words · new ones tomorrow</span></h2>
+      <div class="cards words">${tw.map(w=>cardHTML(w).replace('<span class="ww">',regTag(w)+' <span class="ww">')).join("")}</div></section>
+    ${rw.length?`<section class="regsec"><h2 class="regh"><span class="tag soft">Last few days</span><span>Still in your practice rounds</span></h2>
+      <div class="cards words">${rw.map(w=>cardHTML(w).replace('<span class="ww">',regTag(w)+' <span class="ww">')).join("")}</div></section>`:""}`;
   $("#view").innerHTML = `
   <header class="pagehead"><h1>Vocabulary</h1>
-    <p class="lede">Choose a level. Each level has ten formal and ten informal words, and a new set arrives on the first day of every month. Practise, Use it and Today's plan all use the level you pick here.</p></header>
+    <p class="lede">Choose a level. Every day brings four new words at your level: two formal and two informal. Practice uses today's words and the last few days' words; older words come back when it's time to review them.</p></header>
   ${setNote()}
   <div class="levels"><span class="lvlabel">Level</span>
     <div class="lvbtns" role="radiogroup" aria-label="Vocabulary level">${LV.map((l,i)=>`<button class="lvb" type="button" role="radio" data-vl="${i}" aria-checked="${i===L}">${l}</button>`).join("")}</div>
     <span class="lvdesc">${esc(VDESC[L])}</span></div>
-  ${sec("formal","Formal","Emails, essays, work and official situations")}
-  ${sec("informal","Informal","Friends, messages and relaxed conversation")}
+  ${VSET.archived ? sec("formal","Formal","Emails, essays, work and official situations")+sec("informal","Informal","Friends, messages and relaxed conversation") : dailyHTML}
   <p class="hintline">Tap a word to study it. <b>Memory</b> grows when you remember it in review. <b>Used</b> counts sentences you've written or said with it.</p>`;
   $$("[data-vl]").forEach(b=>b.onclick=()=>{ const n=+b.dataset.vl; if(n===state.vlv) return; setVocabLevel(n); viewWords(); burst($(`[data-vl="${n}"]`),6); });
 }
@@ -2730,9 +2754,9 @@ function viewWord(){
     <button class="btn ghost" type="button" id="known" aria-pressed="${!!state.known[w.id]}">${state.known[w.id]?"✓ Marked as known":"I know this word"}</button>
   </div>
   <div class="pager">
-    <button class="btn ghost" type="button" id="prev" ${i===0?"disabled":""}>← ${i>0?esc(WORDS[i-1].word):"Previous"}</button>
+    <button class="btn ghost" type="button" id="prev" ${i<=0?"disabled":""}>← ${i>0?esc(WORDS[i-1].word):"Previous"}</button>
     <span class="counter">${i+1} of ${WORDS.length}</span>
-    <button class="btn ghost" type="button" id="next" ${i===WORDS.length-1?"disabled":""}>${i<WORDS.length-1?esc(WORDS[i+1].word):"Next"} →</button>
+    <button class="btn ghost" type="button" id="next" ${i<0||i===WORDS.length-1?"disabled":""}>${i>=0&&i<WORDS.length-1?esc(WORDS[i+1].word):"Next"} →</button>
   </div>`;
   $("#say").onclick=()=>speak(w.word+". "+w.ex);
   $("#recall").onclick=()=>{ recall=!recall; viewWord(); };
@@ -2773,7 +2797,7 @@ function viewPractise(){
     <button class="card" type="button" data-go="order"><h3>Put words in order</h3><p>Rebuild a sentence word by word to see how the word sits in it.</p><span class="meta2"><span>About 4 min</span></span></button></div>
   <h2 class="sec">Bring it together</h2>
   <div class="cards">${card("mixed")}
-    <button class="card labcard" type="button" data-go="lab"><h3>Grammar lab</h3><p>Explore all 12 tenses, modals, conditionals and more, and play do / does games. Has its own levels and XP.</p><span class="meta2"><span>${lab.xp} XP</span><span>${esc(level().name)}</span></span></button>
+    <button class="card labcard" type="button" data-go="lab"><h3>Tenses</h3><p>Explore all 12 tenses, build sentences and play do / does games. Shares XP with Grammar.</p><span class="meta2"><span>${lab.xp} XP</span><span>${esc(level().name)}</span></span></button>
     <button class="card labcard" type="button" id="toVerbs"><h3>Irregular verbs</h3><p>Over 160 verbs from A1 to C2 and eight ways to practise them: sort, spot, match, fill, fix and a 60-second blitz.</p><span class="meta2"><span>Levels A1–C2</span><span>${Object.values(lab.vstat||{}).filter(x=>x[0]>=3&&x[0]/x[1]>=.8).length} mastered</span></span></button></div>`;
   $$("[data-ex]").forEach(b=>b.onclick=()=>startRound(b.dataset.ex));
   $("#toVerbs").onclick=()=>go("verbs");
@@ -2811,10 +2835,16 @@ const _quiz=GEN.quiz, _coll=GEN.coll;
 GEN.quiz = ids => [..._quiz(ids), ...ids.flatMap(autoQuiz)];
 GEN.coll = ids => [..._coll(ids), ...ids.filter(id=>!hasC.has(id)).flatMap(autoColl)];
 
+/* Take items round-robin across words (least practised first), so no word repeats more than twice in one round */
+function spreadItems(all, limit){
+  const by={}; shuffle(all).forEach(it=>{ (by[it.w]=by[it.w]||[]).push(it); });
+  const words=shuffle(Object.keys(by)).sort((a,b)=>((state.stats[a]||{a:0}).a)-((state.stats[b]||{a:0}).a));
+  const out=[]; for(let pass=0; pass<2 && out.length<limit; pass++){ const layer=[]; words.forEach(w=>{ if(by[w][pass]) layer.push(by[w][pass]); }); out.push(...shuffle(layer).slice(0,limit-out.length)); }
+  return out; }
 let round = null;
 function startRound(kind, focus, planStep){
   const ids = focus ? [focus] : WORDS.map(w=>w.id);
-  const items = shuffle(GEN[kind](ids)).slice(0, LIMIT[kind]||10);
+  const items = focus ? shuffle(GEN[kind](ids)).slice(0, LIMIT[kind]||10) : spreadItems(GEN[kind](ids), LIMIT[kind]||10);
   round = {kind, focus, items, i:0, score:0, missed:[], tries:0, answered:false, planStep: planStep || (kind==="word"?"p":null)};
   if(focus) state.cur=focus;
   go("round");
@@ -3201,7 +3231,12 @@ function runChecks(text, w, tense, ul){
 /* ---------- Progress ---------- */
 let resetAsk=false;
 function viewProgress(){
-  const rows = WORDS.map(w=>{ const s=state.stats[w.id]; const pct = acc(w.id);
+  const tSet=new Set(VSET.archived?[]:todayIds()), L=state.vlv;
+  const practised = id => { const s=state.stats[id]; return (s && s.a>0) || !!state.srs[id] || (state.uses[id]||0)>0 || !!state.known[id]; };
+  const pw = Object.values(W).filter(w=>w.lv===L && (tSet.has(w.id) || practised(w.id)))
+    .sort((a,b)=>(tSet.has(b.id)-tSet.has(a.id)) || ((state.stats[b.id]||{a:0}).a-(state.stats[a.id]||{a:0}).a));
+  pw.forEach(w=>{ if(!state.stats[w.id]) state.stats[w.id]={c:0,a:0}; if(typeof state.uses[w.id]!=="number") state.uses[w.id]=0; });
+  const rows = pw.map(w=>{ const s=state.stats[w.id]; const pct = acc(w.id);
     const advice = s.a<3? "Practise more to get a score" : pct>=80? (state.uses[w.id]<USE_GOAL?"Strong. Now use it more":"Strong") : pct>=50? "Getting there" : "Study the word card again";
     return {w,s,pct,advice}; });
   const weakest = rows.filter(r=>r.s.a>=3).sort((a,b)=>a.pct-b.pct)[0];
@@ -3218,7 +3253,7 @@ function viewProgress(){
       <div class="stat"><b>${cur.ans}</b><span>answers</span></div>
       <div class="stat"><b>${cur.ans?Math.round(cur.cor/cur.ans*100)+"%":"–"}</b><span>right first time</span></div>
       <div class="stat"><b>${streak()}</b><span>days in a row</span></div>
-      <div class="stat"><b>${lab.xp}</b><span>Grammar lab XP</span></div>
+      <div class="stat"><b>${lab.xp}</b><span>Grammar XP</span></div>
     </div>
     <div class="weeks" role="img" aria-label="Minutes practised in the last four weeks: ${last4.map(o=>Math.round(o.x.sec/60)).join(", ")}">${last4.map((o,i)=>`<div><span>${Math.round(o.x.sec/60)}</span><i style="height:${Math.max(3,o.x.sec/maxSec*60)}px"></i><span>${i===3?"This week":o.k.slice(-3)}</span></div>`).join("")}</div>
   </div>
@@ -3234,9 +3269,10 @@ function viewProgress(){
   </div>
   <div class="panel">
     <h2 class="h3">Word by word · ${LV[state.vlv]}</h2>
+    <p style="margin:-4px 0 10px;color:var(--muted)">Today's words and every ${LV[state.vlv]} word you've practised.</p>
     <div class="tablewrap"><table>
       <thead><tr><th>Word</th><th>Memory</th><th>Right first time</th><th>Used</th><th>Next step</th></tr></thead>
-      <tbody>${rows.map(r=>`<tr><td class="w"><button class="linkbtn wl" type="button" data-go="word" data-w="${r.w.id}">${esc(r.w.word)}</button>${state.known[r.w.id]?' <span class="tag soft">known</span>':''}</td>
+      <tbody>${rows.map(r=>`<tr><td class="w"><button class="linkbtn wl" type="button" data-go="word" data-w="${r.w.id}">${esc(r.w.word)}</button>${tSet.has(r.w.id)?' <span class="tag">today</span>':''}${state.known[r.w.id]?' <span class="tag soft">known</span>':''}</td>
         <td>${segs(box(r.w.id))}</td>
         <td><span class="meter"><i style="width:${r.pct||0}%"></i></span>${r.pct===null?"–":r.pct+"%"} <small class="dim">(${r.s.c}/${r.s.a})</small></td>
         <td>${state.uses[r.w.id]}/${USE_GOAL}</td><td>${esc(r.advice)}</td></tr>`).join("")}</tbody>
@@ -3291,8 +3327,8 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape" && !$("#disp").hidd
 const L1 = {
   pl: {
     name:"Polski", flag:"PL",
-    nav:{today:"Dziś",sounds:"Wymowa",words:"Słówka",lab:"Gramatyka",exam:"Egzaminy",verbs:"Czasowniki nieregularne",video:"Wideo",practise:"Ćwiczenia",use:"Użyj słów",progress:"Postępy",archive:"Poprzednie słówka",badges:"Odznaki",game:"Gra",more:"Więcej"},
-    short:{today:"Dziś",sounds:"Wymowa",words:"Słówka",lab:"Gramatyka",verbs:"Czasown.",video:"Wideo",practise:"Ćwicz",use:"Użyj",more:"Więcej"},
+    nav:{today:"Dziś",sounds:"Wymowa",words:"Słówka",lab:"Czasy",grammar:"Gramatyka",exam:"Egzaminy",verbs:"Czasowniki nieregularne",video:"Wideo",practise:"Ćwiczenia",use:"Użyj słów",progress:"Postępy",archive:"Poprzednie słówka",badges:"Odznaki",game:"Gra",more:"Więcej"},
+    short:{today:"Dziś",sounds:"Wymowa",words:"Słówka",lab:"Czasy",grammar:"Gramat.",verbs:"Czasown.",video:"Wideo",practise:"Ćwicz",use:"Użyj",more:"Więcej"},
     ui:{help:"Po polsku: jak to działa",show:"Pokaż po polsku",hide:"Ukryj tłumaczenie",ff:"Fałszywy przyjaciel",tip:"Najpierw spróbuj zrozumieć angielską definicję. Tłumaczenie to pomoc, nie skrót."},
     help:{
       today:"To twój plan na dziś: trzy krótkie kroki, około 10 minut. Rób je po kolei. Powtórka kart, krótka runda ćwiczeń i jedno własne zdanie z nowym słowem.",
@@ -3348,8 +3384,8 @@ const L1 = {
   },
   ro: {
     name:"Română", flag:"RO",
-    nav:{today:"Astăzi",sounds:"Pronunție",words:"Vocabular",lab:"Gramatică",exam:"Examene",verbs:"Verbe neregulate",video:"Video",practise:"Exerciții",use:"Folosește cuvintele",progress:"Progres",archive:"Vocabular anterior",badges:"Insigne",game:"Joc",more:"Mai mult"},
-    short:{today:"Astăzi",sounds:"Sunete",words:"Cuvinte",lab:"Gramatică",verbs:"Verbe",video:"Video",practise:"Exerciții",use:"Aplică",more:"Mai mult"},
+    nav:{today:"Astăzi",sounds:"Pronunție",words:"Vocabular",lab:"Timpuri",grammar:"Gramatică",exam:"Examene",verbs:"Verbe neregulate",video:"Video",practise:"Exerciții",use:"Folosește cuvintele",progress:"Progres",archive:"Vocabular anterior",badges:"Insigne",game:"Joc",more:"Mai mult"},
+    short:{today:"Astăzi",sounds:"Sunete",words:"Cuvinte",lab:"Timpuri",grammar:"Gramatică",verbs:"Verbe",video:"Video",practise:"Exerciții",use:"Aplică",more:"Mai mult"},
     ui:{help:"În română: cum funcționează",show:"Arată în română",hide:"Ascunde traducerea",ff:"Prieten fals",tip:"Încearcă mai întâi să înțelegi definiția în engleză. Traducerea e un ajutor, nu o scurtătură."},
     help:{
       today:"Acesta este planul tău de azi: trei pași scurți, cam 10 minute. Fă-i în ordine: repetă cartonașele, o rundă scurtă de exerciții și o propoziție proprie cu un cuvânt nou.",
@@ -3536,7 +3572,7 @@ const convGood=()=>{ try{ return Object.values(JSON.parse(localStorage.getItem("
 const BADGES=[
   {id:"streak", pl:"Kolczasty Upór", en:"Spiky Stubbornness", d:n=>`${n} days in a row`, t:[7,30,100], v:()=>bg.n.best, art:"flame", line:"You just don't give up, do you?"},
   {id:"words", pl:"Słownikożerca", en:"Word Eater", d:n=>`${n} words learned`, t:[20,60,150], v:()=>ALLW.filter(w=>state.known[w.id]||box(w.id)>=4).length, art:"chef", line:"Mmm. Words. Delicious."},
-  {id:"grammar", pl:"Mistrz Gramatyki", en:"Grammar Master", d:n=>`${n} XP in the Grammar lab`, t:[100,400,1000], v:()=>(typeof lab!=="undefined"?lab.xp:0), art:"cap", line:"Present perfect? Perfect."},
+  {id:"grammar", pl:"Mistrz Gramatyki", en:"Grammar Master", d:n=>`${n} XP in Tenses and Grammar`, t:[100,400,1000], v:()=>(typeof lab!=="undefined"?lab.xp:0), art:"cap", line:"Present perfect? Perfect."},
   {id:"perfect", pl:"Bez Pudła", en:"Bullseye", d:n=>n===1?"a perfect round (no mistakes)":`${n} perfect rounds`, t:[1,10,50], v:()=>bg.n.perfect, art:"target", line:"Not one mistake. Suspicious."},
   {id:"speed", pl:"Szybki Jeż", en:"Speedy Hedgehog", d:n=>`a score of ${n} in a 60-second game`, t:[10,20,30], v:()=>Math.max(lab.best.rush||0,lab.best.vblitz||0), art:"race", line:"Gaz do dechy!"},
   {id:"night", pl:"Nocny Marek", en:"Night Owl", d:n=>`${n} days practising after 10 pm`, t:[3,10,25], v:()=>Object.keys(bg.n.night).length, art:"nightcap", line:"Shh… go to bed after this one."},
@@ -3848,20 +3884,21 @@ function timeline(time, asp){
 /* ---------- Lab view ---------- */
 const ROOMS=[["map","Tense map","Explore all 12"],["machine","Sentence machine","Build any sentence"],["hunt","Do or does?","A 10-round game"],["detective","Tense detective","Name the tense"],["time","Time machine","Change the tense"],["articles","Articles","a, an, the or nothing"],["modals","Modals","must, should, might"],["cond","Conditionals","if… would…"],["passive","The passive","is made, was built"],["questions","Questions","word order and do"],["patterns","Verb patterns","doing or to do?"],["preps","Prepositions","in, on, at and more"],["verbs","Irregular verbs","8 ways to practise"]];
 function viewLab(){
+  const isT=TENSE_ROOMS.includes(lab.room); const rooms=ROOMS.filter(([id])=>TENSE_ROOMS.includes(id)===isT);
   $("#view").innerHTML=`
   <div class="labhead">
-    <div><p class="eyebrow">Grammar lab</p><h2 style="margin:0">Tenses, articles, modals, conditionals, the passive, prepositions and more</h2></div>
+    <div><p class="eyebrow">${isT?"Tenses":"Grammar"}</p><h2 style="margin:0">${isT?"All 12 tenses: explore, build and play":"Articles, modals, conditionals, the passive, prepositions and irregular verbs"}</h2></div>
     <div class="xp" id="xp" aria-live="polite"></div>
   </div>
   <p class="lede">Explore, build and play. Every right answer grows your moss. Use the menu to go back to your words at any time.</p>
   <div class="levels"><span class="lvlabel">Level</span>
     <div class="lvbtns" role="radiogroup" aria-label="Practice level">${LV.map((l,i)=>`<button class="lvb" type="button" role="radio" data-lv="${i}" aria-checked="${i===lvl()}">${l}</button>`).join("")}</div>
     <span class="lvdesc">${esc(LVDESC[lvl()])}</span></div>
-  <div class="rooms" role="tablist">${ROOMS.map(([id,t,s])=>`<button class="room" role="tab" type="button" data-r="${id}" aria-selected="${lab.room===id}"><b>${t}</b><span>${s}</span></button>`).join("")}</div>
+  <div class="rooms" role="tablist">${rooms.map(([id,t,s])=>`<button class="room" role="tab" type="button" data-r="${id}" aria-selected="${lab.room===id}"><b>${t}</b><span>${s}</span></button>`).join("")}</div>
   <div id="room"></div>`;
   paintXP();
   document.querySelectorAll(".lvb").forEach(b=>b.onclick=()=>{ if(+b.dataset.lv===lvl()) return; lab.level=+b.dataset.lv; saveLab(); resetLevelState(); viewLab(); burst($(`.lvb[data-lv="${lab.level}"]`),6); });
-  document.querySelectorAll(".room").forEach(b=>b.onclick=()=>{ lab.room=b.dataset.r; if(lab.room!=="verbs") lab.troom=lab.room; state.route=section("lab"); save(); saveLab(); stopRush(); paintNav(); viewLab(); });
+  document.querySelectorAll(".room").forEach(b=>b.onclick=()=>{ lab.room=b.dataset.r; if(TENSE_ROOMS.includes(lab.room)) lab.troom=lab.room; else lab.groom=lab.room; state.route=section("lab"); save(); saveLab(); stopRush(); paintNav(); viewLab(); });
   (({map:roomMap,machine:roomMachine,hunt:roomHunt,detective:roomDetective,time:roomTime,articles:roomArticles,modals:()=>roomGram("modals"),cond:()=>roomGram("cond"),passive:()=>roomGram("passive"),questions:()=>roomGram("questions"),patterns:()=>roomGram("patterns"),preps:()=>roomGram("preps"),verbs:roomVerbs})[lab.room]||roomMap)();
 }
 
