@@ -1,264 +1,268 @@
 {
- "week": "2026-W42",
- "title": "The benefits of a bilingual brain",
- "channel": "TED-Ed",
- "speaker": "Mia Nacamulli",
- "yt": "MMmOLN5zBLY",
- "length": "4:48",
+ "week": "2026-W43",
+ "title": "Wanna Work Together?",
+ "channel": "Creative Commons",
+ "speaker": "Creative Commons narrator (not named)",
+ "yt": "q0VzUigrb_g",
+ "source": "https://creativecommons.org/about/videos/wanna-work-together/",
+ "license": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/"
+ },
+ "length": "3:00",
  "level": "B1–B2",
- "intro": "A short animated lesson about what happens in your brain when you speak more than one language, and why it is never too late to start.",
- "summary": "The lesson explains that knowing more than one language can change how the brain is built and how it works. It describes how language skills are measured (active and passive skills), three types of bilingual people, and how children and adults process language differently. It then covers research on grey matter, attention and task switching, and the finding that bilingualism may delay Alzheimer's and dementia. It ends by noting that bilingualism was once wrongly seen as a problem for children, and that adults can still benefit from learning a language.",
+ "intro": "A short animated film about copyright and how Creative Commons licences let creators decide how other people may use their work.",
+ "summary": "The film starts by showing how people such as teachers, artists and writers learn from and build on the work of others. It explains that when you create a photo, a song, a drawing, a film or a story, you get copyright automatically, so other people normally need your permission to use it, apart from cases of fair use. For creators who want their work to travel freely, full copyright can be too strict. Creative Commons offers free licences: on its website a creator answers a few questions, for example whether others may use the work commercially or change it, and gets a licence in about a minute. Creators keep their copyright, millions of works are now free to share and remix, and the film invites viewers to join this shared culture.",
  "vocab": [
   {
-   "w": "bilingual",
-   "m": "able to speak two languages well"
+   "w": "copyright",
+   "m": "the legal right to control who copies, shares or sells a creative work"
   },
   {
-   "w": "hemisphere",
-   "m": "one of the two halves of the brain"
+   "w": "permission",
+   "m": "when someone officially says you may do something"
   },
   {
-   "w": "grey matter",
-   "m": "the brain tissue full of nerve cells that processes information"
+   "w": "licence",
+   "m": "an official document or statement that says what you are allowed to do"
   },
   {
-   "w": "onset",
-   "m": "the beginning of something unpleasant, such as an illness"
+   "w": "commercial",
+   "m": "connected with business and making money"
   },
   {
-   "w": "executive function",
-   "m": "the brain skills you use to plan, focus and switch between tasks"
+   "w": "remix",
+   "m": "to take an existing work and change or combine it to make something new"
   },
   {
-   "w": "refute",
-   "m": "to prove that an idea or claim is wrong"
+   "w": "restrictive",
+   "m": "limiting what people can do"
   }
  ],
  "questions": [
   {
-   "q": "How does the video group language skills?",
-   "a": "Active skills (speaking and writing) and passive skills (listening and reading)",
+   "q": "What happens when you create a photo, song or story?",
+   "a": "You get copyright on it automatically",
    "o": [
-    "Active skills (speaking and writing) and passive skills (listening and reading)",
-    "Spoken skills and written skills only",
-    "Grammar skills and vocabulary skills",
-    "Formal skills and informal skills"
+    "It is protected only if you sell it",
+    "You get copyright on it automatically",
+    "It belongs to everyone immediately",
+    "You must pay to register it first"
    ],
-   "why": "Speaking and writing are active because you produce language; listening and reading are passive because you receive it."
+   "why": "The film says creators hold copyright automatically from the moment they make the work."
   },
   {
-   "q": "How many types of bilingual people does the video describe?",
-   "a": "Three",
+   "q": "Which people does the film use as examples of building on other people's work?",
+   "a": "A teacher, an artist and a writer",
    "o": [
-    "Two",
-    "Three",
-    "Four",
-    "Five"
+    "A singer, a dancer and an actor",
+    "A doctor, a lawyer and a pilot",
+    "A student, a parent and a manager",
+    "A teacher, an artist and a writer"
    ],
-   "why": "The video names three types: compound, coordinate and subordinate bilinguals."
+   "why": "The opening shows a teacher, an artist and a writer who each learn from and use the work of others."
   },
   {
-   "q": "What decides which type of bilingual a person is?",
-   "a": "How and when they learned their languages",
+   "q": "What does normal copyright mean for other people?",
+   "a": "They usually need the creator's permission to use the work",
    "o": [
-    "How and when they learned their languages",
-    "How many languages their parents speak",
-    "How well they can spell",
-    "Which country they live in now"
+    "They usually need the creator's permission to use the work",
+    "They can use the work freely if they say thank you",
+    "They can use the work if it is online",
+    "They can only use the work after ten years"
    ],
-   "why": "The three types depend on how each language was acquired, for example together from birth or one after the other."
+   "why": "Copyright limits what others can do without asking the creator."
   },
   {
-   "q": "How do children and most adults differ when they process language?",
-   "a": "Children use both hemispheres; most adults rely mainly on the left one",
+   "q": "Which exception to copyright does the film mention?",
+   "a": "Fair use",
    "o": [
-    "Children use both hemispheres; most adults rely mainly on the left one",
-    "Adults use both hemispheres; children use only the right one",
-    "Both groups use only the right hemisphere",
-    "There is no difference at all"
+    "School use",
+    "Personal use",
+    "Fair use",
+    "Free use"
    ],
-   "why": "Brain imaging suggests language is spread across both sides in childhood but is mostly handled by the left side in adults."
+   "why": "The narrator mentions fair use as the case where you can use some work without permission."
   },
   {
-   "q": "Which advantage does the video connect with bilingualism?",
-   "a": "Being better at switching tasks and ignoring distractions",
+   "q": "Why can full copyright be a problem for some creators?",
+   "a": "It is too strict for creators who want their work shared and reused",
    "o": [
-    "Being better at switching tasks and ignoring distractions",
-    "Having better eyesight",
-    "Always having a higher IQ",
-    "Reading faster in your first language"
+    "It is too expensive to buy",
+    "It does not protect photos",
+    "It is too strict for creators who want their work shared and reused",
+    "It only lasts for one year"
    ],
-   "why": "Bilingualism is linked to stronger executive function, such as task switching and filtering out distractions. It does not simply make people more intelligent."
+   "why": "Some creators want people to share and build on their work, and full copyright blocks that."
   },
   {
-   "q": "What can bilingualism do for Alzheimer's and dementia?",
-   "a": "Delay their onset by up to about five years",
+   "q": "How long does it take to choose a Creative Commons licence on the website?",
+   "a": "About a minute",
    "o": [
-    "Delay their onset by up to about five years",
-    "Cure them completely",
-    "Make them start earlier",
-    "It has no effect"
+    "About a minute",
+    "About a week",
+    "About an hour",
+    "About a month"
    ],
-   "why": "Research mentioned in the video suggests the onset can be delayed by as much as five years."
+   "why": "The film stresses that the process is very fast: roughly one minute."
   },
   {
-   "q": "What did people once wrongly believe about bilingual children?",
-   "a": "That speaking two languages held them back",
+   "q": "What kind of questions does a creator answer to get a licence?",
+   "a": "Whether others can use the work commercially and whether they can change it",
    "o": [
-    "That speaking two languages held them back",
-    "That they were always top of the class",
-    "That they could only learn one alphabet",
-    "That they needed less sleep"
+    "How old the creator is and where they live",
+    "How much money the work cost to make",
+    "Which country the work will be sold in",
+    "Whether others can use the work commercially and whether they can change it"
    ],
-   "why": "Bilingualism used to be seen as a handicap for children, based on flawed studies that later research refuted."
+   "why": "The two key choices are about commercial use and about changing (modifying) the work."
   },
   {
-   "q": "What is the video's message for adults?",
-   "a": "It's never too late: adults can still benefit from learning a language",
+   "q": "What happens to the creator's copyright when they choose a Creative Commons licence?",
+   "a": "They keep it but change its terms",
    "o": [
-    "It's never too late: adults can still benefit from learning a language",
-    "Only children can benefit",
-    "Adults should not learn more than one extra language",
-    "Adults learn every part of a language faster than children"
+    "They give it to Creative Commons",
+    "They keep it but change its terms",
+    "They lose it completely",
+    "They share it with the first user"
    ],
-   "why": "The lesson ends by encouraging people of any age to start learning a language."
+   "why": "The film says creators keep their copyright and simply adjust the rules to fit their goals."
   }
  ],
  "listen": [
   {
-   "q": "Write what you heard about the three types of bilingual people. Name each type and add one detail.",
-   "hint": "Name all three types.",
+   "q": "Write what you heard about copyright: how creators get it and what it means for other people.",
+   "hint": "How do you get it? What do others need? What is the exception?",
    "keys": [
     [
-     "compound"
+     "automatic"
     ],
     [
-     "coordinate"
+     "permission",
+     "ask"
     ],
     [
-     "subordinate"
+     "fair use",
+     "fair"
     ]
    ],
-   "model": "Compound bilinguals learn two languages at the same time as small children. Coordinate bilinguals use each language in a different setting, for example one at home and one at school. Subordinate bilinguals learn a second language through their first one."
+   "model": "Creators get copyright automatically when they make something, such as a photo or a song. Other people need the creator's permission to use the work, except in cases of fair use."
   },
   {
-   "q": "Write what you heard about how children's and adults' brains deal with language.",
-   "hint": "Mention both groups and the brain's halves.",
+   "q": "Write what you heard about how a creator chooses a Creative Commons licence.",
+   "hint": "How long does it take, and what do they decide?",
    "keys": [
     [
-     "child",
-     "kid"
+     "minute"
     ],
     [
-     "adult"
+     "commercial",
+     "money",
+     "sell"
     ],
     [
-     "hemisphere",
-     "left",
-     "both sides",
-     "both halves"
+     "chang",
+     "modif",
+     "adapt",
+     "remix"
     ]
    ],
-   "model": "Children seem to use both hemispheres for language, while most adults use mainly the left hemisphere. Children also pick up the social and emotional side of a language more easily."
+   "model": "On the Creative Commons website a creator answers a few questions in about a minute, for example whether other people can use the work commercially and whether they can change it."
   },
   {
-   "q": "Write what you heard about the benefits for older people's health.",
-   "hint": "Which illnesses, and by how much?",
+   "q": "Write what you heard about how much shared work exists now and what the film asks viewers to do.",
+   "hint": "How many works, what can people do with them, and the final invitation.",
    "keys": [
     [
-     "alzheimer",
-     "dementia"
+     "million"
     ],
     [
-     "delay",
-     "later",
-     "postpone"
+     "share",
+     "reuse",
+     "remix"
     ],
     [
-     "five",
-     "5"
+     "join"
     ]
    ],
-   "model": "Being bilingual may delay the start of Alzheimer's disease and dementia by up to five years."
+   "model": "Millions of songs, pictures, videos and texts can now be shared, reused and remixed for free, and the film asks viewers to join the commons."
   }
  ],
  "tasks": {
   "syn": {
    "title": "Summarise with synonyms",
    "prompt": "Write your own summary of the video in 70–120 words. Replace every underlined word with a synonym.",
-   "text": "Research [shows] that a second language can [change] the brain in [important] ways. Bilingualism was once seen as a [problem] for children, but its [benefits] can last into [old age].",
+   "text": "Creative Commons [helps] creators [keep] their copyright but change its [rules]. Choosing a licence is [quick], and it [tells] the public what they are [allowed] to do.",
    "words": [
     {
-     "w": "shows",
+     "w": "helps",
      "syn": [
-      "demonstrates",
-      "reveals",
-      "indicates",
-      "suggests",
-      "proves"
+      "assists",
+      "enables",
+      "supports",
+      "aids"
      ]
     },
     {
-     "w": "change",
+     "w": "keep",
      "syn": [
-      "alter",
-      "transform",
-      "reshape",
-      "modify"
+      "retain",
+      "hold on to",
+      "maintain",
+      "preserve"
      ]
     },
     {
-     "w": "important",
+     "w": "rules",
      "syn": [
-      "significant",
-      "crucial",
-      "vital",
-      "essential",
-      "major"
+      "terms",
+      "conditions",
+      "restrictions",
+      "regulations"
      ]
     },
     {
-     "w": "problem",
+     "w": "quick",
      "syn": [
-      "drawback",
-      "disadvantage",
-      "handicap",
-      "obstacle",
-      "barrier"
+      "fast",
+      "rapid",
+      "speedy",
+      "swift"
      ]
     },
     {
-     "w": "benefits",
+     "w": "tells",
      "syn": [
-      "advantages",
-      "gains",
-      "rewards",
-      "positive effects"
+      "informs",
+      "shows",
+      "explains to",
+      "indicates to"
      ]
     },
     {
-     "w": "old age",
+     "w": "allowed",
      "syn": [
-      "later life",
-      "later years",
-      "senior years",
-      "retirement"
+      "permitted",
+      "free",
+      "authorised",
+      "authorized",
+      "entitled"
      ]
     }
    ],
    "min": 70,
-   "model": "Studies demonstrate that learning a second language can alter the way the brain is built and works in significant ways. The video explains that language skills can be active or passive, and that there are three kinds of bilingual people. Bilingualism was once considered a handicap for young children, but this idea came from poor research. In fact, people who speak two languages often switch between tasks more easily and ignore distractions better. These advantages may continue into later life, because bilingualism can delay Alzheimer's and dementia by several years."
+   "model": "The film explains that anyone who makes a photo, a song or a story owns the copyright automatically, so other people normally need permission to use it. For creators who want their work to travel widely, that can be too strict. Creative Commons assists them: they retain their copyright but set new terms. The process is fast, because on the website they answer a few questions, for example about commercial use and changes. The licence then informs the public what they are permitted to do. Today millions of works can be reused and remixed for free."
   },
   "adv": {
    "title": "Use three adverbs",
    "prompt": "Summarise the video in 60–100 words. Use all three adverbs below.",
    "adverbs": [
-    "remarkably",
-    "gradually",
-    "consequently"
+    "automatically",
+    "freely",
+    "ultimately"
    ],
    "min": 60,
-   "model": "The video explains that speaking two languages can remarkably change the brain. Children use both halves of the brain for language, but as they grow up, language gradually moves mainly to the left side. Bilingual people tend to have more grey matter and are better at switching between tasks; consequently, they may stay mentally sharp for longer. The lesson ends by reminding adults that it is never too late to start learning."
+   "model": "The film explains that creators automatically own the copyright to their photos, songs and stories, so other people usually need permission to use them. However, some creators want their work to be used freely. Creative Commons gives them free licences, and choosing one takes about a minute: they decide whether others may use the work commercially or change it. Ultimately, the aim is a richer shared culture where millions of works can be reused and remixed."
   },
   "rep": {
    "title": "Formal account in reported speech",
@@ -282,9 +286,16 @@
     "described"
    ],
    "min": 80,
-   "model": "The narrator explained that knowing more than one language could change both the structure and the function of the brain. She pointed out that language ability was usually measured through active skills, such as speaking and writing, and passive skills, such as listening and reading. She described three types of bilingual speakers and noted that children used both hemispheres of the brain for language, whereas most adults relied mainly on the left one. Furthermore, she stated that bilingualism might delay the onset of Alzheimer's disease by up to five years. Finally, she concluded that it was never too late to learn a new language."
+   "model": "The narrator explained that people who created photographs, songs or stories received copyright automatically. The narrator pointed out that other people therefore needed permission to use those works, except in cases of fair use. The narrator argued that full copyright could be too restrictive for creators who wanted their work to be shared. The narrator also stated that Creative Commons offered free licences and that a creator could choose one on its website in about a minute by deciding whether commercial use and changes were allowed. The narrator added that creators kept their copyright. Finally, the narrator concluded that millions of works could now be reused and invited viewers to join the commons."
   }
  },
- "past": [],
- "doc": "https://claude.ai/code/artifact/b22ef9e7-f91f-4179-9aa9-8c602ccc5764"
+ "past": [
+  {
+   "week": "2026-W42",
+   "title": "The benefits of a bilingual brain",
+   "yt": "MMmOLN5zBLY",
+   "doc": "https://claude.ai/code/artifact/b22ef9e7-f91f-4179-9aa9-8c602ccc5764"
+  }
+ ],
+ "doc": "https://claude.ai/code/artifact/b2d158ee-b42f-49b2-9e4a-6622015a9abb"
 }

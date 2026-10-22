@@ -1,42 +1,161 @@
 {
-  "week": "2026-W42",
-  "title": "Ten minutes a day",
+  "week": "2026-W43",
+  "title": "The twenty-minute secret",
   "level": "B1–B2",
   "minutes": 6,
-  "intro": "A short magazine-style article about a woman who learned Spanish in small steps. It was written for Psotek English; Marta is a made-up example.",
+  "intro": "A short magazine-style article about the afternoon nap and what it can do for your brain. It was written for Psotek English; Ana is a made-up example, not a real person.",
   "paras": [
-    "When Marta, a nurse from Gdańsk, decided to learn Spanish at the age of forty-two, her friends were not exactly encouraging. \"You work night shifts,\" one of them reminded her. \"When exactly are you going to study?\" Marta didn't have an answer. She only knew that she had always wanted to read Spanish novels in the original, and that she was tired of waiting for the perfect moment.",
-    "Her solution was almost embarrassingly simple: ten minutes a day, every day, no matter what. On busy days she listened to a short podcast on the bus. On quiet days she wrote three sentences in a notebook about what she had done. She never allowed herself to skip a day, but she also never forced herself to do more than ten minutes. \"If I felt like continuing, I continued,\" she says. \"But the promise was only ten minutes. That made it impossible to say no.\"",
-    "At first, progress was slow. After three months she could order food and ask for directions, but she still froze whenever someone answered her quickly. The turning point came in the second year, when she found an online conversation partner in Valencia who wanted to practise Polish. They met on video twice a week, spending half an hour in each language. Mistakes, she discovered, were not a disaster. \"My partner made as many mistakes in Polish as I did in Spanish. We laughed a lot, and that took the fear away.\"",
-    "Three years later, Marta is reading her fourth Spanish novel. She admits that she still uses a dictionary and that her grammar is far from perfect. However, she believes the small daily habit taught her something more valuable than any language rule. \"Big goals scare us,\" she says. \"Small ones don't. Ten minutes doesn't sound like much, but ten minutes every day for three years is more than a hundred and eighty hours.\"",
-    "Her advice to other adult learners is simple: choose a time that is so small you cannot fail, attach it to something you already do every day, and find someone to talk to as soon as possible. \"Don't wait until you are ready,\" she says. \"Nobody ever feels ready.\""
+    "Every day at about two o'clock, Ana, an accountant in a busy office, used to hit a wall. Her eyes felt heavy, the numbers on her screen started to swim, and she reached for her third coffee of the day. For years she thought the problem was her lunch or her lack of willpower. Then a colleague gave her some surprising advice: \"Stop fighting it. Have a short nap.\"",
+    "The afternoon slump that Ana felt is completely normal. Our body clock does not keep us equally alert all day. Most people have a natural dip in energy in the early afternoon, whether they eat a big lunch or not. In many hot countries, people have long organised their day around this dip, which is one reason why the siesta became a tradition in places such as Spain.",
+    "The key to a good nap, however, is its length. Sleep researchers generally recommend between ten and twenty minutes. A nap this short keeps you in light sleep, so you wake up feeling refreshed. If you sleep for much longer, you may fall into deep sleep, and waking up from it can leave you groggy and confused for half an hour or more. Scientists call this feeling \"sleep inertia\", and it is the reason why some people say that naps make them feel worse.",
+    "Timing matters too. A nap in the early afternoon fits the body's natural rhythm, but a nap late in the day can make it harder to fall asleep at night. Some people even try a \"coffee nap\": they drink a cup of coffee and lie down straight away. Because caffeine takes around twenty minutes to start working, they wake up just as it begins to take effect.",
+    "Ana was not convinced at first, but she decided to try it for a month. She set an alarm for eighteen minutes and rested in her car during her lunch break. After a week, she noticed that the two o'clock wall had almost disappeared. She now drinks one coffee a day instead of three. \"I used to think napping was lazy,\" she says. \"Now I see it as part of doing my job well.\""
   ],
   "gloss": [
-    {"w": "night shift", "m": "work that happens at night, for example in a hospital"},
-    {"w": "embarrassingly simple", "m": "so simple that it seems almost silly"},
-    {"w": "freeze (froze)", "m": "suddenly stop and be unable to speak or move, often from fear"},
-    {"w": "turning point", "m": "the moment when a situation starts to change"},
-    {"w": "far from perfect", "m": "not perfect at all"}
+    {
+      "w": "hit a wall",
+      "m": "suddenly feel so tired that you cannot continue well"
+    },
+    {
+      "w": "slump",
+      "m": "a period when energy or activity falls"
+    },
+    {
+      "w": "refreshed",
+      "m": "full of energy again after rest"
+    },
+    {
+      "w": "groggy",
+      "m": "weak and unable to think clearly, especially after sleep"
+    },
+    {
+      "w": "take effect",
+      "m": "start to work or to produce a result"
+    }
   ],
   "tfng": [
-    {"s": "Marta's friends thought her plan was a great idea.", "a": "F", "why": "They were \"not exactly encouraging\"."},
-    {"s": "Marta sometimes studied for longer than ten minutes.", "a": "T", "why": "\"If I felt like continuing, I continued.\""},
-    {"s": "Marta took a Spanish course at a language school.", "a": "NG", "why": "The text mentions a podcast, a notebook and a conversation partner, but not a school."},
-    {"s": "After three months, Marta could understand fast speakers easily.", "a": "F", "why": "She \"still froze whenever someone answered her quickly\"."},
-    {"s": "Her conversation partner was learning Polish.", "a": "T", "why": "The partner \"wanted to practise Polish\"."},
-    {"s": "Marta now reads Spanish without a dictionary.", "a": "F", "why": "\"She still uses a dictionary.\""}
+    {
+      "s": "Ana first thought her tiredness was caused by her lunch or a lack of willpower.",
+      "a": "T",
+      "why": "\"She thought the problem was her lunch or her lack of willpower.\""
+    },
+    {
+      "s": "Only people who eat a big lunch feel a dip in energy in the afternoon.",
+      "a": "F",
+      "why": "The dip happens \"whether they eat a big lunch or not\"."
+    },
+    {
+      "s": "Researchers usually suggest naps of between ten and twenty minutes.",
+      "a": "T",
+      "why": "\"Sleep researchers generally recommend between ten and twenty minutes.\""
+    },
+    {
+      "s": "Waking up from deep sleep always makes people feel refreshed.",
+      "a": "F",
+      "why": "Waking from deep sleep \"can leave you groggy and confused\"."
+    },
+    {
+      "s": "A late-afternoon nap can make it difficult to sleep at night.",
+      "a": "T",
+      "why": "\"A nap late in the day can make it harder to fall asleep at night.\""
+    },
+    {
+      "s": "Ana's manager gave her permission to sleep at her desk.",
+      "a": "NG",
+      "why": "The text says she rested in her car; her manager is not mentioned."
+    }
   ],
   "mc": [
-    {"q": "Why did Marta choose only ten minutes a day?", "a": "Because such a small promise was easy to keep", "o": ["Because such a small promise was easy to keep", "Because her teacher told her to", "Because she was only free for ten minutes", "Because longer study is less effective"], "why": "\"The promise was only ten minutes. That made it impossible to say no.\""},
-    {"q": "What was the turning point in her learning?", "a": "Starting regular conversations with a partner", "o": ["Starting regular conversations with a partner", "Moving to Valencia", "Reading her first novel", "Passing an exam"], "why": "The turning point came when she found an online conversation partner."},
-    {"q": "How did the conversation partner help her with mistakes?", "a": "They both made mistakes and laughed about them", "o": ["They both made mistakes and laughed about them", "The partner corrected every mistake", "The partner never noticed her mistakes", "They agreed to speak only Spanish"], "why": "\"My partner made as many mistakes in Polish as I did in Spanish. We laughed a lot.\""},
-    {"q": "What is the main message of the article?", "a": "Small, regular habits can lead to big results", "o": ["Small, regular habits can lead to big results", "Adults cannot learn languages well", "Grammar is the most important part of learning", "You should wait until you feel ready"], "why": "The whole article shows how ten minutes a day added up over three years."}
+    {
+      "q": "Why does a short nap make you feel refreshed?",
+      "a": "Because you stay in light sleep",
+      "o": [
+        "Because your body clock stops",
+        "Because you stay in light sleep",
+        "Because you reach deep sleep quickly",
+        "Because you dream more"
+      ],
+      "why": "\"A nap this short keeps you in light sleep, so you wake up feeling refreshed.\""
+    },
+    {
+      "q": "What is \"sleep inertia\"?",
+      "a": "The groggy, confused feeling after waking from deep sleep",
+      "o": [
+        "The natural dip in energy after lunch",
+        "A tradition in hot countries",
+        "The effect of drinking coffee before bed",
+        "The groggy, confused feeling after waking from deep sleep"
+      ],
+      "why": "Paragraph 3 explains that scientists use this name for feeling groggy after deep sleep."
+    },
+    {
+      "q": "Why do some people drink coffee just before a nap?",
+      "a": "Because the caffeine starts working as they wake up",
+      "o": [
+        "Because coffee helps them fall into deep sleep",
+        "Because it makes the nap longer",
+        "Because the caffeine starts working as they wake up",
+        "Because they cannot sleep without it"
+      ],
+      "why": "Caffeine takes about twenty minutes to work, so it begins as the nap ends."
+    },
+    {
+      "q": "What changed for Ana after she started napping?",
+      "a": "Her afternoon tiredness almost disappeared and she drank less coffee",
+      "o": [
+        "Her afternoon tiredness almost disappeared and she drank less coffee",
+        "She stopped taking a lunch break",
+        "She moved to a job in Spain",
+        "She started sleeping for an hour every day"
+      ],
+      "why": "The \"two o'clock wall\" almost disappeared and she now drinks one coffee instead of three."
+    }
   ],
   "words": [
-    {"q": "In paragraph 1, \"not exactly encouraging\" means…", "a": "rather negative", "o": ["rather negative", "very excited", "completely silent", "a little jealous"]},
-    {"q": "In paragraph 2, \"no matter what\" means…", "a": "in every situation", "o": ["in every situation", "only when it is easy", "if she remembered", "for no reason"]},
-    {"q": "In paragraph 4, \"admits\" means…", "a": "agrees that something is true, even if it's not positive", "o": ["agrees that something is true, even if it's not positive", "complains loudly", "forgets", "pretends"]},
-    {"q": "In paragraph 5, \"attach it to something you already do\" means…", "a": "link it to a daily routine", "o": ["link it to a daily routine", "write it on a piece of paper", "do it instead of your routine", "ask a friend to do it"]}
+    {
+      "q": "In paragraph 1, \"started to swim\" means…",
+      "a": "seemed to move and became hard to read",
+      "o": [
+        "seemed to move and became hard to read",
+        "disappeared from the screen",
+        "changed colour",
+        "became bigger and clearer"
+      ]
+    },
+    {
+      "q": "In paragraph 2, \"organised their day around\" means…",
+      "a": "planned their daily routine to fit",
+      "o": [
+        "ignored completely",
+        "planned their daily routine to fit",
+        "travelled around",
+        "complained about"
+      ]
+    },
+    {
+      "q": "In paragraph 4, \"straight away\" means…",
+      "a": "immediately",
+      "o": [
+        "in a straight line",
+        "very carefully",
+        "after an hour",
+        "immediately"
+      ]
+    },
+    {
+      "q": "In paragraph 5, \"was not convinced\" means…",
+      "a": "did not believe it would work",
+      "o": [
+        "did not understand the words",
+        "was not allowed",
+        "did not believe it would work",
+        "was very excited"
+      ]
+    }
   ],
-  "respond": {"prompt": "Write 60–100 words: Which small daily habit could help you with your English? When and where would you do it?", "min": 60, "max": 100}
+  "respond": {
+    "prompt": "Write 60–100 words: When during the day do you feel most tired, and what do you usually do about it? Would you try a short nap? Why or why not?",
+    "min": 60,
+    "max": 100
+  }
 }
