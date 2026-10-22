@@ -1,4 +1,5 @@
-.git
+.git/
+.wrangler/
 .gitattributes
 .nojekyll
 .assetsignore
