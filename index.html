@@ -18,7 +18,7 @@
   --sky:#0EA5B7; --sky-deep:#0B7C8A; --sky-soft:#DDF6F8; --sky-ink:#0B6E7A;
   --coral:#E8452C; --coral-deep:#C93A22; --coral-soft:#FFE4DC; --coral-ink:#B23519;
   --plum:#7C4DFF; --plum-deep:#5B2FD9; --plum-soft:#EEE8FF; --plum-ink:#5B2FD9;
-  --leaf-soft:#DCF5E3; --leaf-ink:#15803D;
+  --leaf-soft:#DCF5E3; --leaf-ink:#15803D; --onc:#fff; --onc-sun:#1B2140;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -30,7 +30,7 @@
     --sky:#4FD6E3; --sky-deep:#2BA3AF; --sky-soft:#15343D; --sky-ink:#8BE6EE;
     --coral:#FF8A70; --coral-deep:#D2604A; --coral-soft:#42231E; --coral-ink:#FFB3A1;
     --plum:#B39BFF; --plum-deep:#8A6BE6; --plum-soft:#2C2552; --plum-ink:#CDBDFF;
-    --leaf-soft:#173826; --leaf-ink:#86EFAC;
+    --leaf-soft:#173826; --leaf-ink:#86EFAC; --onc:#121630; --onc-sun:#121630;
   }
 }
 :root[data-theme="dark"]{
@@ -42,7 +42,7 @@
   --sky:#4FD6E3; --sky-deep:#2BA3AF; --sky-soft:#15343D; --sky-ink:#8BE6EE;
   --coral:#FF8A70; --coral-deep:#D2604A; --coral-soft:#42231E; --coral-ink:#FFB3A1;
   --plum:#B39BFF; --plum-deep:#8A6BE6; --plum-soft:#2C2552; --plum-ink:#CDBDFF;
-  --leaf-soft:#173826; --leaf-ink:#86EFAC;
+  --leaf-soft:#173826; --leaf-ink:#86EFAC; --onc:#121630; --onc-sun:#121630;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{font-size:var(--fs,100%)}
@@ -798,6 +798,51 @@ h1{letter-spacing:0}
 .dictline{font-size:1.15rem;line-height:1.7;margin:8px 0 0;font-family:var(--serif)}
 .dictline .dok{background:var(--ok-soft);color:var(--ok);border-radius:6px;padding:0 3px}
 .dictline .dmiss{background:var(--err-soft);color:var(--err);border-radius:6px;padding:0 3px;text-decoration:underline wavy}
+
+/* ---------- Grammar: colourful topics, cheat cards, translations ---------- */
+.tint-sky{--c:var(--sky);--cs:var(--sky-soft);--ci:var(--sky-ink);--cd:var(--sky-deep);--on:var(--onc)}
+.tint-plum{--c:var(--plum);--cs:var(--plum-soft);--ci:var(--plum-ink);--cd:var(--plum-deep);--on:var(--onc)}
+.tint-sun{--c:var(--sun);--cs:var(--sun-soft);--ci:var(--sun-ink);--cd:var(--sun-deep);--on:var(--onc-sun)}
+.tint-coral{--c:var(--coral);--cs:var(--coral-soft);--ci:var(--coral-ink);--cd:var(--coral-deep);--on:var(--onc)}
+.tint-blue{--c:var(--sage);--cs:var(--sage-soft);--ci:var(--sage-deep);--cd:var(--sage-deep);--on:var(--onc)}
+.tint-leaf{--c:var(--ok);--cs:var(--leaf-soft);--ci:var(--leaf-ink);--cd:var(--leaf-ink);--on:var(--onc)}
+.rooms .room[class*="tint-"]{position:relative;border:2px solid var(--c);background:var(--cs);box-shadow:0 4px 0 var(--c);padding:12px 14px;transition:transform .12s}
+.rooms .room[class*="tint-"]:hover{transform:translateY(-2px)}
+.rooms .room[class*="tint-"] b{color:var(--ink)}
+.room .rglyph{display:block;font-style:normal;font-family:var(--serif);font-weight:800;font-size:1.3rem;line-height:1.05;color:var(--ci);margin-bottom:6px;white-space:nowrap}
+.rooms .room[class*="tint-"][aria-selected="true"]{background:var(--c);border-color:var(--c);box-shadow:0 4px 0 var(--cd);color:var(--on)}
+.rooms .room[class*="tint-"][aria-selected="true"] b,.rooms .room[class*="tint-"][aria-selected="true"] .rglyph,.rooms .room[class*="tint-"][aria-selected="true"] span{color:var(--on);opacity:1}
+.ghero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--cs);border:2px solid var(--c);border-radius:24px;padding:18px 22px;margin:0 0 18px;box-shadow:0 4px 0 var(--c)}
+.ghero .eyebrow{margin:0;color:var(--ci)}
+.ghero h2{font-family:var(--serif);font-weight:800;font-size:2.1rem;line-height:1.1;margin:2px 0 4px;color:var(--ci)}
+.ghero p{margin:0}
+.ghero .trbox{margin-top:8px}
+.ghpso{display:flex;align-items:center;gap:6px}
+.ghpso svg{width:96px;height:96px;flex:none}
+.bubble{position:relative;background:var(--surface);color:var(--ink);border:2px solid var(--c);border-radius:16px;padding:8px 12px;font-weight:700;font-size:.9rem;line-height:1.3;max-width:210px}
+.bubble::after{content:"";position:absolute;right:-9px;top:50%;width:14px;height:14px;background:var(--surface);border-right:2px solid var(--c);border-top:2px solid var(--c);transform:translateY(-50%) rotate(45deg)}
+#room[class*="tint-"] .pick[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:var(--on)}
+#room[class*="tint-"] .artgap{border-color:var(--c)}
+.rcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px 14px;padding-top:8px}
+.rcard{position:relative;background:var(--surface);border:2px solid var(--c);border-left-width:8px;border-radius:20px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.rcard.focus{box-shadow:0 0 0 4px var(--cs),0 0 0 6px var(--c)}
+.rcard h3{margin:0;font-family:var(--serif);font-weight:800;font-size:1.2rem;line-height:1.2;color:var(--ci);padding-right:40px}
+.rnum{position:absolute;top:-12px;right:14px;width:40px;height:40px;border-radius:50%;background:var(--c);color:var(--on);font-family:var(--serif);font-weight:800;font-size:1.3rem;display:grid;place-items:center;transform:rotate(8deg);box-shadow:0 3px 0 var(--cd)}
+.rform{font-size:.9rem}
+.rrule{margin:0}
+.rex{margin:0;padding:0;list-style:none;display:grid;gap:5px}
+.rex li{position:relative;padding-left:22px;font-family:var(--serif);font-size:1.08rem;line-height:1.35}
+.rex li::before{content:"";position:absolute;left:4px;top:.5em;width:9px;height:9px;border-radius:3px;background:var(--c);transform:rotate(45deg)}
+.rex mark{background:var(--cs);color:var(--ci);border-radius:6px;padding:0 3px;font-weight:700}
+.trbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 14px}
+.trlabel{font-size:.85rem;font-weight:700;color:var(--muted);margin-right:4px}
+.trb{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;font-weight:600;font-size:.88rem;color:var(--ink)}
+.trb[aria-checked="true"]{background:var(--c,var(--sage));border-color:var(--c,var(--sage));color:var(--on,var(--onc))}
+.trbox{display:block;margin:0;background:var(--sunk);border-radius:12px;padding:8px 12px;font-size:.93rem;line-height:1.45;color:var(--ink)}
+.feedback .trbox{margin-top:8px}
+.trask{display:inline-flex;flex-wrap:wrap;gap:4px 12px;margin-left:6px}
+@media (max-width:640px){ .rooms .room[class*="tint-"]{padding:10px 12px} .rooms .room[class*="tint-"] span{display:none} .room .rglyph{font-size:1.1rem;margin-bottom:3px} .ghero{grid-template-columns:minmax(0,1fr);padding:16px} .ghero h2{font-size:1.7rem} .ghpso{flex-direction:row-reverse;justify-content:flex-end} .ghpso svg{width:72px;height:72px} .bubble::after{left:-9px;right:auto;transform:translateY(-50%) rotate(-135deg)} }
+
 /* ---------- Tense table ---------- */
 .ttintro{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 .ttlegend{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
@@ -4037,21 +4082,71 @@ function timeline(time, asp){
     ${refMark}${g}</svg>`;
 }
 
+/* Polish and Romanian versions of the grammar rules, tense uses and tense-table notes (shown when a student asks for a translation) */
+const TRX = {"intro.articles": {"pl": "Siedem zasad wyjaśnia prawie każde użycie a, an i the. Przeczytaj jedną, potem poćwicz.", "ro": "Șapte reguli acoperă aproape orice folosire a lui a, an și the. Citește una, apoi exersează."}, "articles.0": {"pl": ["a / an: jedna z wielu", "Używaj a lub an z JEDNĄ policzalną rzeczą, gdy mówisz o niej pierwszy raz albo gdy nie ma znaczenia, która to jest."], "ro": ["a / an: unul dintre multe", "Folosește a sau an cu UN singur lucru numărabil, când e nou în discuție sau când nu contează care anume."]}, "articles.1": {"pl": ["a czy an? Słuchaj dźwięku", "An stawiamy przed SAMOGŁOSKĄ w wymowie, a a przed SPÓŁGŁOSKĄ w wymowie. Decyduje pierwszy dźwięk, nie pierwsza litera."], "ro": ["a sau an? Ascultă sunetul", "Folosește an înaintea unui SUNET vocalic și a înaintea unui SUNET consonantic. Contează primul sunet, nu prima literă."]}, "articles.2": {"pl": ["the: obaj wiemy, o który chodzi", "Używaj the, gdy słuchacz wie dokładnie, o którą rzecz chodzi: już o niej mówiłeś, jest tylko jedna albo jest najlepsza, pierwsza lub ta sama."], "ro": ["the: amândoi știm care", "Folosește the când cel care ascultă știe exact la ce te referi: ai mai pomenit de el, există unul singur sau e cel mai bun, primul ori același."]}, "articles.3": {"pl": ["Bez przedimka: rzeczy ogólnie", "O rzeczach ogólnie mówimy w liczbie mnogiej albo z rzeczownikami niepoliczalnymi, BEZ przedimka. Wyjątek: the + przymiotnik oznacza grupę ludzi (the rich – bogaci, the elderly – osoby starsze)."], "ro": ["Fără articol: lucruri în general", "Când vorbești despre lucruri în general, folosești pluralul sau substantive nenumărabile, FĂRĂ articol. Excepție: the + adjectiv pentru un grup de oameni (the rich – bogații, the elderly – vârstnicii)."]}, "articles.4": {"pl": ["Zawody i opisy: a / an", "Mówiąc, kim ktoś jest albo co robi, używaj a / an: She's a doctor."], "ro": ["Meserii și descrieri: a / an", "Când spui ce este sau ce face cineva, folosește a / an: She's a doctor."]}, "articles.5": {"pl": ["Miejsca, codzienne czynności, czas", "Wiele stałych wyrażeń nie ma przedimka: go to school / work / bed, at home, by bus, have lunch, in prison. Inne zawsze go mają: in the morning, go to the cinema, twice a week. Ucz się ich jako gotowych zwrotów."], "ro": ["Locuri, rutine și expresii de timp", "Multe expresii fixe nu au articol: go to school / work / bed, at home, by bus, have lunch, in prison. Altele au mereu: in the morning, go to the cinema, twice a week. Învață-le ca expresii gata făcute."]}, "articles.6": {"pl": ["Nazwy: zwykle bez przedimka", "Większość nazw nie ma przedimka: ludzie, miasta, większość krajów, języki, sporty, posiłki. The używamy z rzekami, morzami, łańcuchami górskimi, krajami w liczbie mnogiej (the USA, the Netherlands) i instrumentami muzycznymi."], "ro": ["Nume: de obicei fără articol", "Majoritatea numelor nu au articol: persoane, orașe, majoritatea țărilor, limbi, sporturi, mese. Folosește the cu râuri, mări, lanțuri muntoase, țări la plural (the USA, the Netherlands) și instrumente muzicale."]}, "intro.modals": {"pl": "Must, have to, should, might, can: małe słowa, które zmieniają znaczenie całego zdania.", "ro": "Must, have to, should, might, can: cuvinte mici care schimbă sensul întregii propoziții."}, "modals.0": {"pl": ["must i have to: obowiązek", "Must – gdy sam czujesz, że trzeba, i na tabliczkach z nakazami; have to – gdy obowiązek przychodzi z zewnątrz albo to rutyna. Czas przeszły obu to had to."], "ro": ["must și have to: obligație", "Must pentru reguli pe care le simți tu sau care apar pe panouri; have to pentru reguli venite din afară și pentru rutine. Trecutul amândurora este had to."]}, "modals.1": {"pl": ["mustn't a don't have to", "Mustn't = nie wolno. Don't have to (albo needn't) = nie musisz, nie ma potrzeby."], "ro": ["mustn't și don't have to", "Mustn't = este interzis. Don't have to (sau needn't) = nu este necesar."]}, "modals.2": {"pl": ["Rady: should, ought to, had better", "Should i ought to służą do dawania rad (powinieneś). Had better jest mocniejsze, prawie jak ostrzeżenie (lepiej, żebyś…), i łączy się z czasownikiem bez to."], "ro": ["Sfaturi: should, ought to, had better", "Should și ought to dau sfaturi (ar trebui). Had better e mai puternic, aproape un avertisment (ai face bine să…), și e urmat de verbul la forma de bază, fără to."]}, "modals.3": {"pl": ["Możliwość i wnioskowanie", "Might / may / could = może, możliwe. Must = jestem pewien, że to prawda. Can't = jestem pewien, że to nieprawda."], "ro": ["Posibilitate și deducție", "Might / may / could = poate, e posibil. Must = sunt sigur că e adevărat. Can't = sunt sigur că nu e adevărat."]}, "modals.4": {"pl": ["Umiejętność i pozwolenie", "Can / could wyrażają umiejętność i pozwolenie. W innych czasach używaj be able to (will be able to, have been able to)."], "ro": ["Abilitate și permisiune", "Can / could exprimă abilitatea și permisiunea. La alte timpuri folosește be able to (will be able to, have been able to)."]}, "modals.5": {"pl": ["Czasowniki modalne o przeszłości", "Modal + have + III forma mówi o przeszłości: should have (żal: powinienem był), must have / can't have (wniosek: na pewno / na pewno nie), could have (stracona okazja: mogłeś…)."], "ro": ["Verbe modale despre trecut", "Modal + have + participiul trecut vorbește despre trecut: should have (regret: ar fi trebuit), must have / can't have (deducție: sigur / sigur nu), could have (ocazie ratată: ai fi putut)."]}, "intro.cond": {"pl": "Zdania z if: fakty, prawdopodobna przyszłość, sytuacje wyobrażone i żal za przeszłością.", "ro": "Propoziții cu if: fapte reale, un viitor probabil, situații imaginare și regrete."}, "cond.0": {"pl": ["Tryb zerowy: fakty", "If + czas teraźniejszy, czas teraźniejszy. Rzeczy, które są zawsze prawdziwe."], "ro": ["Tipul zero: fapte", "If + prezent, prezent. Lucruri care sunt mereu adevărate."]}, "cond.1": {"pl": ["Pierwszy: realna przyszłość", "If + czas teraźniejszy, will + czasownik. Nigdy nie stawiaj will po if, when ani as soon as, choć po polsku mówisz „jeśli będzie padać”."], "ro": ["Tipul unu: viitor real", "If + prezent, will + verb. Nu pune niciodată will după if, when sau as soon as, deși în română spui „dacă va ploua”."]}, "cond.2": {"pl": ["Drugi: wyobrażona teraźniejszość", "If + czas przeszły, would + czasownik. Sytuacje nierealne albo mało prawdopodobne teraz lub w przyszłości. If I were you (na twoim miejscu) to klasyczny sposób dawania rad."], "ro": ["Tipul doi: prezent imaginar", "If + trecut, would + verb. Situații ireale sau puțin probabile acum ori în viitor. If I were you (dacă aș fi în locul tău) e forma clasică pentru sfaturi."]}, "cond.3": {"pl": ["Trzeci: wyobrażona przeszłość", "If + Past Perfect (had + III forma), would have + III forma. Żal i rzeczy, które się nie wydarzyły."], "ro": ["Tipul trei: trecut imaginar", "If + mai-mult-ca-perfect (had + participiu), would have + participiu. Regrete și lucruri care nu s-au întâmplat."]}, "cond.4": {"pl": ["unless, in case, I wish, mieszane", "Unless = jeśli nie. In case = na wypadek, gdyby. I wish + czas przeszły (teraz) albo Past Perfect (przeszłość) = szkoda, że… Zdania mieszane: warunek w przeszłości, skutek teraz."], "ro": ["unless, in case, I wish, mixte", "Unless = dacă nu. In case = în caz că, ca să fii pregătit. I wish + trecut (acum) sau mai-mult-ca-perfect (trecut) = păcat că… / aș vrea să… Mixte: condiția în trecut, rezultatul în prezent."]}, "intro.passive": {"pl": "Gdy czynność jest ważniejsza niż to, kto ją wykonał.", "ro": "Când acțiunea contează mai mult decât cine a făcut-o."}, "passive.0": {"pl": ["Budowa i użycie", "Be + III forma. Używaj, gdy wykonawca jest nieznany, nieważny albo oczywisty."], "ro": ["Formă și folosire", "Be + participiul trecut. Folosește-l când cel care face acțiunea e necunoscut, neimportant sau evident."]}, "passive.1": {"pl": ["Strona bierna w każdym czasie", "Zmieniasz tylko be: is made, was made, has been made, will be made, is being made."], "ro": ["Pasivul la orice timp", "Schimbi doar be: is made, was made, has been made, will be made, is being made."]}, "passive.2": {"pl": ["by + wykonawca", "Dodaj by (przez) tylko wtedy, gdy wykonawca jest ważny albo ciekawy."], "ro": ["by + autorul acțiunii", "Adaugă by (de către) doar când cel care face acțiunea e important sau interesant."]}, "passive.3": {"pl": ["Czasowniki modalne w stronie biernej", "Modal + be + III forma; o przeszłości: modal + have been + III forma."], "ro": ["Verbe modale la pasiv", "Modal + be + participiu; pentru trecut: modal + have been + participiu."]}, "passive.4": {"pl": ["have something done; it is said", "Have / get something done = ktoś robi to dla ciebie (np. fryzjer, mechanik). It is said that… / He is believed to… to formalny sposób przekazywania opinii (mówi się, że…)."], "ro": ["have something done; it is said", "Have / get something done = altcineva face asta pentru tine (de exemplu frizerul, mecanicul). It is said that… / He is believed to… e un mod formal de a relata păreri (se spune că…)."]}, "intro.questions": {"pl": "Szyk zdania, do i does, pytania o podmiot i grzeczne pytania pośrednie.", "ro": "Ordinea cuvintelor, do și does, întrebări despre subiect și întrebări indirecte politicoase."}, "questions.0": {"pl": ["Szyk zdania", "(Słowo pytające) + czasownik posiłkowy + podmiot + czasownik główny."], "ro": ["Ordinea cuvintelor", "(Cuvânt interogativ) + verb auxiliar + subiect + verbul principal."]}, "questions.1": {"pl": ["do, does, did", "Gdy nie ma innego czasownika posiłkowego, dodaj do / does / did i użyj czasownika w formie podstawowej."], "ro": ["do, does, did", "Când nu există alt verb auxiliar, adaugă do / does / did și folosește verbul la forma de bază."]}, "questions.2": {"pl": ["Pytania o podmiot", "Gdy who albo what jest podmiotem (kto? co?), nie ma do: Who called you?"], "ro": ["Întrebări despre subiect", "Când who sau what este subiectul (cine? ce?), nu se folosește do: Who called you?"]}, "questions.3": {"pl": ["Pytania pośrednie", "Po Can you tell me… / Do you know… / I wonder… używaj zwykłego szyku zdania oznajmującego, bez do."], "ro": ["Întrebări indirecte", "După Can you tell me… / Do you know… / I wonder… folosește ordinea obișnuită a propoziției afirmative, fără do."]}, "questions.4": {"pl": ["Question tags i przyimki", "Question tags (…, prawda?) powtarzają czasownik posiłkowy (zdanie twierdzące → przeczący tag). Przyimki zwykle idą na koniec pytania: Who are you talking to?"], "ro": ["Question tags și prepoziții", "Question tags (…, nu-i așa?) repetă verbul auxiliar (propoziție afirmativă → tag negativ). Prepozițiile stau de obicei la sfârșitul întrebării: Who are you talking to?"]}, "intro.patterns": {"pl": "Doing czy to do? Niektóre czasowniki łączą się z -ing, inne z to, a kilka zmienia wtedy znaczenie.", "ro": "Doing sau to do? Unele verbe cer -ing, altele to, iar câteva își schimbă sensul."}, "patterns.0": {"pl": ["czasownik + -ing", "Te czasowniki łączą się z -ing: enjoy, finish, mind, avoid, suggest, keep, consider, can't stand, practise."], "ro": ["verb + -ing", "Aceste verbe sunt urmate de -ing: enjoy, finish, mind, avoid, suggest, keep, consider, can't stand, practise."]}, "patterns.1": {"pl": ["czasownik + to", "Te czasowniki łączą się z to + czasownik: want, decide, hope, plan, agree, refuse, promise, manage, would like, need."], "ro": ["verb + to", "Aceste verbe sunt urmate de to + verb: want, decide, hope, plan, agree, refuse, promise, manage, would like, need."]}, "patterns.2": {"pl": ["przyimek + -ing", "Po każdym przyimku używaj -ing: interested in learning, good at cooking, look forward to seeing, instead of going."], "ro": ["prepoziție + -ing", "După orice prepoziție folosește -ing: interested in learning, good at cooking, look forward to seeing, instead of going."]}, "patterns.3": {"pl": ["stop, remember, forget, try", "Obie konstrukcje są możliwe, ale znaczą co innego. Remember to do (pamiętać, żeby coś zrobić) i remember doing (pamiętać, że się coś zrobiło). Stop doing (przestać coś robić) i stop to do (zatrzymać się, żeby coś zrobić)."], "ro": ["stop, remember, forget, try", "Ambele construcții sunt posibile, dar au sensuri diferite. Remember to do (să nu uiți să faci ceva) și remember doing (îți amintești că ai făcut). Stop doing (a renunța la ceva) și stop to do (a te opri ca să faci ceva)."]}, "patterns.4": {"pl": ["czasownik + osoba + to; make / let + forma podstawowa", "Want / ask / tell someone to do (chcieć, prosić, kazać komuś coś zrobić). Make i let łączą się z czasownikiem bez to: make me laugh, let him go."], "ro": ["verb + persoană + to; make / let + forma de bază", "Want / ask / tell someone to do (a vrea, a ruga, a-i spune cuiva să facă ceva). Make și let sunt urmate de verb fără to: make me laugh, let him go."]}, "intro.preps": {"pl": "In, on, at w wyrażeniach czasu i miejsca oraz przyimki, które „należą” do konkretnych słów.", "ro": "In, on, at pentru timp și loc, plus prepozițiile care „merg” cu anumite cuvinte."}, "preps.0": {"pl": ["Czas: at, on, in", "At z godzinami oraz at night / at the weekend. On z dniami i datami. In z miesiącami, latami, porami roku i porami dnia (in the morning)."], "ro": ["Timp: at, on, in", "At cu orele, plus at night / at the weekend. On cu zilele și datele. In cu lunile, anii, anotimpurile și părțile zilei (in the morning)."]}, "preps.1": {"pl": ["Miejsce: in, on, at", "In – wewnątrz, w miastach i krajach. On – na powierzchni oraz on the bus / train. At – w punkcie albo w miejscu, gdzie się coś robi: at the bus stop, at work, at home."], "ro": ["Loc: in, on, at", "In – înăuntru, în orașe și țări. On – pe o suprafață, plus on the bus / train. At – într-un punct sau într-un loc de activitate: at the bus stop, at work, at home."]}, "preps.2": {"pl": ["Ruch: to, into, arrive in / at", "Go to – iść albo jechać do miejsca, get into – wsiąść do samochodu, get on / off – wsiąść do autobusu / wysiąść z niego. Arrive in – przyjechać do miasta lub kraju, arrive at – do budynku. Przed home nie ma to: go home."], "ro": ["Mișcare: to, into, arrive in / at", "Go to – a merge undeva, get into – a urca în mașină, get on / off – a urca în autobuz / a coborî din el. Arrive in – a ajunge într-un oraș sau o țară, arrive at – la o clădire. Înainte de home nu se pune to: go home."]}, "preps.3": {"pl": ["Przymiotnik + przyimek", "Ucz się ich parami: interested in, good at, afraid of, proud of, responsible for, married to, different from. Uwaga: po polsku przyimek bywa inny (dumny z = proud of)."], "ro": ["Adjectiv + prepoziție", "Învață-le în perechi: interested in, good at, afraid of, proud of, responsible for, married to, different from. Atenție: în română prepoziția e adesea alta (mândru de = proud of)."]}, "preps.4": {"pl": ["Czasownik + przyimek", "depend on, listen to, wait for, look at, agree with, apply for, consist of. Niektóre czasowniki nie mają przyimka: discuss something (nie „discuss about”), enter a room (nie „enter to”)."], "ro": ["Verb + prepoziție", "depend on, listen to, wait for, look at, agree with, apply for, consist of. Unele verbe nu au prepoziție: discuss something (nu „discuss about”), enter a room (nu „enter into”)."]}, "use.present|simple": {"pl": "Zwyczaje, rutyna, fakty i rzeczy ogólnie prawdziwe.", "ro": "Obiceiuri, rutine, fapte și lucruri adevărate în general."}, "use.present|continuous": {"pl": "Czynności, które dzieją się teraz albo w tym okresie, oraz sytuacje tymczasowe.", "ro": "Acțiuni care se petrec acum sau în perioada aceasta și situații temporare."}, "use.present|perfect": {"pl": "Czynność z przeszłości, której skutek widać teraz, doświadczenie życiowe albo okres, który jeszcze się nie skończył.", "ro": "O acțiune trecută cu rezultat în prezent, experiențe de viață sau o perioadă care nu s-a încheiat."}, "use.present|perfect continuous": {"pl": "Czynność, która zaczęła się w przeszłości i trwa nadal albo dopiero się skończyła. Ważne jest, jak długo.", "ro": "O activitate care a început în trecut și continuă sau tocmai s-a încheiat. Accentul e pe cât timp."}, "use.past|simple": {"pl": "Zakończona czynność w określonym momencie w przeszłości.", "ro": "O acțiune încheiată, într-un moment precis din trecut."}, "use.past|continuous": {"pl": "Czynność trwająca w danym momencie w przeszłości, często przerwana przez inną czynność.", "ro": "O acțiune în desfășurare într-un moment din trecut, adesea întreruptă de altă acțiune."}, "use.past|perfect": {"pl": "Czynność, która wydarzyła się przed inną czynnością w przeszłości.", "ro": "O acțiune petrecută înaintea altei acțiuni din trecut."}, "use.past|perfect continuous": {"pl": "Jak długo coś trwało przed danym momentem w przeszłości.", "ro": "Cât timp a durat o activitate până la un moment din trecut."}, "use.future|simple": {"pl": "Przewidywania, obietnice, propozycje i decyzje podejmowane w chwili mówienia.", "ro": "Predicții, promisiuni, oferte și decizii luate în momentul vorbirii."}, "use.future|continuous": {"pl": "Czynność, która będzie trwała w danym momencie w przyszłości.", "ro": "O acțiune care va fi în desfășurare la un moment din viitor."}, "use.future|perfect": {"pl": "Czynność, która zakończy się przed danym momentem w przyszłości.", "ro": "O acțiune care va fi încheiată înainte de un moment din viitor."}, "use.future|perfect continuous": {"pl": "Jak długo coś będzie trwało do danego momentu w przyszłości.", "ro": "Cât timp va fi durat o activitate până la un moment din viitor."}, "note.present|simple": {"pl": "Pytania i przeczenia potrzebują do / does + V1: Does she write? (Nie z be ani can: Is she…? Can you…?)", "ro": "Întrebările și negațiile au nevoie de do / does + V1: Does she write? (Nu cu be sau can: Is she…? Can you…?)"}, "note.present|continuous": {"pl": "Czasowniki stanu (know, like, want, need…) zwykle nie mają -ing: I know, a nie I'm knowing.", "ro": "Verbele de stare (know, like, want, need…) de obicei nu primesc -ing: I know, nu I'm knowing."}, "note.present|perfect": {"pl": "Nie z zakończonym czasem (yesterday, in 2020) – wtedy użyj Past Simple.", "ro": "Nu cu un timp încheiat (yesterday, in 2020): atunci folosește past simple."}, "note.present|perfect continuous": {"pl": "Z czasownikami stanu używaj Present Perfect: I've known her for years.", "ro": "Cu verbele de stare folosește present perfect: I've known her for years."}, "note.past|simple": {"pl": "Pytania i przeczenia potrzebują did + V1: Did you write? I didn't write. (Nie z be: Was it…?)", "ro": "Întrebările și negațiile au nevoie de did + V1: Did you write? I didn't write. (Nu cu be: Was it…?)"}, "note.past|continuous": {"pl": "Często przerywa ją czynność w Past Simple: was writing … called.", "ro": "Adesea e întreruptă de o acțiune la past simple: was writing … called."}, "note.past|perfect": {"pl": "Wcześniejsza z dwóch czynności w przeszłości.", "ro": "Prima dintre două acțiuni trecute (cea petrecută mai devreme)."}, "note.past|perfect continuous": {"pl": "Jak długo – aż do momentu w przeszłości. Czasowniki stanu: I had known her for years.", "ro": "Cât timp, până la un moment din trecut. Verbe de stare: I had known her for years."}, "note.future|simple": {"pl": "Po if, when, before, as soon as używaj Present Simple: When I finish, I'll call you.", "ro": "După if, when, before, as soon as folosește present simple: When I finish, I'll call you."}, "note.future|continuous": {"pl": "W trakcie, w danym momencie w przyszłości. Czasowniki stanu: I'll know, a nie I'll be knowing.", "ro": "În desfășurare la un moment din viitor. Verbe de stare: I'll know, nu I'll be knowing."}, "note.future|perfect": {"pl": "Zwykle z by (do, przed): by Friday, by the time you come.", "ro": "De obicei cu by (până la): by Friday, by the time you come."}, "note.future|perfect continuous": {"pl": "Jak długo – aż do momentu w przyszłości.", "ro": "Cât timp, până la un moment din viitor."}, "note.Present conditional": {"pl": "If + Past Simple, would + V1. Nigdy nie używaj would w części z if.", "ro": "If + past simple, would + V1. Niciodată would în partea cu if."}, "note.Perfect conditional": {"pl": "If + had + V3, would have + V3. Mówi o przeszłości, która się nie wydarzyła.", "ro": "If + had + V3, would have + V3. Vorbește despre un trecut care nu s-a întâmplat."}, "note.Imperative": {"pl": "Bez podmiotu: Write!, a nie You write! Przeczenie: Don't write.", "ro": "Fără subiect: Write!, nu You write! Negativ: Don't write."}, "note.stative": {"pl": "Te czasowniki opisują stany, nie czynności, więc w czasach Continuous zwykle nie mają -ing: I know the answer, a nie I'm knowing.", "ro": "Aceste verbe descriu stări, nu acțiuni, așa că la timpurile continue de obicei nu primesc -ing: I know the answer, nu I'm knowing."}};
+/* Rule recipes, drawn with the same verb-form shapes as the tense table */
+const GR_F = {"articles.0": "a / an + one countable thing", "articles.1": "a + consonant sound · an + vowel sound", "articles.2": "the + the one we both know", "articles.3": "no article + plural / uncountable", "articles.4": "be + a / an + job", "articles.5": "go to school · in the morning", "articles.6": "Paris · the Thames · the USA", "modals.0": "must / have to + {1}", "modals.1": "mustn't / don't have to + {1}", "modals.2": "should / had better + {1}", "modals.3": "might / must / can't + {1}", "modals.4": "can / will be able to + {1}", "modals.5": "should / must / could + have + {3}", "cond.0": "if + present → present", "cond.1": "if + present → will + {1}", "cond.2": "if + {2} → would + {1}", "cond.3": "if + had + {3} → would have + {3}", "cond.4": "I wish + {2} · I wish + had + {3}", "passive.0": "be + {3}", "passive.1": "is / was / has been / will be + {3}", "passive.2": "be + {3} + by …", "passive.3": "modal + be + {3}", "passive.4": "have + thing + {3}", "questions.0": "wh- + helper + subject + {1} ?", "questions.1": "do / does / did + subject + {1} ?", "questions.2": "Who + {1s} ?", "questions.3": "Do you know + wh- + subject + verb", "questions.4": "…, isn't it? · Who … to?", "patterns.0": "enjoy + {ing}", "patterns.1": "want + to + {1}", "patterns.2": "preposition + {ing}", "patterns.3": "remember to + {1} ≠ remember + {ing}", "patterns.4": "tell someone to + {1} · let someone + {1}", "preps.0": "at 7:00 · on Monday · in May", "preps.1": "in the box · on the table · at the door", "preps.2": "go to · get into · arrive in / at", "preps.3": "good at · afraid of · proud of", "preps.4": "listen to · wait for · depend on"};
+
+TRX["intro.verbs"]={pl:"Czasowniki, które łamią zasady. Ucz się ich trójkami: go, went, gone.",ro:"Verbele care încalcă regulile. Învață-le câte trei: go, went, gone."};
+const G_TINT={table:"blue",map:"sky",machine:"sun",hunt:"coral",detective:"plum",time:"leaf",articles:"sky",modals:"plum",cond:"sun",passive:"coral",questions:"blue",patterns:"leaf",preps:"sky",verbs:"coral"};
+const ROOM_GLYPH={table:"V1 V2 V3",map:"12",machine:"+ing",hunt:"do?",detective:"?!",time:"→",articles:"a · the",modals:"must",cond:"if…",passive:"by",questions:"?",patterns:"to / -ing",preps:"in on at",verbs:"go went"};
+const G_HERO={
+  articles:{art:"quill",say:"Tiny words, big trouble. Let's tame a, an and the!"},
+  modals:{art:"cap",say:"Must I? Should I? Might I? Yes, you can!"},
+  cond:{art:"sun",say:"If you practise, you'll win. If I were you, I'd start now!"},
+  passive:{art:"beret",say:"Mistakes were made… but not by me!"},
+  questions:{art:"target",say:"Do you know where the do goes? Let's find out!"},
+  patterns:{art:"chef",say:"I enjoy cooking and I want to help. -ing or to? Easy!"},
+  preps:{art:"race",say:"In the morning, on Monday, at eight. Always on time!"},
+  verbs:{art:"flame",say:"Go, went, gone. Where did my verbs go?",t:"Irregular verbs",intro:"The verbs that break the rules. Learn them in threes: go, went, gone."}};
+const G_KEYS={
+  articles:/\b(a|an|the)\b/gi,
+  modals:/(\b(?:mustn't|must|have to|has to|had to|needn't|shouldn't|should|ought to|had better|might|may|couldn't|could|can't|can|be able to)\b|'d better)/gi,
+  cond:/(\b(?:if|unless|in case|wish|would|wouldn't|will|won't)\b|'d\b|'ll\b)/gi,
+  passive:/\b(?:is|are|was|were|be|been|being|get|got|had|have)\s+(?:\w+ed|made|built|written|done|given|taken|seen|known|said|told|sold|found|stolen|cut|born|eaten|spoken|sent|held|paid|shown|thought|bought|grown|driven|broken)\b|\bby\b/gi,
+  questions:/\b(do|does|did|don't|doesn't|didn't|who|what|where|when|why|how|which|whose|isn't|aren't|wasn't|haven't|won't)\b/gi,
+  patterns:/\b\w{2,}ing\b|\bto\s+[a-z]+/gi,
+  preps:/\b(in|on|at|to|into|for|of|with|from|by|off)\b/gi};
+const hl=(s,re)=>{ if(!re) return esc(s); let out="",i=0; String(s).replace(re,(m,...a)=>{ const off=a[a.length-2]; if(off<i) return m; out+=esc(s.slice(i,off))+`<mark>${esc(m)}</mark>`; i=off+m.length; return m; }); return out+esc(s.slice(i)); };
+let trLang=(()=>{ try{ const v=localStorage.getItem("psotek-trlang"); return v==="pl"||v==="ro"?v:""; }catch(e){ return ""; } })();
+const trLangs=()=>{ const h=typeof helpLang==="function"?helpLang():""; return h==="pl"||h==="ro"?[h]:["pl","ro"]; };
+function trBar(){ return `<div class="trbar" role="radiogroup" aria-label="Translate the rules"><span class="trlabel">Translate the rules</span>${[["","English only"],["pl","Polski"],["ro","Română"]].map(([v,l])=>`<button type="button" role="radio" class="trb" data-trl="${v}" aria-checked="${trLang===v}" ${v?`lang="${v}"`:""}>${l}</button>`).join("")}</div>`; }
+function trBox(k,lg=trLang){ if(!lg) return ""; const v=TRX[k]&&TRX[k][lg]; if(!v) return "";
+  return `<span class="trbox" lang="${lg}"><span class="l1flag">${lg.toUpperCase()}</span>${Array.isArray(v)?`<b>${esc(v[0])}.</b> ${esc(v[1])}`:esc(v)}</span>`; }
+const trAsk=k=>TRX[k]?`<span class="trask">${trLangs().map(l=>`<button class="linkbtn" type="button" data-trask="${k}" data-l="${l}" lang="${l}">${l==="pl"?"Wyjaśnij po polsku":"Explică în română"}</button>`).join("")}</span>`:"";
+document.addEventListener("click",e=>{
+  const t=e.target.closest&&e.target.closest("[data-trl]");
+  if(t){ trLang=t.dataset.trl; try{ localStorage.setItem("psotek-trlang",trLang); }catch(err){} const y=window.scrollY; if(typeof viewLab==="function" && state.route && /lab|grammar/.test(state.route)) viewLab(); else render(); window.scrollTo(0,y); return; }
+  const a=e.target.closest&&e.target.closest("[data-trask]");
+  if(a){ const host=a.closest(".trhost,.feedback")||a.parentElement; host.querySelectorAll(".trbox").forEach(x=>x.remove()); host.insertAdjacentHTML("beforeend",trBox(a.dataset.trask,a.dataset.l)); }
+});
+function ruleCard(key,i,r,focus,note,id){ const k=key+"."+i, f=GR_F[k];
+  return `<article class="rcard${focus?" focus":""}" id="${id}"><span class="rnum" aria-hidden="true">${i+1}</span>
+    <h3><span class="sr">Rule ${i+1}: </span>${esc(r.t)}</h3>
+    ${f?`<p class="ttform rform">${ttForm(f)}</p>`:""}
+    <p class="rrule">${esc(r.rule)}</p>${trBox(k)}
+    <ul class="rex">${r.ex.map(e=>`<li>${hl(e,G_KEYS[key])}</li>`).join("")}</ul>${note}</article>`; }
+function gHero(key){ const H=G_HERO[key]; if(!H) return ""; const G=GR[key];
+  const t=H.t||(G?G.t:key==="articles"?"Articles":key), intro=H.intro||(G?G.intro:key==="articles"?"Seven rules cover almost every use of a, an and the. Read one, then practise it.":"");
+  return `<div class="ghero"><div><p class="eyebrow">Grammar</p><h2>${esc(t)}</h2><p>${esc(intro)}</p>${trBox("intro."+key)}</div>
+    <div class="ghpso"><p class="bubble">${esc(H.say)}</p><svg viewBox="22 -6 220 220" aria-hidden="true">${psoHead(H.art)}</svg></div></div>`; }
+
 /* ---------- Lab view ---------- */
 const ROOMS=[["table","Tense table","All tenses on one page"],["map","Tense map","Explore all 12"],["machine","Sentence machine","Build any sentence"],["hunt","Do or does?","A 10-round game"],["detective","Tense detective","Name the tense"],["time","Time machine","Change the tense"],["articles","Articles","a, an, the or nothing"],["modals","Modals","must, should, might"],["cond","Conditionals","if… would…"],["passive","The passive","is made, was built"],["questions","Questions","word order and do"],["patterns","Verb patterns","doing or to do?"],["preps","Prepositions","in, on, at and more"],["verbs","Irregular verbs","8 ways to practise"]];
 function viewLab(){
   const isT=TENSE_ROOMS.includes(lab.room); const rooms=ROOMS.filter(([id])=>TENSE_ROOMS.includes(id)===isT);
   $("#view").innerHTML=`
   <div class="labhead">
-    <div><p class="eyebrow">${isT?"Tenses":"Grammar"}</p><h2 style="margin:0">${isT?"All 12 tenses: explore, build and play":"Articles, modals, conditionals, the passive, prepositions and irregular verbs"}</h2></div>
+    <div><p class="eyebrow">${isT?"Tenses":"Grammar"}</p><h2 style="margin:0">${isT?"All 12 tenses: explore, build and play":"Pick a topic, read the cheat cards, then play"}</h2></div>
     <div class="xp" id="xp" aria-live="polite"></div>
   </div>
   <p class="lede">Explore, build and play. Every right answer earns XP. Use the menu to go back to your words at any time.</p>
   <div class="levels"><span class="lvlabel">Level</span>
     <div class="lvbtns" role="radiogroup" aria-label="Practice level">${LV.map((l,i)=>`<button class="lvb" type="button" role="radio" data-lv="${i}" aria-checked="${i===lvl()}">${l}</button>`).join("")}</div>
     <span class="lvdesc">${esc(LVDESC[lvl()])}</span></div>
-  <div class="rooms" role="tablist">${rooms.map(([id,t,s])=>`<button class="room" role="tab" type="button" data-r="${id}" aria-selected="${lab.room===id}"><b>${t}</b><span>${s}</span></button>`).join("")}</div>
-  <div id="room"></div>`;
+  <div class="rooms" role="tablist">${rooms.map(([id,t,s])=>`<button class="room tint-${G_TINT[id]||"blue"}" role="tab" type="button" data-r="${id}" aria-selected="${lab.room===id}"><i class="rglyph" aria-hidden="true">${esc(ROOM_GLYPH[id]||"")}</i><b>${t}</b><span>${s}</span></button>`).join("")}</div>
+  ${isT?"":`<div class="tint-${G_TINT[lab.room]||"blue"}">${gHero(lab.room)}</div>`}
+  <div id="room" class="${isT?"":"tint-"+(G_TINT[lab.room]||"blue")}"></div>`;
   paintXP();
   document.querySelectorAll(".lvb").forEach(b=>b.onclick=()=>{ if(+b.dataset.lv===lvl()) return; lab.level=+b.dataset.lv; saveLab(); resetLevelState(); viewLab(); burst($(`.lvb[data-lv="${lab.level}"]`),6); });
   document.querySelectorAll(".room").forEach(b=>b.onclick=()=>{ lab.room=b.dataset.r; if(TENSE_ROOMS.includes(lab.room)) lab.troom=lab.room; else lab.groom=lab.room; state.route=section("lab"); save(); saveLab(); stopRush(); paintNav(); viewLab(); });
@@ -4201,14 +4296,13 @@ function roomArticles(){
   const hud=()=>`<div class="hud"><span>${art.seen?`${art.right} of ${art.seen} right`:"Answer to start your score"}</span><span class="streak">${art.streak>=2?`Streak ${art.streak}`:""}</span></div>`;
   const wire=()=>$$("[data-am]").forEach(b=>b.onclick=()=>{ if(art.mode===b.dataset.am) return; art.mode=b.dataset.am; art.q=null; art.done=false; roomArticles(); });
   const score=(ok,btn)=>{ art.seen++; track(ok); if(ok){ art.right++; art.streak++; addXP(2); if(btn) burst(btn,5); } else art.streak=0; };
-  const ruleLink=r=>`<button class="linkbtn" type="button" data-artrule="${r.id}">Rule: ${esc(r.t)}</button>`;
+  const ruleLink=r=>`<button class="linkbtn" type="button" data-artrule="${r.id}">Rule: ${esc(r.t)}</button>${trAsk("articles."+ART_RULES.indexOf(r))}`;
   const wireRule=()=>$$("[data-artrule]").forEach(b=>b.onclick=()=>{ art.mode="rules"; art.focus=b.dataset.artrule; art.q=null; roomArticles(); });
 
   if(art.mode==="rules"){
     $("#room").innerHTML=`<div class="panel">${bar}
-      <p class="lede" style="margin:0 0 14px">Seven rules cover almost every use of a, an and the. Read one, then practise it.</p>
-      <div class="artrules">${ART_RULES.map((r,i)=>`<article class="artcard${art.focus===r.id?" focus":""}" id="art-${r.id}"><p class="eyebrow">Rule ${i+1}</p><h3>${esc(r.t)}</h3><p>${esc(r.rule)}</p>
-        <ul class="artex">${r.ex.map(e=>`<li>${esc(e)}</li>`).join("")}</ul>${artNote(r)}</article>`).join("")}</div>
+      ${trBar()}
+      <div class="rcards">${ART_RULES.map((r,i)=>ruleCard("articles",i,r,art.focus===r.id,artNote(r),"art-"+r.id)).join("")}</div>
       <div class="row" style="margin-top:14px"><button class="btn sage" type="button" id="artGo">Start practising</button></div></div>`;
     wire(); $("#artGo").onclick=()=>{ art.mode="choose"; art.q=null; roomArticles(); };
     if(art.focus){ const el=$(`#art-${art.focus}`); if(el) el.scrollIntoView({block:"center",behavior:"smooth"}); art.focus=null; }
@@ -4352,7 +4446,7 @@ function ttCard(o, opts={}){
     ${lg && o[lg] ? `<p class="ttl1" lang="${lg}"><span class="l1flag">${lg.toUpperCase()}</span>${esc(o[lg])}</p>` : ""}
     ${o.k?`<div class="tttl">${timeline(time,asp)}</div>`:""}
     <div class="ttsig">${sig.map(x=>`<span>${esc(x)}</span>`).join("")}</div>
-    <p class="ttnote"><b aria-hidden="true">!</b>${esc(o.note)}</p>
+    <p class="ttnote"><b aria-hidden="true">!</b>${esc(o.note)}</p>${trBox("note."+(o.k||o.t))}
     ${lg && o.l1 && o.l1[lg] ? `<p class="ttl1n" lang="${lg}">${esc(o.l1[lg])}</p>` : ""}
     ${o.k?`<button class="linkbtn" type="button" data-explore="${o.k}">Explore with the Sentence machine →</button>`:""}
   </article>`;
@@ -4365,6 +4459,7 @@ function roomTable(){
       <div class="ttlegend" aria-label="Verb forms">
         <span>${ttTok["1"]} <small>V1 · base</small></span><span>${ttTok["2"]} <small>V2 · past</small></span><span>${ttTok["3"]} <small>V3 · participle</small></span><span>${ttTok["ing"]} <small>V1 + ing</small></span>
       </div>
+      ${trBar()}
       <div class="row" style="margin:0"><button class="btn ghost" type="button" id="ttPrint">${ico("archive")} Print the table</button></div>
     </div>
     ${TT_TIMES.map(([t,label,sub])=>`<section class="ttblock tt-${t}" aria-label="${label}">
@@ -4377,7 +4472,7 @@ function roomTable(){
       <section class="ttblock tt-stat" aria-label="Stative verbs"><h2 class="ttband"><span>Stative verbs</span><small>no -ing</small></h2>
         <article class="ttcard"><p style="margin:0 0 10px">These verbs describe states, not actions, so they don't usually take -ing in continuous tenses.</p>
         <div class="ttsig big">${STATIVE.map(v=>`<span>${esc(v)}</span>`).join("")}</div>
-        <p class="ttnote"><b aria-hidden="true">!</b>I know the answer, not I'm knowing. I've known her for years, not I've been knowing.</p></article></section>
+        <p class="ttnote"><b aria-hidden="true">!</b>I know the answer, not I'm knowing. I've known her for years, not I've been knowing.</p>${trBox("note.stative")}</article></section>
     </div></div>`;
   $("#ttPrint").onclick=()=>{ try{ window.print(); }catch(e){} };
   $$("[data-explore]").forEach(b=>b.onclick=()=>{ const [t,a]=b.dataset.explore.split("|"); mac={...mac,time:t,asp:a}; lab.room="machine"; lab.troom="machine"; saveLab(); viewLab(); });
@@ -4404,7 +4499,7 @@ function roomMap(){
     <h3 style="margin-top:0;font-size:1.5rem">${esc(T.name)}</h3>
     ${okTense(mapSel)?"":`<p class="locknote">This tense usually comes at ${LV[tenseLv(mapSel)]}. Have a peek!</p>`}
     ${timeline(time,asp)}
-    <p style="margin:6px 0 4px;max-width:60ch">${esc(T.use)}</p>
+    <div class="trhost" style="margin:6px 0 4px;max-width:60ch"><p style="margin:0 0 4px">${esc(T.use)} ${trAsk("use."+mapSel)}</p></div>
     <p style="margin:0;color:var(--muted);font-size:.93rem">Form: ${esc(T.form)}</p>
     <div class="sig">${T.sig.map(x=>`<span>${esc(x)}</span>`).join("")}</div>
     <p class="example">${esc(EXAMPLE[mapSel])}</p>
@@ -5869,13 +5964,12 @@ function roomGram(key){
   const hud=()=>`<div class="hud"><span>${gst.seen?`${gst.right} of ${gst.seen} right`:"Answer to start your score"}</span><span class="streak">${gst.streak>=2?`Streak ${gst.streak}`:""}</span></div>`;
   const wire=()=>$$("[data-gm]").forEach(b=>b.onclick=()=>{ if(mode===b.dataset.gm) return; gst.mode[key]=b.dataset.gm; gst.q=null; gst.done=false; roomGram(key); });
   const score=(ok,btn)=>{ gst.seen++; track(ok); if(ok){ gst.right++; gst.streak++; addXP(2); if(btn) burst(btn,5); } else gst.streak=0; };
-  const ruleLink=i=>`<button class="linkbtn" type="button" data-grule="${i}">Rule: ${esc(G.rules[i].t)}</button>`;
+  const ruleLink=i=>`<button class="linkbtn" type="button" data-grule="${i}">Rule: ${esc(G.rules[i].t)}</button>${trAsk(key+"."+i)}`;
   const wireRule=()=>$$("[data-grule]").forEach(b=>b.onclick=()=>{ gst.mode[key]="rules"; gst.focus=+b.dataset.grule; gst.q=null; roomGram(key); });
   if(gst.key!==key){ gst.key=key; gst.q=null; gst.done=false; }
   if(mode==="rules"){
-    $("#room").innerHTML=`<div class="panel">${bar}<p class="lede" style="margin:0 0 14px">${esc(G.intro)}</p>
-      <div class="artrules">${G.rules.map((r,i)=>`<article class="artcard${gst.focus===i?" focus":""}" id="gr-${i}"><p class="eyebrow">Rule ${i+1}</p><h3>${esc(r.t)}</h3><p>${esc(r.rule)}</p>
-        <ul class="artex">${r.ex.map(e=>`<li>${esc(e)}</li>`).join("")}</ul>${grNote(r)}</article>`).join("")}</div>
+    $("#room").innerHTML=`<div class="panel">${bar}${trBar()}
+      <div class="rcards">${G.rules.map((r,i)=>ruleCard(key,i,r,gst.focus===i,grNote(r),"gr-"+i)).join("")}</div>
       <div class="row" style="margin-top:14px"><button class="btn sage" type="button" id="grGo">Start practising</button></div></div>`;
     wire(); $("#grGo").onclick=()=>{ gst.mode[key]="practise"; gst.q=null; roomGram(key); };
     if(gst.focus!=null){ const el=$(`#gr-${gst.focus}`); if(el) el.scrollIntoView({block:"center",behavior:"smooth"}); gst.focus=null; }
