@@ -1,0 +1,10 @@
+// Cloudflare settings for psotnyjez.com.
+// The site is plain files (no build step): Cloudflare serves everything in this folder
+// except what's listed in .assetsignore. Every push to main goes live automatically.
+{
+  "name": "psotek",
+  "compatibility_date": "2026-10-22",
+  "assets": {
+    "directory": "./"
+  }
+}

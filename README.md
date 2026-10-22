@@ -1,6 +1,6 @@
 # Psotek English (website version)
 
-This folder is the GitHub Pages copy of Psotek English (formerly English Engine), the practice site for Dasz's English students.
+This folder is Psotek English (formerly English Engine), the practice site for Dasz's English students. It is published at **https://psotnyjez.com** by Cloudflare, and every push to `main` goes live there automatically. The old GitHub Pages address still works while students move their progress.
 
 ## What's in the folder
 
@@ -13,6 +13,8 @@ This folder is the GitHub Pages copy of Psotek English (formerly English Engine)
 | `word-grove.html` | Word Grove: Word Hunt, Tile Rush and Crossplay. |
 | `vacuum-racer.html` | Vacuum Racer (3D game). |
 | `.nojekyll` | Tells GitHub Pages to publish the files exactly as they are. |
+| `wrangler.jsonc` | Cloudflare settings: the site name (`psotek`) and which folder to publish. |
+| `.assetsignore` | Files Cloudflare should not publish (settings files and this README). |
 
 
 

@@ -725,6 +725,18 @@ mark.dmark{background:var(--sage-soft);color:inherit;border-bottom:3px solid var
 @media (max-width:860px){ .psotoast{bottom:calc(84px + env(safe-area-inset-bottom,0px))} .psotoast .pso{width:76px} .psotoast .psobub{margin-bottom:44px;font-size:.88rem} }
 @media (max-width:600px){ .herpso{width:112px;right:10px} .herpso .psobub{font-size:.8rem;margin-right:10px;max-width:170px} .psoend .pso{width:88px} }
 @media (prefers-reduced-motion: reduce){ .psotoast{transition:none} }
+/* ---------- Moving to psotnyjez.com ---------- */
+.movebar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;background:var(--sage-soft);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin:0 0 18px}
+.movebar b{font-family:var(--serif);font-weight:500;font-size:1.15rem}
+.movebar p{margin:2px 0 0;color:var(--muted)}
+.movebar .row{margin:0}
+.movebar textarea{width:100%;max-width:none;font-size:.8rem;margin-top:8px}
+.gate{display:flex;overflow-y:auto;overscroll-behavior:contain}
+.gate .gatecard{margin:auto}
+.movein{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+.movein summary{cursor:pointer;color:var(--sage);font-weight:600}
+.movein p{margin:8px 0}
+.movein textarea{width:100%;max-width:none;font-size:.85rem}
 /* ---------- Badges ---------- */
 .medal{display:block;width:100%;height:auto}
 .bggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-top:16px}
@@ -798,9 +810,40 @@ mark.dmark{background:var(--sage-soft);color:inherit;border-bottom:3px solid var
     <input class="tin" id="nickIn" maxlength="24" autocomplete="nickname" placeholder="e.g. Kasia K.">
     <p class="err" id="nickErr" hidden>Use 2 to 24 characters.</p>
     <div class="row"><button class="btn" type="submit">Start practising</button></div>
+    <details class="movein" id="moveIn"><summary>Used Psotek on the old address? Bring your progress</summary>
+      <p>On the old site, tap <b>Copy moving code</b>, then paste the code here.</p>
+      <label class="sr" for="moveCode">Moving code</label>
+      <textarea id="moveCode" class="tin" rows="3" placeholder="PM1.…" spellcheck="false" autocomplete="off"></textarea>
+      <p class="err" id="moveErr" hidden>That code didn't work. Copy it again from the old site, all of it.</p>
+      <div class="row"><button class="btn ghost" type="button" id="moveBtn">Bring my progress</button></div>
+    </details>
   </form>
 </div>
 
+<script>
+/* ---------- New home: psotnyjez.com ----------
+   Progress lives in each browser, per web address. A "moving code" (PM1.…) carries it from the old address to the new one. */
+const NEW_HOME = "https://psotnyjez.com/";
+const MOVE_LIVE = false; /* switch to true once psotnyjez.com is live: shows the "move my progress" bar on old addresses */
+const ON_NEW = /(^|\.)psotnyjez\.com$/.test(location.hostname);
+const MOVE_KEY = k => /^(vocab5-|psotek-|ee-)/.test(k);
+if(location.hostname==="www.psotnyjez.com") location.replace("https://psotnyjez.com"+location.pathname+location.search+location.hash);
+function movePack(){ const o={}; try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(MOVE_KEY(k)) o[k]=localStorage.getItem(k); } }catch(e){}
+  const bytes=new TextEncoder().encode(JSON.stringify(o)); let bin=""; bytes.forEach(b=>bin+=String.fromCharCode(b));
+  return "PM1."+btoa(bin).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); }
+function moveUnpack(code){ const m=String(code).replace(/\s+/g,"").match(/PM1\.([A-Za-z0-9_-]+)/); if(!m) throw new Error("no code");
+  let b=m[1].replace(/-/g,"+").replace(/_/g,"/"); b+="===".slice(0,(4-b.length%4)%4);
+  const o=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(b),c=>c.charCodeAt(0)))); if(!o||typeof o!=="object") throw new Error("bad code"); return o; }
+function moveApply(o){ let n=0; Object.entries(o).forEach(([k,v])=>{ if(MOVE_KEY(k) && typeof v==="string"){ try{ localStorage.setItem(k,v); n++; }catch(e){} } }); return n; }
+const hasProgress = () => { try{ const a=JSON.parse(localStorage.getItem("vocab5-activity-v1")||"null"); return !!(a && a.nick); }catch(e){ return false; } };
+let MOVED = false;
+if(location.hash.startsWith("#move=")){
+  try{ const o=moveUnpack(location.hash.slice(6));
+    if(!hasProgress() || confirm("This device already has Psotek progress. Replace it with the progress you're bringing over?")) MOVED = moveApply(o)>0;
+  }catch(e){ alert("That moving link didn't work. On the old site, use “Copy moving code” and paste it here instead."); }
+  history.replaceState(null,"",location.pathname+location.search);
+}
+</script>
 <script>
 /* SITE_MODE is true only in the GitHub Pages copy: there, YouTube videos can play inside the page. */
 const SITE_MODE = true;
@@ -2109,7 +2152,21 @@ let lastInput=Date.now();
 setInterval(()=>{ if(document.visibilityState==="visible" && Date.now()-lastInput<90000 && act.nick && route!=="game"){ wk().sec+=15; saveAct(); } },15000);
 
 function openGate(){ $("#gatePso").innerHTML=psotek("happy")+`<p class="psobub">Cześć! I'm Psotek. Let's practise.</p>`; $("#gateLang").innerHTML=langSeg(); $("#gate").hidden=false; $("#nickIn").value=act.nick||""; $("#nickErr").hidden=true; setTimeout(()=>$("#nickIn").focus(),30); }
-function wireGate(){ $("#gateForm").addEventListener("submit",e=>{ e.preventDefault();
+function wireMoveIn(){ const b=$("#moveBtn"); if(!b) return; b.onclick=()=>{ $("#moveErr").hidden=true;
+    try{ const n=moveApply(moveUnpack($("#moveCode").value)); if(!n) throw new Error("empty"); location.reload(); }catch(e){ $("#moveErr").hidden=false; $("#moveCode").focus(); } }; }
+function moveBar(){
+  if(ON_NEW || !MOVE_LIVE || !act.nick) return "";
+  return `<section class="movebar" aria-labelledby="moveT"><div><b id="moveT">Psotek has a new home: psotnyjez.com</b><p>Take your streak, words, XP and badges with you. It takes one tap.</p></div>
+    <div class="row"><button class="btn" type="button" id="moveGo">Move my progress</button><button class="btn ghost" type="button" id="moveCopy">Copy moving code</button></div>
+    <textarea id="moveOut" class="tin" rows="3" readonly hidden aria-label="Your moving code"></textarea></section>`;
+}
+function wireMoveBar(){ const g=$("#moveGo"); if(!g) return;
+  g.onclick=()=>{ const url=NEW_HOME+"#move="+movePack(); let w=null; try{ w=window.open(url,"_blank","noopener"); }catch(e){} if(!w){ try{ window.top.location.href=url; }catch(e){ $("#moveCopy").click(); } } };
+  $("#moveCopy").onclick=async()=>{ const code=movePack(), out=$("#moveOut"); out.value=code; out.hidden=false; out.select();
+    let ok=false; try{ await navigator.clipboard.writeText(code); ok=true; }catch(e){ try{ ok=document.execCommand("copy"); }catch(_){} }
+    $("#moveCopy").textContent= ok ? "Copied! Paste it on psotnyjez.com" : "Select the code below and copy it"; };
+}
+function wireGate(){ wireMoveIn(); $("#gateForm").addEventListener("submit",e=>{ e.preventDefault();
   const v=$("#nickIn").value.replace(/\s+/g," ").trim();
   if(v.length<2||v.length>24){ $("#nickErr").hidden=false; $("#nickIn").focus(); return; }
   act.nick=v; saveAct(); $("#gate").hidden=true; paintWho(); if(state.tab==="progress"||["today","progress"].includes(route)) render(); }); }
@@ -2244,6 +2301,7 @@ function render(){
     video:viewVideo, game:viewGame, archive:viewArchive, sounds:viewSounds, badges:viewBadges, exam:viewExam, "use:conv":viewConv, "use:write":viewWrite, "use:ask":viewAsk, "use:studio":viewStudio, "use:upgrade":viewUpgrade, "use:story":viewStory, "use:speak":viewSpeak};
   (V[route]||viewToday)();
   if(VSET.archived && ["today","practise","use","word","flash","round","order"].includes(route) && !$("#view .setbanner")) $("#view").insertAdjacentHTML("afterbegin", setNote());
+  if(["today","progress"].includes(route) && typeof moveBar==="function"){ const mb=moveBar(); if(mb){ $("#view").insertAdjacentHTML("afterbegin",mb); wireMoveBar(); } }
   if(typeof bgCheck==="function") bgCheck();
   window.scrollTo({top:0});
   const h=$("#view h1"); if(h){ h.setAttribute("tabindex","-1"); h.focus({preventScroll:true}); }
@@ -5917,6 +5975,7 @@ function viewExam(){
 applyDisp();
 wireGate(); saveAct(); paintWho(); if(!act.nick) openGate();
 render();
+if(MOVED) setTimeout(()=>{ psoSay("happy", act.nick ? `Welcome to the new home, ${act.nick}!` : "Welcome to the new home!"); },800);
 
 </script>
 
