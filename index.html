@@ -593,6 +593,7 @@ body,aside,.panel,.tab,.btn,.opt,.wordbtn,.chip,.pick,.room,.tcell,.tin,textarea
 /* Level switch */
 .levels{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 18px}
 .lvlabel{font-size:.85rem;font-weight:600;color:var(--muted)}
+.lvnote{flex-basis:100%;color:var(--muted);font-size:.82rem}
 .lvbtns{display:inline-flex;background:var(--surface);border-radius:999px;padding:4px;gap:2px}
 .lvb{border:0;background:transparent;border-radius:999px;padding:6px 13px;font-weight:600;font-size:.92rem;color:var(--muted)}
 .lvb:hover{color:var(--ink)}
@@ -793,6 +794,10 @@ h1{letter-spacing:0}
 .tag.reg-i{background:var(--coral-ink);color:var(--surface)}
 .streak{color:var(--coral-ink);font-weight:700}
 .brand b{font-family:var(--serif);font-weight:800;font-size:1.3rem}
+/* ---------- Listen and type ---------- */
+.dictline{font-size:1.15rem;line-height:1.7;margin:8px 0 0;font-family:var(--serif)}
+.dictline .dok{background:var(--ok-soft);color:var(--ok);border-radius:6px;padding:0 3px}
+.dictline .dmiss{background:var(--err-soft);color:var(--err);border-radius:6px;padding:0 3px;text-decoration:underline wavy}
 /* ---------- Tense table ---------- */
 .ttintro{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 .ttlegend{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
@@ -2534,7 +2539,7 @@ let srBlocked = !SR, srBusy=false;
 
 function viewSounds(){
   const L=sndLv();
-  const modes=[["hear","Which word?"],["stress","Word stress"],["weak","Weak forms"],["say","Say it"]];
+  const modes=[["hear","Which word?"],["dict","Listen and type"],["stress","Word stress"],["weak","Weak forms"],["say","Say it"]];
   $("#view").innerHTML=`
   <header class="pagehead"><p class="eyebrow">Pronunciation</p><h1>Sounds</h1>
     <p class="lede">Train your ear first, then your mouth. These are the sounds that Polish and Romanian speakers find hardest in English. Use headphones if you can.</p></header>
@@ -2545,11 +2550,58 @@ function viewSounds(){
   <div id="sroom"></div>`;
   $$("[data-slv]").forEach(b=>b.onclick=()=>{ snd.lv=+b.dataset.slv; snd.q=null; snd.done=false; saveSnd(); viewSounds(); });
   $$("[data-sm]").forEach(b=>b.onclick=()=>{ if(snd.mode===b.dataset.sm) return; snd.mode=b.dataset.sm; snd.q=null; snd.done=false; saveSnd(); viewSounds(); });
-  ({hear:sndHear,stress:sndStress,weak:sndWeak,say:sndSay})[snd.mode]();
+  ({hear:sndHear,dict:sndDict,stress:sndStress,weak:sndWeak,say:sndSay})[snd.mode]();
 }
 function sndHud(){ return `<div class="hud"><span>${snd.seen?`${snd.right} of ${snd.seen} right`:"Your score starts with the first answer"}</span><span class="streak">${snd.streak>=2?`Streak ${snd.streak}`:""}</span></div>`; }
 function sndScore(ok,btn){ snd.seen++; track(ok); if(ok){ snd.right++; snd.streak++; if(btn) burst(btn,5); } else snd.streak=0; }
 function sndCats(){ const L=sndLv(); return SND_CATS.filter(c=>c.lv<=L+1); }
+
+/* Listen and type (dictation): sentences come from the example sentences of words at the chosen level */
+const dictNorm = s => s.toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9' ]+/g," ").replace(/\s+/g," ").trim();
+const dictTok = s => dictNorm(s).split(" ").filter(Boolean);
+function dictPool(){ const L=sndLv(); const max=[8,10,14,18,24,30][L];
+  const all=Object.values(W).filter(w=>!w.old && w.lv===L).flatMap(w=>[w.ex,w.ex2]).filter(s=>s && dictTok(s).length<=max && dictTok(s).length>=3);
+  return [...new Set(all)]; }
+function dictDiff(target, typed){ /* longest common subsequence over words */
+  const a=dictTok(target), b=dictTok(typed), n=a.length, m=b.length, T=Array.from({length:n+1},()=>new Array(m+1).fill(0));
+  for(let i=n-1;i>=0;i--) for(let j=m-1;j>=0;j--) T[i][j]= a[i]===b[j] ? T[i+1][j+1]+1 : Math.max(T[i+1][j],T[i][j+1]);
+  const hit=new Array(n).fill(false), extra=[]; let i=0,j=0;
+  while(i<n && j<m){ if(a[i]===b[j]){ hit[i]=true; i++; j++; } else if(T[i+1][j]>=T[i][j+1]) i++; else { extra.push(b[j]); j++; } }
+  while(j<m) extra.push(b[j++]);
+  return {hit, extra, right:hit.filter(Boolean).length, total:n}; }
+function sndDict(){
+  if(!snd.q || snd.q.kind!=="dict"){ const pool=dictPool(); if(!pool.length){ $("#sroom").innerHTML=`<div class="panel"><p>No sentences at this level yet.</p></div>`; return; }
+    let s; do{ s=pool[rnd0(pool.length)]; } while(pool.length>1 && s===snd.lastDict); snd.lastDict=s;
+    snd.q={kind:"dict", s, plays:0, typed:""}; snd.done=false; }
+  const q=snd.q, words=dictTok(q.s).length;
+  $("#sroom").innerHTML=`<div class="panel" id="sPanel">
+    ${sndHud()}
+    <p class="counter" style="margin:0">Listen and type what you hear. ${words} words. Play it as many times as you need.</p>
+    <div class="row" style="margin:10px 0 14px"><button class="btn" type="button" id="dPlay">${ico("sound")} Play</button><button class="btn ghost" type="button" id="dSlow">Slower</button>
+      <button class="btn ghost" type="button" id="dHint">Hint</button><span class="counter" id="dPlays" style="align-self:center">${q.plays?`Played ${q.plays}×`:""}</span></div>
+    <label class="sr" for="dIn">What you heard</label>
+    <textarea id="dIn" class="tin" rows="2" style="width:100%;max-width:none;font-size:1.1rem" placeholder="Type the sentence here…" spellcheck="false" autocapitalize="sentences" ${snd.done?"readonly":""}>${esc(q.typed)}</textarea>
+    <div id="dHintOut"></div>
+    <div class="row"><button class="btn" type="button" id="dChk" ${snd.done?"disabled":""}>Check</button></div>
+    <div id="sFb"></div>
+    <p class="sndtip">Spelling counts, but capital letters and punctuation don't. Contractions count as written: I'm and I am are different.</p></div>`;
+  const inp=$("#dIn"), play=r=>{ q.plays++; $("#dPlays").textContent=`Played ${q.plays}×`; sayEn(q.s,r); };
+  $("#dPlay").onclick=()=>play(0.85); $("#dSlow").onclick=()=>play(0.55);
+  $("#dHint").onclick=()=>{ $("#dHintOut").innerHTML=`<p class="hintline">${q.s.split(/\s+/).map(w=>esc(w.replace(/^([^A-Za-z0-9]*[A-Za-z0-9])[A-Za-z0-9'’-]*/,(m,a)=>a+"…"))).join(" ")}</p>`; q.hint=true; };
+  inp.addEventListener("input",()=>{ q.typed=inp.value; });
+  inp.addEventListener("keydown",e=>{ if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); $("#dChk").click(); } });
+  $("#dChk").onclick=()=>{ if(snd.done) return; if(!inp.value.trim()){ inp.focus(); return; }
+    const d=dictDiff(q.s, inp.value), pct=Math.round(d.right/d.total*100), ok=d.right===d.total && !d.extra.length;
+    snd.done=true; sndScore(ok,$("#dChk")); inp.readOnly=true; $("#dChk").disabled=true;
+    let k=0; const marked=q.s.split(/\s+/).map(w=>{ if(!dictTok(w).length) return esc(w); const h=d.hit[k++]; return `<span class="${h?"dok":"dmiss"}">${esc(w)}</span>`; }).join(" ");
+    $("#sFb").innerHTML=`<div class="feedback ${ok?"ok":"no"}"><b>${ok?"Perfect!":`${d.right} of ${d.total} words right (${pct}%).`}</b>
+        <p class="dictline">${marked}</p>${d.extra.length?`<p class="hintline" style="margin:4px 0 0">Not in the sentence: ${d.extra.map(x=>`<s>${esc(x)}</s>`).join(" ")}</p>`:""}</div>
+      <div class="row"><button class="btn ghost" type="button" id="dAgain">${ico("sound")} Hear it again</button><button class="btn" type="button" id="sNext">Next sentence</button></div>`;
+    $("#dAgain").onclick=()=>sayEn(q.s,0.85);
+    $("#sNext").onclick=()=>{ snd.q=null; snd.done=false; sndDict(); setTimeout(()=>{ const p=$("#dPlay"); if(p) p.click(); },150); };
+    $("#sNext").focus({preventScroll:true}); };
+  if(!snd.done) inp.focus({preventScroll:true});
+}
 
 function sndHear(){
   const cats=sndCats(); if(snd.cat!=="all" && !cats.some(c=>c.id===snd.cat)) snd.cat="all";
@@ -3764,7 +3816,7 @@ let bgQueue=[], bgTimer=0;
 function bgCheck(){
   try{
     bg.n.best=Math.max(bg.n.best||0, streak());
-    if(typeof vidS!=="undefined") Object.entries(vidS.weeks).forEach(([k,S])=>{ const n=Object.keys(S.mc||{}).length; if(n>=6 && (k!==VIDEO.week || n>=VIDEO.questions.length)) bg.n.vid[k]=1; });
+    if(typeof vidS!=="undefined") Object.entries(vidS.weeks).forEach(([k,S])=>{ const n=Object.keys(S.mc||{}).length; if(n>=6 && (k!==vidKey() || n>=VIDEO.questions.length)) bg.n.vid[k]=1; });
     let changed=false;
     BADGES.forEach(b=>{ const t=tierOf(b), had=bg.got[b.id]??-1; if(t>had){ bg.got[b.id]=t; changed=true; bgQueue.push([b,t]); } });
     if(changed) saveBg();
@@ -5375,12 +5427,23 @@ document.addEventListener("keydown",e=>{ if(route!=="lab"||lab.room!=="verbs"||e
 /* ---------- Video of the week ---------- */
 /* The weekly content lives in video.json, published next to this page. VIDEO below is a fallback copy. */
 let VIDEO = {"week": "2026-W42", "title": "The benefits of a bilingual brain", "channel": "TED-Ed", "speaker": "Mia Nacamulli", "yt": "MMmOLN5zBLY", "length": "4:48", "level": "B1–B2", "intro": "A short animated lesson about what happens in your brain when you speak more than one language, and why it is never too late to start.", "summary": "The lesson explains that knowing more than one language can change how the brain is built and how it works. It describes how language skills are measured (active and passive skills), three types of bilingual people, and how children and adults process language differently. It then covers research on grey matter, attention and task switching, and the finding that bilingualism may delay Alzheimer's and dementia. It ends by noting that bilingualism was once wrongly seen as a problem for children, and that adults can still benefit from learning a language.", "vocab": [{"w": "bilingual", "m": "able to speak two languages well"}, {"w": "hemisphere", "m": "one of the two halves of the brain"}, {"w": "grey matter", "m": "the brain tissue full of nerve cells that processes information"}, {"w": "onset", "m": "the beginning of something unpleasant, such as an illness"}, {"w": "executive function", "m": "the brain skills you use to plan, focus and switch between tasks"}, {"w": "refute", "m": "to prove that an idea or claim is wrong"}], "questions": [{"q": "How does the video group language skills?", "a": "Active skills (speaking and writing) and passive skills (listening and reading)", "o": ["Active skills (speaking and writing) and passive skills (listening and reading)", "Spoken skills and written skills only", "Grammar skills and vocabulary skills", "Formal skills and informal skills"], "why": "Speaking and writing are active because you produce language; listening and reading are passive because you receive it."}, {"q": "How many types of bilingual people does the video describe?", "a": "Three", "o": ["Two", "Three", "Four", "Five"], "why": "The video names three types: compound, coordinate and subordinate bilinguals."}, {"q": "What decides which type of bilingual a person is?", "a": "How and when they learned their languages", "o": ["How and when they learned their languages", "How many languages their parents speak", "How well they can spell", "Which country they live in now"], "why": "The three types depend on how each language was acquired, for example together from birth or one after the other."}, {"q": "How do children and most adults differ when they process language?", "a": "Children use both hemispheres; most adults rely mainly on the left one", "o": ["Children use both hemispheres; most adults rely mainly on the left one", "Adults use both hemispheres; children use only the right one", "Both groups use only the right hemisphere", "There is no difference at all"], "why": "Brain imaging suggests language is spread across both sides in childhood but is mostly handled by the left side in adults."}, {"q": "Which advantage does the video connect with bilingualism?", "a": "Being better at switching tasks and ignoring distractions", "o": ["Being better at switching tasks and ignoring distractions", "Having better eyesight", "Always having a higher IQ", "Reading faster in your first language"], "why": "Bilingualism is linked to stronger executive function, such as task switching and filtering out distractions. It does not simply make people more intelligent."}, {"q": "What can bilingualism do for Alzheimer's and dementia?", "a": "Delay their onset by up to about five years", "o": ["Delay their onset by up to about five years", "Cure them completely", "Make them start earlier", "It has no effect"], "why": "Research mentioned in the video suggests the onset can be delayed by as much as five years."}, {"q": "What did people once wrongly believe about bilingual children?", "a": "That speaking two languages held them back", "o": ["That speaking two languages held them back", "That they were always top of the class", "That they could only learn one alphabet", "That they needed less sleep"], "why": "Bilingualism used to be seen as a handicap for children, based on flawed studies that later research refuted."}, {"q": "What is the video's message for adults?", "a": "It's never too late: adults can still benefit from learning a language", "o": ["It's never too late: adults can still benefit from learning a language", "Only children can benefit", "Adults should not learn more than one extra language", "Adults learn every part of a language faster than children"], "why": "The lesson ends by encouraging people of any age to start learning a language."}], "listen": [{"q": "Write what you heard about the three types of bilingual people. Name each type and add one detail.", "hint": "Name all three types.", "keys": [["compound"], ["coordinate"], ["subordinate"]], "model": "Compound bilinguals learn two languages at the same time as small children. Coordinate bilinguals use each language in a different setting, for example one at home and one at school. Subordinate bilinguals learn a second language through their first one."}, {"q": "Write what you heard about how children's and adults' brains deal with language.", "hint": "Mention both groups and the brain's halves.", "keys": [["child", "kid"], ["adult"], ["hemisphere", "left", "both sides", "both halves"]], "model": "Children seem to use both hemispheres for language, while most adults use mainly the left hemisphere. Children also pick up the social and emotional side of a language more easily."}, {"q": "Write what you heard about the benefits for older people's health.", "hint": "Which illnesses, and by how much?", "keys": [["alzheimer", "dementia"], ["delay", "later", "postpone"], ["five", "5"]], "model": "Being bilingual may delay the start of Alzheimer's disease and dementia by up to five years."}], "tasks": {"syn": {"title": "Summarise with synonyms", "prompt": "Write your own summary of the video in 70–120 words. Replace every underlined word with a synonym.", "text": "Research [shows] that a second language can [change] the brain in [important] ways. Bilingualism was once seen as a [problem] for children, but its [benefits] can last into [old age].", "words": [{"w": "shows", "syn": ["demonstrates", "reveals", "indicates", "suggests", "proves"]}, {"w": "change", "syn": ["alter", "transform", "reshape", "modify"]}, {"w": "important", "syn": ["significant", "crucial", "vital", "essential", "major"]}, {"w": "problem", "syn": ["drawback", "disadvantage", "handicap", "obstacle", "barrier"]}, {"w": "benefits", "syn": ["advantages", "gains", "rewards", "positive effects"]}, {"w": "old age", "syn": ["later life", "later years", "senior years", "retirement"]}], "min": 70, "model": "Studies demonstrate that learning a second language can alter the way the brain is built and works in significant ways. The video explains that language skills can be active or passive, and that there are three kinds of bilingual people. Bilingualism was once considered a handicap for young children, but this idea came from poor research. In fact, people who speak two languages often switch between tasks more easily and ignore distractions better. These advantages may continue into later life, because bilingualism can delay Alzheimer's and dementia by several years."}, "adv": {"title": "Use three adverbs", "prompt": "Summarise the video in 60–100 words. Use all three adverbs below.", "adverbs": ["remarkably", "gradually", "consequently"], "min": 60, "model": "The video explains that speaking two languages can remarkably change the brain. Children use both halves of the brain for language, but as they grow up, language gradually moves mainly to the left side. Bilingual people tend to have more grey matter and are better at switching between tasks; consequently, they may stay mentally sharp for longer. The lesson ends by reminding adults that it is never too late to start learning."}, "rep": {"title": "Formal account in reported speech", "prompt": "Imagine you are writing a short report for your manager. Give a formal account of what the narrator said, in reported speech (80–120 words). Use at least two different reporting verbs and no contractions.", "verbs": ["explained", "stated", "argued", "claimed", "pointed out", "suggested", "noted", "emphasised", "emphasized", "reported", "maintained", "added", "concluded", "mentioned", "observed", "described"], "min": 80, "model": "The narrator explained that knowing more than one language could change both the structure and the function of the brain. She pointed out that language ability was usually measured through active skills, such as speaking and writing, and passive skills, such as listening and reading. She described three types of bilingual speakers and noted that children used both hemispheres of the brain for language, whereas most adults relied mainly on the left one. Furthermore, she stated that bilingualism might delay the onset of Alzheimer's disease by up to five years. Finally, she concluded that it was never too late to learn a new language."}}, "past": [], "doc": ""};
+/* video.json may hold one video for everyone, or "levels": six videos, one per level (A1…C2) */
+let VIDEOS = null, VIDEO_ALL = VIDEO;
+let vidLv = (()=>{ try{ const n=+localStorage.getItem("vocab5-vidlv"); return localStorage.getItem("vocab5-vidlv")!==null && n>=0 && n<=5 ? n : null; }catch(e){ return null; } })();
+const curVidLv = () => vidLv===null ? state.vlv : vidLv;
+function vidPick(){ if(VIDEOS){ const L=curVidLv(); VIDEO = Object.assign({week:VIDEO_ALL.week}, VIDEOS[L] || VIDEOS.find(Boolean)); } else VIDEO = VIDEO_ALL; }
+const vidKey = () => VIDEO.week + (VIDEOS ? ":"+curVidLv() : "");
 (async()=>{ try{ const r=await fetch("video.json",{cache:"no-store"}); if(!r.ok) return; const v=await r.json();
-  if(v && (v.yt||v.file) && v.week && v.questions){ const changed=v.week!==VIDEO.week||v.file!==VIDEO.file; VIDEO=v; if(route==="video" && changed) render(); } }catch(e){} })();
+  if(v && v.week && Array.isArray(v.levels) && v.levels.length===6 && v.levels.every(x=>x && (x.yt||x.file||x.source) && x.questions)){
+    VIDEO_ALL=v; VIDEOS=v.levels; vidPick(); if(route==="video") render(); }
+  else if(v && (v.yt||v.file) && v.week && v.questions){ const changed=v.week!==VIDEO.week||v.file!==VIDEO.file; VIDEO=VIDEO_ALL=v; VIDEOS=null; if(route==="video" && changed) render(); } }catch(e){} })();
 const VSTORE="vocab5-video-v1";
 let vidS={weeks:{}};
 try{ const s=JSON.parse(localStorage.getItem(VSTORE)||"null"); if(s && s.weeks) vidS=s; }catch(e){}
-function vwk(){ const k=VIDEO.week; if(!vidS.weeks[k]) vidS.weeks[k]={mc:{},listen:{},texts:{},ok:{},at:0}; return vidS.weeks[k]; }
+function vwk(){ const k=vidKey(); const old=vidS.weeks[VIDEO.week];
+  /* work saved before videos had levels moves to the level that kept the same video */
+  if(!vidS.weeks[k] && k!==VIDEO.week && old && (VIDEO.carry || old.ti===VIDEO.title)){ vidS.weeks[k]=old; delete vidS.weeks[VIDEO.week]; saveVid(); }
+  if(!vidS.weeks[k]) vidS.weeks[k]={mc:{},listen:{},texts:{},ok:{},at:0}; return vidS.weeks[k]; }
 function saveVid(){ const ks=Object.keys(vidS.weeks).sort(); ks.slice(0,Math.max(0,ks.length-6)).forEach(k=>delete vidS.weeks[k]); try{ localStorage.setItem(VSTORE,JSON.stringify(vidS)); }catch(e){} }
 function weekRange(key){ const [y,w]=key.split("-W").map(Number); const j4=new Date(Date.UTC(y,0,4)); const d=j4.getUTCDay()||7;
   const mon=new Date(j4); mon.setUTCDate(j4.getUTCDate()-d+1+(w-1)*7); const sun=new Date(mon); sun.setUTCDate(mon.getUTCDate()+6);
@@ -5393,13 +5456,23 @@ function vidScore(S){ const V=VIDEO; const mcR=V.questions.filter((q,i)=>S.mc[i]
   const lsR=V.listen.filter((l,i)=>(S.ok["l"+i])).length;
   return [mcR,V.questions.length,lsR,V.listen.length]; }
 /* Checks for each writing task. Returns [{ok,txt,warn}] */
-function vidChecks(kind,t){ const T=VIDEO.tasks[kind]; const n=wcount(t); const items=[];
-  if(kind==="syn"){
+function vidChecks(kind,t){ const T=VIDEO.tasks[kind]; const type=T.type||kind; const n=wcount(t); const items=[];
+  if(type==="sent"){ const used=(T.use||[]).filter(w=>hasForm(t,w)); const need=T.need||Math.min(2,(T.use||[]).length);
+    items.push({ok:used.length>=need, txt:used.length>=need?`Words from the video: ${used.join(", ")}`:`Use at least ${need} of these words: ${(T.use||[]).join(", ")} (you have ${used.length})`});
+    const sn=(t.match(/[.!?](\s|$)/g)||[]).length; if(T.sentences) items.push({ok:sn>=T.sentences, txt:`At least ${T.sentences} sentences, each with a full stop (you have ${sn})`});
+    items.push({ok:n>=T.min,txt:`At least ${T.min} words (you have ${n})`}); return items; }
+  if(type==="arg"){ const lk=(T.linkers||LINKERS).filter(l=>hasWord(t,l));
+    items.push({ok:lk.length>=3,txt:lk.length>=3?`Linking words: ${lk.slice(0,6).join(", ")}`:`Use at least 3 linking words, e.g. however, moreover, therefore (you have ${lk.length})`});
+    items.push({ok:/\b(however|on the other hand|although|admittedly|critics|opponents|while it is true|it could be argued|nevertheless)\b/i.test(t),txt:"Mentions the other side (however…, it could be argued…, critics say…)"});
+    items.push({ok:/\b(in my (view|opinion)|i (believe|would argue|am convinced)|to my mind|personally)\b/i.test(t),txt:"Gives your own view (In my view…, I would argue…)"});
+    if(/\b\w+(n't|'re|'ve|'ll|'m|'d)\b/i.test(t.replace(/’/g,"'"))) items.push({ok:false,warn:true,txt:"Formal style: write full forms (it is, do not), not contractions."});
+    items.push({ok:n>=T.min,txt:`At least ${T.min} words (you have ${n})`}); return items; }
+  if(type==="syn"){
     T.words.forEach(x=>{ const used=x.syn.find(s=>hasForm(t,s)); items.push({ok:!!used,txt:used?`“${x.w}” → ${used}`:`Use a synonym of “${x.w}” (for example ${x.syn.slice(0,2).join(" or ")})`});
       if(hasForm(t,x.w)) items.push({ok:false,warn:true,txt:`You used “${x.w}” itself. Replace it with a synonym.`}); });
-  } else if(kind==="adv"){
+  } else if(type==="adv"){
     T.adverbs.forEach(a=>items.push({ok:hasWord(t,a),txt:`Uses “${a}”`}));
-  } else {
+  } else if(type==="rep"){
     const vs=[...new Set(T.verbs.filter(v=>hasWord(t,v)).map(v=>v.replace("emphasized","emphasised")))];
     items.push({ok:vs.length>=2,txt:vs.length>=2?`Reporting verbs: ${vs.join(", ")}`:`Use at least two reporting verbs, e.g. explained, pointed out, stated (you have ${vs.length})`});
     items.push({ok:/\bthat\b/i.test(t),txt:"Uses a that-clause (… explained that …)"});
@@ -5411,10 +5484,10 @@ function vidChecks(kind,t){ const T=VIDEO.tasks[kind]; const n=wcount(t); const 
   items.push({ok:n>=T.min,txt:`At least ${T.min} words (you have ${n})`});
   return items; }
 async function vidAI(kind,text,out,btn){
-  if(!sample) return; const T=VIDEO.tasks[kind];
+  if(!sample) return; const T=VIDEO.tasks[kind]; const type=T.type||kind;
   btn.disabled=true; out.hidden=false; out.textContent="Thinking…";
   const prompt=`You are a friendly English teacher. A learner (about ${VIDEO.level}) watched the video "${VIDEO.title}" (${VIDEO.channel}). Video content, in brief: ${VIDEO.summary}
-Task: ${T.prompt}${kind==="syn"?" Underlined words to replace: "+T.words.map(w=>w.w).join(", ")+".":""}${kind==="adv"?" Adverbs to use: "+T.adverbs.join(", ")+".":""}
+Task: ${T.prompt}${type==="syn"?" Underlined words to replace: "+T.words.map(w=>w.w).join(", ")+".":""}${type==="adv"?" Adverbs to use: "+T.adverbs.join(", ")+".":""}${type==="sent"?" Words to use: "+(T.use||[]).join(", ")+". Be very encouraging and keep the language simple; the learner is a beginner.":""}
 Learner's text: """${text}"""
 Give short feedback. Reply ONLY with JSON: {"task":"one sentence on how well the task was done","content":"one sentence on accuracy about the video","language":"one or two sentences on grammar and vocabulary mistakes, with corrections","better":"one improved sentence from their text","tip":"one short tip"}`;
   try{ const r=await sample.json(prompt,{modelTier:"quick"});
@@ -5425,17 +5498,20 @@ Give short feedback. Reply ONLY with JSON: {"task":"one sentence on how well the
 let vidTimer=null;
 function viewVideo(){ if(vidTab==="read") return viewReading(); viewVideoWatch(); $("#view").insertAdjacentHTML("afterbegin", vidTabs()); wireVidTabs(); }
 function viewVideoWatch(){
-  const V=VIDEO, S=vwk(); const url=V.yt?`https://www.youtube.com/watch?v=${encodeURIComponent(V.yt)}`:(V.source||"");
+  vidPick(); const V=VIDEO, S=vwk(); const url=V.yt?`https://www.youtube.com/watch?v=${encodeURIComponent(V.yt)}`:(V.source||"");
   const meta=`${esc(V.channel)}${V.speaker?" · "+esc(V.speaker):""} · ${esc(V.length)} · ${esc(V.level)}`;
   const credit=V.license?`<p class="vcredit">Video: “${esc(V.title)}” by ${esc(V.channel)}${V.license.name?`, licensed under ${V.license.url?`<a href="${esc(V.license.url)}" target="_blank" rel="noopener">${esc(V.license.name)}</a>`:esc(V.license.name)}`:""}${V.source?` · <a href="${esc(V.source)}" target="_blank" rel="noopener">original</a>`:""}${V.changes?` · ${esc(V.changes)}`:""}.</p>`:"";
   const [mcR,mcN,lsR,lsN]=vidScore(S); const done=k=>!!S.ok[k];
-  const under=V.tasks.syn.text.replace(/\[([^\]]+)\]/g,(m,w)=>`<u>${esc(w)}</u>`);
-  const task=(k)=>{ const T=V.tasks[k]; return `<section class="panel vtask" data-task="${k}">
+  const TK=Object.keys(V.tasks||{});
+  const under=!V.tasks.syn?"":V.tasks.syn.text.replace(/\[([^\]]+)\]/g,(m,w)=>`<u>${esc(w)}</u>`);
+  const task=(k)=>{ const T=V.tasks[k]; const ty=T.type||k; return `<section class="panel vtask" data-task="${k}">
       <div class="usagehead"><h3>${esc(T.title)}</h3>${done("t_"+k)?'<span class="tag">✓ Done</span>':""}</div>
       <p class="vprompt">${esc(T.prompt)}</p>
-      ${k==="syn"?`<p class="plainline vunder">${under}</p>`:""}
-      ${k==="adv"?`<div class="sig">${T.adverbs.map(a=>`<span>${esc(a)}</span>`).join("")}</div>`:""}
-      ${k==="rep"?`<p class="hintline">Start like this: <em>The narrator explained that …</em> · <em>She pointed out that …</em></p>`:""}
+      ${ty==="syn"?`<p class="plainline vunder">${under}</p>`:""}
+      ${ty==="adv"?`<div class="sig">${T.adverbs.map(a=>`<span>${esc(a)}</span>`).join("")}</div>`:""}
+      ${ty==="rep"?`<p class="hintline">Start like this: ${(T.starters||["The narrator explained that …","She pointed out that …"]).map(x=>`<em>${esc(x)}</em>`).join(" · ")}</p>`:""}
+      ${ty==="sent"?`<div class="sig">${(T.use||[]).map(a=>`<span>${esc(a)}</span>`).join("")}</div>${T.starters?`<p class="hintline">You can start like this: ${T.starters.map(x=>`<em>${esc(x)}</em>`).join(" · ")}</p>`:""}`:""}
+      ${ty==="arg"?`<p class="hintline">Plan: your view → two reasons with examples → the other side → conclusion.</p>${T.starters?`<p class="hintline">Useful openings: ${T.starters.map(x=>`<em>${esc(x)}</em>`).join(" · ")}</p>`:""}`:""}
       <label class="sr" for="vt_${k}">Your text</label>
       <textarea id="vt_${k}" class="tall" placeholder="Write here…">${esc(S.texts[k]||"")}</textarea>
       <p class="counter" id="vc_${k}">${wcount(S.texts[k]||"")} words</p>
@@ -5449,6 +5525,9 @@ function viewVideoWatch(){
     <p class="eyebrow">Video of the week · ${esc(weekRange(V.week))}</p>
     <h1>${esc(V.title)}</h1>
     <p class="lede">${esc(V.intro)}</p></header>
+  ${VIDEOS?`<div class="levels"><span class="lvlabel">Your video</span>
+    <div class="lvbtns" role="radiogroup" aria-label="Video level">${LV.map((l,i)=>`<button class="lvb" type="button" role="radio" data-vlv="${i}" aria-checked="${i===curVidLv()}">${l}</button>`).join("")}</div>
+    <small class="lvnote">Each level has its own video and tasks this week.</small></div>`:""}
   ${!V.file && SITE_MODE && V.yt ? `<figure class="vplayer"><iframe class="ytframe" src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(V.yt)}?rel=0" title="${esc(V.title)}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>
     <figcaption><span>${meta}</span><a href="${esc(url)}" target="_blank" rel="noopener">Open on YouTube</a></figcaption></figure>${credit}` : ""}
   ${!V.file && SITE_MODE && V.yt ? "" : V.file?`<figure class="vplayer"><video controls playsinline preload="metadata" ${V.poster?`poster="${esc(V.poster)}"`:""} src="${esc(V.file)}"></video>
@@ -5460,7 +5539,7 @@ function viewVideoWatch(){
   <div class="chips-row" style="margin-top:14px">
     <span class="pill"><b>${mcR}/${mcN}</b> questions right</span>
     <span class="pill"><b>${lsR}/${lsN}</b> listening notes</span>
-    <span class="pill"><b>${["syn","adv","rep"].filter(k=>done("t_"+k)).length}/3</b> writing tasks</span>
+    <span class="pill"><b>${TK.filter(k=>done("t_"+k)).length}/${TK.length}</b> writing tasks</span>
   </div>
   <h2 class="sec">1 · Before you watch</h2>
   <div class="panel"><dl class="vvocab">${V.vocab.map(x=>`<div><dt>${esc(x.w)}</dt><dd>${esc(x.m)}</dd></div>`).join("")}</dl></div>
@@ -5478,7 +5557,7 @@ function viewVideoWatch(){
       <div class="row" style="margin-top:8px"><button class="btn ghost" type="button" data-lchk="${i}">Check my notes</button><span class="hintline" style="margin:0">${esc(l.hint)}</span></div>
       <ul class="checks" id="lk_${i}" hidden></ul><p class="model" id="lm_${i}" hidden>${esc(l.model)}</p></div>`).join("")}</div>
   <h2 class="sec">4 · Write about it</h2>
-  ${task("syn")}${task("adv")}${task("rep")}
+  ${TK.map(task).join("")}
   <div class="panel vsend"><div><h3>Send your work to your teacher</h3><p>Your progress code now includes this week's video answers and writing.</p></div>
     <button class="btn" type="button" data-go="progress">Make my progress code</button></div>`;
   $$("#vq .opt").forEach(b=>b.onclick=()=>{ const i=+b.closest(".vqi").dataset.q; if(S.mc[i]!==undefined) return; const q=V.questions[i]; const ok=b.dataset.o===q.a;
@@ -5487,25 +5566,25 @@ function viewVideoWatch(){
   V.listen.forEach((l,i)=>{ const ta=$("#vl_"+i);
     ta.addEventListener("input",()=>{ S.listen[i]=ta.value; S.at=Date.now(); clearTimeout(vidTimer); vidTimer=setTimeout(saveVid,400); });
     $(`[data-lchk="${i}"]`).onclick=()=>{ const t=ta.value; if(!t.trim()){ ta.focus(); return; } const ul=$("#lk_"+i);
-      const items=l.keys.map(g=>({ok:g.some(k=>t.toLowerCase().includes(k)),txt:`Mentions ${g[0]}`})); items.push({ok:wcount(t)>=12,txt:`At least 12 words (you have ${wcount(t)})`});
+      const items=l.keys.map(g=>({ok:g.some(k=>t.toLowerCase().includes(k)),txt:`Mentions ${g[0]}`})); items.push({ok:wcount(t)>=(l.min||12),txt:`At least ${l.min||12} words (you have ${wcount(t)})`});
       const ok=items.every(x=>x.ok); ul.hidden=false; ul.innerHTML=items.map(x=>`<li class="${x.ok?"pass":"fail"}">${esc(x.txt)}</li>`).join("");
       if(ok && !S.ok["l"+i]){ S.ok["l"+i]=1; track(true); burst(ul,6); } else if(!ok) track(false);
       S.listen[i]=t; saveVid(); markDay(); save(); $("#lm_"+i).hidden=false; }; });
-  ["syn","adv","rep"].forEach(k=>{ const ta=$("#vt_"+k);
+  TK.forEach(k=>{ const ta=$("#vt_"+k);
     ta.addEventListener("input",()=>{ S.texts[k]=ta.value; S.at=Date.now(); $("#vc_"+k).textContent=wcount(ta.value)+" words"; clearTimeout(vidTimer); vidTimer=setTimeout(saveVid,400); });
     $(`[data-vchk="${k}"]`).onclick=()=>{ const t=ta.value; if(!t.trim()){ ta.focus(); return; } const items=vidChecks(k,t); const ul=$("#vk_"+k);
       ul.hidden=false; ul.innerHTML=items.map(x=>`<li class="${x.warn?"warn":x.ok?"pass":"fail"}">${esc(x.txt)}</li>`).join("");
       const ok=items.every(x=>x.ok); S.texts[k]=t; S.at=Date.now();
-      if(ok && !S.ok["t_"+k]){ S.ok["t_"+k]=1; bgWrite("v:"+VIDEO.week+":"+k); track(true); burst(ul,10); } else if(!ok) track(false);
+      if(ok && !S.ok["t_"+k]){ S.ok["t_"+k]=1; bgWrite("v:"+vidKey()+":"+k); track(true); burst(ul,10); } else if(!ok) track(false);
       saveVid(); markDay(); save(); };
     $("#vai_"+k).onclick=()=>{ const t=ta.value.trim(); if(!t){ ta.focus(); return; } vidAI(k,t,$("#vo_"+k),$("#vai_"+k)); };
     $(`[data-vmod="${k}"]`).onclick=()=>{ $("#vm_"+k).hidden=!$("#vm_"+k).hidden; }; });
 }
 /* What goes into the progress code: the last two weeks of video work */
 function vidForCode(){ const out={}; Object.keys(vidS.weeks).sort().slice(-2).forEach(k=>{ const S=vidS.weeks[k]; if(!S.at) return;
-  const V=k===VIDEO.week?VIDEO:null; const sc=V?vidScore(S):(S.sc||null); if(V) S.sc=sc;
+  const V=k===vidKey()?VIDEO:null; const sc=V?vidScore(S):(S.sc||null); if(V) S.sc=sc;
   const cut=x=>String(x||"").slice(0,1500);
-  out[k]={at:S.at,s:sc,ti:V?V.title:(S.ti||""),q:[0,1,2].map(i=>cut(S.listen[i])),t:{syn:cut(S.texts.syn),adv:cut(S.texts.adv),rep:cut(S.texts.rep)},ok:Object.keys(S.ok)};
+  out[k]={at:S.at,s:sc,ti:V?V.title:(S.ti||""),q:[0,1,2].map(i=>cut(S.listen[i])),t:Object.fromEntries(Object.keys(S.texts||{}).map(x=>[x,cut(S.texts[x])])),lv:(k.split(":")[1]??null),ok:Object.keys(S.ok)};
   if(V) S.ti=V.title; }); saveVid(); return out; }
 
 /* ---------- Grammar rooms: one engine, six topics ----------
@@ -5961,7 +6040,8 @@ try{ rds=JSON.parse(localStorage.getItem(RDS_KEY)||"{}")||{}; }catch(e){}
 const rdw = () => (rds[READING.week] ||= {tf:{}, mc:{}, wd:{}, text:""});
 const saveRds = () => { try{ localStorage.setItem(RDS_KEY, JSON.stringify(rds)); }catch(e){} };
 function vidTabs(){ return `<div class="picks" role="tablist" aria-label="This week" style="margin:0 0 18px"><button class="pick" type="button" data-vt="watch" aria-pressed="${vidTab==="watch"}">${ico("video")} Watch</button><button class="pick" type="button" data-vt="read" aria-pressed="${vidTab==="read"}">${ico("words")} Read</button></div>`; }
-function wireVidTabs(){ $$("[data-vt]").forEach(b=>b.onclick=()=>{ if(vidTab===b.dataset.vt) return; vidTab=b.dataset.vt; try{ localStorage.setItem("vocab5-vidtab",vidTab); }catch(e){} render(); }); }
+function wireVidTabs(){ $$("[data-vlv]").forEach(b=>b.onclick=()=>{ vidLv=+b.dataset.vlv; try{ localStorage.setItem("vocab5-vidlv",vidLv); }catch(e){} render(); window.scrollTo(0,0); });
+  $$("[data-vt]").forEach(b=>b.onclick=()=>{ if(vidTab===b.dataset.vt) return; vidTab=b.dataset.vt; try{ localStorage.setItem("vocab5-vidtab",vidTab); }catch(e){} render(); }); }
 function viewReading(){
   const R=READING, S=rdw();
   const tfDone=Object.keys(S.tf).length, mcDone=Object.keys(S.mc).length, wdDone=Object.keys(S.wd).length;
