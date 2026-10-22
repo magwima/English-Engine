@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>English Engine</title>
+<title>Psotek English</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,9 +44,8 @@ h1:focus{outline:none}
 .shell{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh}
 .rail{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;display:flex;flex-direction:column;gap:26px;padding:26px 14px 20px;padding-left:max(14px,env(safe-area-inset-left,0px));border-right:1px solid var(--line);background:var(--surface);overflow:auto}
 .brand{display:flex;gap:11px;align-items:center;padding:0 8px}
-.brand-mark{width:34px;height:34px;flex:none;display:block}
-.brand-mark .cog{transform-box:fill-box;transform-origin:center;transition:transform .6s cubic-bezier(.3,1.4,.5,1)}
-.brand:hover .brand-mark .cog,body.moss .brand-mark .cog{transform:rotate(36deg)}
+.brand-mark{width:38px;height:38px;flex:none;display:block;border-radius:50%;background:var(--sage-soft);transition:transform .6s cubic-bezier(.3,1.4,.5,1)}
+.brand:hover .brand-mark,body.moss .brand-mark{transform:rotate(-10deg) scale(1.06)}
 .brand b{display:block;font-family:var(--serif);font-weight:500;font-size:1.12rem;line-height:1.2}
 .brand small{display:block;color:var(--muted);font-size:.82rem;white-space:nowrap}
 .navlist{list-style:none;margin:0;padding:0;display:grid;gap:3px}
@@ -709,11 +708,28 @@ mark.dmark{background:var(--sage-soft);color:inherit;border-bottom:3px solid var
 .wmodel{margin-top:14px;padding:14px 16px;border-left:3px solid var(--sage);background:var(--sunk);border-radius:0 12px 12px 0;font-family:var(--serif);line-height:1.65}
 .wmodel p{margin:0 0 10px}
 .exgap3{min-width:5ch}
+/* ---------- Psotek, the cheeky hedgehog ---------- */
+.pso{display:block;width:100%;height:auto;overflow:visible}
+.psobub{position:relative;margin:0;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px 16px 16px 4px;padding:8px 13px;font-weight:600;font-size:.95rem;line-height:1.35;box-shadow:var(--shadow);max-width:230px}
+.psotoast{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:55;display:flex;align-items:flex-end;gap:4px;pointer-events:none;transform:translateY(150%);transition:transform .4s cubic-bezier(.3,1.4,.5,1)}
+.psotoast.on{transform:none}
+.psotoast .pso{width:96px;flex:none}
+.psotoast .psobub{border-radius:16px 16px 4px 16px;margin-bottom:58px}
+.herpso{position:absolute;right:22px;bottom:6px;width:160px;z-index:1;display:flex;flex-direction:column;align-items:flex-end;gap:2px;pointer-events:none}
+.herpso .psobub{font-size:.88rem;margin-right:36px;border-radius:16px 16px 4px 16px}
+.psoend{display:flex;align-items:center;gap:12px;margin:0 0 10px}
+.psoend .pso{width:112px;flex:none}
+.endcard .psoend{justify-content:center}
+.gatepso{display:flex;align-items:center;gap:10px;margin:0 0 14px}
+.gatepso .pso{width:84px;flex:none}
+@media (max-width:860px){ .psotoast{bottom:calc(84px + env(safe-area-inset-bottom,0px))} .psotoast .pso{width:76px} .psotoast .psobub{margin-bottom:44px;font-size:.88rem} }
+@media (max-width:600px){ .herpso{width:112px;right:10px} .herpso .psobub{font-size:.8rem;margin-right:10px;max-width:170px} .psoend .pso{width:88px} }
+@media (prefers-reduced-motion: reduce){ .psotoast{transition:none} }
 </style>
 
 <div class="shell">
   <nav class="rail" aria-label="Main">
-    <div class="brand"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="cog"><circle cx="16" cy="16" r="13" fill="none" stroke="var(--sage)" stroke-width="5" stroke-dasharray="4.1 6.1"/></g><circle cx="16" cy="16" r="11" fill="var(--sage)"/><circle cx="16" cy="16" r="8" fill="none" stroke="var(--on-accent)" stroke-opacity=".25" stroke-width="1"/><path d="M13 11h7M13 16h5.5M13 21h7M13 11v10" fill="none" stroke="var(--on-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>English Engine</b><small>Words, tenses, verbs</small></span></div>
+    <div class="brand"><svg class="brand-mark" viewBox="70 46 134 134" aria-hidden="true"><path d="M149,90 L168,74 L142,80 L157,61 L133,72 L142,50 L122,66 L125,43 L110,62 L107,39 L97,60 L88,38 L84,61 L69,41 L71,64 L52,48 L59,70 L37,58 L50,78 L24,70 L42,87 L15,84 L37,98 L10,100 L35,109 L9,116 L36,121 L12,132 L40,132 L20,147 L46,142 L70,160 L120,164 Z" fill="#4A2F1E"/><ellipse cx="95" cy="115" rx="60" ry="50" fill="#6B4329"/><circle cx="120" cy="86" r="11" fill="#E8C79C"/><ellipse cx="138" cy="122" rx="44" ry="38" fill="#F1D6B0"/><ellipse cx="172" cy="130" rx="18" ry="13" fill="#F1D6B0"/><circle cx="188" cy="126" r="7" fill="#2B1D14"/><path d="M128 97 Q138 88 148 95" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="138" cy="111" r="7.5" fill="#2B1D14"/><circle cx="140" cy="108" r="2.4" fill="#fff"/><path d="M153 112 Q160 106 168 112" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M160 146 Q171 151 181 140" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M106 145 Q140 162 172 145 L174 156 Q140 174 104 157 Z" fill="#4F6F2E"/></svg><span><b>Psotek</b><small>Cheeky English practice</small></span></div>
     <ul class="navlist" id="railNav"></ul>
     <div class="rail-foot">
       <p class="whoami" id="whoami"></p>
@@ -721,7 +737,7 @@ mark.dmark{background:var(--sage-soft);color:inherit;border-bottom:3px solid var
     </div>
   </nav>
   <div class="topbar">
-    <div class="brand"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="cog"><circle cx="16" cy="16" r="13" fill="none" stroke="var(--sage)" stroke-width="5" stroke-dasharray="4.1 6.1"/></g><circle cx="16" cy="16" r="11" fill="var(--sage)"/><circle cx="16" cy="16" r="8" fill="none" stroke="var(--on-accent)" stroke-opacity=".25" stroke-width="1"/><path d="M13 11h7M13 16h5.5M13 21h7M13 11v10" fill="none" stroke="var(--on-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>English Engine</b></span></div>
+    <div class="brand"><svg class="brand-mark" viewBox="70 46 134 134" aria-hidden="true"><path d="M149,90 L168,74 L142,80 L157,61 L133,72 L142,50 L122,66 L125,43 L110,62 L107,39 L97,60 L88,38 L84,61 L69,41 L71,64 L52,48 L59,70 L37,58 L50,78 L24,70 L42,87 L15,84 L37,98 L10,100 L35,109 L9,116 L36,121 L12,132 L40,132 L20,147 L46,142 L70,160 L120,164 Z" fill="#4A2F1E"/><ellipse cx="95" cy="115" rx="60" ry="50" fill="#6B4329"/><circle cx="120" cy="86" r="11" fill="#E8C79C"/><ellipse cx="138" cy="122" rx="44" ry="38" fill="#F1D6B0"/><ellipse cx="172" cy="130" rx="18" ry="13" fill="#F1D6B0"/><circle cx="188" cy="126" r="7" fill="#2B1D14"/><path d="M128 97 Q138 88 148 95" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="138" cy="111" r="7.5" fill="#2B1D14"/><circle cx="140" cy="108" r="2.4" fill="#fff"/><path d="M153 112 Q160 106 168 112" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M160 146 Q171 151 181 140" stroke="#2B1D14" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M106 145 Q140 162 172 145 L174 156 Q140 174 104 157 Z" fill="#4F6F2E"/></svg><span><b>Psotek</b></span></div>
     <button class="dispbtn" type="button" data-disp aria-label="Display settings"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></button>
   </div>
   <main><div class="page" id="view"></div></main>
@@ -737,6 +753,7 @@ mark.dmark{background:var(--sage-soft);color:inherit;border-bottom:3px solid var
 
 <div class="gate" id="gate" hidden>
   <form class="gatecard" id="gateForm" novalidate>
+    <div class="gatepso" id="gatePso"></div>
     <h2 class="h3">Who's practising?</h2>
     <p>Pick a nickname. Your teacher sees it next to your practice time and scores. Nobody else does.</p>
     <p class="lvlabel" style="margin:0 0 6px">Help language · Język pomocy · Limba de ajutor</p>
@@ -2050,12 +2067,12 @@ function isoWeek(d){ const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.ge
 function wk(){ const k=isoWeek(new Date()); if(!act.weeks[k]) act.weeks[k]={sec:0,ans:0,cor:0}; return act.weeks[k]; }
 function saveAct(){ const keys=Object.keys(act.weeks).sort(); keys.slice(0,Math.max(0,keys.length-12)).forEach(k=>delete act.weeks[k]);
   try{ localStorage.setItem(ACT_STORE, JSON.stringify(act)); }catch(e){} }
-function track(ok){ const w=wk(); w.ans++; if(ok) w.cor++; saveAct(); }
+function track(ok){ const w=wk(); w.ans++; if(ok) w.cor++; saveAct(); if(typeof psoReact==="function") psoReact(ok); }
 let lastInput=Date.now();
 ["pointerdown","keydown","wheel","touchstart"].forEach(ev=>document.addEventListener(ev,()=>{ lastInput=Date.now(); },{passive:true,capture:true}));
 setInterval(()=>{ if(document.visibilityState==="visible" && Date.now()-lastInput<90000 && act.nick && route!=="game"){ wk().sec+=15; saveAct(); } },15000);
 
-function openGate(){ $("#gateLang").innerHTML=langSeg(); $("#gate").hidden=false; $("#nickIn").value=act.nick||""; $("#nickErr").hidden=true; setTimeout(()=>$("#nickIn").focus(),30); }
+function openGate(){ $("#gatePso").innerHTML=psotek("happy")+`<p class="psobub">Cześć! I'm Psotek. Let's practise.</p>`; $("#gateLang").innerHTML=langSeg(); $("#gate").hidden=false; $("#nickIn").value=act.nick||""; $("#nickErr").hidden=true; setTimeout(()=>$("#nickIn").focus(),30); }
 function wireGate(){ $("#gateForm").addEventListener("submit",e=>{ e.preventDefault();
   const v=$("#nickIn").value.replace(/\s+/g," ").trim();
   if(v.length<2||v.length>24){ $("#nickErr").hidden=false; $("#nickIn").focus(); return; }
@@ -2389,7 +2406,7 @@ function sndSay(){
     <div class="row" style="margin:0 0 12px"><button class="btn ghost" type="button" id="sPlay">${ico("sound")} Listen</button>${live?`<button class="btn sage" type="button" id="sRec">● Record</button>`:""}</div>
     <div id="sFb">${live?"":`<div class="row"><button class="btn" type="button" id="sOk">I said it right</button><button class="btn ghost" type="button" id="sNo">I need more practice</button></div>`}</div>
     <p class="sndtip"><b>${esc(q.c.t)}.</b> ${esc(q.c.tip)}</p>
-    <p class="artnote" style="margin:0">${live?"Your browser checks what it heard. In Chrome, the recording is sent to Google to be recognised and isn't kept here.":"Speech checking needs Chrome or Edge on the English Engine website. Here, be your own judge."}</p></div>`;
+    <p class="artnote" style="margin:0">${live?"Your browser checks what it heard. In Chrome, the recording is sent to Google to be recognised and isn't kept here.":"Speech checking needs Chrome or Edge on the Psotek website. Here, be your own judge."}</p></div>`;
   $("#sPlay").onclick=()=>sayEn(q.word,0.8);
   const nextBtn=()=>`<button class="btn" type="button" id="sNext">Next word</button>`;
   const wireNext=()=>{ $("#sNext").onclick=()=>{ snd.q=null; sndSay(); }; };
@@ -2447,6 +2464,7 @@ function viewGame(){
     <h1>Game</h1>
     <p class="lede">Pick a game for a short break. Time spent here doesn't count as practice time.</p>
   </header>
+  ${psoOn()?`<div class="psoend" aria-hidden="true">${psotek("race")}<p class="psobub">Gaz do dechy! Ten minutes, then back to English.</p></div>`:""}
   <div class="gamepicks" role="group" aria-label="Choose a game">${GAMES.map(x=>`<button type="button" class="gamepick" data-game="${x.id}" aria-pressed="${x.id===g.id}"><b>${esc(x.title)}</b><small>${esc(x.sub)}</small></button>`).join("")}</div>
   <p class="gameblurb">${esc(g.blurb)}</p>
   <div class="gamebar">
@@ -2518,6 +2536,8 @@ function viewToday(){
   const doneN = steps.filter(s=>isPlanDone(s.k)).length;
   const hr=new Date().getHours(), tod = hr>=5&&hr<11?"morning":hr<17&&hr>=11?"day":hr>=17&&hr<21?"evening":"night";
   const greet = {morning:"Good morning",day:"Good afternoon",evening:"Good evening",night:"Hello, night owl"}[tod];
+  const hadDays = Object.keys(state.days).length>0;
+  const [pm,pl] = doneN===3 ? ["champ","Mistrz dnia! All done."] : st>=3 ? ["happy",`${st} days in a row. Not bad… for a human.`] : (hadDays && st===0) ? ["cheeky","Missed me? Let's go."] : tod==="night" ? ["cheeky","Up late? Ten minutes, then bed."] : ["cheeky","Ten minutes. I'm timing you."];
   $("#view").innerHTML = `
   <section class="todayhero" data-tod="${tod}">${heroArt(tod)}<div class="herobody">
   <header class="pagehead">
@@ -2530,7 +2550,7 @@ function viewToday(){
     <span class="pill"><b>${Math.round(wkx.sec/60)}</b> min this week</span>
     <span class="pill"><b>${doneN}/3</b> steps today</span>
     <span class="pill"><b>${LV[state.vlv]}</b> words · <button class="linkbtn" type="button" data-go="words">change level</button></span>
-  </div></div></section>
+  </div></div>${psoOn()?`<div class="herpso" aria-hidden="true"><p class="psobub">${esc(pl)}</p>${psotek(pm)}</div>`:""}</section>
   ${newOnes.length?`<section class="newbanner">
     <div><p class="tag">New</p><h2>${newOnes.length} new ${newOnes.length===1?"word":"words"}: ${esc(listJoin(newOnes.map(id=>W[id].word)))}</h2>
     <p>They're part of your current level.</p></div>
@@ -2760,6 +2780,7 @@ function roundEnd(){
   ${backBtn("practise","Practise")}
   <header class="pagehead tight"><h1>Round finished</h1></header>
   <div class="panel endpanel">
+    ${psoOn()?psoEnd(n?round.score/n*100:0):""}
     <p class="score">${round.score} <span>/ ${n}</span></p>
     <p class="lede">${m.length? `Look again at ${esc(listJoin(words))}. Retrying straight away helps it stick.` : "Every answer right first time."}</p>
     <div class="row">
@@ -2834,6 +2855,7 @@ function flashEnd(){
   ${backBtn("practise","Practise")}
   <header class="pagehead tight"><h1>Cards done</h1></header>
   <div class="panel endpanel">
+    ${psoOn()?psoEnd(f.total?f.right/f.total*100:100):""}
     <p class="score">${f.right} <span>/ ${f.total}</span></p>
     <p class="lede">${nd?`Your next card is due ${new Date(nd).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}. Words you remember come back less often.`:"Come back tomorrow for your next review."}</p>
     <div class="row"><button class="btn" type="button" data-go="today">Back to today</button><button class="btn ghost" type="button" id="toMix">Do a mixed review</button></div>
@@ -3153,10 +3175,13 @@ function paintDisp(){
     <h2 class="mini">Help language · Język pomocy · Limba de ajutor</h2>
     ${langSeg()}
     <p class="hintline" style="margin:6px 0 0">Menus and short how-to notes appear in this language. Exercises stay in English.</p>
+    <h2 class="mini">Psotek's comments</h2>
+    <div class="seg3" role="radiogroup" aria-label="Psotek's comments">${[[true,"On"],[false,"Off"]].map(([v,l])=>`<button type="button" role="radio" data-pso="${v}" aria-checked="${psoOn()===v}">${l}</button>`).join("")}</div>
     <h2 class="mini">Name</h2>
     <p class="whoami" style="margin:0">${act.nick?`Practising as <b>${esc(act.nick)}</b>`:"No nickname yet."} <button class="linkbtn" type="button" id="dNick">Change</button></p>`;
   $$("[data-th]").forEach(b=>b.onclick=()=>{ disp.theme=b.dataset.th; try{ localStorage.setItem(DISP,JSON.stringify(disp)); }catch(e){} applyDisp(); paintDisp(); });
   $$("[data-sz]").forEach(b=>b.onclick=()=>{ disp.size=+b.dataset.sz; try{ localStorage.setItem(DISP,JSON.stringify(disp)); }catch(e){} applyDisp(); paintDisp(); });
+  $$("[data-pso]").forEach(b=>b.onclick=()=>{ disp.pso=b.dataset.pso==="true"; try{ localStorage.setItem(DISP,JSON.stringify(disp)); }catch(e){} paintDisp(); if(route==="today") render(); });
   $("#dNick").onclick=()=>{ $("#disp").hidden=true; openGate(); };
 }
 function openDisp(){ paintDisp(); $("#disp").hidden=false; setTimeout(()=>{ const b=$("#disp [aria-checked=true]"); if(b) b.focus(); },30); }
@@ -3350,6 +3375,57 @@ function burst(el, n=8){
     l.style.setProperty("--r", (Math.random()*360-180)+"deg");
     document.body.appendChild(l); setTimeout(()=>l.remove(), 950);
   }
+}
+
+
+/* ---------- Psotek: the cheeky hedgehog mascot ---------- */
+const PSO_SPIKES="M149,90 L168,74 L142,80 L157,61 L133,72 L142,50 L122,66 L125,43 L110,62 L107,39 L97,60 L88,38 L84,61 L69,41 L71,64 L52,48 L59,70 L37,58 L50,78 L24,70 L42,87 L15,84 L37,98 L10,100 L35,109 L9,116 L36,121 L12,132 L40,132 L20,147 L46,142 L70,160 L120,164 Z";
+function psotek(mood="cheeky"){
+  const ink="#2B1D14", st=`stroke="${ink}" stroke-width="3" fill="none" stroke-linecap="round"`;
+  const happyFace=`<path d="M131 113 Q138 104 145 113" ${st}/><path d="M153 111 Q160 102 167 111" ${st}/><ellipse cx="150" cy="132" rx="7" ry="4" fill="#E58F6B" opacity=".7"/><path d="M158 141 Q171 158 184 138 Q171 147 158 141 Z" fill="${ink}"/>`;
+  const face={
+    cheeky:`<path d="M128 97 Q138 88 148 95" ${st}/><circle cx="138" cy="111" r="7" fill="${ink}"/><circle cx="140" cy="108" r="2.2" fill="#fff"/><path d="M153 112 Q160 106 168 112" ${st}/><ellipse cx="150" cy="132" rx="7" ry="4" fill="#E58F6B" opacity=".6"/><path d="M160 146 Q171 151 181 140" ${st}/>`,
+    happy:happyFace, champ:happyFace,
+    race:`<path d="M100 94 L176 86" stroke="#2B2B2B" stroke-width="5" stroke-linecap="round"/><circle cx="132" cy="90" r="10" fill="#9CC3D5" stroke="${ink}" stroke-width="3"/><circle cx="157" cy="87" r="10" fill="#9CC3D5" stroke="${ink}" stroke-width="3"/><path d="M130 103 L146 107" ${st}/><path d="M154 106 L168 101" ${st}/><circle cx="139" cy="114" r="6" fill="${ink}"/><circle cx="161" cy="112" r="6" fill="${ink}"/><path d="M160 143 L182 141" ${st}/>`
+  }[mood]||"";
+  const extra = mood==="race" ? `<path d="M2 100 L22 100 M6 118 L24 118 M2 136 L20 136" stroke="#A84D24" stroke-width="4" stroke-linecap="round"/>` : "";
+  const trophy = mood==="champ" ? `<path d="M194 128 h30 v10 q0 18 -15 18 q-15 0 -15 -18 z" fill="#D9A441"/><path d="M194 132 q-8 0 -8 8 q0 7 9 8 M224 132 q8 0 8 8 q0 7 -9 8" stroke="#D9A441" stroke-width="3" fill="none"/><rect x="206" y="156" width="6" height="10" fill="#B9862E"/><rect x="198" y="166" width="22" height="7" rx="2" fill="#B9862E"/>` : "";
+  return `<svg class="pso" viewBox="0 0 234 190" aria-hidden="true" focusable="false">${extra}
+    <ellipse cx="108" cy="178" rx="78" ry="7" fill="#1E2A18" opacity=".1"/>
+    <path d="${PSO_SPIKES}" fill="#4A2F1E"/><ellipse cx="95" cy="115" rx="60" ry="50" fill="#6B4329"/>
+    <ellipse cx="80" cy="168" rx="15" ry="7" fill="#4A2F1E"/><ellipse cx="126" cy="169" rx="15" ry="7" fill="#4A2F1E"/>
+    <circle cx="120" cy="86" r="11" fill="#E8C79C"/><ellipse cx="138" cy="122" rx="44" ry="38" fill="#F1D6B0"/><ellipse cx="172" cy="130" rx="18" ry="13" fill="#F1D6B0"/>
+    <circle cx="188" cy="126" r="7" fill="${ink}"/><circle cx="186" cy="124" r="2" fill="#fff"/>${face}
+    <path d="M106 145 Q140 162 172 145 L174 156 Q140 174 104 157 Z" fill="#4F6F2E"/><path d="M116 155 L106 182 L121 178 L130 158 Z" fill="#4F6F2E"/>${trophy}</svg>`;
+}
+const PSO_LINES = {
+  ok:["Brawo!","Nice one!","See? Easy.","Look at you go!","Psotek approves.","Too easy for you?","That's the one!"],
+  no:["Serio? Try again!","Hmm… not quite.","Oops! Read it once more.","Close, but not quite.","I saw that!","Even hedgehogs get it wrong."],
+  streak:{3:"Three in a row!",5:"Five in a row! Gaz do dechy!",10:"Ten in a row! Who are you?!",20:"Twenty! I'm speechless."}
+};
+const psoOn = () => !(typeof disp!=="undefined" && disp.pso===false);
+let psoLast=0, psoRun=0, psoHide=0;
+function psoSay(mood, line){
+  if(!psoOn()) return;
+  let t=document.getElementById("psoToast");
+  if(!t){ t=document.createElement("div"); t.id="psoToast"; t.className="psotoast"; t.setAttribute("aria-hidden","true"); document.body.appendChild(t); }
+  t.innerHTML=`<p class="psobub">${esc(line)}</p>${psotek(mood)}`;
+  requestAnimationFrame(()=>t.classList.add("on"));
+  clearTimeout(psoHide); psoHide=setTimeout(()=>t.classList.remove("on"),2600);
+  psoLast=Date.now();
+}
+function psoReact(ok){
+  psoRun = ok ? psoRun+1 : 0;
+  if(!psoOn() || route==="game" || (typeof rush!=="undefined" && rush) || (typeof blitz!=="undefined" && blitz)) return;
+  const since=Date.now()-psoLast;
+  if(ok && PSO_LINES.streak[psoRun]) return psoSay(psoRun>=10?"champ":"happy", PSO_LINES.streak[psoRun]);
+  if(since<7000) return;
+  if(ok){ if(Math.random()<.3) psoSay("happy", pick(PSO_LINES.ok)); }
+  else if(Math.random()<.55) psoSay("cheeky", pick(PSO_LINES.no));
+}
+function psoEnd(pct){
+  const [m,line] = pct>=90 ? ["champ","Mistrz! That was perfect."] : pct>=60 ? ["happy","Not bad at all. Again?"] : ["cheeky","Serio? We go again. Right now."];
+  return `<div class="psoend">${psotek(m)}<p class="psobub">${esc(line)}</p></div>`;
 }
 
 /* Lab progress */
@@ -4049,6 +4125,7 @@ function huntEnd(){
   const best=hunt.score>lab.best.hunt; if(best){ lab.best.hunt=hunt.score; saveLab(); }
   const msg = hunt.score===10?"Perfect. Do and does hold no secrets for you.":hunt.score>=7?"Strong work. A couple more rounds and it'll be automatic.":hunt.score>=4?"Getting there. Check who the subject is before you choose.":"Keep going. Remember: he, she, it → does / doesn't.";
   $("#room").innerHTML=`<div class="panel endcard">
+    ${psoOn()?psoEnd(hunt.score*10):""}
     <p class="score">${hunt.score} / 10</p>
     <p style="margin:4px 0 4px">${msg}</p>
     <p class="counter">${best?"New best score!":`Best: ${lab.best.hunt} / 10`}</p>
@@ -5345,7 +5422,7 @@ function viewConv(){
     const pct=Math.round(cv.pts/max*100);
     try{ const s=JSON.parse(localStorage.getItem("vocab5-conv")||"{}"); s[c.id]=Math.max(s[c.id]||0,pct); localStorage.setItem("vocab5-conv",JSON.stringify(s)); }catch(e){}
     $("#view").innerHTML=`${backBtn("use","Use it")}<header class="pagehead tight"><h1>${esc(c.t)}</h1></header>
-      <div class="panel endcard"><p class="score">${pct}%</p><p style="margin:4px 0">${pct>=85?"You sound natural and polite.":pct>=60?"Good. Check the replies marked in orange.":"Try it again: the explanations will help."}</p>
+      <div class="panel endcard">${psoOn()?psoEnd(pct):""}<p class="score">${pct}%</p><p style="margin:4px 0">${pct>=85?"You sound natural and polite.":pct>=60?"Good. Check the replies marked in orange.":"Try it again: the explanations will help."}</p>
         <div class="row" style="justify-content:center">${canSpeak?`<button class="btn ghost" type="button" id="cvHear">${ico("sound")} Hear the best version</button>`:""}<button class="btn" type="button" id="cvAgain">Try again</button><button class="btn ghost" type="button" id="cvList">Another conversation</button></div></div>
       <div class="convlog">${log}</div>`;
     $("#cvAgain").onclick=()=>{ Object.assign(cv,{i:0,pts:0,picks:[],done:false}); viewConv(); };
@@ -5382,7 +5459,7 @@ Reply ONLY with JSON: {"task":"one sentence on how well the task was done","lang
 const wcountT = t => (t.trim().match(/[A-Za-zÀ-ž'’-]+/g)||[]).length;
 
 /* ---------- Reading of the week (a tab inside Video) ---------- */
-let READING = {"week": "2026-W42", "title": "Ten minutes a day", "level": "B1–B2", "minutes": 6, "intro": "A short magazine-style article about a woman who learned Spanish in small steps. It was written for English Engine; Marta is a made-up example.", "paras": ["When Marta, a nurse from Gdańsk, decided to learn Spanish at the age of forty-two, her friends were not exactly encouraging. \"You work night shifts,\" one of them reminded her. \"When exactly are you going to study?\" Marta didn't have an answer. She only knew that she had always wanted to read Spanish novels in the original, and that she was tired of waiting for the perfect moment.", "Her solution was almost embarrassingly simple: ten minutes a day, every day, no matter what. On busy days she listened to a short podcast on the bus. On quiet days she wrote three sentences in a notebook about what she had done. She never allowed herself to skip a day, but she also never forced herself to do more than ten minutes. \"If I felt like continuing, I continued,\" she says. \"But the promise was only ten minutes. That made it impossible to say no.\"", "At first, progress was slow. After three months she could order food and ask for directions, but she still froze whenever someone answered her quickly. The turning point came in the second year, when she found an online conversation partner in Valencia who wanted to practise Polish. They met on video twice a week, spending half an hour in each language. Mistakes, she discovered, were not a disaster. \"My partner made as many mistakes in Polish as I did in Spanish. We laughed a lot, and that took the fear away.\"", "Three years later, Marta is reading her fourth Spanish novel. She admits that she still uses a dictionary and that her grammar is far from perfect. However, she believes the small daily habit taught her something more valuable than any language rule. \"Big goals scare us,\" she says. \"Small ones don't. Ten minutes doesn't sound like much, but ten minutes every day for three years is more than a hundred and eighty hours.\"", "Her advice to other adult learners is simple: choose a time that is so small you cannot fail, attach it to something you already do every day, and find someone to talk to as soon as possible. \"Don't wait until you are ready,\" she says. \"Nobody ever feels ready.\""], "gloss": [{"w": "night shift", "m": "work that happens at night, for example in a hospital"}, {"w": "embarrassingly simple", "m": "so simple that it seems almost silly"}, {"w": "freeze (froze)", "m": "suddenly stop and be unable to speak or move, often from fear"}, {"w": "turning point", "m": "the moment when a situation starts to change"}, {"w": "far from perfect", "m": "not perfect at all"}], "tfng": [{"s": "Marta's friends thought her plan was a great idea.", "a": "F", "why": "They were \"not exactly encouraging\"."}, {"s": "Marta sometimes studied for longer than ten minutes.", "a": "T", "why": "\"If I felt like continuing, I continued.\""}, {"s": "Marta took a Spanish course at a language school.", "a": "NG", "why": "The text mentions a podcast, a notebook and a conversation partner, but not a school."}, {"s": "After three months, Marta could understand fast speakers easily.", "a": "F", "why": "She \"still froze whenever someone answered her quickly\"."}, {"s": "Her conversation partner was learning Polish.", "a": "T", "why": "The partner \"wanted to practise Polish\"."}, {"s": "Marta now reads Spanish without a dictionary.", "a": "F", "why": "\"She still uses a dictionary.\""}], "mc": [{"q": "Why did Marta choose only ten minutes a day?", "a": "Because such a small promise was easy to keep", "o": ["Because such a small promise was easy to keep", "Because her teacher told her to", "Because she was only free for ten minutes", "Because longer study is less effective"], "why": "\"The promise was only ten minutes. That made it impossible to say no.\""}, {"q": "What was the turning point in her learning?", "a": "Starting regular conversations with a partner", "o": ["Starting regular conversations with a partner", "Moving to Valencia", "Reading her first novel", "Passing an exam"], "why": "The turning point came when she found an online conversation partner."}, {"q": "How did the conversation partner help her with mistakes?", "a": "They both made mistakes and laughed about them", "o": ["They both made mistakes and laughed about them", "The partner corrected every mistake", "The partner never noticed her mistakes", "They agreed to speak only Spanish"], "why": "\"My partner made as many mistakes in Polish as I did in Spanish. We laughed a lot.\""}, {"q": "What is the main message of the article?", "a": "Small, regular habits can lead to big results", "o": ["Small, regular habits can lead to big results", "Adults cannot learn languages well", "Grammar is the most important part of learning", "You should wait until you feel ready"], "why": "The whole article shows how ten minutes a day added up over three years."}], "words": [{"q": "In paragraph 1, \"not exactly encouraging\" means…", "a": "rather negative", "o": ["rather negative", "very excited", "completely silent", "a little jealous"]}, {"q": "In paragraph 2, \"no matter what\" means…", "a": "in every situation", "o": ["in every situation", "only when it is easy", "if she remembered", "for no reason"]}, {"q": "In paragraph 4, \"admits\" means…", "a": "agrees that something is true, even if it's not positive", "o": ["agrees that something is true, even if it's not positive", "complains loudly", "forgets", "pretends"]}, {"q": "In paragraph 5, \"attach it to something you already do\" means…", "a": "link it to a daily routine", "o": ["link it to a daily routine", "write it on a piece of paper", "do it instead of your routine", "ask a friend to do it"]}], "respond": {"prompt": "Write 60–100 words: Which small daily habit could help you with your English? When and where would you do it?", "min": 60, "max": 100}};
+let READING = {"week": "2026-W42", "title": "Ten minutes a day", "level": "B1–B2", "minutes": 6, "intro": "A short magazine-style article about a woman who learned Spanish in small steps. It was written for Psotek English; Marta is a made-up example.", "paras": ["When Marta, a nurse from Gdańsk, decided to learn Spanish at the age of forty-two, her friends were not exactly encouraging. \"You work night shifts,\" one of them reminded her. \"When exactly are you going to study?\" Marta didn't have an answer. She only knew that she had always wanted to read Spanish novels in the original, and that she was tired of waiting for the perfect moment.", "Her solution was almost embarrassingly simple: ten minutes a day, every day, no matter what. On busy days she listened to a short podcast on the bus. On quiet days she wrote three sentences in a notebook about what she had done. She never allowed herself to skip a day, but she also never forced herself to do more than ten minutes. \"If I felt like continuing, I continued,\" she says. \"But the promise was only ten minutes. That made it impossible to say no.\"", "At first, progress was slow. After three months she could order food and ask for directions, but she still froze whenever someone answered her quickly. The turning point came in the second year, when she found an online conversation partner in Valencia who wanted to practise Polish. They met on video twice a week, spending half an hour in each language. Mistakes, she discovered, were not a disaster. \"My partner made as many mistakes in Polish as I did in Spanish. We laughed a lot, and that took the fear away.\"", "Three years later, Marta is reading her fourth Spanish novel. She admits that she still uses a dictionary and that her grammar is far from perfect. However, she believes the small daily habit taught her something more valuable than any language rule. \"Big goals scare us,\" she says. \"Small ones don't. Ten minutes doesn't sound like much, but ten minutes every day for three years is more than a hundred and eighty hours.\"", "Her advice to other adult learners is simple: choose a time that is so small you cannot fail, attach it to something you already do every day, and find someone to talk to as soon as possible. \"Don't wait until you are ready,\" she says. \"Nobody ever feels ready.\""], "gloss": [{"w": "night shift", "m": "work that happens at night, for example in a hospital"}, {"w": "embarrassingly simple", "m": "so simple that it seems almost silly"}, {"w": "freeze (froze)", "m": "suddenly stop and be unable to speak or move, often from fear"}, {"w": "turning point", "m": "the moment when a situation starts to change"}, {"w": "far from perfect", "m": "not perfect at all"}], "tfng": [{"s": "Marta's friends thought her plan was a great idea.", "a": "F", "why": "They were \"not exactly encouraging\"."}, {"s": "Marta sometimes studied for longer than ten minutes.", "a": "T", "why": "\"If I felt like continuing, I continued.\""}, {"s": "Marta took a Spanish course at a language school.", "a": "NG", "why": "The text mentions a podcast, a notebook and a conversation partner, but not a school."}, {"s": "After three months, Marta could understand fast speakers easily.", "a": "F", "why": "She \"still froze whenever someone answered her quickly\"."}, {"s": "Her conversation partner was learning Polish.", "a": "T", "why": "The partner \"wanted to practise Polish\"."}, {"s": "Marta now reads Spanish without a dictionary.", "a": "F", "why": "\"She still uses a dictionary.\""}], "mc": [{"q": "Why did Marta choose only ten minutes a day?", "a": "Because such a small promise was easy to keep", "o": ["Because such a small promise was easy to keep", "Because her teacher told her to", "Because she was only free for ten minutes", "Because longer study is less effective"], "why": "\"The promise was only ten minutes. That made it impossible to say no.\""}, {"q": "What was the turning point in her learning?", "a": "Starting regular conversations with a partner", "o": ["Starting regular conversations with a partner", "Moving to Valencia", "Reading her first novel", "Passing an exam"], "why": "The turning point came when she found an online conversation partner."}, {"q": "How did the conversation partner help her with mistakes?", "a": "They both made mistakes and laughed about them", "o": ["They both made mistakes and laughed about them", "The partner corrected every mistake", "The partner never noticed her mistakes", "They agreed to speak only Spanish"], "why": "\"My partner made as many mistakes in Polish as I did in Spanish. We laughed a lot.\""}, {"q": "What is the main message of the article?", "a": "Small, regular habits can lead to big results", "o": ["Small, regular habits can lead to big results", "Adults cannot learn languages well", "Grammar is the most important part of learning", "You should wait until you feel ready"], "why": "The whole article shows how ten minutes a day added up over three years."}], "words": [{"q": "In paragraph 1, \"not exactly encouraging\" means…", "a": "rather negative", "o": ["rather negative", "very excited", "completely silent", "a little jealous"]}, {"q": "In paragraph 2, \"no matter what\" means…", "a": "in every situation", "o": ["in every situation", "only when it is easy", "if she remembered", "for no reason"]}, {"q": "In paragraph 4, \"admits\" means…", "a": "agrees that something is true, even if it's not positive", "o": ["agrees that something is true, even if it's not positive", "complains loudly", "forgets", "pretends"]}, {"q": "In paragraph 5, \"attach it to something you already do\" means…", "a": "link it to a daily routine", "o": ["link it to a daily routine", "write it on a piece of paper", "do it instead of your routine", "ask a friend to do it"]}], "respond": {"prompt": "Write 60–100 words: Which small daily habit could help you with your English? When and where would you do it?", "min": 60, "max": 100}};
 (async()=>{ try{ const r=await fetch("reading.json",{cache:"no-store"}); if(!r.ok) return; const j=await r.json(); if(j && j.paras && j.week){ const ch=j.week!==READING.week; READING=j; if(ch && route==="video" && vidTab==="read") render(); } }catch(e){} })();
 let vidTab = (()=>{ try{ return localStorage.getItem("vocab5-vidtab")||"watch"; }catch(e){ return "watch"; } })();
 const RDS_KEY="vocab5-reading-v1"; let rds={};
