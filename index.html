@@ -3,31 +3,46 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* Layout: left rail on wide screens, top bar + bottom tab bar on phones; one calm column of content. Moss green leads. */
 :root{
-  --paper:#EDF1E4; --surface:#FAFCF5; --sunk:#E0E7D0; --ink:#1E2A17; --muted:#56634B;
-  --sage:#4A6A22; --sage-soft:#DAE5C1; --slate:#56697A; --slate-soft:#E1E7EA;
-  --ok:#2F6B2C; --ok-soft:#D7EBCC; --err:#A0482E; --err-soft:#F6DDD3; --line:#CBD4BB;
-  --on-accent:#FFFFFF; --shadow:0 1px 2px rgb(30 42 23 / .06), 0 6px 20px rgb(30 42 23 / .06);
-  --serif:"Literata", Georgia, "Times New Roman", serif;
+  --paper:#FFF9EE; --surface:#FFFFFF; --sunk:#F5EEDD; --ink:#1F2A1A; --muted:#5D6855;
+  --sage:#2A7F38; --sage-deep:#1D5E27; --sage-soft:#E1F3D3; --slate:#3E6E95; --slate-soft:#E2EFFA;
+  --ok:#2A7F38; --ok-soft:#DDF3D0; --err:#C2412A; --err-soft:#FFE3DA; --line:#EADFC8;
+  --on-accent:#FFFFFF; --shadow:0 1px 2px rgb(60 45 10 / .05), 0 8px 24px rgb(60 45 10 / .07);
+  --serif:"Baloo 2", "Instrument Sans", system-ui, sans-serif;
   --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --moss-wash:#B9C98F; --plain-wash:#EDF1E4;
+  --moss-wash:#CFE8B4; --plain-wash:#FFF9EE;
+  --sun:#F5B020; --sun-deep:#B87A00; --sun-soft:#FFF1CC; --sun-ink:#7A4E00;
+  --sky:#1E8FD6; --sky-deep:#136BA3; --sky-soft:#DDF0FC; --sky-ink:#0E5482;
+  --coral:#EF5F3E; --coral-deep:#B8432A; --coral-soft:#FFE4DB; --coral-ink:#A3361F;
+  --plum:#9B59D0; --plum-deep:#7440A0; --plum-soft:#F2E6FB; --plum-ink:#6A3796;
+  --leaf-soft:#E1F3D3; --leaf-ink:#1D5E27;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --paper:#141A10; --surface:#1C2418; --sunk:#26301F; --ink:#E4EBD7; --muted:#A2AE93;
-    --sage:#9CC060; --sage-soft:#2E3D20; --slate:#A9B8C4; --slate-soft:#283037;
-    --ok:#9DD08A; --ok-soft:#22361E; --err:#EBA389; --err-soft:#43271D; --line:#34402A;
-    --on-accent:#132009; --shadow:none; --moss-wash:#26331A; --plain-wash:#141A10; color-scheme:dark;
+    --paper:#151A12; --surface:#1E251A; --sunk:#283122; --ink:#EEF3E6; --muted:#ACB89E;
+    --sage:#7FCB55; --sage-deep:#4E9530; --sage-soft:#26381C; --slate:#9CC9EE; --slate-soft:#1F2F3C;
+    --ok:#8FD66A; --ok-soft:#21351A; --err:#FF9C82; --err-soft:#45231A; --line:#38452E;
+    --on-accent:#10200A; --shadow:none; --moss-wash:#24321B; --plain-wash:#151A12; color-scheme:dark;
+    --sun:#FFC94D; --sun-deep:#B88A1A; --sun-soft:#3A2F12; --sun-ink:#FFD877;
+    --sky:#5BB8F2; --sky-deep:#2E83BC; --sky-soft:#16303F; --sky-ink:#9BD6FA;
+    --coral:#FF8A6B; --coral-deep:#C25B40; --coral-soft:#40221A; --coral-ink:#FFB49F;
+    --plum:#C493F0; --plum-deep:#8E5FBC; --plum-soft:#2E2140; --plum-ink:#DDBCFA;
+    --leaf-soft:#26381C; --leaf-ink:#A6E08A;
   }
 }
 :root[data-theme="dark"]{
-  --paper:#141A10; --surface:#1C2418; --sunk:#26301F; --ink:#E4EBD7; --muted:#A2AE93;
-  --sage:#9CC060; --sage-soft:#2E3D20; --slate:#A9B8C4; --slate-soft:#283037;
-  --ok:#9DD08A; --ok-soft:#22361E; --err:#EBA389; --err-soft:#43271D; --line:#34402A;
-  --on-accent:#132009; --shadow:none; --moss-wash:#26331A; --plain-wash:#141A10; color-scheme:dark;
+  --paper:#151A12; --surface:#1E251A; --sunk:#283122; --ink:#EEF3E6; --muted:#ACB89E;
+  --sage:#7FCB55; --sage-deep:#4E9530; --sage-soft:#26381C; --slate:#9CC9EE; --slate-soft:#1F2F3C;
+  --ok:#8FD66A; --ok-soft:#21351A; --err:#FF9C82; --err-soft:#45231A; --line:#38452E;
+  --on-accent:#10200A; --shadow:none; --moss-wash:#24321B; --plain-wash:#151A12; color-scheme:dark;
+  --sun:#FFC94D; --sun-deep:#B88A1A; --sun-soft:#3A2F12; --sun-ink:#FFD877;
+  --sky:#5BB8F2; --sky-deep:#2E83BC; --sky-soft:#16303F; --sky-ink:#9BD6FA;
+  --coral:#FF8A6B; --coral-deep:#C25B40; --coral-soft:#40221A; --coral-ink:#FFB49F;
+  --plum:#C493F0; --plum-deep:#8E5FBC; --plum-soft:#2E2140; --plum-ink:#DDBCFA;
+  --leaf-soft:#26381C; --leaf-ink:#A6E08A;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{font-size:var(--fs,100%)}
@@ -737,6 +752,99 @@ mark.dmark{background:var(--sage-soft);color:inherit;border-bottom:3px solid var
 .movein summary{cursor:pointer;color:var(--sage);font-weight:600}
 .movein p{margin:8px 0}
 .movein textarea{width:100%;max-width:none;font-size:.85rem}
+/* ---------- Cheerful theme: chunky buttons, accent colours, rounder cards ---------- */
+h1,h2,h3,.h3,.headword{font-weight:700}
+h1{letter-spacing:0}
+.btn{border:0;border-radius:16px;font-weight:700;box-shadow:0 4px 0 var(--sage-deep);transform:translateY(0);transition:transform .08s ease,box-shadow .08s ease,filter .2s}
+.btn:hover{filter:brightness(1.06)}
+.btn:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 var(--sage-deep)}
+.btn.ghost{border:2px solid var(--line);background:var(--surface);box-shadow:0 4px 0 var(--line)}
+.btn.ghost:active:not(:disabled){box-shadow:0 1px 0 var(--line)}
+.btn.danger{box-shadow:0 4px 0 var(--coral-deep)}
+.btn.sun{background:var(--sun);color:#3A2600;box-shadow:0 4px 0 var(--sun-deep)}
+.btn.sky{background:var(--sky);color:#fff;box-shadow:0 4px 0 var(--sky-deep)}
+.panel,.card,.step{border-radius:22px}
+.card{border-width:2px}
+.card:hover{border-color:var(--sage);transform:translateY(-2px);box-shadow:var(--shadow)}
+.opt{border-width:2px;border-radius:14px}
+.pick{border-width:2px}
+.pick[aria-pressed="true"]{background:var(--sage);border-color:var(--sage);color:var(--on-accent)}
+.lvbtns{border:2px solid var(--line)}
+.tag{font-weight:700}
+.newbanner{background:linear-gradient(135deg,var(--sun-soft),var(--leaf-soft));border:2px solid var(--line)}
+.newbanner .tag{background:var(--sun);color:#3A2600}
+.plan .step:nth-child(1) .num{background:var(--sun-soft);color:var(--sun-ink)}
+.plan .step:nth-child(2) .num{background:var(--sky-soft);color:var(--sky-ink)}
+.plan .step:nth-child(3) .num{background:var(--coral-soft);color:var(--coral-ink)}
+.plan .step.done .num{background:var(--sage);color:var(--on-accent)}
+.num{font-weight:800;font-family:var(--serif);font-size:1.1rem}
+.pill{border-width:2px}
+.chips-row .pill:nth-child(1) b{color:var(--coral-ink)}
+.chips-row .pill:nth-child(2) b{color:var(--sky-ink)}
+.chips-row .pill:nth-child(3) b{color:var(--leaf-ink)}
+.pill.bgpill{background:var(--sun-soft);border-color:var(--sun)}
+.pill.bgpill b{color:var(--sun-ink)}
+.room{border-width:2px;border-radius:16px;background:var(--surface)}
+.room b{font-family:var(--serif);font-weight:700;font-size:1.02rem}
+.room[aria-selected="true"]{background:var(--sage);border-color:var(--sage);color:var(--on-accent);box-shadow:0 4px 0 var(--sage-deep)}
+.xp .xpbar i,.bar i{background:linear-gradient(90deg,var(--sun),var(--sage))}
+.feedback.ok{border-radius:14px}
+.tag.reg-f{background:var(--sky-ink);color:var(--surface)}
+.tag.reg-i{background:var(--coral-ink);color:var(--surface)}
+.streak{color:var(--coral-ink);font-weight:700}
+.brand b{font-family:var(--serif);font-weight:800;font-size:1.3rem}
+/* ---------- Tense table ---------- */
+.ttintro{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.ttlegend{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.ttlegend small{color:var(--muted);font-size:.8rem;margin-left:4px}
+.vf{display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--sans);font-size:.92em;line-height:1.1;padding:3px 9px;color:var(--ink);background:var(--surface);border:2px solid var(--ink);white-space:nowrap}
+.vf i{font-style:normal;color:var(--coral-ink)}
+.vf.v1{border-radius:6px}
+.vf.v3{border-radius:999px}
+.vf.v2{border:0;position:relative;padding:13px 22px 4px;background:none;z-index:0;font-size:.85em}
+.vf.v2::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.vf.v2::after{content:"";position:absolute;inset:3px 4px 2px;z-index:-1;background:var(--surface);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.vf.ing{border-style:dashed}
+.ttblock{--c:var(--sage);--cs:var(--leaf-soft);--ci:var(--leaf-ink);margin:0 0 22px}
+.tt-past{--c:var(--sky);--cs:var(--sky-soft);--ci:var(--sky-ink)}
+.tt-future{--c:var(--sun);--cs:var(--sun-soft);--ci:var(--sun-ink)}
+.tt-cond{--c:var(--plum);--cs:var(--plum-soft);--ci:var(--plum-ink)}
+.tt-imp{--c:var(--coral);--cs:var(--coral-soft);--ci:var(--coral-ink)}
+.tt-stat{--c:var(--muted);--cs:var(--sunk);--ci:var(--ink)}
+.ttband{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;font-family:var(--serif);font-weight:800;font-size:1.5rem;color:var(--ci)}
+.ttband span{background:var(--cs);border:2px solid var(--c);border-radius:14px;padding:2px 16px;box-shadow:0 3px 0 var(--c)}
+.ttband small{font-family:var(--sans);font-weight:600;font-size:.85rem;color:var(--muted)}
+.ttgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ttgrid.two{align-items:start}
+.ttcard{position:relative;background:var(--surface);border:2px solid var(--c,var(--line));border-left-width:8px;border-radius:20px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.ttcard header{display:flex;align-items:center;gap:8px}
+.ttcard h3{margin:0;font-size:1.15rem;color:var(--ci,var(--ink))}
+.ttcard .from{font-style:normal;font-size:.72rem;font-weight:700;background:var(--sunk);color:var(--muted);border-radius:99px;padding:1px 8px}
+.ttcard.locked{opacity:.62}
+.ttform{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-weight:600}
+.ttform .plus{color:var(--muted);font-weight:700}
+.ttex{margin:0;font-family:var(--serif);font-size:1.12rem;line-height:1.35}
+.ttex mark{background:var(--cs);color:var(--ci);border-radius:6px;padding:0 2px;font-weight:700}
+.ttl1{margin:0;color:var(--muted);font-size:.93rem}
+.ttl1 .l1flag{margin-right:6px}
+.tttl .tl{max-width:300px;height:auto}
+.ttsig{display:flex;flex-wrap:wrap;gap:6px}
+.ttsig span{font-size:.8rem;font-weight:600;background:var(--cs);color:var(--ci);border-radius:99px;padding:2px 10px}
+.ttsig.big span{font-size:.9rem;padding:4px 12px}
+.ttnote{margin:0;font-size:.88rem;color:var(--ink);display:flex;gap:8px;align-items:flex-start}
+.ttnote b{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:var(--coral);color:#fff;font-size:.78rem;margin-top:1px}
+.ttl1n{margin:0;font-size:.86rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.ttcard .linkbtn{align-self:flex-start;font-size:.86rem}
+.ttstamp{position:absolute;top:-12px;right:14px;transform:rotate(8deg);background:var(--coral);color:#fff;font-family:var(--serif);font-weight:800;font-size:.95rem;letter-spacing:.04em;padding:3px 12px;border-radius:10px;box-shadow:0 3px 0 var(--coral-deep)}
+@media (max-width:760px){ .ttgrid{grid-template-columns:minmax(0,1fr)} .ttband{font-size:1.3rem} }
+@media print{
+  body *{visibility:hidden}
+  #ttable,#ttable *{visibility:visible}
+  #ttable{position:absolute;left:0;top:0;width:100%}
+  #ttable .row,#ttable .linkbtn,#ttable .tttl{display:none!important}
+  .ttcard{break-inside:avoid;opacity:1!important}
+  .ttgrid{gap:8px}
+}
 /* ---------- Badges ---------- */
 .medal{display:block;width:100%;height:auto}
 .bggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-top:16px}
@@ -2276,7 +2384,7 @@ const segs = (n,max=5,label="") => `<span class="seg" role="img" aria-label="${l
 const blankOut = (s, w) => { const m = s.match(w.stem); return m ? {txt:s.replace(m[0],"____"), ans:m[0]} : null; };
 
 /* ---------- Navigation ---------- */
-const TENSE_ROOMS = ["map","machine","hunt","detective","time"];
+const TENSE_ROOMS = ["table","map","machine","hunt","detective","time"];
 const NAV = [["today","Today"],["words","Words"],["lab","Tenses","Tenses"],["grammar","Grammar","Grammar"],["video","Video","Video"],["sounds","Pronunciation","Sounds"],["use","Use it"]];
 const MORE = [["practise","Practise"],["exam","Exam corner"],["progress","Progress"],["archive","Previous vocabulary"],["badges","Badges"],["game","Game"]];
 let navMore = (()=>{ try{ return localStorage.getItem("ee-navmore")==="1"; }catch(e){ return false; } })();
@@ -2287,7 +2395,7 @@ function go(r){
   morePop=false; forceClosed=false;
   if(r==="verbs"){ lab.room="verbs"; lab.groom="verbs"; saveLab(); r="lab"; }
   else if(r==="grammar"){ lab.room=lab.groom||"articles"; saveLab(); r="lab"; }
-  else if(r==="lab" && !TENSE_ROOMS.includes(lab.room)){ lab.room=TENSE_ROOMS.includes(lab.troom)?lab.troom:"map"; saveLab(); }
+  else if(r==="lab" && !TENSE_ROOMS.includes(lab.room)){ lab.room=TENSE_ROOMS.includes(lab.troom)?lab.troom:"table"; saveLab(); }
   route=r; state.route=section(r); save(); render(); }
 function paintNav(){
   const sec=section(route), inMore=MORE.some(([id])=>id===sec), open=navMore||(inMore&&!forceClosed);
@@ -3718,7 +3826,7 @@ function viewBadges(){
 
 /* Lab progress */
 const LAB_STORE = "vocab5-lab-v1";
-let lab = { xp:0, room:"map", level:2, seen:{}, combos:{}, best:{hunt:0, rush:0} };
+let lab = { xp:0, room:"table", level:2, seen:{}, combos:{}, best:{hunt:0, rush:0} };
 try{ const s=JSON.parse(localStorage.getItem(LAB_STORE)||"null"); if(s) lab=Object.assign(lab,s); }catch(e){}
 function saveLab(){ try{ localStorage.setItem(LAB_STORE, JSON.stringify(lab)); }catch(e){} }
 const LEVELS=[["Spore",0],["Sprout",40],["Moss patch",100],["Fern",180],["Grove",280],["Old forest",400]];
@@ -3882,7 +3990,7 @@ function timeline(time, asp){
 }
 
 /* ---------- Lab view ---------- */
-const ROOMS=[["map","Tense map","Explore all 12"],["machine","Sentence machine","Build any sentence"],["hunt","Do or does?","A 10-round game"],["detective","Tense detective","Name the tense"],["time","Time machine","Change the tense"],["articles","Articles","a, an, the or nothing"],["modals","Modals","must, should, might"],["cond","Conditionals","if… would…"],["passive","The passive","is made, was built"],["questions","Questions","word order and do"],["patterns","Verb patterns","doing or to do?"],["preps","Prepositions","in, on, at and more"],["verbs","Irregular verbs","8 ways to practise"]];
+const ROOMS=[["table","Tense table","All tenses on one page"],["map","Tense map","Explore all 12"],["machine","Sentence machine","Build any sentence"],["hunt","Do or does?","A 10-round game"],["detective","Tense detective","Name the tense"],["time","Time machine","Change the tense"],["articles","Articles","a, an, the or nothing"],["modals","Modals","must, should, might"],["cond","Conditionals","if… would…"],["passive","The passive","is made, was built"],["questions","Questions","word order and do"],["patterns","Verb patterns","doing or to do?"],["preps","Prepositions","in, on, at and more"],["verbs","Irregular verbs","8 ways to practise"]];
 function viewLab(){
   const isT=TENSE_ROOMS.includes(lab.room); const rooms=ROOMS.filter(([id])=>TENSE_ROOMS.includes(id)===isT);
   $("#view").innerHTML=`
@@ -3899,7 +4007,7 @@ function viewLab(){
   paintXP();
   document.querySelectorAll(".lvb").forEach(b=>b.onclick=()=>{ if(+b.dataset.lv===lvl()) return; lab.level=+b.dataset.lv; saveLab(); resetLevelState(); viewLab(); burst($(`.lvb[data-lv="${lab.level}"]`),6); });
   document.querySelectorAll(".room").forEach(b=>b.onclick=()=>{ lab.room=b.dataset.r; if(TENSE_ROOMS.includes(lab.room)) lab.troom=lab.room; else lab.groom=lab.room; state.route=section("lab"); save(); saveLab(); stopRush(); paintNav(); viewLab(); });
-  (({map:roomMap,machine:roomMachine,hunt:roomHunt,detective:roomDetective,time:roomTime,articles:roomArticles,modals:()=>roomGram("modals"),cond:()=>roomGram("cond"),passive:()=>roomGram("passive"),questions:()=>roomGram("questions"),patterns:()=>roomGram("patterns"),preps:()=>roomGram("preps"),verbs:roomVerbs})[lab.room]||roomMap)();
+  (({table:roomTable,map:roomMap,machine:roomMachine,hunt:roomHunt,detective:roomDetective,time:roomTime,articles:roomArticles,modals:()=>roomGram("modals"),cond:()=>roomGram("cond"),passive:()=>roomGram("passive"),questions:()=>roomGram("questions"),patterns:()=>roomGram("patterns"),preps:()=>roomGram("preps"),verbs:roomVerbs})[lab.room]||roomMap)();
 }
 
 /* Room: Articles (a / an / the / no article) — built for Polish speakers (no articles in Polish) and Romanian speakers (articles attached to the noun) */
@@ -4125,6 +4233,107 @@ function roomArticles(){
   $("#artChk").onclick=check; inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); check(); } });
   inp.addEventListener("input",()=>{ art.typed=inp.value; });
   $("#artShow").onclick=()=>finish(false,true);
+}
+
+/* ---------- Room: Tense table (all tenses on one page, colour-coded by time) ----------
+   Verb-form shapes: box = V1 (base: write), triangle = V2 (past: wrote), oval = V3 (participle: written). */
+const TT_V = { b:"write", p:"wrote", pp:"written", ing:"writing" };
+const ttTok = {
+  "1":`<span class="vf v1" title="V1: base form">${TT_V.b}</span>`,
+  "1s":`<span class="vf v1" title="V1 + s">${TT_V.b}<i>s</i></span>`,
+  "2":`<span class="vf v2" title="V2: past simple form">${TT_V.p}</span>`,
+  "3":`<span class="vf v3" title="V3: past participle">${TT_V.pp}</span>`,
+  "ing":`<span class="vf v1 ing" title="V1 + ing">writ<i>ing</i></span>`
+};
+const ttForm = f => esc(f).replace(/ \+ /g,' <b class="plus">+</b> ').replace(/\{(1s|1|2|3|ing)\}/g,(m,k)=>ttTok[k]);
+const TT = [
+  { k:"present|simple", f:"{1} · he / she / it {1s}", ex:"I <mark>write</mark> every day.", pl:"Piszę codziennie.", ro:"Scriu în fiecare zi.", stamp:"DO / DOES",
+    note:"Questions and negatives need do / does + V1: Does she write? (Not with be or can: Is she…? Can you…?)",
+    l1:{pl:"Polski „piszę” to i „zwykle piszę”, i „piszę teraz”. Angielski je rozdziela: I write / I'm writing.",ro:"„Scriu” în română înseamnă și „de obicei”, și „acum”. Engleza le separă: I write / I'm writing."} },
+  { k:"present|continuous", f:"am / is / are + {ing}", ex:"I<mark>'m writing</mark> an email now.", pl:"Teraz piszę maila.", ro:"Acum scriu un e-mail.",
+    note:"Stative verbs (know, like, want, need…) don't usually take -ing: I know, not I'm knowing." },
+  { k:"present|perfect", f:"have / has + {3}", ex:"I<mark>'ve</mark> already <mark>written</mark> it.", pl:"Już to napisałem.", ro:"L-am scris deja.",
+    note:"Not with a finished time (yesterday, in 2020): then use the past simple.",
+    l1:{pl:"Po polsku mówisz w czasie przeszłym, ale gdy liczy się skutek teraz, angielski chce have + V3.",ro:"În română spui „am scris”, dar în engleză present perfect apare doar când rezultatul contează acum. Cu „ieri” → past simple."} },
+  { k:"present|perfect continuous", f:"have / has been + {ing}", ex:"I<mark>'ve been writing</mark> for two hours.", pl:"Piszę od dwóch godzin.", ro:"Scriu de două ore.",
+    note:"With stative verbs use the present perfect: I've known her for years.",
+    l1:{pl:"„Piszę od dwóch godzin” to po polsku czas teraźniejszy, a po angielsku have been writing.",ro:"„Scriu de două ore” e prezent în română, dar în engleză e have been writing."} },
+  { k:"past|simple", f:"{2}", ex:"I <mark>wrote</mark> it yesterday.", pl:"Napisałem to wczoraj.", ro:"L-am scris ieri.", stamp:"DID",
+    note:"Questions and negatives need did + V1: Did you write? I didn't write. (Not with be: Was it…?)" },
+  { k:"past|continuous", f:"was / were + {ing}", ex:"I <mark>was writing</mark> when you called.", pl:"Pisałem, kiedy zadzwoniłeś.", ro:"Scriam când ai sunat.",
+    note:"Often interrupted by a past simple action: was writing … called." },
+  { k:"past|perfect", f:"had + {3}", ex:"I <mark>had written</mark> it before the meeting.", pl:"Napisałem to przed spotkaniem.", ro:"O scrisesem înainte de ședință.",
+    note:"The earlier of two past actions.",
+    l1:{pl:"Polski nie ma tego czasu, więc używasz zwykłego przeszłego. Po angielsku had + V3 pokazuje, co było wcześniej.",ro:"Seamănă cu mai-mult-ca-perfectul: scrisesem = I had written."} },
+  { k:"past|perfect continuous", f:"had been + {ing}", ex:"I <mark>had been writing</mark> for an hour when you arrived.", pl:"Pisałem już od godziny, kiedy przyszedłeś.", ro:"Scriam de o oră când ai ajuns.",
+    note:"How long, up to a moment in the past. Stative verbs: I had known her for years." },
+  { k:"future|simple", f:"will + {1}", ex:"I<mark>'ll write</mark> to you tomorrow.", pl:"Napiszę do ciebie jutro.", ro:"Îți voi scrie mâine. / O să-ți scriu mâine.",
+    note:"After if, when, before, as soon as use the present simple: When I finish, I'll call you.",
+    l1:{pl:"Po if / when nie ma will, choć po polsku mówisz „jeśli będzie padać”: if it rains.",ro:"După if / when nu folosești will, deși în română spui „dacă va ploua”: if it rains."} },
+  { k:"future|continuous", f:"will be + {ing}", ex:"This time tomorrow I<mark>'ll be writing</mark> my exam.", pl:"Jutro o tej porze będę pisać egzamin.", ro:"Mâine la ora asta voi scrie la examen.",
+    note:"In progress at a moment in the future. Stative verbs: I'll know, not I'll be knowing." },
+  { k:"future|perfect", f:"will have + {3}", ex:"I<mark>'ll have written</mark> it by Friday.", pl:"Napiszę to do piątku.", ro:"Îl voi fi scris până vineri.",
+    note:"Usually with by: by Friday, by the time you come." },
+  { k:"future|perfect continuous", f:"will have been + {ing}", ex:"By June I<mark>'ll have been writing</mark> for a year.", pl:"W czerwcu minie rok, odkąd piszę.", ro:"În iunie se va face un an de când scriu.",
+    note:"How long, up to a moment in the future." }
+];
+const TT_EXTRA = {
+  cond:[
+    { t:"Present conditional", lv:1, f:"would + {1}", ex:"I <mark>would write</mark> more if I had time.", pl:"Pisałbym więcej, gdybym miał czas.", ro:"Aș scrie mai mult dacă aș avea timp.",
+      sig:["if + past simple","could","might","should"], note:"If + past simple, would + V1. Never would in the if part.",
+      l1:{pl:"Tryb przypuszczający: napisałbym = I would write. Gdybym miał = if I had (bez would).",ro:"Condiționalul: aș scrie = I would write. Dacă aș avea = if I had (fără would)."} },
+    { t:"Perfect conditional", lv:3, f:"would have + {3}", ex:"I <mark>would have written</mark> if I'd known.", pl:"Napisałbym, gdybym wiedział.", ro:"Aș fi scris dacă aș fi știut.",
+      sig:["if + had + V3","could have","might have","should have"], note:"If + had + V3, would have + V3. It's about a past that didn't happen." }
+  ],
+  imp:{ t:"Imperative", f:"{1}! · Don't + {1}! · Let's + {1}!", ex:"<mark>Write</mark> it down! <mark>Let's write</mark> together!", pl:"Zapisz to! Napiszmy razem!", ro:"Scrie asta! Hai să scriem împreună!",
+    sig:["please","don't","let's"], note:"No subject: Write!, not You write! Negative: Don't write." }
+};
+const STATIVE = ["be","have (own)","know","like","love","hate","want","need","understand","believe","seem","prefer","remember","forget","belong","own","mean","agree"];
+const TT_TIMES = [["present","Present","now"],["past","Past","then"],["future","Future","later"]];
+function ttCard(o, opts={}){
+  const lg = typeof helpLang==="function" ? helpLang() : "";
+  const T = o.k ? TINFO[o.k] : null; const [time,asp] = o.k ? o.k.split("|") : [null,null];
+  const lock = o.k ? !okTense(o.k) : (o.lv>lvl());
+  const lvTag = lock ? `<em class="from">${LV[o.k?tenseLv(o.k):o.lv]}</em>` : "";
+  const sig = (T?T.sig:o.sig)||[];
+  return `<article class="ttcard${lock?" locked":""}" ${o.k?`data-tk="${o.k}"`:""}>
+    ${o.stamp?`<span class="ttstamp" aria-hidden="true">${o.stamp}</span>`:""}
+    <header><h3>${esc(T?T.name:o.t)}</h3>${lvTag}</header>
+    <p class="ttform">${ttForm(o.f)}</p>
+    <p class="ttex">${o.ex}</p>
+    ${lg && o[lg] ? `<p class="ttl1" lang="${lg}"><span class="l1flag">${lg.toUpperCase()}</span>${esc(o[lg])}</p>` : ""}
+    ${o.k?`<div class="tttl">${timeline(time,asp)}</div>`:""}
+    <div class="ttsig">${sig.map(x=>`<span>${esc(x)}</span>`).join("")}</div>
+    <p class="ttnote"><b aria-hidden="true">!</b>${esc(o.note)}</p>
+    ${lg && o.l1 && o.l1[lg] ? `<p class="ttl1n" lang="${lg}">${esc(o.l1[lg])}</p>` : ""}
+    ${o.k?`<button class="linkbtn" type="button" data-explore="${o.k}">Explore with the Sentence machine →</button>`:""}
+  </article>`;
+}
+function roomTable(){
+  $("#room").innerHTML=`<div id="ttable">
+    <div class="ttintro panel">
+      <div><h3 style="margin:0 0 4px">Every tense on one page</h3>
+        <p style="margin:0;color:var(--muted)">Each colour is a time. Each card shows the recipe, an example with <em>write</em>, signal words and one thing to watch out for. Tenses above your level are faded.</p></div>
+      <div class="ttlegend" aria-label="Verb forms">
+        <span>${ttTok["1"]} <small>V1 · base</small></span><span>${ttTok["2"]} <small>V2 · past</small></span><span>${ttTok["3"]} <small>V3 · participle</small></span><span>${ttTok["ing"]} <small>V1 + ing</small></span>
+      </div>
+      <div class="row" style="margin:0"><button class="btn ghost" type="button" id="ttPrint">${ico("archive")} Print the table</button></div>
+    </div>
+    ${TT_TIMES.map(([t,label,sub])=>`<section class="ttblock tt-${t}" aria-label="${label}">
+      <h2 class="ttband"><span>${label}</span><small>${sub}</small></h2>
+      <div class="ttgrid">${TT.filter(o=>o.k.startsWith(t+"|")).map(o=>ttCard(o)).join("")}</div></section>`).join("")}
+    <section class="ttblock tt-cond" aria-label="Conditional"><h2 class="ttband"><span>Conditional</span><small>would</small></h2>
+      <div class="ttgrid">${TT_EXTRA.cond.map(o=>ttCard(o)).join("")}</div></section>
+    <div class="ttgrid two">
+      <section class="ttblock tt-imp" aria-label="Imperative"><h2 class="ttband"><span>Imperative</span><small>do it!</small></h2>${ttCard(TT_EXTRA.imp)}</section>
+      <section class="ttblock tt-stat" aria-label="Stative verbs"><h2 class="ttband"><span>Stative verbs</span><small>no -ing</small></h2>
+        <article class="ttcard"><p style="margin:0 0 10px">These verbs describe states, not actions, so they don't usually take -ing in continuous tenses.</p>
+        <div class="ttsig big">${STATIVE.map(v=>`<span>${esc(v)}</span>`).join("")}</div>
+        <p class="ttnote"><b aria-hidden="true">!</b>I know the answer, not I'm knowing. I've known her for years, not I've been knowing.</p></article></section>
+    </div></div>`;
+  $("#ttPrint").onclick=()=>{ try{ window.print(); }catch(e){} };
+  $$("[data-explore]").forEach(b=>b.onclick=()=>{ const [t,a]=b.dataset.explore.split("|"); mac={...mac,time:t,asp:a}; lab.room="machine"; lab.troom="machine"; saveLab(); viewLab(); });
+  if(!lab.seen.table){ lab.seen.table=1; saveLab(); }
 }
 
 /* Room 1: Tense map */
