@@ -998,7 +998,7 @@ h1{letter-spacing:0}
 /* ---------- New home: psotnyjez.com ----------
    Progress lives in each browser, per web address. A "moving code" (PM1.…) carries it from the old address to the new one. */
 const NEW_HOME = "https://psotnyjez.com/";
-const MOVE_LIVE = false; /* switch to true once psotnyjez.com is live: shows the "move my progress" bar on old addresses */
+const MOVE_LIVE = true;  /* switch to true once psotnyjez.com is live: shows the "move my progress" bar on old addresses */
 const ON_NEW = /(^|\.)psotnyjez\.com$/.test(location.hostname);
 const MOVE_KEY = k => /^(vocab5-|psotek-|ee-)/.test(k);
 if(location.hostname==="www.psotnyjez.com") location.replace("https://psotnyjez.com"+location.pathname+location.search+location.hash);
