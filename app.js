@@ -1,4 +1,4 @@
-window.EXTRA_SRC="extra.js?v=1d95bc6402";
+window.EXTRA_SRC="extra.js?v=dd0969dfae";
 
 /* SITE_MODE is true only in the GitHub Pages copy: there, YouTube videos can play inside the page. */
 const SITE_MODE = true;
@@ -1620,28 +1620,60 @@ function pickWeakest(){
   return tried[0] && acc(tried[0].id)<85 ? tried[0] : WORDS.slice().sort((a,b)=>box(a.id)-box(b.id))[0];
 }
 const leastUsed = () => WORDS.slice().sort((a,b)=>state.uses[a.id]-state.uses[b.id] || box(a.id)-box(b.id))[0];
+/* Today's plan: three steps. "Start" runs them one after another, and each step's end screen hands over to the next. */
+function planSteps(){
+  const oldN = oldDue().length; const due = [...WORDS.filter(w=>isDue(w.id)), ...oldDue().map(id=>W[id])]; const weak = pickWeakest(); const useW = leastUsed(); const nd = nextDue();
+  return [
+    {k:"r", t:"Review your word cards", d: due.length ? `${due.length} ${due.length===1?"word is":"words are"} ready to review${oldN?`, including ${oldN} from previous months`:""}. Quick recall is the best way to remember.` : `All caught up.${nd?` Next review ${new Date(nd).toLocaleDateString("en-GB",{weekday:"long"})}.`:""}`, b: due.length?"Start review":"Review anyway", go:"flash"},
+    {k:"p", t:`Practise “${weak.word}”`, d:"A short mixed round: meaning, partners, listening and forms.", b:"Start round", fn:()=>startRound("word", weak.id, "p")},
+    {k:"u", t:`Use “${useW.word}” in your own words`, d:`Answer one real question with the word. You've used it ${state.uses[useW.id]} of ${USE_GOAL} times.`, b:"Write an answer", fn:()=>{ state.cur=useW.id; askState=null; askFocus=useW.id; askPlan=true; go("use:ask"); }}
+  ]; }
+let planRun=false;
+function runStep(s){ if(s.fn) s.fn(); else { flash=null; flashPlan=true; go(s.go); } }
+function runNextStep(){ const st=planSteps(), i=st.findIndex(s=>!isPlanDone(s.k)); if(i<0){ planRun=false; go("today"); return; } planRun=true; runStep(st[i]); }
+/* the card at the end of a step: what's next, or "all done" */
+function planNextHTML(){ if(!planRun) return "";
+  const st=planSteps(), i=st.findIndex(s=>!isPlanDone(s.k));
+  if(i<0){ planRun=false; return `<div class="plannext done">${psoOn()?`<div class="pnpso" aria-hidden="true">${psotek("champ")}</div>`:""}<div><p class="eyebrow">Today's plan</p><h2>All three steps done. Brawo!</h2><p>That's your ten minutes. Anything else today is a bonus.</p></div><button class="btn" type="button" data-go="today">Back to Today</button></div>`; }
+  return `<div class="plannext"><div><p class="eyebrow">Today's plan · step ${i+1} of 3</p><h2>Next: ${esc(st[i].t)}</h2></div><button class="btn" type="button" data-plannext="1">Go to step ${i+1} →</button></div>`; }
+document.addEventListener("click",e=>{ if(e.target.closest("[data-plannext]")) runNextStep(); });
+/* this week's goals: a few practice days, your level's video and the reading */
+function weekGoals(){
+  const mon=new Date(); mon.setHours(0,0,0,0); mon.setDate(mon.getDate()-((mon.getDay()+6)%7));
+  let days=0; for(let d=new Date(mon); d<=new Date(); d.setDate(d.getDate()+1)) if(state.days[dayKey(d)]) days++;
+  const g=[{t:"Practise on 4 days", n:Math.min(days,4), of:4, b:"", go:""}];
+  if(typeof vidS!=="undefined" && typeof VIDEO!=="undefined" && VIDEO.questions){ const w=vidS.weeks[vidKey()]||{mc:{}}; const tot=VIDEO.questions.length;
+    g.push({t:`Watch your video${VIDEOS?` (${LV[curVidLv()]})`:""} and answer the questions`, n:Math.min(tot,Object.keys(w.mc||{}).length), of:tot, b:"Watch", tab:"watch"}); }
+  if(typeof rds!=="undefined" && typeof READING!=="undefined" && READING.tfng){ const r=rds[READING.week]||{tf:{},mc:{}}; const tot=READING.tfng.length+(READING.mc||[]).length;
+    g.push({t:"Read the Reading of the week", n:Math.min(tot,Object.keys(r.tf||{}).length+Object.keys(r.mc||{}).length), of:tot, b:"Read", tab:"read"}); }
+  return g; }
+function weekGoalsHTML(){ const g=weekGoals(); const done=g.filter(x=>x.n>=x.of).length;
+  return `<section class="weekgoals" aria-labelledby="wgH"><h2 id="wgH" class="mini">This week <span class="dim">· ${done} of ${g.length} done</span></h2><ul>
+    ${g.map(x=>{ const ok=x.n>=x.of; return `<li class="${ok?"ok":""}"><span class="wgtick" aria-hidden="true">${ok?"✓":""}</span><span class="wgt">${esc(x.t)}${ok?' <span class="sr">done</span>':""}</span><span class="wgn">${x.n}/${x.of}</span>${x.tab&&!ok?`<button class="btn ghost sm" type="button" data-wg="${x.tab}">${x.b}</button>`:"<span></span>"}</li>`; }).join("")}
+  </ul></section>`; }
+document.addEventListener("click",e=>{ const b=e.target.closest("[data-wg]"); if(!b) return; vidTab=b.dataset.wg; try{ localStorage.setItem("vocab5-vidtab",vidTab); }catch(err){} go("video"); });
 function viewToday(){
+  planRun=false;
   const oldN = oldDue().length; const due = [...WORDS.filter(w=>isDue(w.id)), ...oldDue().map(id=>W[id])]; const weak = pickWeakest(); const useW = leastUsed();
   shownDay = dayNum(); const newOnes = (VSET.archived ? NEW_IDS : todayIds()).filter(id=>W[id] && state.stats[id] && state.stats[id].a===0 && !state.known[id] && WORDS.some(w=>w.id===id));
   const st = streak(); const wkx = act.weeks[isoWeek(new Date())] || {sec:0,ans:0};
   const dateTxt = new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
   const nd = nextDue();
-  const steps = [
-    {k:"r", t:"Review your word cards", d: due.length ? `${due.length} ${due.length===1?"word is":"words are"} ready to review${oldN?`, including ${oldN} from previous months`:""}. Quick recall is the best way to remember.` : `All caught up.${nd?` Next review ${new Date(nd).toLocaleDateString("en-GB",{weekday:"long"})}.`:""}`, b: due.length?"Start review":"Review anyway", go:"flash"},
-    {k:"p", t:`Practise “${weak.word}”`, d:"A short mixed round: meaning, partners, listening and forms.", b:"Start round", fn:()=>startRound("word", weak.id, "p")},
-    {k:"u", t:`Use “${useW.word}” in your own words`, d:`Answer one real question with the word. You've used it ${state.uses[useW.id]} of ${USE_GOAL} times.`, b:"Write an answer", fn:()=>{ state.cur=useW.id; askState=null; askFocus=useW.id; askPlan=true; go("use:ask"); }}
-  ];
+  const steps = planSteps();
   const doneN = steps.filter(s=>isPlanDone(s.k)).length;
+  const nextI = steps.findIndex(s=>!isPlanDone(s.k));
   const hr=new Date().getHours(), tod = hr>=5&&hr<11?"morning":hr<17&&hr>=11?"day":hr>=17&&hr<21?"evening":"night";
   const greet = {morning:"Good morning",day:"Good afternoon",evening:"Good evening",night:"Hello, night owl"}[tod];
   const hadDays = Object.keys(state.days).length>0;
   const [pm,pl] = doneN===3 ? ["champ","Mistrz dnia! All done."] : st>=3 ? ["happy",`${st} days in a row. Not bad… for a human.`] : (hadDays && st===0) ? ["cheeky","Missed me? Let's go."] : tod==="night" ? ["cheeky","Up late? Ten minutes, then bed."] : ["cheeky","Ten minutes. I'm timing you."];
-  $("#view").innerHTML = `${startCardHTML()}
+  const sc = startCardHTML(), first = !!sc;   /* first visit: the welcome steps are the plan, so the daily plan waits */
+  $("#view").innerHTML = `${sc}
   <section class="todayhero" data-tod="${tod}">${heroArt(tod)}<div class="herobody">
   <header class="pagehead">
     <p class="eyebrow">${esc(dateTxt)}</p>
     <h1>${act.nick?`${greet}, ${esc(act.nick)}`:greet}</h1>
-    <p class="lede">${doneN===3?"You've finished today's plan. Anything extra is a bonus.":"Your plan for today takes about ten minutes. Do the steps in order."}</p>
+    <p class="lede">${first?"Finish the welcome steps above. Tomorrow your daily ten-minute plan starts here.":doneN===3?"You've finished today's plan. Anything extra is a bonus.":"Your plan for today takes about ten minutes. Press start and Psotek takes you through the three steps."}</p>
+    ${doneN<3&&!first?`<button class="btn big" type="button" id="planGo">${doneN===0?"Start today's 10 minutes":`Continue: step ${nextI+1} of 3`} →</button>`:""}
   </header>
   <div class="chips-row">
     <span class="pill"><b>${st}</b> ${st===1?"day":"days"} in a row</span>
@@ -1650,20 +1682,22 @@ function viewToday(){
     <span class="pill"><b>${LV[state.vlv]}</b> words · <button class="linkbtn" type="button" data-go="words">change level</button></span>
     <button class="pill bgpill" type="button" data-go="badges"><b>${typeof bgEarned==="function"?bgEarned():0}</b> badges</button>
   </div></div>${psoOn()?`<div class="herpso" aria-hidden="true"><p class="psobub">${esc(pl)}</p>${psotek(pm)}</div>`:""}</section>
-  ${newOnes.length?`<section class="newbanner">
-    <div><p class="tag">New words</p><h2>${newOnes.length} new ${newOnes.length===1?"word":"words"}: ${esc(listJoin(newOnes.map(id=>W[id].word)))}</h2>
-    <p>Fresh ${LV[state.vlv]} words for ${esc(batchLabel(curBatch()))}. ${(()=>{ const d=new Date(curBatch().end); d.setDate(d.getDate()+1); return "The next ones arrive on "+d.toLocaleDateString("en-GB",{weekday:"long"})+"."; })()}</p></div>
-    <button class="btn" type="button" data-go="word" data-w="${newOnes[0]}">Meet the new words</button>
-  </section>`:""}
-  <ol class="plan" aria-label="Today's plan">
+  ${first?"":`<ol class="plan" aria-label="Today's plan">
     ${steps.map((s,i)=>`<li class="step ${isPlanDone(s.k)?"done":""}">
       <span class="num" aria-hidden="true">${isPlanDone(s.k)?"✓":i+1}</span>
       <div><h2>${esc(s.t)}${isPlanDone(s.k)?' <span class="sr">done</span>':""}</h2><p>${esc(s.d)}</p></div>
       <button class="btn ${isPlanDone(s.k)?"ghost":""}" type="button" data-step="${i}">${isPlanDone(s.k)?"Do it again":s.b}</button>
     </li>`).join("")}
-  </ol>
+  </ol>`}
+  ${newOnes.length&&!first?`<section class="newbanner">
+    <div><p class="tag">New words</p><h2>${newOnes.length} new ${newOnes.length===1?"word":"words"}: ${esc(listJoin(newOnes.map(id=>W[id].word)))}</h2>
+    <p>Fresh ${LV[state.vlv]} words for ${esc(batchLabel(curBatch()))}. ${(()=>{ const d=new Date(curBatch().end); d.setDate(d.getDate()+1); return "The next ones arrive on "+d.toLocaleDateString("en-GB",{weekday:"long"})+"."; })()}</p></div>
+    <button class="btn" type="button" data-go="word" data-w="${newOnes[0]}">Meet the new words</button>
+  </section>`:""}
+  ${first?"":weekGoalsHTML()}
 `;
-  $$("[data-step]").forEach(b=>b.onclick=()=>{ const s=steps[+b.dataset.step]; if(s.fn) s.fn(); else { flash=null; flashPlan=true; go(s.go); } });
+  $$("[data-step]").forEach(b=>b.onclick=()=>{ planRun=true; runStep(steps[+b.dataset.step]); });
+  const pg=$("#planGo"); if(pg) pg.onclick=runNextStep;
 }
 
 /* ---------- Words ---------- */
@@ -1881,9 +1915,11 @@ function answerTyped(){
 function roundEnd(){ if(typeof startMark==="function") startMark("round");
   const m=round.missed; const n=round.items.length; const words=[...new Set(m.map(q=>W[q.w].word))];
   if(round.planStep) planDone(round.planStep);
+  const pn = round.planStep ? planNextHTML() : "";
   $("#view").innerHTML = `
   ${backBtn("practise","Practise")}
   <header class="pagehead tight"><h1>Round finished</h1></header>
+  ${pn}
   <div class="panel endpanel">
     ${bgPerfect(round, n>0&&round.score===n)}${psoOn()?psoEnd(n?round.score/n*100:0):""}
     <p class="score">${round.score} <span>/ ${n}</span></p>
@@ -1955,15 +1991,16 @@ function viewFlash(){
   }
 }
 function flashEnd(){
-  const nd=nextDue(); const f=flash; flash=null; planDone("r");
+  const nd=nextDue(); const f=flash; flash=null; planDone("r"); const pn=planNextHTML();
   $("#view").innerHTML = `
   ${backBtn("practise","Practise")}
   <header class="pagehead tight"><h1>Cards done</h1></header>
+  ${pn}
   <div class="panel endpanel">
     ${bgPerfect(f, f.total>0&&f.right===f.total)}${psoOn()?psoEnd(f.total?f.right/f.total*100:100):""}
     <p class="score">${f.right} <span>/ ${f.total}</span></p>
     <p class="lede">${nd?`Your next card is due ${new Date(nd).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}. Words you remember come back less often.`:"Come back tomorrow for your next review."}</p>
-    <div class="row"><button class="btn" type="button" data-go="today">Back to today</button><button class="btn ghost" type="button" id="toMix">Do a mixed review</button></div>
+    <div class="row"><button class="btn${pn?" ghost":""}" type="button" data-go="today">Back to today</button><button class="btn ghost" type="button" id="toMix">Do a mixed review</button></div>
   </div>`;
   $("#toMix").onclick=()=>startRound("mixed");
   burst($(".score"),10);
@@ -2068,7 +2105,7 @@ function viewProgress(){
     </div>
     <div class="weeks" role="img" aria-label="Minutes practised in the last four weeks: ${last4.map(o=>Math.round(o.x.sec/60)).join(", ")}">${last4.map((o,i)=>`<div><span>${Math.round(o.x.sec/60)}</span><i style="height:${Math.max(3,o.x.sec/maxSec*60)}px"></i><span>${i===3?"This week":o.k.slice(-3)}</span></div>`).join("")}</div>
   </div>
-  ${typeof AUTH!=="undefined" && AUTH && me ? `<div class="panel"><h2 class="h3">Your teacher sees your progress</h2><p style="margin:0;max-width:62ch">You're signed in as <b>${esc(me.email)}</b>, so your progress, words, video answers and writing are saved to your account and your teacher sees them automatically. No code needed.</p></div>` : ""}
+  ${typeof AUTH!=="undefined" && AUTH && me ? `<div class="panel"><h2 class="h3">Your teacher sees your progress</h2><p style="margin:0;max-width:62ch">You're signed in as <b>${esc(me.email||me.nick)}</b>, so your progress, words, video answers and writing are saved to your account and your teacher sees them automatically. No code needed.</p></div>` : ""}
   <div class="panel" ${typeof AUTH!=="undefined" && AUTH && me ? "hidden" : ""}>
     <h2 class="h3">Send your progress to your teacher</h2>
     <p style="margin:0 0 12px;max-width:62ch">Make a code, copy it, and send it to your teacher by message or email. A new code always includes everything so far, including your video answers and writing, so you can send one every week.</p>
@@ -3882,7 +3919,21 @@ async function showSignIn(){
     <p>Use your Google account. Your progress is saved to your account, so it follows you to any phone or computer, and your teacher can see how you're doing.</p>
     <div id="gBtn" class="gbtn" aria-live="polite"><p class="hintline">Loading Google sign-in…</p></div>
     <p class="err" id="signErr" hidden></p>
-    <p class="hintline" style="margin:12px 0 0">We only get your name and email from Google. Read the <a href="/privacy" target="_blank" rel="noopener">privacy notice</a> · <a href="/privacy#pl" target="_blank" rel="noopener" lang="pl">Prywatność</a> · <a href="/privacy#ro" target="_blank" rel="noopener" lang="ro">Confidențialitate</a>.</p>`;
+    <details class="keybox" id="keyBox"><summary>No Google account? Use your personal key</summary>
+      <p class="hintline" style="margin:8px 0">Your teacher can give you a personal key. It looks like <b>PSO-ABCDE-12345</b>. Keep it private: it opens your account.</p>
+      <div class="inrow"><label class="sr" for="keyIn">Your personal key</label><input class="tin" id="keyIn" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="PSO-XXXXX-XXXXX" maxlength="24"><button class="btn" type="button" id="keyGo">Sign in</button></div>
+      <p class="err" id="keyErr" hidden></p></details>
+    <p class="hintline" style="margin:12px 0 0">With Google we only get your name and email; with a personal key, only the name your teacher typed. Read the <a href="/privacy" target="_blank" rel="noopener">privacy notice</a> · <a href="/privacy#pl" target="_blank" rel="noopener" lang="pl">Prywatność</a> · <a href="/privacy#ro" target="_blank" rel="noopener" lang="ro">Confidențialitate</a>.</p>`;
+  const ki=$("#keyIn"), kgo=$("#keyGo"), kerr=$("#keyErr");
+  const keyLogin=async()=>{ const v=ki.value.trim(); if(v.replace(/[^a-z0-9]/gi,"").length<10){ kerr.textContent="Type the whole key, for example PSO-ABCDE-12345."; kerr.hidden=false; ki.focus(); return; }
+    kerr.hidden=true; kgo.disabled=true;
+    try{ const r=await apiFetch("/api/key-login",{method:"POST",body:JSON.stringify({key:v})});
+      if(r.status===429){ kerr.textContent="Too many wrong keys. Wait 15 minutes and try again."; kerr.hidden=false; return; }
+      if(!r.ok){ kerr.textContent="That key didn't work. Check it with your teacher."; kerr.hidden=false; return; }
+      await finishLogin(r); }
+    catch(e){ kerr.textContent="Couldn't sign in. Check your internet connection."; kerr.hidden=false; }
+    finally{ kgo.disabled=false; } };
+  kgo.onclick=keyLogin; ki.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); keyLogin(); } });
   try{ const [cfg]=await Promise.all([apiFetch("/api/config").then(r=>r.json()), loadGis()]);
     if(!cfg.clientId){ $("#gBtn").innerHTML=`<p class="hintline">Sign-in isn't switched on yet. Try again later.</p>`; return; }
     google.accounts.id.initialize({client_id:cfg.clientId, callback:onGoogle, ux_mode:"popup", auto_select:false, use_fedcm_for_prompt:true});
@@ -3891,6 +3942,10 @@ async function showSignIn(){
 async function onGoogle(resp){ const err=$("#signErr"); err.hidden=true;
   try{ const r=await apiFetch("/api/login",{method:"POST",body:JSON.stringify({credential:resp.credential})});
     if(!r.ok) throw new Error("login");
+    await finishLogin(r);
+  }catch(e){ err.textContent="Sign-in didn't work. Please try again."; err.hidden=false; } }
+/* after Google or a personal key: bring this device's progress and the account's together, save, reload */
+async function finishLogin(r){
     const {user,progress}=await r.json(); me=user;
     const local=localSnapshot(), merged=mergeSnapshots(local,progress||{});
     writeSnapshot(merged);
@@ -3901,10 +3956,9 @@ async function onGoogle(resp){ const err=$("#signErr"); err.hidden=true;
     /* save the merged copy before reloading, so the account has everything from this device */
     const items=localSnapshot(); const pr=await apiFetch("/api/progress",{method:"PUT",body:JSON.stringify({items,nick:a.nick})});
     if(pr.ok){ const j=await pr.json(); const h={}; Object.entries(items).forEach(([k,v])=>h[k]=hashStr(v)); setHashes(h); localStorage.setItem(SYNC_REV,String(j.rev)); }
-    location.reload();
-  }catch(e){ err.textContent="Sign-in didn't work. Please try again."; err.hidden=false; } }
+    location.reload(); }
 function accountHTML(){ return `<h2 class="mini">Your account</h2>
-    <p class="whoami" style="margin:0 0 8px">Signed in as <b>${esc(me.email)}</b>. Your progress saves automatically.</p>
+    <p class="whoami" style="margin:0 0 8px">Signed in as <b>${esc(me.email||me.nick)}</b>${me.viaKey?" with your personal key":""}. Your progress saves automatically.${me.viaKey?" Keep your key safe: you need it to sign in on another device or after signing out. If you lose it, ask your teacher for a new one.":""}</p>
     ${me.role==="teacher"?`<p style="margin:0 0 8px"><a class="btn" href="/teacher" target="_blank" rel="noopener">Open the teacher dashboard</a></p>`:""}
     <div class="row" style="margin:0 0 8px;flex-wrap:wrap"><button class="btn ghost" type="button" id="aOut">Sign out</button><a class="btn ghost" href="/api/export" download>Download my data</a><button class="btn ghost" type="button" id="aDel">Delete my account</button></div>
     <div id="aDelBox" hidden class="panel" style="margin:0 0 10px;padding:12px"><p style="margin:0 0 8px"><b>Delete your account?</b> Your saved progress, words, video work and messages are removed from Psotek for good. This can't be undone.</p>
@@ -3915,7 +3969,7 @@ function accountHTML(){ return `<h2 class="mini">Your account</h2>
     <div class="row" style="margin:6px 0 0"><button class="btn ghost" type="button" id="aSend">Send</button><span class="hintline" id="aSent" aria-live="polite" style="margin:0"></span></div>
     <p class="hintline" style="margin:6px 0 0"><a href="/privacy" target="_blank" rel="noopener">Privacy notice</a></p>`; }
 function wireAccount(){ if(!$("#aOut")) return;
-  $("#aOut").onclick=async()=>{ await pushNow(false); try{ await apiFetch("/api/logout",{method:"POST",body:"{}"}); }catch(e){} try{ google.accounts.id.disableAutoSelect(); }catch(e){} location.reload(); };
+  $("#aOut").onclick=async()=>{ await pushNow(false); try{ await apiFetch("/api/logout",{method:"POST",body:"{}"}); }catch(e){} try{ if(window.google) google.accounts.id.disableAutoSelect(); }catch(e){} location.reload(); };
   $("#aDel").onclick=()=>{ $("#aDelBox").hidden=false; $("#aDelNo").focus(); };
   $("#aDelNo").onclick=()=>{ $("#aDelBox").hidden=true; };
   $("#aDelYes").onclick=async()=>{ const b=$("#aDelYes"); b.disabled=true; try{ const r=await apiFetch("/api/account",{method:"DELETE"}); if(!r.ok) throw 0;

@@ -419,7 +419,7 @@ function viewAsk(){
     <div class="ai" id="aOut" hidden></div>
     ${it.q===w.prompt?`<button class="linkbtn" type="button" id="aModel">See an example answer</button><p class="model" id="aModelT" hidden>${esc(w.model)}</p>`:""}
   </div>`;
-  $("#aChk").onclick=()=>{ if(checkUse($("#aIn").value, w, null, $("#aChecks")) && askPlan){ planDone("u"); askPlan=false; } };
+  $("#aChk").onclick=()=>{ if(checkUse($("#aIn").value, w, null, $("#aChecks")) && askPlan){ planDone("u"); askPlan=false; const pn=planNextHTML(); if(pn){ $("#aChecks").insertAdjacentHTML("afterend",`<div id="aPlan">${pn}</div>`); $("#aPlan").scrollIntoView({behavior:"smooth",block:"nearest"}); if(!planSteps().some(s=>!isPlanDone(s.k))) burst($("#aPlan"),12); } } };
   $("#aAI").onclick=()=>{ const v=$("#aIn").value.trim(); if(!v){ $("#aIn").focus(); return; } checkUse(v,w,null,$("#aChecks")); aiFeedback(w.word, v, null, $("#aOut"), $("#aAI")); };
   $("#aNext").onclick=()=>{ askState.i++; viewAsk(); };
   const m=$("#aModel"); if(m) m.onclick=()=>{ $("#aModelT").hidden=!$("#aModelT").hidden; };

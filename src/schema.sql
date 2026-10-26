@@ -38,3 +38,11 @@ CREATE TABLE IF NOT EXISTS messages (
   done INTEGER NOT NULL DEFAULT 0
 );
 CREATE INDEX IF NOT EXISTS messages_user ON messages(user_id);
+-- personal keys for students without Google (added Oct 2026). Only a hash of the key is stored.
+ALTER TABLE users ADD COLUMN key_hash TEXT;
+CREATE UNIQUE INDEX IF NOT EXISTS users_key ON users(key_hash);
+CREATE TABLE IF NOT EXISTS key_fails (
+  ip_hash TEXT NOT NULL,        -- hash of the address that typed a wrong key (to slow down guessing)
+  at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS key_fails_ip ON key_fails(ip_hash, at);

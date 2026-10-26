@@ -93,6 +93,10 @@ tr.row[aria-expanded="true"]{background:var(--moss-soft)}
 .msgs li.done{opacity:.7}
 .notice{background:var(--err-soft);color:var(--ink);border-radius:12px;padding:12px 16px;margin-bottom:18px}
 @media (max-width:640px){ .addgrid{grid-template-columns:1fr} }
+.keyshow{font-family:var(--mono);font-size:1.35rem;font-weight:700;letter-spacing:.08em;background:var(--surface);color:var(--ink);border:2px dashed var(--moss);border-radius:10px;padding:8px 14px;display:inline-block;margin:6px 0;user-select:all}
+.addrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.addrow input{font:inherit;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-width:220px}
+.keynote{background:var(--moss-soft);color:var(--ink);border-radius:12px;padding:12px 16px;margin-top:12px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 
@@ -101,7 +105,7 @@ tr.row[aria-expanded="true"]{background:var(--moss-soft)}
     <div>
       <p class="eyebrow">Psotek English</p>
       <h1>Teacher dashboard</h1>
-      <p class="sub">Every student who signs in to psotnyjez.com appears here automatically, with their practice, words, video answers and writing. Only you can open this page.</p>
+      <p class="sub">Every student who signs in to psotnyjez.com (with Google or a personal key) appears here automatically, with their practice, words, video answers and writing. Only you can open this page.</p>
     </div>
   </header>
 
@@ -111,6 +115,13 @@ tr.row[aria-expanded="true"]{background:var(--moss-soft)}
     <h2 id="msgH">Messages from students</h2>
     <p class="hint" style="margin-top:0">Questions and privacy requests sent with “Contact your teacher”. Reply by email if needed.</p>
     <ul class="msgs" id="msgs"></ul>
+  </section>
+
+  <section class="panel" aria-labelledby="addH">
+    <h2 id="addH">Add a student without Google</h2>
+    <p class="hint" style="margin-top:0">For a student who has no Google account. Type the name you want to see here, then give them the personal key. They type it once on each phone or computer (“No Google account? Use your personal key” on the sign-in screen). Only a scrambled copy of the key is stored, so if they lose it, make a new one from their row below.</p>
+    <div class="addrow"><label for="addName" class="ctl-label" style="margin:0">Name</label><input id="addName" maxlength="24" autocomplete="off" placeholder="e.g. Kasia W."><button class="btn" type="button" id="addGo">Create a key</button></div>
+    <div id="keyOut" aria-live="polite"></div>
   </section>
 
   <div class="controls">
@@ -206,7 +217,7 @@ function render(){
 
   if(!loaded){ $("#board").innerHTML=`<div class="tablewrap"><div class="empty">Loading the class…</div></div>`; return; }
   if(!students.length){ $("#board").innerHTML=`<div class="tablewrap"><div class="empty"><h2>No students yet</h2>
-    <p style="margin:0 auto;max-width:48ch">Students appear here as soon as they sign in to psotnyjez.com with Google.</p></div></div>`; return; }
+    <p style="margin:0 auto;max-width:48ch">Students appear here as soon as they sign in to psotnyjez.com with Google, or when you create a personal key above.</p></div></div>`; return; }
 
   const sortLabel={min:"Minutes",ans:"Answers",acc:"Accuracy",xp:"Lab XP"};
   $("#board").innerHTML=`<div class="tablewrap"><table>
@@ -216,7 +227,7 @@ function render(){
     <tbody>${rows.map((r,i)=>{ const s=r.s, id=s._id; const mx=Math.max(1,...spark.map(k=>s.weeks?.[k]?.sec||0));
       const main=`<tr class="row" data-id="${esc(id)}" aria-expanded="${open===id}" tabindex="0">
         <td><span class="rank ${i===0&&r.t[sortBy]>0?"first":i<3&&r.t[sortBy]>0?"top":""}">${i+1}</span></td>
-        <td><span class="nick">${esc(s.nick)}</span>${Object.keys(s.video||{}).length?`<span class="lvl vid" title="Has sent video work">video</span>`:""}${s.lv!=null?`<span class="lvl" title="Tense lab level">${LV[s.lv]||""}</span>`:""}${s.edited?`<span class="flag" title="A code from this student didn't pass the check">check</span>`:""}</td>
+        <td><span class="nick">${esc(s.nick)}</span>${s.viaKey?`<span class="lvl" title="Signs in with a personal key">key</span>`:""}${Object.keys(s.video||{}).length?`<span class="lvl vid" title="Has sent video work">video</span>`:""}${s.lv!=null?`<span class="lvl" title="Tense lab level">${LV[s.lv]||""}</span>`:""}${s.edited?`<span class="flag" title="A code from this student didn't pass the check">check</span>`:""}</td>
         <td class="num">${r.t.min}</td><td class="num">${r.t.ans}</td>
         <td class="num">${r.t.acc==null?'<span class="dim">–</span>':r.t.acc+"%"}</td><td class="num">${r.t.xp}</td>
         <td><div class="spark" aria-label="Minutes per week, last 8 weeks">${spark.map(k=>{ const v=s.weeks?.[k]?.sec||0; return `<i class="${v?"":"zero"}" style="height:${Math.max(8,v/mx*100)}%" title="${esc(weekLabel(k))}: ${Math.round(v/60)} min"></i>`; }).join("")}</div></td>
@@ -231,7 +242,8 @@ function render(){
           <span>Words marked as known: ${s.known||0}</span>
           <span>Words practised: ${(s.words||[]).length}${s.vl!=null?` · word level ${LV[s.vl]}`:""}</span>
           <span>Tense lab: ${s.xp||0} XP, practising at ${LV[s.lv]||"–"}</span>
-          <span>Email: ${esc(s.email||"–")}</span>
+          <span>${s.viaKey?"Signs in with a personal key":"Email: "+esc(s.email||"–")}</span>
+          ${s.viaKey?`<span><button class="btn ghost" type="button" data-rekey="${esc(id)}" data-nick="${esc(s.nick)}">Make a new key</button> <span class="dim">(if the student lost theirs)</span></span>`:""}
           <span>Account created: ${s.firstAdded?new Date(s.firstAdded).toLocaleDateString():"–"}</span>
           ${s.edited?`<span style="color:var(--err)">One of this student's codes didn't pass the check, so its numbers may have been changed by hand.</span>`:""}
           <div style="margin-top:10px">${confirmDel===id
@@ -243,6 +255,8 @@ function render(){
 }
 
 $("#board").addEventListener("click",async e=>{
+  const rk=e.target.closest("[data-rekey]");
+  if(rk){ rk.disabled=true; try{ const r=await api("/api/teacher/students/"+encodeURIComponent(rk.dataset.rekey)+"/key",{method:"POST",body:"{}"}); if(!r.ok) throw 0; const j=await r.json(); showKey({nick:rk.dataset.nick,key:j.key,reset:true}); }catch(err){ rk.disabled=false; rk.textContent="Couldn't make a key. Try again"; } return; }
   const ask=e.target.closest("[data-ask]"), del=e.target.closest("[data-del]"), cancel=e.target.closest("[data-cancel]");
   if(ask){ confirmDel=ask.dataset.ask; render(); return; }
   if(cancel){ confirmDel=null; render(); return; }
@@ -254,12 +268,25 @@ $("#board").addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ") &&
 $("#period").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; period=b.dataset.p; document.querySelectorAll("#period button").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); render(); });
 $("#sortBy").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; sortBy=b.dataset.s; document.querySelectorAll("#sortBy button").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); render(); });
 
+let lastKey=null;
+function keyHTML(k){ const msg=`Hi ${k.nick}! Your Psotek English key is ${k.key}. Go to https://psotnyjez.com, tap "No Google account? Use your personal key" and type it in. Keep it private.`;
+  return `<div class="keynote"><p style="margin:0">${k.reset?"New key":"Key"} for <b>${esc(k.nick)}</b>${k.reset?" (the old key and its sign-ins no longer work)":""}:</p>
+    <span class="keyshow">${esc(k.key)}</span>
+    <p class="hint" style="margin:4px 0 8px">Copy it now: for safety it can't be shown again after you leave this page.</p>
+    <div class="addrow"><button class="btn ghost" type="button" data-copy="${esc(k.key)}">Copy key</button><button class="btn ghost" type="button" data-copy="${esc(msg)}">Copy a message for the student</button><span class="dim" id="copied" aria-live="polite"></span></div></div>`; }
+function showKey(k){ lastKey=k; $("#keyOut").innerHTML=keyHTML(k); $("#keyOut").scrollIntoView({block:"nearest"}); }
+document.addEventListener("click",async e=>{ const c=e.target.closest("[data-copy]"); if(!c) return; try{ await navigator.clipboard.writeText(c.dataset.copy); $("#copied").textContent="Copied."; }catch(err){ $("#copied").textContent="Select the text and copy it."; } });
+async function addStudent(){ const n=$("#addName").value.trim(); if(n.length<2){ $("#addName").focus(); return; } const b=$("#addGo"); b.disabled=true;
+  try{ const r=await api("/api/teacher/students",{method:"POST",body:JSON.stringify({nick:n})}); if(!r.ok) throw 0; const j=await r.json(); $("#addName").value=""; showKey({nick:j.nick,key:j.key}); load(); }
+  catch(e){ $("#keyOut").innerHTML='<p class="notice" style="margin-top:12px">Couldn\'t create the key. Check you are signed in and try again.</p>'; }
+  finally{ b.disabled=false; } }
+$("#addGo").onclick=addStudent; $("#addName").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); addStudent(); } });
 render();
 const api=(p,o={})=>fetch(p,{credentials:"same-origin",...o,headers:{"x-psotek":"1","content-type":"application/json",...(o.headers||{})}});
 /* a student's saved summary (the same data as an old progress code) turned into a row for the table */
 function fromSummary(x){ const s=x.summary||{}; const weeks={}; Object.entries(s.w||{}).forEach(([k,v])=>{ if(Array.isArray(v)) weeks[k]={sec:num(v[0],604800),ans:num(v[1]),cor:num(v[2])}; });
   const video={}; Object.entries(s.vid||{}).forEach(([k,v])=>{ if(v&&typeof v==="object") video[k]={at:num(v.at,1e15),ti:String(v.ti||""),s:Array.isArray(v.s)?v.s:null,q:Array.isArray(v.q)?v.q:[],t:v.t&&typeof v.t==="object"?v.t:{},ok:Array.isArray(v.ok)?v.ok:[]}; });
-  return {_id:x.id, nick:x.nick||x.name||"?", email:x.email, weeks, video, words:Array.isArray(s.pw)?s.pw:[], xp:num(s.xp), lv:s.lv!=null?Math.min(5,num(s.lv)):null, vl:s.vl!=null?Math.min(5,num(s.vl)):null,
+  return {_id:x.id, nick:x.nick||x.name||"?", email:x.email, viaKey:!!x.viaKey, weeks, video, words:Array.isArray(s.pw)?s.pw:[], xp:num(s.xp), lv:s.lv!=null?Math.min(5,num(s.lv)):null, vl:s.vl!=null?Math.min(5,num(s.vl)):null,
     known:num(s.k), c:num(s.c), a:num(s.a), codeTs:x.updated||x.lastSeen, firstAdded:x.created, lastSeen:x.lastSeen, edited:false}; }
 async function load(){
   let r; try{ r=await api("/api/teacher/students"); }catch(e){ loaded=true; $("#noDb").textContent="Couldn't reach psotnyjez.com. Check your connection and reload."; $("#noDb").hidden=false; render(); return; }
@@ -268,7 +295,7 @@ async function load(){
   const j=await r.json(); students=j.students.map(fromSummary); loaded=true; render(); loadMsgs(); }
 async function loadMsgs(){ try{ const r=await api("/api/teacher/messages"); if(!r.ok) return; const j=await r.json(); const open=j.messages.filter(m=>!m.done);
   $("#msgPanel").hidden=!j.messages.length;
-  $("#msgs").innerHTML=j.messages.slice(0,40).map(m=>`<li class="${m.done?"done":""}"><div><b>${esc(m.nick||m.name||"Deleted account")}</b> <span class="dim">${esc(m.email||"")} · ${new Date(m.created).toLocaleString()}</span><p class="vtext">${esc(m.body)}</p></div>${m.done?'<span class="dim">Done</span>':`<button class="btn ghost" type="button" data-done="${m.id}">Mark as done</button>`}</li>`).join("");
+  $("#msgs").innerHTML=j.messages.slice(0,40).map(m=>`<li class="${m.done?"done":""}"><div><b>${esc(m.nick||m.name||"Deleted account")}</b> <span class="dim">${esc(m.email||"personal key")} · ${new Date(m.created).toLocaleString()}</span><p class="vtext">${esc(m.body)}</p></div>${m.done?'<span class="dim">Done</span>':`<button class="btn ghost" type="button" data-done="${m.id}">Mark as done</button>`}</li>`).join("");
   $("#msgH").textContent = open.length ? `Messages from students (${open.length} new)` : "Messages from students"; }catch(e){} }
 document.addEventListener("click",async e=>{ const d=e.target.closest("[data-done]"); if(!d) return; d.disabled=true; await api("/api/teacher/messages/"+d.dataset.done,{method:"POST",body:"{}"}); loadMsgs(); });
 load(); setInterval(()=>{ if(document.visibilityState==="visible") load(); },120000);

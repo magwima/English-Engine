@@ -8,6 +8,12 @@ const INACTIVE_DAYS = 183;           // accounts unused for ~6 months are delete
 const MAX_ITEM = 600 * 1024, MAX_TOTAL = 2.5 * 1024 * 1024, MAX_SUMMARY = 96 * 1024;
 const ALLOWED_KEY = /^(vocab5-|psotek-|ee-)[a-z0-9-]{1,40}$/;
 const DAY = 864e5;
+/* personal keys for students without Google: PSO-XXXXX-XXXXX, letters and digits that can't be mixed up (no 0/O, 1/I/L, U) */
+const KEY_ABC = "23456789ABCDEFGHJKMNPQRSTVWXYZ";
+const normKey = k => { const c = String(k || "").toUpperCase().replace(/[^A-Z0-9]/g, ""); return c.length === 13 && c.startsWith("PSO") ? c.slice(3) : c; };
+function newKey() { const r = crypto.getRandomValues(new Uint8Array(10)); const c = [...r].map(b => KEY_ABC[b % KEY_ABC.length]).join(""); return { show: `PSO-${c.slice(0, 5)}-${c.slice(5)}`, norm: c }; }
+const keyHash = async norm => sha256("psotek-key:" + norm);
+const KEY_TRIES = 8, KEY_WINDOW = 15 * 60e3;   // wrong keys allowed per address every 15 minutes
 
 export default {
   async fetch(req, env, ctx) {
@@ -63,7 +69,7 @@ async function currentUser(req, env) {
   const row = await env.DB.prepare("SELECT u.* FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token_hash = ? AND s.expires > ?").bind(h, now()).first();
   return row || null;
 }
-const publicUser = u => ({ id: u.id, nick: u.nick || u.name || "", name: u.name || "", email: u.email, role: u.role, rev: u.rev || 0, created: u.created });
+const publicUser = u => ({ id: u.id, nick: u.nick || u.name || "", name: u.name || "", email: u.email || "", viaKey: !!u.key_hash, role: u.role, rev: u.rev || 0, created: u.created });
 
 /* ---------- API ---------- */
 async function api(req, env, url, ctx) {
@@ -85,10 +91,22 @@ async function api(req, env, url, ctx) {
       await env.DB.prepare("UPDATE users SET email = ?, name = ?, last_seen = ?, role = ? WHERE id = ?").bind(g.email, g.name || u.name, now(), teacher ? "teacher" : (u.role === "teacher" ? "student" : u.role), u.id).run();
       u.email = g.email; u.role = teacher ? "teacher" : (u.role === "teacher" ? "student" : u.role);
     }
-    const token = randomId(32);
-    await env.DB.prepare("INSERT INTO sessions (token_hash, user_id, created, expires) VALUES (?,?,?,?)").bind(await sha256(token), u.id, now(), now() + SESSION_DAYS * DAY).run();
-    const progress = await loadProgress(env, u.id);
-    return json({ user: publicUser(u), progress }, 200, { "set-cookie": sessionCookie(token, SESSION_DAYS * 86400) });
+    return startSession(env, u);
+  }
+
+  if (p === "/api/key-login" && m === "POST") {
+    const ip = req.headers.get("cf-connecting-ip") || "?", ipH = await sha256("ip:" + ip);
+    const fails = await env.DB.prepare("SELECT COUNT(*) n FROM key_fails WHERE ip_hash = ? AND at > ?").bind(ipH, now() - KEY_WINDOW).first();
+    if ((fails?.n || 0) >= KEY_TRIES) return json({ error: "too many" }, 429);
+    const { key } = await req.json().catch(() => ({}));
+    const norm = normKey(key);
+    const ku = norm.length === 10 ? await env.DB.prepare("SELECT * FROM users WHERE key_hash = ?").bind(await keyHash(norm)).first() : null;
+    if (!ku) {
+      await env.DB.batch([env.DB.prepare("INSERT INTO key_fails (ip_hash, at) VALUES (?,?)").bind(ipH, now()), env.DB.prepare("DELETE FROM key_fails WHERE at < ?").bind(now() - KEY_WINDOW)]);
+      return json({ error: "wrong key" }, 401);
+    }
+    await env.DB.prepare("UPDATE users SET last_seen = ? WHERE id = ?").bind(now(), ku.id).run();
+    return startSession(env, ku);
   }
 
   const u = await currentUser(req, env);
@@ -122,7 +140,7 @@ async function api(req, env, url, ctx) {
     const progress = await loadProgress(env, u.id);
     const s = await env.DB.prepare("SELECT json, updated FROM summary WHERE user_id = ?").bind(u.id).first();
     const msgs = (await env.DB.prepare("SELECT body, created FROM messages WHERE user_id = ? ORDER BY created").bind(u.id).all()).results;
-    return new Response(JSON.stringify({ account: { email: u.email, name: u.name, nick: u.nick, created: new Date(u.created).toISOString(), lastSeen: new Date(u.last_seen).toISOString() }, progress, summaryForTeacher: s ? JSON.parse(s.json) : null, messages: msgs }, null, 1),
+    return new Response(JSON.stringify({ account: { email: u.email || null, signIn: u.key_hash ? "personal key" : "Google", name: u.name, nick: u.nick, created: new Date(u.created).toISOString(), lastSeen: new Date(u.last_seen).toISOString() }, progress, summaryForTeacher: s ? JSON.parse(s.json) : null, messages: msgs }, null, 1),
       { headers: { "content-type": "application/json; charset=utf-8", "content-disposition": `attachment; filename="psotek-my-data.json"`, "cache-control": "no-store" } });
   }
   if (p === "/api/account" && m === "DELETE") { await deleteUser(env, u.id); return json({ ok: true }, 200, { "set-cookie": sessionCookie("", 0) }); }
@@ -139,20 +157,40 @@ async function api(req, env, url, ctx) {
   if (p.startsWith("/api/teacher/")) {
     if (u.role !== "teacher") return json({ error: "teachers only" }, 403);
     if (p === "/api/teacher/students" && m === "GET") {
-      const rows = (await env.DB.prepare("SELECT u.id, u.nick, u.name, u.email, u.created, u.last_seen, s.json, s.updated FROM users u LEFT JOIN summary s ON s.user_id = u.id WHERE u.role = 'student' ORDER BY u.last_seen DESC").all()).results;
-      return json({ students: rows.map(r => ({ id: r.id, nick: r.nick, name: r.name, email: r.email, created: r.created, lastSeen: r.last_seen, updated: r.updated, summary: r.json ? JSON.parse(r.json) : null })) });
+      const rows = (await env.DB.prepare("SELECT u.id, u.nick, u.name, u.email, u.key_hash IS NOT NULL AS via_key, u.created, u.last_seen, s.json, s.updated FROM users u LEFT JOIN summary s ON s.user_id = u.id WHERE u.role = 'student' ORDER BY u.last_seen DESC").all()).results;
+      return json({ students: rows.map(r => ({ id: r.id, nick: r.nick, name: r.name, email: r.email, viaKey: !!r.via_key, created: r.created, lastSeen: r.last_seen, updated: r.updated, summary: r.json ? JSON.parse(r.json) : null })) });
     }
     if (p === "/api/teacher/messages" && m === "GET") {
       const rows = (await env.DB.prepare("SELECT m.id, m.body, m.created, m.done, u.nick, u.name, u.email FROM messages m LEFT JOIN users u ON u.id = m.user_id ORDER BY m.created DESC LIMIT 200").all()).results;
       return json({ messages: rows });
     }
+    if (p === "/api/teacher/students" && m === "POST") {   // add a student who has no Google account
+      const { nick } = await req.json().catch(() => ({}));
+      const n = String(nick || "").replace(/\s+/g, " ").trim().slice(0, 24); if (n.length < 2) return json({ error: "name" }, 400);
+      const k = newKey(), id = randomId(9), t = now();
+      await env.DB.prepare("INSERT INTO users (id, sub, email, name, nick, role, created, last_seen, rev, key_hash) VALUES (?,?,?,?,?,'student',?,?,0,?)").bind(id, "key-" + id, "", n, n, t, t, await keyHash(k.norm)).run();
+      return json({ id, nick: n, key: k.show });
+    }
     let mm;
+    if ((mm = p.match(/^\/api\/teacher\/students\/([A-Za-z0-9_-]+)\/key$/)) && m === "POST") {   // new key; the old one and its sign-ins stop working
+      const s2 = await env.DB.prepare("SELECT id, key_hash FROM users WHERE id = ? AND role = 'student'").bind(mm[1]).first();
+      if (!s2 || !s2.key_hash) return json({ error: "not a key account" }, 400);
+      const k = newKey();
+      await env.DB.batch([env.DB.prepare("UPDATE users SET key_hash = ? WHERE id = ?").bind(await keyHash(k.norm), s2.id), env.DB.prepare("DELETE FROM sessions WHERE user_id = ?").bind(s2.id)]);
+      return json({ key: k.show });
+    }
     if ((mm = p.match(/^\/api\/teacher\/messages\/(\d+)$/)) && m === "POST") { await env.DB.prepare("UPDATE messages SET done = 1 WHERE id = ?").bind(+mm[1]).run(); return json({ ok: true }); }
     if ((mm = p.match(/^\/api\/teacher\/students\/([A-Za-z0-9_-]+)$/)) && m === "DELETE") { await deleteUser(env, mm[1]); return json({ ok: true }); }
   }
   return json({ error: "not found" }, 404);
 }
 
+async function startSession(env, u) {
+  const token = randomId(32);
+  await env.DB.prepare("INSERT INTO sessions (token_hash, user_id, created, expires) VALUES (?,?,?,?)").bind(await sha256(token), u.id, now(), now() + SESSION_DAYS * DAY).run();
+  const progress = await loadProgress(env, u.id);
+  return json({ user: publicUser(u), progress }, 200, { "set-cookie": sessionCookie(token, SESSION_DAYS * 86400) });
+}
 async function loadProgress(env, id) {
   const rows = (await env.DB.prepare("SELECT k, v FROM progress WHERE user_id = ?").bind(id).all()).results;
   return Object.fromEntries(rows.map(r => [r.k, r.v]));
@@ -165,4 +203,5 @@ async function cleanup(env) {
   const old = (await env.DB.prepare("SELECT id FROM users WHERE last_seen < ? AND role = 'student'").bind(now() - INACTIVE_DAYS * DAY).all()).results;
   for (const r of old) await deleteUser(env, r.id);
   await env.DB.prepare("DELETE FROM sessions WHERE expires < ?").bind(now()).run();
+  await env.DB.prepare("DELETE FROM key_fails WHERE at < ?").bind(now() - KEY_WINDOW).run();
 }
