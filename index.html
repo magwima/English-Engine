@@ -161,6 +161,20 @@ main{min-width:0;padding-block:36px 80px;padding-left:max(16px,env(safe-area-ins
 .weaktok.optw{color:var(--muted);border-style:dotted}
 .setnote{margin:-6px 0 16px;color:var(--muted);font-size:.92rem}
 .setbanner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:0 0 18px;padding:12px 16px;border:1px solid var(--slate);background:var(--slate-soft);border-radius:14px}
+.prevh{margin:22px 0 10px}
+.prevmine{margin:0 0 14px}
+.prevtop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.prevgrp{padding:10px 0;border-top:1px dashed var(--line)}
+.prevgrp>b{font-family:var(--serif);font-size:1.02rem}
+.prevgrp>small{color:var(--muted);margin-left:8px}
+.pchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;align-items:center}
+.pchip{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 12px;font-weight:600}
+.pchip small{font-size:.75rem;font-weight:700;color:var(--muted)}
+.pchip.good{border-color:var(--ok);background:var(--leaf-soft)} .pchip.good small{color:var(--leaf-ink)}
+.pchip.mid{border-color:var(--sun);background:var(--sun-soft)} .pchip.mid small{color:var(--sun-ink)}
+.pchip.low{border-color:var(--coral);background:var(--coral-soft)} .pchip.low small{color:var(--coral-ink)}
+.plv{font-style:normal;font-size:.68rem;font-weight:800;color:var(--muted);border:1px solid currentColor;border-radius:6px;padding:0 4px}
+.prevbatches{margin:0 0 6px}
 .archset{margin:0 0 12px}
 .archset summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;list-style:none}
 .archset summary::-webkit-details-marker{display:none}
@@ -2193,21 +2207,42 @@ Object.assign(PITFALLS, {
   fancy:[{re:/\bfancy to\b/i,msg:"Use fancy + noun or -ing: fancy going, not fancy to go."}],
   provide:[{re:/\bprovid(e|es|ed) (me|you|him|her|us|them) (a|an|the|some|free)\b/i,msg:"Use provide someone with something."}]
 });
-/* ---------- Daily words ----------
-   Each day brings 2 formal + 2 informal new words per level, taken in order from the set's word list.
-   Practice uses today's words plus the last RECENT_DAYS days' words. Older words come back through review (the word bank). */
-const DAILY_NEW = 2, RECENT_DAYS = 5;
-function dayNum(){ const s=(typeof VSET!=="undefined" && (VSET.daily||VSET.start)) || "2026-10-22"; const [y,m,d]=s.split("-").map(Number);
-  const a=new Date(y,m-1,d), b=new Date(); b.setHours(0,0,0,0); return Math.max(0, Math.round((b-a)/864e5)); }
-function dayIds(L, d){ const out=[];
+/* ---------- New words every 48 hours ----------
+   The set's word list is shown in "batches": each batch brings 2 formal + 2 informal new words per level, in file order.
+   VSET.plan lists how long batches last from a date on (October 2026 had 1-day batches from 22 Oct, then 2-day batches from 26 Oct).
+   Without a plan, batches last 2 days from VSET.daily (or VSET.start). When a batch ends, its words move to Previous vocabulary. */
+const DAILY_NEW = 2, BATCH_DAYS = 2;
+const pDate = s => { const [y,m,d]=String(s).split("-").map(Number); return new Date(y,m-1,d); };
+function vPlan(){ const V=typeof VSET!=="undefined"?VSET:null; if(V && Array.isArray(V.plan) && V.plan.length) return V.plan;
+  return [{from:(V && (V.daily||V.start)) || "2026-10-22", days:BATCH_DAYS}]; }
+function batchList(){ const plan=vPlan(), out=[], today=new Date(); today.setHours(0,0,0,0);
+  for(let s=0;s<plan.length;s++){ let d=pDate(plan[s].from); const stop=s+1<plan.length?pDate(plan[s+1].from):null, len=Math.max(1,plan[s].days||BATCH_DAYS);
+    while(d<=today && (!stop || d<stop) && out.length<400){ const e=new Date(d); e.setDate(e.getDate()+len-1); if(stop && e>=stop) e.setTime(stop.getTime()-864e5);
+      out.push({i:out.length, start:new Date(d), end:e}); d=new Date(d); d.setDate(d.getDate()+len); } }
+  return out.length ? out : [{i:0,start:today,end:today}]; }
+const curBatch = () => { const l=batchList(); return l[l.length-1]; };
+const fmtD = d => d.toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+const batchLabel = b => +b.start===+b.end ? fmtD(b.start) : b.start.getMonth()===b.end.getMonth() ? `${b.start.getDate()}–${fmtD(b.end)}` : `${fmtD(b.start)} – ${fmtD(b.end)}`;
+function dayNum(){ return curBatch().i; } /* the number of the current batch (the name is kept from the daily version) */
+function dayIds(L, p){ const out=[]; if(p<0) return out;
   ["formal","informal"].forEach(reg=>{ const P=ALLW.filter(w=>w.lv===L && w.reg===reg); const n=P.length; if(!n) return;
-    for(let k=0;k<Math.min(DAILY_NEW,n);k++) out.push(P[(((d*DAILY_NEW+k)%n)+n)%n].id); }); return out; }
+    const last=Math.max(0, Math.floor(n/DAILY_NEW)-1), q=Math.min(p,last); /* a set that runs out keeps its last batch */
+    for(let k=0;k<Math.min(DAILY_NEW,n);k++) out.push(P[(q*DAILY_NEW+k)%n].id); }); return [...new Set(out)]; }
 const todayIds = (L=state.vlv) => dayIds(L, dayNum());
-function recentIds(L=state.vlv){ const d=dayNum(), t=new Set(dayIds(L,d)), out=[];
-  for(let i=1;i<=RECENT_DAYS;i++) dayIds(L,d-i).forEach(id=>{ if(!t.has(id) && !out.includes(id)) out.push(id); }); return out; }
+const practisedId = id => { const s=state.stats[id]; return (s && s.a>0) || !!state.srs[id] || (state.uses[id]||0)>0 || !!state.known[id]; };
+/* Previous batches of this set, newest first */
+function pastBatchIds(L){ const cur=dayNum(), t=new Set(dayIds(L,cur)), out=[];
+  for(let i=cur-1;i>=0;i--) dayIds(L,i).forEach(id=>{ if(!t.has(id) && !out.includes(id)) out.push(id); }); return out; }
+const recentIds = (L=state.vlv) => pastBatchIds(L);
+/* Practice uses the new batch plus this student's own previous words (newest first), topped up with the latest previous batches */
+const PRACTICE_MIN = 10, PRACTICE_MAX = 16;
 function levelWords(L){
   if(typeof VSET!=="undefined" && VSET.archived) return ALLW.filter(w=>w.lv===L).sort((a,b)=>(a.reg==="formal"?0:1)-(b.reg==="formal"?0:1));
-  return [...new Set([...dayIds(L,dayNum()), ...recentIds(L)])].map(id=>ALLW.find(w=>w.id===id)).filter(Boolean); }
+  const now=dayIds(L,dayNum()), past=pastBatchIds(L);
+  const mine=[...past.filter(practisedId), ...ALLW.filter(w=>w.lv===L && !now.includes(w.id) && !past.includes(w.id) && practisedId(w.id)).map(w=>w.id)];
+  const pool=[...now]; mine.forEach(id=>{ if(pool.length<PRACTICE_MAX && !pool.includes(id)) pool.push(id); });
+  past.forEach(id=>{ if(pool.length<PRACTICE_MIN && !pool.includes(id)) pool.push(id); });
+  return pool.map(id=>ALLW.find(w=>w.id===id)).filter(Boolean); }
 let VDESC=["Starter: polite phrases and friendly everyday words.","Everyday formal verbs and casual chat.","Formal email language and relaxed British English.","Academic adjectives and common informal expressions.","Advanced formal words and business idioms.","Rare formal vocabulary and expressive idioms."];
 
 const W = Object.fromEntries(ALLW.map(w=>[w.id,w]));
@@ -2230,12 +2265,12 @@ function setVocabLevel(L){ state.vlv=L; WORDS=levelWords(L); ALL=WORDS.map(w=>w.
   round=null; flash=null; askState=null; story=null; up.order=null; spk.w=null; studio.w=null; scr={i:0,built:[],bank:[],solved:{}}; scrCache=null; save(); }
 function save(){ try{ localStorage.setItem(STORE, JSON.stringify(state)); }catch(e){} }
 let shownDay = null;
-document.addEventListener("visibilitychange",()=>{ if(document.visibilityState!=="visible") return; const d=dayNum(); if(shownDay!==null && d!==shownDay){ shownDay=d; setVocabLevel(state.vlv); if(typeof render==="function") render(); } });
+document.addEventListener("visibilitychange",()=>{ if(document.visibilityState!=="visible") return; const d=dayNum(); if(shownDay!==null && d!==shownDay){ shownDay=d; setVocabLevel(state.vlv); if(typeof prevSync==="function") prevSync(); if(typeof render==="function") render(); } });
 
 /* ---------- Monthly word sets ----------
    The words above are the built-in copy of the set below. Each month a new set is published as vocab.json;
    old sets move to vocab-archive/<set>.json and are listed in vocab-archive/index.json ("Previous vocabulary"). */
-var VSET_INLINE = {set:"2026-10", label:"October 2026", start:"2026-10-01", end:"2026-10-31", daily:"2026-10-22"};
+var VSET_INLINE = {set:"2026-10", label:"October 2026", start:"2026-10-01", end:"2026-10-31", daily:"2026-10-22", plan:[{from:"2026-10-22",days:1},{from:"2026-10-26",days:2}]};
 var VSET = VSET_INLINE; let VCURRENT = {meta:VSET_INLINE, words:null}, VARCH = null;
 const INLINE_WORDS = ALLW.slice(), INLINE_VDESC = VDESC.slice();
 function normWord(o){
@@ -2251,7 +2286,7 @@ function applySet(meta, words, desc){
   Object.keys(W).forEach(k=>delete W[k]); ALLW.forEach(w=>{ W[w.id]=w; });
   ALLW.forEach(w=>{ if(!state.stats[w.id]) state.stats[w.id]={c:0,a:0}; if(typeof state.uses[w.id]!=="number") state.uses[w.id]=0; });
   VDESC = (Array.isArray(desc) && desc.length===6) ? desc.slice() : INLINE_VDESC.slice();
-  VSET = meta; mergeBank(); setVocabLevel(state.vlv);
+  VSET = meta; mergeBank(); setVocabLevel(state.vlv); prevSync();
 }
 /* Word bank: every word a student has reviewed is kept here, so it can come back in review after its month ends. */
 const BANK="vocab5-bank-v1"; let bank={};
@@ -2264,6 +2299,20 @@ function mergeBank(){ Object.values(bank).forEach(b=>{ if(b && b.id && !W[b.id])
 function oldDue(){ const cur=new Set(ALLW.map(w=>w.id)); const now=Date.now();
   return Object.keys(bank).filter(id=>!cur.has(id) && W[id] && state.srs[id] && state.srs[id].d<=now).sort((a,b)=>state.srs[a].d-state.srs[b].d).slice(0,5); }
 mergeBank();
+/* Each student's previous vocabulary: every word they have practised that is no longer in the new batch.
+   Saved with the batch (or month) it came from, so it stays listed after the month changes. */
+const PREV="psotek-prev-v1"; let prevW={};
+try{ const p=JSON.parse(localStorage.getItem(PREV)||"{}"); if(p && typeof p==="object") prevW=p; }catch(e){}
+function prevSync(){ if(typeof VSET==="undefined" || VSET.archived) return; let changed=false;
+  const list=batchList(), cur=list[list.length-1], when={};
+  for(let L=0;L<6;L++) list.slice(0,-1).forEach(b=>dayIds(L,b.i).forEach(id=>{ if(!(id in when)) when[id]=b; }));
+  const nowIds=new Set([0,1,2,3,4,5].flatMap(L=>dayIds(L,cur.i)));
+  ALLW.forEach(w=>{ const id=w.id; if(nowIds.has(id) || !practisedId(id)) return; const b=when[id];
+    const label = b ? batchLabel(b) : "Before "+fmtD(list[0].start), k = b ? b.i : -1;
+    const e=prevW[id]; if(!e || e.set!==VSET.set || e.k!==k){ prevW[id]={set:VSET.set, month:VSET.label, k, p:label, lv:w.lv, reg:w.reg, word:w.word}; changed=true; }
+    if(typeof bankWord==="function" && !bank[id]) bankWord(id); });
+  if(changed) try{ localStorage.setItem(PREV, JSON.stringify(prevW)); }catch(e){} }
+prevSync();
 function useCurrentSet(){ state.vset=null; save();
   if(VCURRENT.words) applySet(VCURRENT.meta, VCURRENT.words, VCURRENT.desc); else applySet(VSET_INLINE, INLINE_WORDS, INLINE_VDESC); }
 async function loadArchiveIndex(){
@@ -2281,13 +2330,13 @@ async function useArchivedSet(key){
 (async function bootSets(){
   try{ const r=await fetch("vocab.json",{cache:"no-store"}); if(r.ok){ const j=await r.json();
       if(j && j.set && Array.isArray(j.words) && j.words.length && (j.set!==VSET_INLINE.set || j.words.length!==INLINE_WORDS.length || j.daily)){
-        VCURRENT={meta:{set:j.set,label:j.label,start:j.start,end:j.end,daily:j.daily}, words:j.words.map(normWord), desc:j.desc};
+        VCURRENT={meta:{set:j.set,label:j.label,start:j.start,end:j.end,daily:j.daily,plan:j.plan}, words:j.words.map(normWord), desc:j.desc};
         if(!state.vset) { applySet(VCURRENT.meta, VCURRENT.words, VCURRENT.desc); if(typeof render==="function") render(); } } } }catch(e){}
   if(state.vset && state.vset!==VCURRENT.meta.set){ const ok=await useArchivedSet(state.vset); if(!ok){ state.vset=null; save(); } if(typeof render==="function") render(); }
   else if(state.vset){ state.vset=null; save(); }
 })();
 function setNote(){
-  if(!VSET.archived) return `<p class="setnote">New words every day. <button class="linkbtn" type="button" data-go="archive">Previous months</button></p>`;
+  if(!VSET.archived) return `<p class="setnote">New words every 48 hours. <button class="linkbtn" type="button" data-go="archive">Previous vocabulary</button></p>`;
   return `<div class="setbanner"><span>You're practising <b>previous vocabulary: ${esc(VSET.label)}</b>.</span><button class="btn ghost" type="button" data-setnow>Back to this month's words</button></div>`;
 }
 document.addEventListener("click",e=>{ if(!e.target.closest("[data-setnow]")) return; useCurrentSet(); render(); });
@@ -2757,10 +2806,33 @@ function sndSay(){
 function isoWeekOf(d){ const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())); const day=t.getUTCDay()||7; t.setUTCDate(t.getUTCDate()+4-day); const y=new Date(Date.UTC(t.getUTCFullYear(),0,1)); return Math.ceil(((t-y)/864e5+1)/7); }
 function setWeeks(s){ try{ const a=new Date(s.start+"T12:00"), b=new Date(s.end+"T12:00"); const wa=isoWeekOf(a), wb=isoWeekOf(b);
   const f=d=>d.toLocaleDateString("en-GB",{day:"numeric",month:"short"}); return `Weeks ${wa}–${wb} · ${f(a)} – ${f(b)} ${b.getFullYear()}`; }catch(e){ return ""; } }
+
+/* Previous vocabulary page: this student's own words, then this month's earlier batches */
+function prevChip(id,word,lv){ const s=state.stats[id], a=s&&s.a?Math.round(s.c/s.a*100):null;
+  const cls = a===null ? "" : a>=80 ? " good" : a>=50 ? " mid" : " low";
+  return `<span class="pchip${cls}" title="${a===null?"Practised":a+"% right"}">${esc(word)}${lv!=null&&lv!==state.vlv?`<i class="plv">${LV[lv]}</i>`:""}${a===null?"":`<small>${a}%</small>`}</span>`; }
+function prevMineHTML(){
+  const nowIds=new Set(VSET.archived?[]:[0,1,2,3,4,5].flatMap(L=>dayIds(L,dayNum())));
+  const rows=Object.entries(prevW).filter(([id])=>!nowIds.has(id));
+  if(!rows.length) return `<section class="panel prevmine"><h2 class="h3">Your previous words</h2><p class="hintline" style="margin:0">Words you practise will collect here when a new batch arrives.</p></section>`;
+  const groups={}; rows.forEach(([id,e])=>{ const g=(e.set||"")+"|"+String(1000+(e.k??-1)).padStart(5,"0")+"|"+e.p; (groups[g]=groups[g]||[]).push([id,e]); });
+  const keys=Object.keys(groups).sort().reverse();
+  return `<section class="panel prevmine"><div class="prevtop"><div><h2 class="h3" style="margin:0">Your previous words</h2>
+      <p class="hintline" style="margin:4px 0 0">${rows.length} ${rows.length===1?"word":"words"} you've practised. The % shows how often you got it right.</p></div>
+      <button class="btn" type="button" data-go="practise">Practise them</button></div>
+    ${keys.map(g=>{ const list=groups[g].sort((a,b)=>a[1].lv-b[1].lv||a[1].word.localeCompare(b[1].word)); const e=list[0][1];
+      return `<div class="prevgrp"><b>${esc(e.p)}</b>${e.set!==VSET.set?`<small>${esc(e.month||"")}</small>`:""}
+        <div class="pchips">${list.map(([id,x])=>prevChip(id,x.word,x.lv)).join("")}</div></div>`; }).join("")}
+  </section>`; }
+function prevBatchesHTML(){ if(VSET.archived) return ""; const L=state.vlv, list=batchList().slice(0,-1).reverse(); if(!list.length) return "";
+  return `<details class="panel archset prevbatches"><summary><span><b class="archname">Every batch so far in ${esc(VSET.label)}</b><small>${list.length} ${list.length===1?"batch":"batches"} at ${LV[L]} · ✓ = you've practised it</small></span></summary>
+    <div class="archbody">${list.map(b=>`<div class="archlv"><b>${esc(batchLabel(b))}</b><span>${dayIds(L,b.i).map(id=>W[id]?`${esc(W[id].word)}${practisedId(id)?" ✓":""}`:"").filter(Boolean).join(" · ")}</span></div>`).join("")}</div></details>`; }
 async function viewArchive(){
+  prevSync();
   $("#view").innerHTML = `<header class="pagehead"><p class="eyebrow">Vocabulary</p><h1>Previous vocabulary</h1>
-    <p class="lede">Every month brings ten formal and ten informal words for each level. Last months' words stay here, and every exercise works with them: pick a set to practise it.</p></header>
-    ${VSET.archived?setNote():""}<div id="archList"><p class="hintline">Loading…</p></div>`;
+    <p class="lede">New words arrive every 48 hours. When they change, the old ones move here straight away, and they keep coming back in your practice rounds and reviews.</p></header>
+    ${VSET.archived?setNote():""}${prevMineHTML()}${prevBatchesHTML()}
+    <h2 class="h3 prevh">Previous months</h2><div id="archList"><p class="hintline">Loading…</p></div>`;
   const sets = await loadArchiveIndex(); if(route!=="archive") return;
   const el=$("#archList"); if(!el) return;
   const now=VCURRENT.meta||VSET_INLINE;
@@ -2905,13 +2977,14 @@ function viewWords(){
     <div class="cards words">${WORDS.filter(w=>w.reg===reg).map(cardHTML).join("")}</div></section>`;
   const tIds=new Set(todayIds(L)), tw=WORDS.filter(w=>tIds.has(w.id)), rw=WORDS.filter(w=>!tIds.has(w.id));
   const regTag=w=>`<span class="tag ${w.reg==="formal"?"reg-f":"reg-i"}">${cap(w.reg)}</span>`;
-  const dailyHTML = `<section class="regsec"><h2 class="regh"><span class="tag">Today</span><span>${tw.length} new words · new ones tomorrow</span></h2>
+  const cb=curBatch(), nx=new Date(cb.end); nx.setDate(nx.getDate()+1);
+  const dailyHTML = `<section class="regsec"><h2 class="regh"><span class="tag">New words</span><span>${tw.length} words for ${esc(batchLabel(cb))} · the next ones arrive on ${esc(nx.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"}))}</span></h2>
       <div class="cards words">${tw.map(w=>cardHTML(w).replace('<span class="ww">',regTag(w)+' <span class="ww">')).join("")}</div></section>
-    ${rw.length?`<section class="regsec"><h2 class="regh"><span class="tag soft">Last few days</span><span>Still in your practice rounds</span></h2>
+    ${rw.length?`<section class="regsec"><h2 class="regh"><span class="tag soft">Previous vocabulary</span><span>Mixed into your practice rounds · <button class="linkbtn" type="button" data-go="archive">see all</button></span></h2>
       <div class="cards words">${rw.map(w=>cardHTML(w).replace('<span class="ww">',regTag(w)+' <span class="ww">')).join("")}</div></section>`:""}`;
   $("#view").innerHTML = `
   <header class="pagehead"><h1>Vocabulary</h1>
-    <p class="lede">Choose a level. Every day brings four new words at your level: two formal and two informal. Practice uses today's words and the last few days' words; older words come back when it's time to review them.</p></header>
+    <p class="lede">Choose a level. Every 48 hours you get four new words at your level: two formal and two informal. When they change, the old ones move to Previous vocabulary and keep coming back in your practice rounds and reviews.</p></header>
   ${setNote()}
   <div class="levels"><span class="lvlabel">Level</span>
     <div class="lvbtns" role="radiogroup" aria-label="Vocabulary level">${LV.map((l,i)=>`<button class="lvb" type="button" role="radio" data-vl="${i}" aria-checked="${i===L}">${l}</button>`).join("")}</div>
