@@ -1,0 +1,1 @@
+{ "name": "psotek-english", "private": true, "description": "Build: node build.js src/psotek.html . --site", "devDependencies": { "acorn": "8.12.1" } }

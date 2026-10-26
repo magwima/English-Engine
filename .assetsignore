@@ -5,3 +5,7 @@
 .assetsignore
 wrangler.jsonc
 README.md
+src/
+build.js
+package.json
+node_modules/
