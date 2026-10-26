@@ -16,7 +16,7 @@
   ],
   "vars": {
     // The Google sign-in key (public). Created in Google Cloud Console → Google Auth Platform → Clients.
-    "GOOGLE_CLIENT_ID": "",
+    "GOOGLE_CLIENT_ID": "1026571536867-fau75ou0ro0oog5hqj0l7cilnf60f6rp.apps.googleusercontent.com",
     // SHA-256 of the teacher's Google email: that account opens the teacher dashboard.
     "TEACHER_EMAIL_SHA256": "ac7628c3f06bda2add24237fe12b47e9ccee8e8daf756620030167fc6678b619"
   },
