@@ -1,10 +1,26 @@
 // Cloudflare settings for psotnyjez.com.
-// The site is plain files (no build step): Cloudflare serves everything in this folder
-// except what's listed in .assetsignore. Every push to main goes live automatically.
+// Plain files (index.html, app.js, vocab.json …) are served from this folder, except what's in .assetsignore.
+// Requests to /api/* go to src/worker.js: Google sign-in, saved progress, the teacher dashboard and privacy rights.
+// Every push to main goes live automatically.
 {
   "name": "psotek",
+  "main": "src/worker.js",
   "compatibility_date": "2026-10-22",
   "assets": {
-    "directory": "./"
-  }
+    "directory": "./",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "psotek", "database_id": "e7105da3-93b3-426e-961c-cab5cd4aa2c6" }
+  ],
+  "vars": {
+    // The Google sign-in key (public). Created in Google Cloud Console → Google Auth Platform → Clients.
+    "GOOGLE_CLIENT_ID": "",
+    // SHA-256 of the teacher's Google email: that account opens the teacher dashboard.
+    "TEACHER_EMAIL_SHA256": "ac7628c3f06bda2add24237fe12b47e9ccee8e8daf756620030167fc6678b619"
+  },
+  // Once a day: delete accounts unused for 6 months, and old sign-ins.
+  "triggers": { "crons": ["17 3 * * *"] },
+  "observability": { "enabled": true }
 }

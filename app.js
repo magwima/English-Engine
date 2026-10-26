@@ -1388,6 +1388,8 @@ function wireStart(){ const sk=$("#startSkip"); if(sk) sk.onclick=()=>{ const o=
 function b64url(str){ const bytes=new TextEncoder().encode(str); let bin=""; bytes.forEach(b=>bin+=String.fromCharCode(b));
   return btoa(bin).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); }
 function sum36(str){ let h=5381; for(let i=0;i<str.length;i++) h=((h*33)^str.charCodeAt(i))>>>0; return h.toString(36); }
+function progressSummary(x){ return {v:1,id:act.id,n:act.nick,ts:Date.now(),xp:x.L.xp||0,lv:+x.L.level||0,vl:state.vlv,k:Object.values(state.known).filter(Boolean).length,c:x.c,a:x.a,w:x.w,vid:x.vid,b:(typeof bg!=="undefined"?bg.got:{}),pw:x.pw}; }
+function progressData(){ const code=progressCode(); try{ const m=code.match(/^EW1\.([A-Za-z0-9_-]+)\./); const b=atob(m[1].replace(/-/g,"+").replace(/_/g,"/")); return JSON.parse(new TextDecoder().decode(Uint8Array.from(b,ch=>ch.charCodeAt(0)))); }catch(e){ return null; } }
 function progressCode(){
   let c=0,a=0; ALLW.forEach(w=>{ c+=state.stats[w.id].c; a+=state.stats[w.id].a; });
   const w={}; Object.keys(act.weeks).sort().forEach(k=>{ const x=act.weeks[k]; w[k]=[x.sec,x.ans,x.cor]; });
@@ -1396,7 +1398,7 @@ function progressCode(){
   /* the words this student has practised: [word, level, right, tries, times used, last day practised (0 = before tracking)] */
   const pw=Object.keys(state.stats).filter(id=>W[id] && practisedId(id)).map(id=>{ const s=state.stats[id]||{c:0,a:0}; return [W[id].word.slice(0,40), W[id].lv|0, s.c|0, s.a|0, state.uses[id]|0, s.t|0]; })
     .sort((x,y)=>y[5]-x[5]||y[3]-x[3]).slice(0,300);
-  const json=JSON.stringify({v:1,id:act.id,n:act.nick,ts:Date.now(),xp:L.xp||0,lv:+L.level||0,vl:state.vlv,k:Object.values(state.known).filter(Boolean).length,c,a,w,vid,b:(typeof bg!=="undefined"?bg.got:{}),pw});
+  const json=JSON.stringify(progressSummary({c,a,w,L,vid,pw}));
   return "EW1."+b64url(json)+"."+sum36(json+"|eight-words");
 }
 
@@ -2066,7 +2068,8 @@ function viewProgress(){
     </div>
     <div class="weeks" role="img" aria-label="Minutes practised in the last four weeks: ${last4.map(o=>Math.round(o.x.sec/60)).join(", ")}">${last4.map((o,i)=>`<div><span>${Math.round(o.x.sec/60)}</span><i style="height:${Math.max(3,o.x.sec/maxSec*60)}px"></i><span>${i===3?"This week":o.k.slice(-3)}</span></div>`).join("")}</div>
   </div>
-  <div class="panel">
+  ${typeof AUTH!=="undefined" && AUTH && me ? `<div class="panel"><h2 class="h3">Your teacher sees your progress</h2><p style="margin:0;max-width:62ch">You're signed in as <b>${esc(me.email)}</b>, so your progress, words, video answers and writing are saved to your account and your teacher sees them automatically. No code needed.</p></div>` : ""}
+  <div class="panel" ${typeof AUTH!=="undefined" && AUTH && me ? "hidden" : ""}>
     <h2 class="h3">Send your progress to your teacher</h2>
     <p style="margin:0 0 12px;max-width:62ch">Make a code, copy it, and send it to your teacher by message or email. A new code always includes everything so far, including your video answers and writing, so you can send one every week.</p>
     <div class="row" style="margin-top:0"><button class="btn" type="button" id="mkCode">Make my progress code</button></div>
@@ -2122,6 +2125,7 @@ function paintDisp(){
     <h2 class="mini">Menu</h2>
     <div class="seg3" role="radiogroup" aria-label="Menu">${[["simple","Simple"],["full","Full"]].map(([v,l])=>`<button type="button" role="radio" data-menu="${v}" aria-checked="${(simpleMenu()?"simple":"full")===v}">${l}</button>`).join("")}</div>
     <p class="hintline" style="margin:6px 0 0">Simple shows Today, Words, Tenses and Video; the rest is under More.</p>
+    ${typeof AUTH!=="undefined" && AUTH && me ? accountHTML() : ""}
     <h2 class="mini">Name</h2>
     <p class="whoami" style="margin:0">${act.nick?`Practising as <b>${esc(act.nick)}</b>`:"No nickname yet."} <button class="linkbtn" type="button" id="dNick">Change</button></p>`;
   $$("[data-th]").forEach(b=>b.onclick=()=>{ disp.theme=b.dataset.th; try{ localStorage.setItem(DISP,JSON.stringify(disp)); }catch(e){} applyDisp(); paintDisp(); });
@@ -2129,6 +2133,7 @@ function paintDisp(){
   $$("[data-pso]").forEach(b=>b.onclick=()=>{ disp.pso=b.dataset.pso==="true"; try{ localStorage.setItem(DISP,JSON.stringify(disp)); }catch(e){} paintDisp(); if(route==="today") render(); });
   $$("[data-menu]").forEach(b=>b.onclick=()=>{ try{ localStorage.setItem(MENU_KEY,b.dataset.menu); }catch(e){} paintDisp(); paintNav(); });
   $("#dNick").onclick=()=>{ $("#disp").hidden=true; openGate(); };
+  if(typeof wireAccount==="function") wireAccount();
 }
 function openDisp(){ paintDisp(); $("#disp").hidden=false; setTimeout(()=>{ const b=$("#disp [aria-checked=true]"); if(b) b.focus(); },30); }
 $$("[data-disp]").forEach(b=>b.addEventListener("click",openDisp));
@@ -3422,8 +3427,8 @@ function viewVideoWatch(){
       <ul class="checks" id="lk_${i}" hidden></ul><p class="model" id="lm_${i}" hidden>${esc(l.model)}</p></div>`).join("")}</div>
   <h2 class="sec">4 · Write about it</h2>
   ${TK.map(task).join("")}
-  <div class="panel vsend"><div><h3>Send your work to your teacher</h3><p>Your progress code now includes this week's video answers and writing.</p></div>
-    <button class="btn" type="button" data-go="progress">Make my progress code</button></div>`;
+  ${typeof AUTH!=="undefined" && AUTH && me ? `<div class="panel vsend"><div><h3>Your teacher sees this work</h3><p>Your answers and writing are saved to your account automatically.</p></div></div>` : `<div class="panel vsend"><div><h3>Send your work to your teacher</h3><p>Your progress code now includes this week's video answers and writing.</p></div>
+    <button class="btn" type="button" data-go="progress">Make my progress code</button></div>`}`;
   $$("#vq .opt").forEach(b=>b.onclick=()=>{ const i=+b.closest(".vqi").dataset.q; if(S.mc[i]!==undefined) return; const q=V.questions[i]; const ok=b.dataset.o===q.a;
     S.mc[i]=b.dataset.o; S.at=Date.now(); saveVid(); track(ok); markDay(); save(); const y=window.scrollY; viewVideo(); window.scrollTo(0,y); if(ok) burst($(`.vqi[data-q="${i}"] .opt.right`),6); });
   const rs=$("#vqReset"); if(rs) rs.onclick=()=>{ S.mc={}; saveVid(); const y=window.scrollY; viewVideo(); window.scrollTo(0,y); };
@@ -3812,10 +3817,119 @@ wst.texts ||= {};
 
 
 
+
+/* ---------- Accounts: Google sign-in on psotnyjez.com ----------
+   Progress still lives in this browser (so the app is fast and works offline), and a copy is saved to the student's
+   account every few seconds. Signing in on a new device downloads it; two devices are merged, keeping the best of each. */
+const AUTH = (typeof ON_NEW!=="undefined" && ON_NEW) || (location.hostname==="localhost" && location.port==="8787");
+const SYNC_HASH="psotek-sync-hash", SYNC_REV="psotek-sync-rev", NO_SYNC=new Set([SYNC_HASH,SYNC_REV,"psotek-showlv"]);
+let me=null, syncTimer=0, syncBusy=false;
+const apiFetch=(path,opt={})=>fetch(path,{credentials:"same-origin",...opt,headers:{"x-psotek":"1","content-type":"application/json",...(opt.headers||{})}});
+function localSnapshot(){ const o={}; try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(MOVE_KEY(k) && !NO_SYNC.has(k)) o[k]=localStorage.getItem(k); } }catch(e){} return o; }
+const hashStr=s=>sum36(String(s))+":"+String(s).length;
+function getHashes(){ try{ return JSON.parse(localStorage.getItem(SYNC_HASH)||"{}")||{}; }catch(e){ return {}; } }
+function setHashes(h){ try{ localStorage.setItem(SYNC_HASH,JSON.stringify(h)); }catch(e){} }
+/* merging two saved copies: numbers keep the higher value, lists are joined, true wins, and a word's stats come from the copy with more answers */
+function mergeVal(a,b){
+  if(a===undefined) return b; if(b===undefined) return a;
+  if(typeof a==="number" && typeof b==="number") return Math.max(a,b);
+  if(typeof a==="boolean" || typeof b==="boolean") return !!a || !!b;
+  if(Array.isArray(a) && Array.isArray(b)){ const seen=new Set(a.map(x=>JSON.stringify(x))); return a.concat(b.filter(x=>!seen.has(JSON.stringify(x)))); }
+  if(a && b && typeof a==="object" && typeof b==="object"){
+    if(typeof a.a==="number" && typeof b.a==="number" && "c" in a && "c" in b) return a.a>=b.a ? {...b,...a,t:Math.max(a.t||0,b.t||0)} : {...a,...b,t:Math.max(a.t||0,b.t||0)};
+    const o={}; new Set([...Object.keys(a),...Object.keys(b)]).forEach(k=>{ o[k]=mergeVal(a[k],b[k]); }); return o; }
+  return a; }
+function mergeSnapshots(local, server){ const out={...server};
+  Object.entries(local).forEach(([k,v])=>{ if(!(k in server)){ out[k]=v; return; } let A,B; try{ A=JSON.parse(v); B=JSON.parse(server[k]); }catch(e){ out[k]=v; return; }
+    const m=mergeVal(A,B); if(k===ACT_STORE && B && B.id){ m.id=B.id; m.nick=(A&&A.nick)||B.nick; } out[k]=JSON.stringify(m); });
+  return out; }
+function writeSnapshot(snap){ try{ Object.entries(snap).forEach(([k,v])=>localStorage.setItem(k,v)); }catch(e){} }
+async function pushNow(force){
+  if(!me || syncBusy) return; syncBusy=true;
+  try{ const snap=localSnapshot(), h=getHashes(), items={};
+    Object.entries(snap).forEach(([k,v])=>{ const hv=hashStr(v); if(force || h[k]!==hv) items[k]=v; });
+    const sum=progressData(); if(sum){ delete sum.ts; } const sh=hashStr(JSON.stringify(sum));
+    if(!Object.keys(items).length && h.__summary===sh){ syncBusy=false; return; }
+    const r=await apiFetch("/api/progress",{method:"PUT",body:JSON.stringify({items,summary:sum,nick:act.nick})});
+    if(r.status===401){ me=null; showSignIn(); return; }
+    if(r.ok){ const j=await r.json(); Object.keys(items).forEach(k=>h[k]=hashStr(items[k])); h.__summary=sh; setHashes(h); try{ localStorage.setItem(SYNC_REV,String(j.rev)); }catch(e){} }
+  }catch(e){} finally{ syncBusy=false; } }
+function startSync(){ clearInterval(syncTimer); syncTimer=setInterval(()=>pushNow(false),20000);
+  document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="hidden") pushNow(false); }); }
+async function authBoot(){
+  /* sign-in is only required once the Google key is set on the server; until then Psotek works as before */
+  try{ const c=await (await apiFetch("/api/config")).json(); if(!c.clientId){ if(!act.nick) openGate(); return; } }catch(e){ if(!act.nick && !localStorage.getItem(SYNC_REV)) openGate(); return; }
+  let r; try{ r=await apiFetch("/api/me"); }catch(e){ return; } /* offline: keep practising, it saves later */
+  if(r.status===401){ showSignIn(); return; } if(!r.ok) return;
+  me=(await r.json()).user;
+  const localRev=+(localStorage.getItem(SYNC_REV)||0);
+  if(me.rev>localRev){ /* another device saved newer progress: bring it here */
+    try{ const pr=await apiFetch("/api/progress"); if(pr.ok){ const {progress,rev}=await pr.json(); const merged=mergeSnapshots(localSnapshot(),progress||{});
+      writeSnapshot(merged); localStorage.setItem(SYNC_REV,String(rev||me.rev)); const h={}; Object.entries(progress||{}).forEach(([k,v])=>h[k]=hashStr(v)); setHashes(h); location.reload(); return; } }catch(e){} }
+  if(!act.nick && me.nick){ act.nick=me.nick; saveAct(); paintWho(); }
+  if(localStorage.getItem("psotek-showlv")){ localStorage.removeItem("psotek-showlv"); $("#gate").hidden=false; showLevelStep(); }
+  startSync(); pushNow(false);
+  if(route==="progress") render(); }
+let gisP=null;
+function loadGis(){ if(!gisP) gisP=new Promise((res,rej)=>{ const sc=document.createElement("script"); sc.src="https://accounts.google.com/gsi/client"; sc.async=true; sc.onload=res; sc.onerror=rej; document.head.appendChild(sc); }); return gisP; }
+async function showSignIn(){
+  const g=$("#gate"), f=$("#gateForm"); g.hidden=false;
+  f.querySelectorAll(":scope > *").forEach(el=>el.hidden=true);
+  let box=$("#gateSign"); if(!box){ box=document.createElement("div"); box.id="gateSign"; f.appendChild(box); } box.hidden=false;
+  const lg=(typeof helpLang==="function"?helpLang():"")||"";
+  box.innerHTML=`<div class="gatepso">${psotek("happy")}<p class="psobub">Cześć! Bună! Hi! Sign in and let's practise.</p></div>
+    <h2 class="h3" id="signH">Sign in to Psotek</h2>
+    <p>Use your Google account. Your progress is saved to your account, so it follows you to any phone or computer, and your teacher can see how you're doing.</p>
+    <div id="gBtn" class="gbtn" aria-live="polite"><p class="hintline">Loading Google sign-in…</p></div>
+    <p class="err" id="signErr" hidden></p>
+    <p class="hintline" style="margin:12px 0 0">We only get your name and email from Google. Read the <a href="/privacy" target="_blank" rel="noopener">privacy notice</a> · <a href="/privacy#pl" target="_blank" rel="noopener" lang="pl">Prywatność</a> · <a href="/privacy#ro" target="_blank" rel="noopener" lang="ro">Confidențialitate</a>.</p>`;
+  try{ const [cfg]=await Promise.all([apiFetch("/api/config").then(r=>r.json()), loadGis()]);
+    if(!cfg.clientId){ $("#gBtn").innerHTML=`<p class="hintline">Sign-in isn't switched on yet. Try again later.</p>`; return; }
+    google.accounts.id.initialize({client_id:cfg.clientId, callback:onGoogle, ux_mode:"popup", auto_select:false, use_fedcm_for_prompt:true});
+    $("#gBtn").innerHTML=""; google.accounts.id.renderButton($("#gBtn"),{theme:"filled_blue",size:"large",shape:"pill",text:"continue_with",width:280,locale:lg||"en"});
+  }catch(e){ $("#gBtn").innerHTML=`<p class="hintline">Google sign-in couldn't load. Check your internet connection and reload the page.</p>`; } }
+async function onGoogle(resp){ const err=$("#signErr"); err.hidden=true;
+  try{ const r=await apiFetch("/api/login",{method:"POST",body:JSON.stringify({credential:resp.credential})});
+    if(!r.ok) throw new Error("login");
+    const {user,progress}=await r.json(); me=user;
+    const local=localSnapshot(), merged=mergeSnapshots(local,progress||{});
+    writeSnapshot(merged);
+    const a=JSON.parse(localStorage.getItem(ACT_STORE)||"{}"); if(!a.nick){ a.nick=user.nick||"Student"; localStorage.setItem(ACT_STORE,JSON.stringify(a)); }
+    const fresh=!Object.keys(progress||{}).length && answersSoFar()===0 && !Object.values(JSON.parse(localStorage.getItem(ACT_STORE)||"{}").weeks||{}).some(w=>w.ans);
+    if(fresh){ startSet({lv:0,words:0,round:0,done:0,at:Date.now()}); localStorage.setItem("psotek-showlv","1"); }
+    localStorage.removeItem(SYNC_HASH); localStorage.setItem(SYNC_REV,"0");
+    /* save the merged copy before reloading, so the account has everything from this device */
+    const items=localSnapshot(); const pr=await apiFetch("/api/progress",{method:"PUT",body:JSON.stringify({items,nick:a.nick})});
+    if(pr.ok){ const j=await pr.json(); const h={}; Object.entries(items).forEach(([k,v])=>h[k]=hashStr(v)); setHashes(h); localStorage.setItem(SYNC_REV,String(j.rev)); }
+    location.reload();
+  }catch(e){ err.textContent="Sign-in didn't work. Please try again."; err.hidden=false; } }
+function accountHTML(){ return `<h2 class="mini">Your account</h2>
+    <p class="whoami" style="margin:0 0 8px">Signed in as <b>${esc(me.email)}</b>. Your progress saves automatically.</p>
+    ${me.role==="teacher"?`<p style="margin:0 0 8px"><a class="btn" href="/teacher" target="_blank" rel="noopener">Open the teacher dashboard</a></p>`:""}
+    <div class="row" style="margin:0 0 8px;flex-wrap:wrap"><button class="btn ghost" type="button" id="aOut">Sign out</button><a class="btn ghost" href="/api/export" download>Download my data</a><button class="btn ghost" type="button" id="aDel">Delete my account</button></div>
+    <div id="aDelBox" hidden class="panel" style="margin:0 0 10px;padding:12px"><p style="margin:0 0 8px"><b>Delete your account?</b> Your saved progress, words, video work and messages are removed from Psotek for good. This can't be undone.</p>
+      <label style="display:flex;gap:8px;align-items:center;margin:0 0 10px"><input type="checkbox" id="aDelLocal" checked> Also remove the progress saved on this device</label>
+      <div class="row" style="margin:0"><button class="btn" type="button" id="aDelYes" style="background:var(--coral-deep)">Yes, delete everything</button><button class="btn ghost" type="button" id="aDelNo">Keep my account</button></div></div>
+    <h2 class="mini">Contact your teacher</h2>
+    <label class="sr" for="aMsg">Message to your teacher</label><textarea id="aMsg" class="tin" rows="3" maxlength="2000" placeholder="A question, a problem, or a privacy request…"></textarea>
+    <div class="row" style="margin:6px 0 0"><button class="btn ghost" type="button" id="aSend">Send</button><span class="hintline" id="aSent" aria-live="polite" style="margin:0"></span></div>
+    <p class="hintline" style="margin:6px 0 0"><a href="/privacy" target="_blank" rel="noopener">Privacy notice</a></p>`; }
+function wireAccount(){ if(!$("#aOut")) return;
+  $("#aOut").onclick=async()=>{ await pushNow(false); try{ await apiFetch("/api/logout",{method:"POST",body:"{}"}); }catch(e){} try{ google.accounts.id.disableAutoSelect(); }catch(e){} location.reload(); };
+  $("#aDel").onclick=()=>{ $("#aDelBox").hidden=false; $("#aDelNo").focus(); };
+  $("#aDelNo").onclick=()=>{ $("#aDelBox").hidden=true; };
+  $("#aDelYes").onclick=async()=>{ const b=$("#aDelYes"); b.disabled=true; try{ const r=await apiFetch("/api/account",{method:"DELETE"}); if(!r.ok) throw 0;
+      if($("#aDelLocal").checked){ Object.keys(localSnapshot()).forEach(k=>localStorage.removeItem(k)); } [SYNC_HASH,SYNC_REV].forEach(k=>localStorage.removeItem(k)); location.reload(); }
+    catch(e){ b.disabled=false; b.textContent="Couldn't delete. Try again"; } };
+  $("#aSend").onclick=async()=>{ const t=$("#aMsg").value.trim(); if(t.length<2){ $("#aMsg").focus(); return; } $("#aSend").disabled=true;
+    try{ const r=await apiFetch("/api/contact",{method:"POST",body:JSON.stringify({body:t})}); if(!r.ok) throw 0; $("#aMsg").value=""; $("#aSent").textContent="Sent. Your teacher will see it in the dashboard."; }
+    catch(e){ $("#aSent").textContent="Couldn't send. Try again later."; } finally{ $("#aSend").disabled=false; } }; }
+
 /* ---------- Start ---------- */
 applyDisp();
-wireGate(); saveAct(); paintWho(); if(!act.nick) openGate();
+wireGate(); saveAct(); paintWho(); if(!AUTH && !act.nick) openGate();
 render();
+if(AUTH) authBoot();
 setTimeout(()=>loadExtra(), 1200); /* fetch the other rooms quietly once the first screen is up */
 if(MOVED) setTimeout(()=>{ psoSay("happy", act.nick ? `Welcome to the new home, ${act.nick}!` : "Welcome to the new home!"); },800);
 

@@ -1,0 +1,277 @@
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Psotek · Teacher dashboard</title><meta name="robots" content="noindex"><link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one teacher column — add codes, then summary, then the ranked table with expandable weekly detail */
+:root{
+  --paper:#FFFCF5; --surface:#FFFFFF; --sunk:#F3EFE4; --ink:#1B2140; --muted:#5B6280; --line:#E4DFD0;
+  --moss:#1A56E8; --moss-soft:#E3ECFF; --gold:#B9800E; --ok:#15803D; --ok-soft:#DCF5E3; --err:#C93A22; --err-soft:#FFE4DC;
+  --serif:"Baloo 2", "Literata", Georgia, serif;
+  --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#121630; --surface:#1C2142; --sunk:#252B52; --ink:#EEF0FA; --muted:#A9B0D0; --line:#323A68;
+  --moss:#7AA2FF; --moss-soft:#25305E; --gold:#FFD54A; --ok:#86EFAC; --ok-soft:#173826; --err:#FF8A70; --err-soft:#42231E; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#121630; --surface:#1C2142; --sunk:#252B52; --ink:#EEF0FA; --muted:#A9B0D0; --line:#323A68;
+  --moss:#7AA2FF; --moss-soft:#25305E; --gold:#FFD54A; --ok:#86EFAC; --ok-soft:#173826; --err:#FF8A70; --err-soft:#42231E; color-scheme:dark }
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--moss);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 16px 64px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 24px;margin-bottom:22px}
+.eyebrow{margin:0 0 2px;font-size:.8rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--moss)}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,4vw,2.5rem);line-height:1.15;margin:0;text-wrap:balance}
+h2{font-family:var(--serif);font-weight:500;font-size:1.25rem;margin:0 0 6px}
+.sub{color:var(--muted);margin:4px 0 0;max-width:62ch}
+.panel{background:var(--surface);border-radius:16px;padding:clamp(18px,3vw,26px);margin-bottom:18px}
+.addgrid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start}
+textarea{width:100%;min-height:76px;border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 12px;font-family:var(--mono);font-size:.82rem;resize:vertical}
+.btn{border:0;border-radius:10px;padding:10px 18px;background:var(--moss);color:var(--surface);font-weight:600;white-space:nowrap}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:500}
+.btn.danger{background:var(--err);color:var(--surface)}
+.hint{font-size:.88rem;color:var(--muted);margin:8px 0 0}
+.results{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:4px;font-size:.92rem}
+.results li::before{display:inline-block;width:1.3em;font-weight:600}
+.results li.ok::before{content:"✓";color:var(--ok)}
+.results li.no::before{content:"✕";color:var(--err)}
+.results li.warn::before{content:"!";color:var(--gold)}
+.controls{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin:0 0 14px}
+.seg{display:inline-flex;flex-wrap:wrap;background:var(--surface);border-radius:999px;padding:4px;gap:2px}
+.seg button{border:0;background:transparent;border-radius:999px;padding:6px 13px;font-size:.9rem;color:var(--muted);font-weight:500}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.ctl-label{font-size:.82rem;font-weight:600;color:var(--muted);margin-right:4px}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:18px}
+.tile{background:var(--surface);border-radius:12px;padding:12px 16px}
+.tile b{display:block;font-family:var(--serif);font-weight:500;font-size:1.7rem;font-variant-numeric:tabular-nums;line-height:1.2;overflow-wrap:anywhere}
+.tile span{font-size:.84rem;color:var(--muted)}
+.tablewrap{overflow-x:auto;background:var(--surface);border-radius:16px}
+table{width:100%;border-collapse:collapse;min-width:760px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:.8rem;font-weight:600;color:var(--muted);letter-spacing:.03em}
+th.num,td.num{text-align:right}
+tbody tr.row{cursor:pointer}
+tbody tr.row:hover{background:var(--sunk)}
+tr.row[aria-expanded="true"]{background:var(--moss-soft)}
+.rank{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;font-weight:600;font-size:.9rem;color:var(--muted)}
+.rank.top{background:var(--moss);color:var(--surface)}
+.rank.first{background:var(--gold);color:var(--surface)}
+.nick{font-family:var(--serif);font-size:1.08rem}
+.lvl{display:inline-block;margin-left:6px;font-size:.75rem;font-weight:600;background:var(--moss-soft);color:var(--ink);border-radius:6px;padding:1px 7px;vertical-align:2px}
+.flag{display:inline-block;margin-left:6px;font-size:.75rem;font-weight:600;background:var(--err-soft);color:var(--err);border-radius:6px;padding:1px 7px;vertical-align:2px}
+.spark{display:flex;align-items:flex-end;gap:3px;height:28px;width:120px}
+.spark i{flex:1;background:var(--moss);border-radius:2px;min-height:2px;opacity:.85}
+.spark i.zero{background:var(--line)}
+.dim{color:var(--muted)}
+.detail td{background:var(--paper);padding:16px 18px}
+.detail table{min-width:0;width:auto;background:transparent}
+.detail th,.detail td{padding:6px 18px 6px 0;border-bottom:1px solid var(--line);background:transparent}
+.detailgrid{display:flex;flex-wrap:wrap;gap:18px 40px;align-items:flex-start}
+.facts{display:grid;gap:4px;font-size:.92rem}
+.empty{text-align:center;padding:40px 20px;color:var(--muted)}
+.vwork{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.vwork details{margin:0 0 10px}
+.vwork summary{cursor:pointer;padding:4px 0}
+.vwork h3{font-size:.85rem;font-weight:600;color:var(--muted);margin:12px 0 4px}
+.vtext{margin:0 0 6px;white-space:pre-wrap;max-width:75ch;font-family:var(--serif)}
+.okmark{color:var(--ok);font-weight:600}
+.lvl.vid{background:var(--sunk)}
+.empty h2{color:var(--ink)}
+.wchips{display:flex;flex-wrap:wrap;gap:6px}
+.wchip{display:inline-flex;align-items:baseline;gap:6px;border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:2px 10px;font-size:.92rem}
+.wchip small{font-size:.74rem;color:var(--muted);font-weight:600}
+.wchip.good{border-color:var(--ok);background:var(--ok-soft)} .wchip.mid{border-color:var(--gold)} .wchip.low{border-color:var(--err);background:var(--err-soft)}
+.msgs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.msgs li{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--paper)}
+.msgs li.done{opacity:.7}
+.notice{background:var(--err-soft);color:var(--ink);border-radius:12px;padding:12px 16px;margin-bottom:18px}
+@media (max-width:640px){ .addgrid{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <p class="eyebrow">Psotek English</p>
+      <h1>Teacher dashboard</h1>
+      <p class="sub">Every student who signs in to psotnyjez.com appears here automatically, with their practice, words, video answers and writing. Only you can open this page.</p>
+    </div>
+  </header>
+
+  <div class="notice" id="noDb" hidden></div>
+
+  <section class="panel" aria-labelledby="msgH" id="msgPanel" hidden>
+    <h2 id="msgH">Messages from students</h2>
+    <p class="hint" style="margin-top:0">Questions and privacy requests sent with “Contact your teacher”. Reply by email if needed.</p>
+    <ul class="msgs" id="msgs"></ul>
+  </section>
+
+  <div class="controls">
+    <div><span class="ctl-label">Period</span>
+      <div class="seg" id="period" role="group" aria-label="Period">
+        <button type="button" data-p="this" aria-pressed="true">This week</button>
+        <button type="button" data-p="last" aria-pressed="false">Last week</button>
+        <button type="button" data-p="four" aria-pressed="false">Last 4 weeks</button>
+        <button type="button" data-p="all" aria-pressed="false">All time</button>
+      </div></div>
+    <div><span class="ctl-label">Rank by</span>
+      <div class="seg" id="sortBy" role="group" aria-label="Rank by">
+        <button type="button" data-s="min" aria-pressed="true">Minutes</button>
+        <button type="button" data-s="ans" aria-pressed="false">Answers</button>
+        <button type="button" data-s="acc" aria-pressed="false">Accuracy</button>
+        <button type="button" data-s="xp" aria-pressed="false">Lab XP</button>
+      </div></div>
+  </div>
+
+  <div class="summary" id="summary"></div>
+  <div id="board"></div>
+</div>
+
+<script>
+const $=(s,el=document)=>el.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LV=["A1","A2","B1","B2","C1","C2"];
+let students=[], period="this", sortBy="min", open=null, confirmDel=null, col=null, loaded=false;
+
+/* Weeks */
+function isoWeek(d){ const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())); const day=t.getUTCDay()||7; t.setUTCDate(t.getUTCDate()+4-day);
+  const y=t.getUTCFullYear(); const w=Math.ceil(((t-Date.UTC(y,0,1))/864e5+1)/7); return y+"-W"+String(w).padStart(2,"0"); }
+function weeksBack(n){ return Array.from({length:n},(_,i)=>{ const d=new Date(); d.setDate(d.getDate()-7*(n-1-i)); return isoWeek(d); }); }
+function weekMonday(key){ const [y,w]=key.split("-W").map(Number); const jan4=new Date(Date.UTC(y,0,4)); const day=jan4.getUTCDay()||7;
+  const mon=new Date(jan4); mon.setUTCDate(jan4.getUTCDate()-day+1+(w-1)*7); return mon; }
+function weekLabel(key){ const m=weekMonday(key), e=new Date(m); e.setUTCDate(m.getUTCDate()+6);
+  const f=d=>d.toLocaleDateString(undefined,{day:"numeric",month:"short",timeZone:"UTC"}); return `${f(m)} – ${f(e)}`; }
+function periodKeys(){ if(period==="this") return weeksBack(1); if(period==="last") return [weeksBack(2)[0]]; if(period==="four") return weeksBack(4); return null; }
+
+/* Codes */
+function sum36(str){ let h=5381; for(let i=0;i<str.length;i++) h=((h*33)^str.charCodeAt(i))>>>0; return h.toString(36); }
+function decode(code){
+  const m=code.trim().match(/^EW1\.([A-Za-z0-9_-]+)\.([0-9a-z]+)$/); if(!m) return null;
+  try{ const b=atob(m[1].replace(/-/g,"+").replace(/_/g,"/")); const bytes=Uint8Array.from(b,c=>c.charCodeAt(0));
+    const json=new TextDecoder().decode(bytes); const d=JSON.parse(json);
+    if(!d || d.v!==1 || typeof d.id!=="string" || !/^[a-z0-9]{6,30}$/.test(d.id) || typeof d.n!=="string") return null;
+    return {d, valid: sum36(json+"|eight-words")===m[2]}; }catch(e){ return null; }
+}
+const num=(x,max=1e9)=>{ const n=Math.round(Number(x)); return Number.isFinite(n)&&n>=0 ? Math.min(n,max) : 0; };
+
+/* Video work */
+const VT={syn:"Summary with synonyms",adv:"Summary with three adverbs",rep:"Formal account in reported speech",arg:"Argument essay",me:"About me",talk:"Conversation",jobs:"Job words",advice:"Message with advice",sent:"Sentences"};
+const vkLabel=k=>{ const [w,l]=k.split(":"); return weekLabel(w)+(l!=null?` · ${LV[+l]} video`:""); };
+function videoHTML(s){ const ks=Object.keys(s.video||{}).sort().reverse(); if(!ks.length) return "";
+  return `<div class="vwork"><h2 style="font-size:1.05rem">Video of the week</h2>${ks.map(k=>{ const v=s.video[k]; const sc=v.s||[];
+    return `<details ${k===ks[0]?"open":""}><summary><b>${esc(vkLabel(k))}</b>${v.ti?` · ${esc(v.ti)}`:""}${sc.length?` · questions ${sc[0]}/${sc[1]} · listening ${sc[2]}/${sc[3]}`:""}</summary>
+      ${(v.q||[]).some(Boolean)?`<h3>Write what you heard</h3>${v.q.map((x,i)=>x?`<p class="vtext"><span class="dim">${i+1}.</span> ${esc(x)}</p>`:"").join("")}`:""}
+      ${Object.entries(v.t||{}).map(([key,txt])=>txt?`<h3>${esc(VT[key]||key)}${(v.ok||[]).includes("t_"+key)?' <span class="okmark">✓ passed checks</span>':""}</h3><p class="vtext">${esc(txt)}</p>`:"").join("")}
+    </details>`; }).join("")}</div>`; }
+
+/* Words practised: [word, level, right, tries, used, last day] */
+const dayNo=()=>Math.floor((Date.now()-new Date().getTimezoneOffset()*6e4)/864e5);
+function weekStartDay(){ const d=new Date(); const wd=(d.getDay()+6)%7; return dayNo()-wd; }
+function wordsHTML(s){ const ws=s.words||[]; if(!ws.length) return `<div class="vwork"><h2 style="font-size:1.05rem">Words practised</h2><p class="dim" style="margin:0">No words yet. They appear as soon as the student practises.</p></div>`;
+  const wk=weekStartDay(), lastWk=wk-7;
+  const chip=x=>{ const pct=x[3]?Math.round(x[2]/x[3]*100):null; return `<span class="wchip ${pct==null?"":pct>=80?"good":pct>=50?"mid":"low"}" title="${x[3]} answers${x[4]?`, used ${x[4]}×`:""}">${esc(x[0])}<small>${LV[x[1]]||""}${pct==null?"":" · "+pct+"%"}</small></span>`; };
+  const groups=[["This week",ws.filter(x=>x[5]>=wk)],["Last week",ws.filter(x=>x[5]>=lastWk&&x[5]<wk)],["Earlier",ws.filter(x=>x[5]<lastWk)]].filter(g=>g[1].length);
+  return `<div class="vwork"><h2 style="font-size:1.05rem">Words practised <span class="dim" style="font-family:var(--sans);font-size:.85rem">· ${ws.length} words · colour = % right</span></h2>
+    ${groups.map(([t,l])=>`<h3>${t} (${l.length})</h3><div class="wchips">${l.map(chip).join("")}</div>`).join("")}
+    ${ws.some(x=>!x[5])?`<p class="hint">"Earlier" includes words practised before the app started recording dates (26 Oct 2026).</p>`:""}</div>`; }
+
+/* Ranking */
+function totals(s, keys){
+  const ws=s.weeks||{}; const ks=keys||Object.keys(ws); let sec=0,ans=0,cor=0;
+  ks.forEach(k=>{ const w=ws[k]; if(w){ sec+=w.sec||0; ans+=w.ans||0; cor+=w.cor||0; } });
+  return {min:Math.round(sec/60), ans, acc: ans>=5? Math.round(cor/ans*100) : null, xp:s.xp||0};
+}
+function rel(ts){ if(!ts) return "–"; const d=Math.floor((Date.now()-ts)/864e5); return d<=0?"Today":d===1?"Yesterday":d<7?`${d} days ago`:new Date(ts).toLocaleDateString(undefined,{day:"numeric",month:"short"}); }
+
+function render(){
+  const keys=periodKeys(); const spark=weeksBack(8);
+  const rows=students.map(s=>({s,t:totals(s,keys)}));
+  rows.sort((a,b)=>{ const va=a.t[sortBy]??-1, vb=b.t[sortBy]??-1; return vb-va || b.t.min-a.t.min || String(a.s.nick).localeCompare(String(b.s.nick)); });
+  const pLabel={this:"this week",last:"last week",four:"in the last 4 weeks",all:"all time"}[period];
+  const active=rows.filter(r=>r.t.min>0||r.t.ans>0);
+  const totMin=rows.reduce((n,r)=>n+r.t.min,0), totAns=rows.reduce((n,r)=>n+r.t.ans,0);
+  const best=[...rows].sort((a,b)=>b.t.min-a.t.min)[0];
+  $("#summary").innerHTML = !students.length? "" : `
+    <div class="tile"><b>${students.length}</b><span>students</span></div>
+    <div class="tile"><b>${active.length}</b><span>practised ${pLabel}</span></div>
+    <div class="tile"><b>${totMin}</b><span>minutes ${pLabel}</span></div>
+    <div class="tile"><b>${best&&best.t.min>0?esc(best.s.nick):"–"}</b><span>most practice ${pLabel}</span></div>`;
+
+  if(!loaded){ $("#board").innerHTML=`<div class="tablewrap"><div class="empty">Loading the class…</div></div>`; return; }
+  if(!students.length){ $("#board").innerHTML=`<div class="tablewrap"><div class="empty"><h2>No students yet</h2>
+    <p style="margin:0 auto;max-width:48ch">Students appear here as soon as they sign in to psotnyjez.com with Google.</p></div></div>`; return; }
+
+  const sortLabel={min:"Minutes",ans:"Answers",acc:"Accuracy",xp:"Lab XP"};
+  $("#board").innerHTML=`<div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Student</th>
+      <th class="num">Minutes</th><th class="num">Answers</th><th class="num">Right first time</th><th class="num">Lab XP</th>
+      <th>Last 8 weeks</th><th>Last active</th></tr></thead>
+    <tbody>${rows.map((r,i)=>{ const s=r.s, id=s._id; const mx=Math.max(1,...spark.map(k=>s.weeks?.[k]?.sec||0));
+      const main=`<tr class="row" data-id="${esc(id)}" aria-expanded="${open===id}" tabindex="0">
+        <td><span class="rank ${i===0&&r.t[sortBy]>0?"first":i<3&&r.t[sortBy]>0?"top":""}">${i+1}</span></td>
+        <td><span class="nick">${esc(s.nick)}</span>${Object.keys(s.video||{}).length?`<span class="lvl vid" title="Has sent video work">video</span>`:""}${s.lv!=null?`<span class="lvl" title="Tense lab level">${LV[s.lv]||""}</span>`:""}${s.edited?`<span class="flag" title="A code from this student didn't pass the check">check</span>`:""}</td>
+        <td class="num">${r.t.min}</td><td class="num">${r.t.ans}</td>
+        <td class="num">${r.t.acc==null?'<span class="dim">–</span>':r.t.acc+"%"}</td><td class="num">${r.t.xp}</td>
+        <td><div class="spark" aria-label="Minutes per week, last 8 weeks">${spark.map(k=>{ const v=s.weeks?.[k]?.sec||0; return `<i class="${v?"":"zero"}" style="height:${Math.max(8,v/mx*100)}%" title="${esc(weekLabel(k))}: ${Math.round(v/60)} min"></i>`; }).join("")}</div></td>
+        <td class="dim">${rel(s.lastSeen||s.codeTs)}</td></tr>`;
+      if(open!==id) return main;
+      const wk=Object.keys(s.weeks||{}).sort().reverse();
+      return main+`<tr class="detail"><td colspan="8"><div class="detailgrid">
+        <div><h2 style="font-size:1.05rem">Week by week</h2><table><thead><tr><th>Week</th><th class="num">Minutes</th><th class="num">Answers</th><th class="num">Right</th></tr></thead>
+          <tbody>${wk.length?wk.map(k=>{ const w=s.weeks[k]; return `<tr><td>${esc(weekLabel(k))}</td><td class="num">${Math.round(w.sec/60)}</td><td class="num">${w.ans}</td><td class="num">${w.ans?Math.round(w.cor/w.ans*100)+"%":"–"}</td></tr>`; }).join(""):`<tr><td colspan="4" class="dim">No practice recorded yet.</td></tr>`}</tbody></table></div>
+        <div class="facts"><h2 style="font-size:1.05rem">Overall</h2>
+          <span>Vocabulary answers: ${s.c||0} right of ${s.a||0}</span>
+          <span>Words marked as known: ${s.known||0}</span>
+          <span>Words practised: ${(s.words||[]).length}${s.vl!=null?` · word level ${LV[s.vl]}`:""}</span>
+          <span>Tense lab: ${s.xp||0} XP, practising at ${LV[s.lv]||"–"}</span>
+          <span>Email: ${esc(s.email||"–")}</span>
+          <span>Account created: ${s.firstAdded?new Date(s.firstAdded).toLocaleDateString():"–"}</span>
+          ${s.edited?`<span style="color:var(--err)">One of this student's codes didn't pass the check, so its numbers may have been changed by hand.</span>`:""}
+          <div style="margin-top:10px">${confirmDel===id
+            ? `<span>Delete ${esc(s.nick)}'s account and all their progress? This can't be undone.</span> <button class="btn danger" type="button" data-del="${esc(id)}">Remove</button> <button class="btn ghost" type="button" data-cancel="1">Keep</button>`
+            : `<button class="btn ghost" type="button" data-ask="${esc(id)}">Delete account</button>`}</div>
+        </div></div>${wordsHTML(s)}${videoHTML(s)}</td></tr>`;
+    }).join("")}</tbody></table></div>
+    <p class="hint">Updated automatically as students practise (refreshes every 2 minutes). Ranked by ${sortLabel[sortBy].toLowerCase()} ${pLabel}. Accuracy shows once a student has 5 answers in the period. Click a student for their weekly breakdown.</p>`;
+}
+
+$("#board").addEventListener("click",async e=>{
+  const ask=e.target.closest("[data-ask]"), del=e.target.closest("[data-del]"), cancel=e.target.closest("[data-cancel]");
+  if(ask){ confirmDel=ask.dataset.ask; render(); return; }
+  if(cancel){ confirmDel=null; render(); return; }
+  if(del){ del.disabled=true; try{ const r=await api("/api/teacher/students/"+encodeURIComponent(del.dataset.del),{method:"DELETE"}); if(!r.ok) throw 0; students=students.filter(x=>x._id!==del.dataset.del); open=null; }catch(err){ del.disabled=false; } confirmDel=null; render(); return; }
+  const row=e.target.closest("tr.row"); if(!row) return;
+  open = open===row.dataset.id ? null : row.dataset.id; confirmDel=null; render();
+});
+$("#board").addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ") && e.target.matches("tr.row")){ e.preventDefault(); e.target.click(); } });
+$("#period").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; period=b.dataset.p; document.querySelectorAll("#period button").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); render(); });
+$("#sortBy").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; sortBy=b.dataset.s; document.querySelectorAll("#sortBy button").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); render(); });
+
+render();
+const api=(p,o={})=>fetch(p,{credentials:"same-origin",...o,headers:{"x-psotek":"1","content-type":"application/json",...(o.headers||{})}});
+/* a student's saved summary (the same data as an old progress code) turned into a row for the table */
+function fromSummary(x){ const s=x.summary||{}; const weeks={}; Object.entries(s.w||{}).forEach(([k,v])=>{ if(Array.isArray(v)) weeks[k]={sec:num(v[0],604800),ans:num(v[1]),cor:num(v[2])}; });
+  const video={}; Object.entries(s.vid||{}).forEach(([k,v])=>{ if(v&&typeof v==="object") video[k]={at:num(v.at,1e15),ti:String(v.ti||""),s:Array.isArray(v.s)?v.s:null,q:Array.isArray(v.q)?v.q:[],t:v.t&&typeof v.t==="object"?v.t:{},ok:Array.isArray(v.ok)?v.ok:[]}; });
+  return {_id:x.id, nick:x.nick||x.name||"?", email:x.email, weeks, video, words:Array.isArray(s.pw)?s.pw:[], xp:num(s.xp), lv:s.lv!=null?Math.min(5,num(s.lv)):null, vl:s.vl!=null?Math.min(5,num(s.vl)):null,
+    known:num(s.k), c:num(s.c), a:num(s.a), codeTs:x.updated||x.lastSeen, firstAdded:x.created, lastSeen:x.lastSeen, edited:false}; }
+async function load(){
+  let r; try{ r=await api("/api/teacher/students"); }catch(e){ loaded=true; $("#noDb").textContent="Couldn't reach psotnyjez.com. Check your connection and reload."; $("#noDb").hidden=false; render(); return; }
+  if(r.status===401){ loaded=true; $("#noDb").innerHTML='You are not signed in. <a href="/">Open Psotek</a>, sign in with your teacher Google account, then come back here.'; $("#noDb").hidden=false; render(); return; }
+  if(r.status===403){ loaded=true; $("#noDb").textContent="This Google account isn't the teacher account."; $("#noDb").hidden=false; render(); return; }
+  const j=await r.json(); students=j.students.map(fromSummary); loaded=true; render(); loadMsgs(); }
+async function loadMsgs(){ try{ const r=await api("/api/teacher/messages"); if(!r.ok) return; const j=await r.json(); const open=j.messages.filter(m=>!m.done);
+  $("#msgPanel").hidden=!j.messages.length;
+  $("#msgs").innerHTML=j.messages.slice(0,40).map(m=>`<li class="${m.done?"done":""}"><div><b>${esc(m.nick||m.name||"Deleted account")}</b> <span class="dim">${esc(m.email||"")} · ${new Date(m.created).toLocaleString()}</span><p class="vtext">${esc(m.body)}</p></div>${m.done?'<span class="dim">Done</span>':`<button class="btn ghost" type="button" data-done="${m.id}">Mark as done</button>`}</li>`).join("");
+  $("#msgH").textContent = open.length ? `Messages from students (${open.length} new)` : "Messages from students"; }catch(e){} }
+document.addEventListener("click",async e=>{ const d=e.target.closest("[data-done]"); if(!d) return; d.disabled=true; await api("/api/teacher/messages/"+d.dataset.done,{method:"POST",body:"{}"}); loadMsgs(); });
+load(); setInterval(()=>{ if(document.visibilityState==="visible") load(); },120000);
+</script>
+
+</body></html>
