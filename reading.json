@@ -1,160 +1,160 @@
 {
-  "week": "2026-W43",
-  "title": "The twenty-minute secret",
+  "week": "2026-W44",
+  "title": "Killing them with kindness",
   "level": "B1–B2",
   "minutes": 6,
-  "intro": "A short magazine-style article about the afternoon nap and what it can do for your brain. It was written for Psotek English; Ana is a made-up example, not a real person.",
+  "intro": "A short magazine-style article about why so many houseplants die and how to keep yours alive. Tomasz is a made-up example, not a real person; the article was written for Psotek English",
   "paras": [
-    "Every day at about two o'clock, Ana, an accountant in a busy office, used to hit a wall. Her eyes felt heavy, the numbers on her screen started to swim, and she reached for her third coffee of the day. For years she thought the problem was her lunch or her lack of willpower. Then a colleague gave her some surprising advice: \"Stop fighting it. Have a short nap.\"",
-    "The afternoon slump that Ana felt is completely normal. Our body clock does not keep us equally alert all day. Most people have a natural dip in energy in the early afternoon, whether they eat a big lunch or not. In many hot countries, people have long organised their day around this dip, which is one reason why the siesta became a tradition in places such as Spain.",
-    "The key to a good nap, however, is its length. Sleep researchers generally recommend between ten and twenty minutes. A nap this short keeps you in light sleep, so you wake up feeling refreshed. If you sleep for much longer, you may fall into deep sleep, and waking up from it can leave you groggy and confused for half an hour or more. Scientists call this feeling \"sleep inertia\", and it is the reason why some people say that naps make them feel worse.",
-    "Timing matters too. A nap in the early afternoon fits the body's natural rhythm, but a nap late in the day can make it harder to fall asleep at night. Some people even try a \"coffee nap\": they drink a cup of coffee and lie down straight away. Because caffeine takes around twenty minutes to start working, they wake up just as it begins to take effect.",
-    "Ana was not convinced at first, but she decided to try it for a month. She set an alarm for eighteen minutes and rested in her car during her lunch break. After a week, she noticed that the two o'clock wall had almost disappeared. She now drinks one coffee a day instead of three. \"I used to think napping was lazy,\" she says. \"Now I see it as part of doing my job well.\""
+    "When Tomasz moved into his first flat, he bought six plants to make it feel like home. Within two months, all six were dead. \"I watered them every single day,\" he says. \"Nobody could say I didn't care.\" That, it turns out, was exactly the problem. His story is very common: experts say that more houseplants die from too much attention than from too little.",
+    "The biggest killer of indoor plants is overwatering. Roots need air as well as water, and when the soil stays wet for too long, they cannot breathe. Slowly they begin to rot, and the leaves above them turn yellow and droopy. Unfortunately, a thirsty plant and a drowning plant can look almost the same, so many owners react to the warning signs by reaching for the watering can again.",
+    "Instead of following a fixed timetable, gardeners recommend a simple test. Push a finger into the soil up to the second knuckle. If it feels dry, water the plant thoroughly, until water runs out of the hole at the bottom of the pot. If it still feels damp, leave it alone and check again in a few days. A pot without a drainage hole is a trap, because the extra water has nowhere to go.",
+    "Light is the other half of the story. Every plant comes from a particular natural home, and it does best when you copy those conditions. A cactus from the desert will be happy on a sunny windowsill, while many popular leafy plants come from the shady floor of tropical forests and can burn in strong, direct sun. Before you buy a plant, it is worth reading the small label in the pot rather than choosing it only because it looks pretty.",
+    "Last spring, Tomasz decided to give plants another chance. This time he chose just two easy species, put them near a bright window and felt the soil once a week before deciding whether to water. Both are still alive, and one has even produced three new leaves. \"I learned that looking after something sometimes means doing less,\" he says. \"Now I wait until they actually need me.\""
   ],
   "gloss": [
     {
-      "w": "hit a wall",
-      "m": "suddenly feel so tired that you cannot continue well"
+      "w": "overwatering",
+      "m": "giving a plant more water than it needs"
     },
     {
-      "w": "slump",
-      "m": "a period when energy or activity falls"
+      "w": "rot",
+      "m": "to become soft and bad because of too much water or age"
     },
     {
-      "w": "refreshed",
-      "m": "full of energy again after rest"
+      "w": "droopy",
+      "m": "hanging down because it is weak or tired"
     },
     {
-      "w": "groggy",
-      "m": "weak and unable to think clearly, especially after sleep"
+      "w": "thoroughly",
+      "m": "completely and carefully"
     },
     {
-      "w": "take effect",
-      "m": "start to work or to produce a result"
+      "w": "drainage hole",
+      "m": "a small hole in the bottom of a pot that lets extra water out"
     }
   ],
   "tfng": [
     {
-      "s": "Ana first thought her tiredness was caused by her lunch or a lack of willpower.",
+      "s": "All of Tomasz's first plants died within two months.",
       "a": "T",
-      "why": "\"She thought the problem was her lunch or her lack of willpower.\""
+      "why": "\"Within two months, all six were dead.\""
     },
     {
-      "s": "Only people who eat a big lunch feel a dip in energy in the afternoon.",
+      "s": "Most houseplants die because their owners forget to water them.",
       "a": "F",
-      "why": "The dip happens \"whether they eat a big lunch or not\"."
+      "why": "Experts say more plants die from too much attention than from too little."
     },
     {
-      "s": "Researchers usually suggest naps of between ten and twenty minutes.",
+      "s": "Plant roots need air as well as water.",
       "a": "T",
-      "why": "\"Sleep researchers generally recommend between ten and twenty minutes.\""
+      "why": "\"Roots need air as well as water.\""
     },
     {
-      "s": "Waking up from deep sleep always makes people feel refreshed.",
+      "s": "Gardeners advise watering every plant on the same day each week.",
       "a": "F",
-      "why": "Waking from deep sleep \"can leave you groggy and confused\"."
+      "why": "They recommend a finger test \"instead of following a fixed timetable\"."
     },
     {
-      "s": "A late-afternoon nap can make it difficult to sleep at night.",
+      "s": "A cactus usually likes a sunny windowsill.",
       "a": "T",
-      "why": "\"A nap late in the day can make it harder to fall asleep at night.\""
+      "why": "\"A cactus from the desert will be happy on a sunny windowsill.\""
     },
     {
-      "s": "Ana's manager gave her permission to sleep at her desk.",
+      "s": "Tomasz bought his two new plants online.",
       "a": "NG",
-      "why": "The text says she rested in her car; her manager is not mentioned."
+      "why": "The text says what he chose and where he put them, but not where he bought them."
     }
   ],
   "mc": [
     {
-      "q": "Why does a short nap make you feel refreshed?",
-      "a": "Because you stay in light sleep",
+      "q": "Why do roots rot when the soil stays wet for too long?",
+      "a": "They cannot get enough air",
       "o": [
-        "Because your body clock stops",
-        "Because you stay in light sleep",
-        "Because you reach deep sleep quickly",
-        "Because you dream more"
+        "They get too much sunlight",
+        "They cannot get enough air",
+        "They grow too quickly",
+        "The pot becomes too small"
       ],
-      "why": "\"A nap this short keeps you in light sleep, so you wake up feeling refreshed.\""
+      "why": "Paragraph 2: roots need air, and in wet soil \"they cannot breathe\"."
     },
     {
-      "q": "What is \"sleep inertia\"?",
-      "a": "The groggy, confused feeling after waking from deep sleep",
+      "q": "What should you do if the soil still feels damp?",
+      "a": "Leave the plant and check again in a few days",
       "o": [
-        "The natural dip in energy after lunch",
-        "A tradition in hot countries",
-        "The effect of drinking coffee before bed",
-        "The groggy, confused feeling after waking from deep sleep"
+        "Water it a little more",
+        "Move it into the sun",
+        "Leave the plant and check again in a few days",
+        "Put it in a new pot at once"
       ],
-      "why": "Paragraph 3 explains that scientists use this name for feeling groggy after deep sleep."
+      "why": "Paragraph 3: \"leave it alone and check again in a few days\"."
     },
     {
-      "q": "Why do some people drink coffee just before a nap?",
-      "a": "Because the caffeine starts working as they wake up",
+      "q": "Why can strong, direct sun hurt many leafy plants?",
+      "a": "They come from the shady floor of tropical forests",
       "o": [
-        "Because coffee helps them fall into deep sleep",
-        "Because it makes the nap longer",
-        "Because the caffeine starts working as they wake up",
-        "Because they cannot sleep without it"
+        "They come from the desert",
+        "They come from the shady floor of tropical forests",
+        "Their pots have no drainage hole",
+        "They need water every day"
       ],
-      "why": "Caffeine takes about twenty minutes to work, so it begins as the nap ends."
+      "why": "Paragraph 4: they come from shady forest floors and \"can burn in strong, direct sun\"."
     },
     {
-      "q": "What changed for Ana after she started napping?",
-      "a": "Her afternoon tiredness almost disappeared and she drank less coffee",
+      "q": "What did Tomasz learn in the end?",
+      "a": "Looking after something can mean doing less",
       "o": [
-        "Her afternoon tiredness almost disappeared and she drank less coffee",
-        "She stopped taking a lunch break",
-        "She moved to a job in Spain",
-        "She started sleeping for an hour every day"
+        "Plants need water every day",
+        "Expensive plants live longer",
+        "Looking after something can mean doing less",
+        "Plants should never be near a window"
       ],
-      "why": "The \"two o'clock wall\" almost disappeared and she now drinks one coffee instead of three."
+      "why": "He says looking after something \"sometimes means doing less\"."
     }
   ],
   "words": [
     {
-      "q": "In paragraph 1, \"started to swim\" means…",
-      "a": "seemed to move and became hard to read",
+      "q": "In paragraph 1, \"it turns out\" means…",
+      "a": "it was later discovered",
       "o": [
-        "seemed to move and became hard to read",
-        "disappeared from the screen",
-        "changed colour",
-        "became bigger and clearer"
+        "it changes direction",
+        "it was later discovered",
+        "it is switched off",
+        "it is impossible"
       ]
     },
     {
-      "q": "In paragraph 2, \"organised their day around\" means…",
-      "a": "planned their daily routine to fit",
+      "q": "In paragraph 2, \"reaching for\" means…",
+      "a": "picking up to use",
       "o": [
-        "ignored completely",
-        "planned their daily routine to fit",
-        "travelled around",
-        "complained about"
+        "trying to touch the sky",
+        "picking up to use",
+        "throwing away",
+        "arriving at"
       ]
     },
     {
-      "q": "In paragraph 4, \"straight away\" means…",
-      "a": "immediately",
+      "q": "In paragraph 3, \"leave it alone\" means…",
+      "a": "do not touch or water it",
       "o": [
-        "in a straight line",
-        "very carefully",
-        "after an hour",
-        "immediately"
+        "take it outside",
+        "give it to a friend",
+        "do not touch or water it",
+        "put it in a dark room"
       ]
     },
     {
-      "q": "In paragraph 5, \"was not convinced\" means…",
-      "a": "did not believe it would work",
+      "q": "In paragraph 4, \"it is worth\" means…",
+      "a": "it is a good idea / useful",
       "o": [
-        "did not understand the words",
-        "was not allowed",
-        "did not believe it would work",
-        "was very excited"
+        "it costs a lot of money",
+        "it is a good idea / useful",
+        "it is not allowed",
+        "it is very difficult"
       ]
     }
   ],
   "respond": {
-    "prompt": "Write 60–100 words: When during the day do you feel most tired, and what do you usually do about it? Would you try a short nap? Why or why not?",
+    "prompt": "Write 60–100 words: Do you have any plants or pets at home? Describe how you look after them, or explain why you do not have any.",
     "min": 60,
     "max": 100
   }

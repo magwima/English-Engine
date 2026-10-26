@@ -1,1925 +1,1968 @@
 {
- "week": "2026-W43",
- "title": "Wanna Work Together?",
- "channel": "Creative Commons",
- "speaker": "Creative Commons narrator (not named)",
- "yt": "q0VzUigrb_g",
- "source": "https://creativecommons.org/about/videos/wanna-work-together/",
- "license": {
-  "name": "CC BY 4.0",
-  "url": "https://creativecommons.org/licenses/by/4.0/"
- },
- "length": "3:00",
- "level": "B2",
- "intro": "A short animated film about copyright and how Creative Commons licences let creators decide how other people may use their work.",
- "summary": "The film starts by showing how people such as teachers, artists and writers learn from and build on the work of others. It explains that when you create a photo, a song, a drawing, a film or a story, you get copyright automatically, so other people normally need your permission to use it, apart from cases of fair use. For creators who want their work to travel freely, full copyright can be too strict. Creative Commons offers free licences: on its website a creator answers a few questions, for example whether others may use the work commercially or change it, and gets a licence in about a minute. Creators keep their copyright, millions of works are now free to share and remix, and the film invites viewers to join this shared culture.",
- "vocab": [
-  {
-   "w": "copyright",
-   "m": "the legal right to control who copies, shares or sells a creative work"
-  },
-  {
-   "w": "permission",
-   "m": "when someone officially says you may do something"
-  },
-  {
-   "w": "licence",
-   "m": "an official document or statement that says what you are allowed to do"
-  },
-  {
-   "w": "commercial",
-   "m": "connected with business and making money"
-  },
-  {
-   "w": "remix",
-   "m": "to take an existing work and change or combine it to make something new"
-  },
-  {
-   "w": "restrictive",
-   "m": "limiting what people can do"
-  }
- ],
- "questions": [
-  {
-   "q": "What happens when you create a photo, song or story?",
-   "a": "You get copyright on it automatically",
-   "o": [
-    "It is protected only if you sell it",
-    "You get copyright on it automatically",
-    "It belongs to everyone immediately",
-    "You must pay to register it first"
-   ],
-   "why": "The film says creators hold copyright automatically from the moment they make the work."
-  },
-  {
-   "q": "Which people does the film use as examples of building on other people's work?",
-   "a": "A teacher, an artist and a writer",
-   "o": [
-    "A singer, a dancer and an actor",
-    "A doctor, a lawyer and a pilot",
-    "A student, a parent and a manager",
-    "A teacher, an artist and a writer"
-   ],
-   "why": "The opening shows a teacher, an artist and a writer who each learn from and use the work of others."
-  },
-  {
-   "q": "What does normal copyright mean for other people?",
-   "a": "They usually need the creator's permission to use the work",
-   "o": [
-    "They usually need the creator's permission to use the work",
-    "They can use the work freely if they say thank you",
-    "They can use the work if it is online",
-    "They can only use the work after ten years"
-   ],
-   "why": "Copyright limits what others can do without asking the creator."
-  },
-  {
-   "q": "Which exception to copyright does the film mention?",
-   "a": "Fair use",
-   "o": [
-    "School use",
-    "Personal use",
-    "Fair use",
-    "Free use"
-   ],
-   "why": "The narrator mentions fair use as the case where you can use some work without permission."
-  },
-  {
-   "q": "Why can full copyright be a problem for some creators?",
-   "a": "It is too strict for creators who want their work shared and reused",
-   "o": [
-    "It is too expensive to buy",
-    "It does not protect photos",
-    "It is too strict for creators who want their work shared and reused",
-    "It only lasts for one year"
-   ],
-   "why": "Some creators want people to share and build on their work, and full copyright blocks that."
-  },
-  {
-   "q": "How long does it take to choose a Creative Commons licence on the website?",
-   "a": "About a minute",
-   "o": [
-    "About a minute",
-    "About a week",
-    "About an hour",
-    "About a month"
-   ],
-   "why": "The film stresses that the process is very fast: roughly one minute."
-  },
-  {
-   "q": "What kind of questions does a creator answer to get a licence?",
-   "a": "Whether others can use the work commercially and whether they can change it",
-   "o": [
-    "How old the creator is and where they live",
-    "How much money the work cost to make",
-    "Which country the work will be sold in",
-    "Whether others can use the work commercially and whether they can change it"
-   ],
-   "why": "The two key choices are about commercial use and about changing (modifying) the work."
-  },
-  {
-   "q": "What happens to the creator's copyright when they choose a Creative Commons licence?",
-   "a": "They keep it but change its terms",
-   "o": [
-    "They give it to Creative Commons",
-    "They keep it but change its terms",
-    "They lose it completely",
-    "They share it with the first user"
-   ],
-   "why": "The film says creators keep their copyright and simply adjust the rules to fit their goals."
-  }
- ],
- "listen": [
-  {
-   "q": "Write what you heard about copyright: how creators get it and what it means for other people.",
-   "hint": "How do you get it? What do others need? What is the exception?",
-   "keys": [
-    [
-     "automatic"
-    ],
-    [
-     "permission",
-     "ask"
-    ],
-    [
-     "fair use",
-     "fair"
-    ]
-   ],
-   "model": "Creators get copyright automatically when they make something, such as a photo or a song. Other people need the creator's permission to use the work, except in cases of fair use."
-  },
-  {
-   "q": "Write what you heard about how a creator chooses a Creative Commons licence.",
-   "hint": "How long does it take, and what do they decide?",
-   "keys": [
-    [
-     "minute"
-    ],
-    [
-     "commercial",
-     "money",
-     "sell"
-    ],
-    [
-     "chang",
-     "modif",
-     "adapt",
-     "remix"
-    ]
-   ],
-   "model": "On the Creative Commons website a creator answers a few questions in about a minute, for example whether other people can use the work commercially and whether they can change it."
-  },
-  {
-   "q": "Write what you heard about how much shared work exists now and what the film asks viewers to do.",
-   "hint": "How many works, what can people do with them, and the final invitation.",
-   "keys": [
-    [
-     "million"
-    ],
-    [
-     "share",
-     "reuse",
-     "remix"
-    ],
-    [
-     "join"
-    ]
-   ],
-   "model": "Millions of songs, pictures, videos and texts can now be shared, reused and remixed for free, and the film asks viewers to join the commons."
-  }
- ],
- "tasks": {
-  "syn": {
-   "title": "Summarise with synonyms",
-   "prompt": "Write your own summary of the video in 70–120 words. Replace every underlined word with a synonym.",
-   "text": "Creative Commons [helps] creators [keep] their copyright but change its [rules]. Choosing a licence is [quick], and it [tells] the public what they are [allowed] to do.",
-   "words": [
+  "week": "2026-W44",
+  "title": "Why do cats act so weird?",
+  "channel": "TED-Ed",
+  "speaker": "Tony Buffington (lesson); narrated by Addison Anderson",
+  "yt": "sI8NsYIyQ2A",
+  "source": "https://ed.ted.com/lessons/why-do-cats-act-so-weird-tony-buffington",
+  "length": "4:47",
+  "level": "B2",
+  "intro": "Why do cats scratch the sofa, hide in boxes and want lots of small meals? A vet explains how their wild past shapes their behaviour today.",
+  "summary": "Cats are hugely popular online, and the vet Tony Buffington explains their strange habits through evolution. Their wild ancestors were solitary hunters of small animals, but they were also prey for larger carnivores, and both roles shaped instincts that pet cats still have. Because their prey was small, wild cats had to stalk, pounce, kill and eat many times a day, which is why house cats like chasing toys and prefer several small meals spread over the day and night. Scratching keeps their claws in good condition, stretches their back and leg muscles and relieves stress, so it does not mean a cat hates your furniture. Cats like high perches because they can watch their surroundings, and they hide in boxes, bags and other small spaces because of their wild past. They want a clean litter box because, in the wild, smells could give away their location to predators. Purring is one behaviour that science still cannot fully explain.",
+  "vocab": [
     {
-     "w": "helps",
-     "syn": [
-      "assists",
-      "enables",
-      "supports",
-      "aids"
-     ]
+      "w": "predator",
+      "m": "an animal that hunts and eats other animals"
     },
     {
-     "w": "keep",
-     "syn": [
-      "retain",
-      "hold on to",
-      "maintain",
-      "preserve"
-     ]
+      "w": "prey",
+      "m": "an animal that is hunted and eaten by another animal"
     },
     {
-     "w": "rules",
-     "syn": [
-      "terms",
-      "conditions",
-      "restrictions",
-      "regulations"
-     ]
+      "w": "stalk",
+      "m": "to follow an animal slowly and quietly in order to catch it"
     },
     {
-     "w": "quick",
-     "syn": [
-      "fast",
-      "rapid",
-      "speedy",
-      "swift"
-     ]
+      "w": "pounce",
+      "m": "to jump suddenly onto something to catch it"
     },
     {
-     "w": "tells",
-     "syn": [
-      "informs",
-      "shows",
-      "explains to",
-      "indicates to"
-     ]
+      "w": "instinct",
+      "m": "a natural way of behaving that an animal is born with, not one it learns"
     },
     {
-     "w": "allowed",
-     "syn": [
-      "permitted",
-      "free",
-      "authorised",
-      "authorized",
-      "entitled"
-     ]
+      "w": "perch",
+      "m": "a high place where an animal sits and watches"
     }
-   ],
-   "min": 70,
-   "model": "The film explains that anyone who makes a photo, a song or a story owns the copyright automatically, so other people normally need permission to use it. For creators who want their work to travel widely, that can be too strict. Creative Commons assists them: they retain their copyright but set new terms. The process is fast, because on the website they answer a few questions, for example about commercial use and changes. The licence then informs the public what they are permitted to do. Today millions of works can be reused and remixed for free."
-  },
-  "adv": {
-   "title": "Use three adverbs",
-   "prompt": "Summarise the video in 60–100 words. Use all three adverbs below.",
-   "adverbs": [
-    "automatically",
-    "freely",
-    "ultimately"
-   ],
-   "min": 60,
-   "model": "The film explains that creators automatically own the copyright to their photos, songs and stories, so other people usually need permission to use them. However, some creators want their work to be used freely. Creative Commons gives them free licences, and choosing one takes about a minute: they decide whether others may use the work commercially or change it. Ultimately, the aim is a richer shared culture where millions of works can be reused and remixed."
-  },
-  "rep": {
-   "title": "Formal account in reported speech",
-   "prompt": "Imagine you are writing a short report for your manager. Give a formal account of what the narrator said, in reported speech (80–120 words). Use at least two different reporting verbs and no contractions.",
-   "verbs": [
-    "explained",
-    "stated",
-    "argued",
-    "claimed",
-    "pointed out",
-    "suggested",
-    "noted",
-    "emphasised",
-    "emphasized",
-    "reported",
-    "maintained",
-    "added",
-    "concluded",
-    "mentioned",
-    "observed",
-    "described"
-   ],
-   "min": 80,
-   "model": "The narrator explained that people who created photographs, songs or stories received copyright automatically. The narrator pointed out that other people therefore needed permission to use those works, except in cases of fair use. The narrator argued that full copyright could be too restrictive for creators who wanted their work to be shared. The narrator also stated that Creative Commons offered free licences and that a creator could choose one on its website in about a minute by deciding whether commercial use and changes were allowed. The narrator added that creators kept their copyright. Finally, the narrator concluded that millions of works could now be reused and invited viewers to join the commons."
-  }
- },
- "levels": [
-  {
-   "title": "Let's Learn English, Lesson 1: Welcome!",
-   "channel": "VOA Learning English",
-   "speaker": "Anna and Pete",
-   "yt": "WR9_nsLyaEY",
-   "source": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-one/3111026.html",
-   "length": "5:00",
-   "level": "A1",
-   "intro": "Anna arrives at her new home and meets Pete. Listen to how they say hello, spell a name and say an address.",
-   "summary": "Anna arrives at her new apartment. Pete is waiting for her. He asks 'Are you Anna?' and she asks 'Are you Pete?'. They say 'Nice to meet you'. Pete spells her name A-N-A, but Anna says it is A-N-N-A, with two n's. Pete welcomes her to 1400 Irving Street, and Anna is very happy with her new apartment.",
-   "vocab": [
+  ],
+  "questions": [
     {
-     "w": "apartment",
-     "m": "a home with a few rooms in a big building (British English: flat)"
+      "q": "What is Tony Buffington's profession?",
+      "a": "He is a vet",
+      "o": [
+        "He is a zookeeper",
+        "He is a vet",
+        "He is a film director",
+        "He designs cat food"
+      ],
+      "why": "The lesson is by veterinarian Tony Buffington."
     },
     {
-     "w": "meet",
-     "m": "to see and speak to someone for the first time"
+      "q": "How did cats' wild ancestors hunt?",
+      "a": "Alone",
+      "o": [
+        "In large groups",
+        "Alone",
+        "Together with dogs",
+        "Only in water"
+      ],
+      "why": "They were solitary hunters of small prey."
     },
     {
-     "w": "new",
-     "m": "not old; you have it only from today or from a short time"
+      "q": "Besides being hunters, what were wild cats?",
+      "a": "Prey for larger carnivores",
+      "o": [
+        "Pets for farmers",
+        "Prey for larger carnivores",
+        "Plant eaters",
+        "Guards for villages"
+      ],
+      "why": "They were both predators and prey, and both roles shaped their instincts."
     },
     {
-     "w": "nice",
-     "m": "good, friendly, pleasant"
+      "q": "Why do pet cats prefer several small meals?",
+      "a": "Their ancestors caught small prey many times a day",
+      "o": [
+        "Big meals are too expensive",
+        "Their ancestors caught small prey many times a day",
+        "They cannot digest meat",
+        "Owners forget to feed them"
+      ],
+      "why": "Small prey meant wild cats had to stalk, pounce, kill and eat many times a day."
     },
     {
-     "w": "street",
-     "m": "a road in a town or city, with houses"
+      "q": "According to the video, why do cats scratch?",
+      "a": "To keep their claws in good condition and stretch their muscles",
+      "o": [
+        "Because they hate your furniture",
+        "Because they are bored with their toys",
+        "To keep their claws in good condition and stretch their muscles",
+        "To make a bed"
+      ],
+      "why": "Scratching keeps claws healthy, stretches back and leg muscles and relieves stress."
     },
     {
-     "w": "welcome",
-     "m": "a friendly word you say when someone arrives"
+      "q": "Why do cats like high places?",
+      "a": "They can watch their surroundings",
+      "o": [
+        "Floors are too cold",
+        "They can watch their surroundings",
+        "They want to sleep alone",
+        "They want to be near people"
+      ],
+      "why": "High perches are good places to watch everything around them."
+    },
+    {
+      "q": "Why do cats want a clean litter box?",
+      "a": "In the wild, smells could show predators where they were",
+      "o": [
+        "They like perfume",
+        "Owners train them to",
+        "In the wild, smells could show predators where they were",
+        "Dirty boxes are heavy"
+      ],
+      "why": "Not giving away their location helped wild cats stay safe."
+    },
+    {
+      "q": "What does the video say about purring?",
+      "a": "Science cannot fully explain it yet",
+      "o": [
+        "Cats purr only when they are happy",
+        "Only kittens purr",
+        "Science cannot fully explain it yet",
+        "Purring scares predators away"
+      ],
+      "why": "Purring is the one behaviour that still has no full scientific explanation."
     }
-   ],
-   "questions": [
+  ],
+  "listen": [
     {
-     "q": "Who meets Anna?",
-     "a": "Pete",
-     "o": [
-      "Pete",
-      "Mark",
-      "Jonathan"
-     ],
-     "why": "Pete asks 'Are you Anna?' and says 'I am Pete.'"
+      "q": "Explain how a cat's wild past affects the way it eats.",
+      "hint": "What size was their prey? How often did they eat?",
+      "keys": [
+        [
+          "small"
+        ],
+        [
+          "meal",
+          "eat"
+        ],
+        [
+          "hunt",
+          "prey",
+          "catch",
+          "caught"
+        ]
+      ],
+      "min": 12,
+      "model": "Wild cats hunted small prey, so they had to catch and eat many times a day. That is why pet cats like chasing toys and eating several small meals."
     },
     {
-     "q": "How do you spell Anna's name?",
-     "a": "A-N-N-A",
-     "o": [
-      "A-N-A",
-      "A-N-N-A",
-      "A-N-N-E"
-     ],
-     "why": "Pete says A-N-A, but Anna says no: A-N-N-A, with two n's."
+      "q": "Why do cats scratch things?",
+      "hint": "Think of claws, muscles and feelings.",
+      "keys": [
+        [
+          "claw"
+        ],
+        [
+          "stretch",
+          "muscle"
+        ],
+        [
+          "stress"
+        ]
+      ],
+      "min": 12,
+      "model": "Scratching keeps their claws in good condition, stretches the muscles in their back and legs and helps them relieve stress. It does not mean they hate the sofa."
     },
     {
-     "q": "What do they say when they meet?",
-     "a": "Nice to meet you.",
-     "o": [
-      "Nice to meet you.",
-      "See you tomorrow.",
-      "Goodbye!"
-     ],
-     "why": "Anna says 'Nice to meet you.' We say this when we meet someone for the first time."
-    },
-    {
-     "q": "What is Anna's address?",
-     "a": "1400 Irving Street",
-     "o": [
-      "1400 Irving Street",
-      "4100 Irving Street",
-      "1400 Irving Avenue"
-     ],
-     "why": "Pete says 'Welcome to 1400 Irving Street!'"
-    },
-    {
-     "q": "What is new for Anna?",
-     "a": "Her apartment",
-     "o": [
-      "Her car",
-      "Her apartment",
-      "Her phone"
-     ],
-     "why": "Anna says 'My new apartment!'"
-    },
-    {
-     "q": "How does Anna feel at the end?",
-     "a": "Happy",
-     "o": [
-      "Sad",
-      "Angry",
-      "Happy"
-     ],
-     "why": "She says 'My new apartment! Yes!' She is very happy."
+      "q": "Describe one more strange behaviour and the reason for it.",
+      "hint": "Boxes, high places, the litter box or purring.",
+      "keys": [
+        [
+          "box",
+          "high",
+          "litter",
+          "purr",
+          "hid",
+          "perch"
+        ]
+      ],
+      "min": 12,
+      "model": "Cats love hiding in boxes and small spaces because their wild ancestors were also prey, and hidden places kept them safe from bigger predators."
     }
-   ],
-   "listen": [
-    {
-     "q": "Write how Pete and Anna say hello.",
-     "hint": "What does Pete ask? What does Anna say?",
-     "keys": [
-      [
-       "are you"
-      ],
-      [
-       "nice"
-      ]
-     ],
-     "min": 6,
-     "model": "Pete asks: Are you Anna? Anna says: Yes! Nice to meet you."
-    },
-    {
-     "q": "Write how you spell Anna's name.",
-     "hint": "How many n's?",
-     "keys": [
-      [
-       "a-n-n-a",
-       "two n",
-       "2 n",
-       "two"
-      ]
-     ],
-     "min": 5,
-     "model": "Her name is Anna. You spell it A-N-N-A, with two n's."
-    },
-    {
-     "q": "Write about Anna's new home.",
-     "hint": "What is it? What is the address?",
-     "keys": [
-      [
-       "apartment",
-       "flat"
-      ],
-      [
-       "irving",
-       "1400"
-      ]
-     ],
-     "min": 6,
-     "model": "Anna has a new apartment. It is at 1400 Irving Street."
-    }
-   ],
-   "tasks": {
-    "me": {
-     "type": "sent",
-     "title": "Hello, I'm …",
-     "prompt": "Write 3 short sentences about you, like Anna. Say your name, spell it, and say your street. Use at least 2 of these words.",
-     "use": [
-      "name",
-      "nice",
-      "meet",
-      "new",
-      "street",
-      "apartment"
-     ],
-     "need": 2,
-     "sentences": 3,
-     "min": 15,
-     "starters": [
-      "Hi! I'm …",
-      "My name is …",
-      "I live on … Street."
-     ],
-     "model": "Hi! I'm Kasia. My name is K-A-S-I-A. I live in a new apartment on Long Street. Nice to meet you!"
-    },
-    "talk": {
-     "type": "sent",
-     "title": "Meet a new neighbour",
-     "prompt": "Write a short conversation with a new neighbour (4 or more lines). Ask 'Are you …?' and spell a name. Use at least 2 of these words.",
-     "use": [
-      "are you",
-      "nice",
-      "meet",
-      "welcome",
-      "spell"
-     ],
-     "need": 2,
-     "sentences": 4,
-     "min": 20,
-     "starters": [
-      "A: Hi! Are you …?",
-      "B: Yes, I am.",
-      "A: Nice to meet you!"
-     ],
-     "model": "A: Hi! Are you Tom? B: Yes, I am. Are you Ana? A: Yes! My name is Ana, A-N-A. B: Nice to meet you, Ana. Welcome to Green Street!"
-    }
-   }
-  },
-  {
-   "title": "Let's Learn English, Level 2, Lesson 1: Budget Cuts",
-   "channel": "VOA Learning English",
-   "speaker": "Anna, Jonathan, Amelia, Kaveh, Penelope and Ms. Weaver",
-   "yt": "4XaAE5NRHVM",
-   "source": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson1/3960391.html",
-   "length": "5:00",
-   "level": "A2",
-   "intro": "Anna gets an email about an important meeting. Is it good news or bad news? A story about work, rumours and job names.",
-   "summary": "Anna gets an email about an important meeting and hopes it means raises. Jonathan has heard from Mark in Accounting that there are budget cuts. Anna says gossip spreads rumours, so they stop talking about it. Amelia and Kaveh worry about losing their jobs; Amelia was a detective before and Kaveh was a teacher, and neither wants to go back. Kaveh tells a worried Penelope to update her résumé. At the meeting Ms. Weaver laughs and says nobody will be fired: the team has done good work and everyone gets new assignments. There were budget cuts, but only Mark lost his job. Professor Bot explains that many job names come from verbs: report becomes reporter, teach becomes teacher.",
-   "vocab": [
-    {
-     "w": "boss",
-     "m": "the person who manages you at work"
-    },
-    {
-     "w": "raise",
-     "m": "more money for the same job (British English: pay rise)"
-    },
-    {
-     "w": "rumour",
-     "m": "a story that people tell, but nobody knows if it is true (American English: rumor)"
-    },
-    {
-     "w": "gossip",
-     "m": "to talk about other people and their private life"
-    },
-    {
-     "w": "résumé",
-     "m": "a document about your work and education (British English: CV)"
-    },
-    {
-     "w": "assignment",
-     "m": "a piece of work that someone gives you to do"
-    }
-   ],
-   "questions": [
-    {
-     "q": "What does Anna hope the important meeting is about?",
-     "a": "Raises",
-     "o": [
-      "Budget cuts",
-      "Raises",
-      "A party",
-      "A new office"
-     ],
-     "why": "Anna reads the email and hopes the meeting means raises."
-    },
-    {
-     "q": "Who told Jonathan about the budget cuts?",
-     "a": "Mark in Accounting",
-     "o": [
-      "Ms. Weaver",
-      "Penelope",
-      "Mark in Accounting",
-      "Professor Bot"
-     ],
-     "why": "Jonathan heard about the budget cuts from Mark in Accounting."
-    },
-    {
-     "q": "What does Anna say about gossip?",
-     "a": "It spreads rumours.",
-     "o": [
-      "It spreads rumours.",
-      "It is always true.",
-      "It helps the team.",
-      "It gets you a raise."
-     ],
-     "why": "Anna says gossip spreads rumours, so they agree to stop talking about it."
-    },
-    {
-     "q": "What was Amelia's job before?",
-     "a": "A detective",
-     "o": [
-      "A teacher",
-      "A detective",
-      "A reporter",
-      "A doctor"
-     ],
-     "why": "Amelia says she doesn't want to be a detective again."
-    },
-    {
-     "q": "What was Kaveh's job before?",
-     "a": "A teacher",
-     "o": [
-      "A teacher",
-      "A detective",
-      "A boss",
-      "A driver"
-     ],
-     "why": "Kaveh doesn't want to go back to teaching."
-    },
-    {
-     "q": "What does Kaveh tell Penelope to do?",
-     "a": "Update her résumé",
-     "o": [
-      "Ask for a raise",
-      "Update her résumé",
-      "Go home early",
-      "Talk to Mark"
-     ],
-     "why": "Kaveh tells Penelope to update her résumé. He has already updated his."
-    },
-    {
-     "q": "What happens at the meeting?",
-     "a": "Ms. Weaver says the team did good work and gives new assignments.",
-     "o": [
-      "Many people lose their jobs.",
-      "Everyone gets a raise.",
-      "Ms. Weaver says the team did good work and gives new assignments.",
-      "The office closes."
-     ],
-     "why": "Ms. Weaver laughs: nobody will be fired. The meeting is about good work and new assignments."
-    },
-    {
-     "q": "How do we make the job name from 'report'?",
-     "a": "reporter",
-     "o": [
-      "reportist",
-      "reporter",
-      "reportian",
-      "reportor"
-     ],
-     "why": "Professor Bot shows that many job names add -er to the verb: report → reporter, teach → teacher."
-    }
-   ],
-   "listen": [
-    {
-     "q": "Write about the email and the rumour.",
-     "hint": "What is the email about? What does Jonathan hear?",
-     "keys": [
-      [
-       "meeting"
-      ],
-      [
-       "budget",
-       "cut"
-      ],
-      [
-       "raise"
-      ]
-     ],
-     "min": 12,
-     "model": "Anna gets an email about an important meeting. She hopes for raises, but Jonathan has heard a rumour about budget cuts."
-    },
-    {
-     "q": "Write about Amelia's and Kaveh's old jobs.",
-     "hint": "What did they do before?",
-     "keys": [
-      [
-       "detective"
-      ],
-      [
-       "teacher",
-       "teach"
-      ]
-     ],
-     "min": 10,
-     "model": "Before, Amelia was a detective and Kaveh was a teacher. They don't want to do those jobs again."
-    },
-    {
-     "q": "Write what happens at the meeting.",
-     "hint": "Is anyone fired? What do they get?",
-     "keys": [
-      [
-       "fire",
-       "lose",
-       "lost"
-      ],
-      [
-       "mark"
-      ],
-      [
-       "assignment"
-      ]
-     ],
-     "min": 12,
-     "model": "Ms. Weaver says nobody will be fired. Only Mark lost his job. The team did good work, and everyone gets new assignments."
-    }
-   ],
-   "tasks": {
-    "jobs": {
-     "type": "sent",
-     "title": "Job words",
-     "prompt": "Write 4 sentences about people you know and their jobs. Use at least 3 job names that come from verbs (teach → teacher).",
-     "use": [
-      "teacher",
-      "reporter",
-      "writer",
-      "driver",
-      "player",
-      "manager",
-      "singer",
-      "baker",
-      "cleaner",
-      "designer"
-     ],
-     "need": 3,
-     "sentences": 4,
-     "min": 30,
-     "starters": [
-      "My sister is a …",
-      "A … is a person who …"
-     ],
-     "model": "My sister is a teacher at a primary school. My uncle is a bus driver, and he starts work at five. A reporter is a person who writes the news. My best friend wants to be a singer, but now she is a manager in a shop."
-    },
-    "advice": {
-     "type": "sent",
-     "title": "Help Penelope",
-     "prompt": "Penelope is worried about her job. Write her a short message (5 sentences). Tell her not to worry and give her advice. Use at least 3 of these words.",
-     "use": [
-      "worry",
-      "meeting",
-      "gossip",
-      "update",
-      "boss",
-      "job"
-     ],
-     "need": 3,
-     "sentences": 5,
-     "min": 40,
-     "starters": [
-      "Don't worry, Penelope.",
-      "You should …",
-      "I think …"
-     ],
-     "model": "Hi Penelope, don't worry about the meeting. I think it is only gossip. Your boss likes your work, and you are very good at your job. You can update your résumé, but I don't think you need it. Let's have coffee after the meeting!"
-    }
-   }
-  },
-  {
-   "title": "Try something new for 30 days",
-   "channel": "TED",
-   "speaker": "Matt Cutts",
-   "yt": "UNP03fDSj1U",
-   "source": "https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days",
-   "length": "3:27",
-   "level": "B1",
-   "intro": "A short, funny talk with a simple idea: pick something you have always wanted to do and try it for 30 days.",
-   "summary": "Matt Cutts felt stuck in a rut, so, inspired by Morgan Spurlock, he started trying something new for 30 days. He says 30 days is about the right time to add or remove a habit. He learned three things. First, time became more memorable: when he took a picture every day for a month, he remembered where he was each day. Second, his self-confidence grew as the challenges got harder: the desk-bound computer nerd started biking to work for fun and later climbed Mount Kilimanjaro, the highest mountain in Africa. Third, if you want something badly enough, you can do anything for 30 days: he wrote a 50,000-word novel in a month by writing 1,667 words a day. The book is awful, but now he can call himself a novelist. Finally, small, sustainable changes were more likely to stick than big, crazy ones; after 30 days without sugar he went straight back to it. He ends by asking: what are you waiting for? The next 30 days will pass anyway.",
-   "vocab": [
-    {
-     "w": "stuck in a rut",
-     "m": "bored because you do the same things every day and nothing changes"
-    },
-    {
-     "w": "habit",
-     "m": "something you do regularly, often without thinking"
-    },
-    {
-     "w": "memorable",
-     "m": "easy to remember because it is special"
-    },
-    {
-     "w": "self-confidence",
-     "m": "the feeling that you can do things well"
-    },
-    {
-     "w": "sustainable",
-     "m": "possible to continue for a long time"
-    },
-    {
-     "w": "give it a shot",
-     "m": "(informal) try it"
-    }
-   ],
-   "questions": [
-    {
-     "q": "Why did Matt Cutts start his 30-day challenges?",
-     "a": "He felt stuck in a rut.",
-     "o": [
-      "His doctor told him to.",
-      "He felt stuck in a rut.",
-      "He lost his job.",
-      "His company asked him to."
-     ],
-     "why": "He opens by saying he felt stuck in a rut, so he decided to try something new for 30 days."
-    },
-    {
-     "q": "Why does he choose 30 days?",
-     "a": "It's about the right time to add or remove a habit.",
-     "o": [
-      "It's the length of a holiday.",
-      "It's about the right time to add or remove a habit.",
-      "Scientists say a habit takes 30 days exactly.",
-      "It's the shortest challenge possible."
-     ],
-     "why": "He says 30 days is just about the right amount of time to add or subtract a habit."
-    },
-    {
-     "q": "What happened when he took a picture every day for a month?",
-     "a": "He remembered where he was and what he was doing each day.",
-     "o": [
-      "He became a professional photographer.",
-      "He remembered where he was and what he was doing each day.",
-      "He got bored after a week.",
-      "He lost his camera."
-     ],
-     "why": "Time became more memorable instead of the months flying by."
-    },
-    {
-     "q": "How did harder challenges change him?",
-     "a": "His self-confidence grew.",
-     "o": [
-      "He became more tired.",
-      "He stopped working with computers.",
-      "His self-confidence grew.",
-      "He made a lot of money."
-     ],
-     "why": "He went from a desk-bound computer nerd to someone who bikes to work for fun."
-    },
-    {
-     "q": "Which mountain did he climb?",
-     "a": "Kilimanjaro",
-     "o": [
-      "Everest",
-      "Mont Blanc",
-      "Kilimanjaro",
-      "Fuji"
-     ],
-     "why": "He hiked up Mount Kilimanjaro, the highest mountain in Africa."
-    },
-    {
-     "q": "How many words a day do you need to write a 50,000-word novel in 30 days?",
-     "a": "1,667",
-     "o": [
-      "500",
-      "1,000",
-      "1,667",
-      "5,000"
-     ],
-     "why": "50,000 ÷ 30 is about 1,667 words a day."
-    },
-    {
-     "q": "What does he say about his novel?",
-     "a": "It's awful, but now he can call himself a novelist.",
-     "o": [
-      "It became a bestseller.",
-      "It's awful, but now he can call himself a novelist.",
-      "He never finished it.",
-      "It took him a year."
-     ],
-     "why": "He jokes that he wrote it in a month and it's awful, but he can now say 'I'm a novelist.'"
-    },
-    {
-     "q": "Which changes were more likely to stick?",
-     "a": "Small, sustainable changes",
-     "o": [
-      "Big, crazy challenges",
-      "Small, sustainable changes",
-      "Changes you do with friends",
-      "Changes that cost money"
-     ],
-     "why": "Big challenges are fun but less likely to stick; after 30 days without sugar he went straight back to it."
-    }
-   ],
-   "listen": [
-    {
-     "q": "Write what he learned about time and memory.",
-     "hint": "What happened when he took a photo every day?",
-     "keys": [
-      [
-       "memorable",
-       "remember"
-      ],
-      [
-       "picture",
-       "photo"
-      ]
-     ],
-     "model": "His challenges made time more memorable. When he took a picture every day for a month, he could remember exactly where he was and what he was doing."
-    },
-    {
-     "q": "Write what he says about writing a novel.",
-     "hint": "How many words? How many a day? Is the book good?",
-     "keys": [
-      [
-       "50,000",
-       "50 000",
-       "fifty thousand",
-       "50000"
-      ],
-      [
-       "1,667",
-       "1667",
-       "a day"
-      ],
-      [
-       "awful",
-       "bad",
-       "novelist"
-      ]
-     ],
-     "model": "In November many people try to write a 50,000-word novel in 30 days. You only need to write 1,667 words a day. His book is awful, but now he can call himself a novelist."
-    },
-    {
-     "q": "Write his last piece of advice.",
-     "hint": "Small or big changes? What question does he ask?",
-     "keys": [
-      [
-       "small",
-       "sustainable"
-      ],
-      [
-       "waiting"
-      ],
-      [
-       "try"
-      ]
-     ],
-     "model": "Small, sustainable changes are more likely to stick than big, crazy challenges. He asks: what are you waiting for? The next 30 days will pass anyway, so try something you have always wanted to do."
-    }
-   ],
-   "tasks": {
+  ],
+  "tasks": {
     "syn": {
-     "title": "Summarise with synonyms",
-     "prompt": "Write your own summary of the talk in 60–100 words. Replace every underlined word with a synonym.",
-     "text": "Matt Cutts [tried] something new for 30 days. His challenges made time more [memorable], and his self-confidence [grew]. He also [learned] that [small] changes [last] longer than big ones.",
-     "words": [
-      {
-       "w": "tried",
-       "syn": [
-        "attempted",
-        "tested",
-        "experimented with",
-        "gave",
-        "took up"
-       ]
-      },
-      {
-       "w": "memorable",
-       "syn": [
-        "unforgettable",
-        "special",
-        "easy to remember"
-       ]
-      },
-      {
-       "w": "grew",
-       "syn": [
-        "increased",
-        "rose",
-        "improved",
-        "got stronger",
-        "got bigger"
-       ]
-      },
-      {
-       "w": "learned",
-       "syn": [
-        "discovered",
-        "found out",
-        "realised",
-        "realized",
-        "understood"
-       ]
-      },
-      {
-       "w": "small",
-       "syn": [
-        "little",
-        "minor",
-        "modest",
-        "tiny"
-       ]
-      },
-      {
-       "w": "last",
-       "syn": [
-        "stick",
-        "continue",
-        "survive",
-        "stay"
-       ]
-      }
-     ],
-     "min": 60,
-     "model": "Matt Cutts felt stuck in a rut, so he attempted something new for 30 days. When he took a photo every day, the month became unforgettable. As the challenges got harder, his self-confidence increased: he started cycling to work and climbed Kilimanjaro. He even wrote a novel in one month. He also discovered that minor, sustainable changes stick for longer than big, crazy ones. His message is simple: the next 30 days will pass anyway, so try something you have always wanted to do."
+      "title": "Summarise with synonyms",
+      "prompt": "Write your own summary of the video in 70–120 words. Replace every underlined word with a synonym.",
+      "text": "Buffington [explains] that cats [behave] strangely because of their wild [past]. Their ancestors were [skilled] hunters, but they were also [eaten] by [bigger] animals.",
+      "words": [
+        {
+          "w": "explains",
+          "syn": [
+            "describes",
+            "clarifies",
+            "shows",
+            "points out"
+          ]
+        },
+        {
+          "w": "behave",
+          "syn": [
+            "act",
+            "react",
+            "carry on"
+          ]
+        },
+        {
+          "w": "past",
+          "syn": [
+            "history",
+            "origins",
+            "ancestry",
+            "background"
+          ]
+        },
+        {
+          "w": "skilled",
+          "syn": [
+            "expert",
+            "capable",
+            "talented",
+            "able"
+          ]
+        },
+        {
+          "w": "eaten",
+          "syn": [
+            "killed",
+            "caught",
+            "devoured",
+            "preyed on"
+          ]
+        },
+        {
+          "w": "bigger",
+          "syn": [
+            "larger",
+            "stronger",
+            "more powerful",
+            "heavier"
+          ]
+        }
+      ],
+      "min": 70,
+      "model": "Tony Buffington, a vet, describes why cats act so strangely: it is all about their wild history. Their ancestors were expert predators that caught small animals, but they were also killed by larger carnivores. Because their prey was tiny, wild cats had to stalk, pounce and eat many times a day, so pet cats still enjoy chasing toys and prefer several small meals. Scratching keeps their claws in good condition, stretches their muscles and relieves stress. Cats like high perches because they can watch everything around them, and they want a clean litter box because smells could reveal their location to enemies. Even today, scientists cannot fully clarify why cats purr."
     },
     "adv": {
-     "title": "Use three adverbs",
-     "prompt": "Write about a 30-day challenge you would like to try (50–90 words). Use all three adverbs below.",
-     "adverbs": [
-      "gradually",
-      "finally",
-      "surprisingly"
-     ],
-     "min": 50,
-     "model": "I would like to read in English for twenty minutes every day for 30 days. At first it will be hard, but gradually I will understand more words without a dictionary. Surprisingly, my friend did the same challenge last year and now she reads novels in English. On day 30 I will finally finish my first English book, and maybe I will continue for another month."
+      "title": "Use three adverbs",
+      "prompt": "Write about a pet you know, or one you would like to have, and how it behaves (60–100 words). Use all three adverbs below.",
+      "adverbs": [
+        "instinctively",
+        "gradually",
+        "surprisingly"
+      ],
+      "min": 60,
+      "model": "Our cat, Mruczek, came from a shelter and was very shy at first. Gradually, he started to trust us and explore the flat. Surprisingly, his favourite toy is not an expensive mouse but an empty cardboard box. When he sees a bird through the window, he instinctively lowers his body and gets ready to pounce, just like a wild cat. Watching him, I understand that pets still carry the habits of their ancestors."
     },
     "rep": {
-     "title": "Report what he said",
-     "prompt": "Tell a friend what Matt Cutts said, in reported speech (70–110 words). Use at least two different reporting verbs and no contractions.",
-     "verbs": [
-      "explained",
-      "stated",
-      "argued",
-      "claimed",
-      "pointed out",
-      "suggested",
-      "noted",
-      "emphasised",
-      "emphasized",
-      "reported",
-      "maintained",
-      "added",
-      "concluded",
-      "mentioned",
-      "observed",
-      "described",
-      "admitted",
-      "said",
-      "told",
-      "recommended",
-      "advised"
-     ],
-     "min": 70,
-     "starters": [
-      "Matt Cutts explained that …",
-      "He pointed out that …"
-     ],
-     "model": "Matt Cutts explained that he had felt stuck in a rut, so he had decided to try something new for 30 days. He said that 30 days was the right amount of time to add or remove a habit. He pointed out that his challenges had made time more memorable and that his self-confidence had grown. He added that he had written a novel in a month, although it was awful. Finally, he suggested that small changes were more likely to stick and asked what we were waiting for."
+      "title": "Report the explanations",
+      "prompt": "Tell a friend what Tony Buffington explained, in reported speech (80–120 words). Use at least two different reporting verbs and no contractions.",
+      "verbs": [
+        "explained",
+        "stated",
+        "argued",
+        "claimed",
+        "pointed out",
+        "suggested",
+        "noted",
+        "emphasised",
+        "emphasized",
+        "reported",
+        "maintained",
+        "added",
+        "concluded",
+        "mentioned",
+        "observed",
+        "described",
+        "admitted",
+        "said",
+        "told",
+        "recommended",
+        "advised"
+      ],
+      "min": 80,
+      "starters": [
+        "Tony Buffington explained that …",
+        "He pointed out that …"
+      ],
+      "model": "In the video, Tony Buffington explained that many strange cat habits came from their wild ancestors. He pointed out that wild cats had been solitary hunters but also prey for larger animals. He noted that, because their prey was small, they had needed to eat many times a day, which was why pet cats preferred several small meals. He added that scratching kept their claws in good condition and stretched their muscles, so it did not mean that they hated the furniture. He also mentioned that a clean litter box was important because smells could reveal where a cat was. Finally, he admitted that science could not fully explain purring."
     }
-   }
   },
-  {
-   "title": "Wanna Work Together?",
-   "channel": "Creative Commons",
-   "speaker": "Creative Commons narrator (not named)",
-   "yt": "q0VzUigrb_g",
-   "source": "https://creativecommons.org/about/videos/wanna-work-together/",
-   "license": {
-    "name": "CC BY 4.0",
-    "url": "https://creativecommons.org/licenses/by/4.0/"
-   },
-   "length": "3:00",
-   "level": "B2",
-   "intro": "A short animated film about copyright and how Creative Commons licences let creators decide how other people may use their work.",
-   "summary": "The film starts by showing how people such as teachers, artists and writers learn from and build on the work of others. It explains that when you create a photo, a song, a drawing, a film or a story, you get copyright automatically, so other people normally need your permission to use it, apart from cases of fair use. For creators who want their work to travel freely, full copyright can be too strict. Creative Commons offers free licences: on its website a creator answers a few questions, for example whether others may use the work commercially or change it, and gets a licence in about a minute. Creators keep their copyright, millions of works are now free to share and remix, and the film invites viewers to join this shared culture.",
-   "vocab": [
+  "levels": [
     {
-     "w": "copyright",
-     "m": "the legal right to control who copies, shares or sells a creative work"
-    },
-    {
-     "w": "permission",
-     "m": "when someone officially says you may do something"
-    },
-    {
-     "w": "licence",
-     "m": "an official document or statement that says what you are allowed to do"
-    },
-    {
-     "w": "commercial",
-     "m": "connected with business and making money"
-    },
-    {
-     "w": "remix",
-     "m": "to take an existing work and change or combine it to make something new"
-    },
-    {
-     "w": "restrictive",
-     "m": "limiting what people can do"
-    }
-   ],
-   "questions": [
-    {
-     "q": "What happens when you create a photo, song or story?",
-     "a": "You get copyright on it automatically",
-     "o": [
-      "It is protected only if you sell it",
-      "You get copyright on it automatically",
-      "It belongs to everyone immediately",
-      "You must pay to register it first"
-     ],
-     "why": "The film says creators hold copyright automatically from the moment they make the work."
-    },
-    {
-     "q": "Which people does the film use as examples of building on other people's work?",
-     "a": "A teacher, an artist and a writer",
-     "o": [
-      "A singer, a dancer and an actor",
-      "A doctor, a lawyer and a pilot",
-      "A student, a parent and a manager",
-      "A teacher, an artist and a writer"
-     ],
-     "why": "The opening shows a teacher, an artist and a writer who each learn from and use the work of others."
-    },
-    {
-     "q": "What does normal copyright mean for other people?",
-     "a": "They usually need the creator's permission to use the work",
-     "o": [
-      "They usually need the creator's permission to use the work",
-      "They can use the work freely if they say thank you",
-      "They can use the work if it is online",
-      "They can only use the work after ten years"
-     ],
-     "why": "Copyright limits what others can do without asking the creator."
-    },
-    {
-     "q": "Which exception to copyright does the film mention?",
-     "a": "Fair use",
-     "o": [
-      "School use",
-      "Personal use",
-      "Fair use",
-      "Free use"
-     ],
-     "why": "The narrator mentions fair use as the case where you can use some work without permission."
-    },
-    {
-     "q": "Why can full copyright be a problem for some creators?",
-     "a": "It is too strict for creators who want their work shared and reused",
-     "o": [
-      "It is too expensive to buy",
-      "It does not protect photos",
-      "It is too strict for creators who want their work shared and reused",
-      "It only lasts for one year"
-     ],
-     "why": "Some creators want people to share and build on their work, and full copyright blocks that."
-    },
-    {
-     "q": "How long does it take to choose a Creative Commons licence on the website?",
-     "a": "About a minute",
-     "o": [
-      "About a minute",
-      "About a week",
-      "About an hour",
-      "About a month"
-     ],
-     "why": "The film stresses that the process is very fast: roughly one minute."
-    },
-    {
-     "q": "What kind of questions does a creator answer to get a licence?",
-     "a": "Whether others can use the work commercially and whether they can change it",
-     "o": [
-      "How old the creator is and where they live",
-      "How much money the work cost to make",
-      "Which country the work will be sold in",
-      "Whether others can use the work commercially and whether they can change it"
-     ],
-     "why": "The two key choices are about commercial use and about changing (modifying) the work."
-    },
-    {
-     "q": "What happens to the creator's copyright when they choose a Creative Commons licence?",
-     "a": "They keep it but change its terms",
-     "o": [
-      "They give it to Creative Commons",
-      "They keep it but change its terms",
-      "They lose it completely",
-      "They share it with the first user"
-     ],
-     "why": "The film says creators keep their copyright and simply adjust the rules to fit their goals."
-    }
-   ],
-   "listen": [
-    {
-     "q": "Write what you heard about copyright: how creators get it and what it means for other people.",
-     "hint": "How do you get it? What do others need? What is the exception?",
-     "keys": [
-      [
-       "automatic"
+      "title": "Let's Learn English Lesson 2: Hello, I'm Anna!",
+      "channel": "VOA Learning English",
+      "speaker": "Anna, Pete and Jonathan",
+      "yt": "1-U7o9xjWQc",
+      "source": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-2-hello/3113733.html",
+      "length": "4:00",
+      "level": "A1",
+      "intro": "Anna is new in Washington, D.C. Pete introduces her to a neighbour, Jonathan. Listen for where Anna is from and the apartment numbers.",
+      "summary": "Jonathan sees Pete and asks who his friend is. Pete says she is Anna and that she is new to D.C. Anna says she is from a small town, and Jonathan welcomes her. Jonathan lives in apartment B4, Anna lives in apartment C2, and her roommate is Marsha. Jonathan knows Marsha and says she is nice. Pete lives in apartment D7; he has to go, and he reminds Anna to call Marsha at work. At the end Anna happily goes to apartment C2.",
+      "vocab": [
+        {
+          "w": "friend",
+          "m": "a person you like and know well"
+        },
+        {
+          "w": "new",
+          "m": "here for only a short time; not here before"
+        },
+        {
+          "w": "small",
+          "m": "not big"
+        },
+        {
+          "w": "town",
+          "m": "a place with houses and shops, smaller than a city"
+        },
+        {
+          "w": "roommate",
+          "m": "a person who lives in the same flat or room as you"
+        },
+        {
+          "w": "work",
+          "m": "the place where you do your job"
+        }
       ],
-      [
-       "permission",
-       "ask"
+      "questions": [
+        {
+          "q": "Who is new to D.C.?",
+          "a": "Anna",
+          "o": [
+            "Anna",
+            "Pete",
+            "Jonathan"
+          ],
+          "why": "Pete says: She is Anna. She is new to D.C."
+        },
+        {
+          "q": "Where is Anna from?",
+          "a": "A small town",
+          "o": [
+            "A big city",
+            "A small town",
+            "Another country"
+          ],
+          "why": "Anna says she is from a small town."
+        },
+        {
+          "q": "What is Jonathan's apartment?",
+          "a": "B4",
+          "o": [
+            "B4",
+            "C2",
+            "D7"
+          ],
+          "why": "Jonathan says he is in apartment B4."
+        },
+        {
+          "q": "Who is Anna's roommate?",
+          "a": "Marsha",
+          "o": [
+            "Pete",
+            "Jonathan",
+            "Marsha"
+          ],
+          "why": "Anna says Marsha is her roommate."
+        },
+        {
+          "q": "What is Pete's apartment?",
+          "a": "D7",
+          "o": [
+            "C2",
+            "D7",
+            "B4"
+          ],
+          "why": "Pete says he is in apartment D7."
+        },
+        {
+          "q": "What must Anna do?",
+          "a": "Call Marsha at work",
+          "o": [
+            "Call Marsha at work",
+            "Go to work",
+            "Call Pete at home"
+          ],
+          "why": "Pete tells her to call Marsha at work and say she is here."
+        }
       ],
-      [
-       "fair use",
-       "fair"
-      ]
-     ],
-     "model": "Creators get copyright automatically when they make something, such as a photo or a song. Other people need the creator's permission to use the work, except in cases of fair use."
-    },
-    {
-     "q": "Write what you heard about how a creator chooses a Creative Commons licence.",
-     "hint": "How long does it take, and what do they decide?",
-     "keys": [
-      [
-       "minute"
+      "listen": [
+        {
+          "q": "Write who Anna meets and where she is from.",
+          "hint": "What is the man's name? Big city or small town?",
+          "keys": [
+            [
+              "jonathan"
+            ],
+            [
+              "small town",
+              "town"
+            ]
+          ],
+          "min": 6,
+          "model": "Anna meets Jonathan. She is from a small town."
+        },
+        {
+          "q": "Write about Anna's apartment.",
+          "hint": "Which number? Who lives with her?",
+          "keys": [
+            [
+              "c2",
+              "c 2",
+              "c-2"
+            ],
+            [
+              "marsha",
+              "roommate"
+            ]
+          ],
+          "min": 6,
+          "model": "Anna is in apartment C2. Marsha is her roommate."
+        },
+        {
+          "q": "Write what Pete tells Anna to do.",
+          "hint": "Who must she call? Where is that person?",
+          "keys": [
+            [
+              "call",
+              "phone"
+            ],
+            [
+              "marsha"
+            ]
+          ],
+          "min": 6,
+          "model": "Pete says: Call Marsha at work. Tell her you are here."
+        }
       ],
-      [
-       "commercial",
-       "money",
-       "sell"
-      ],
-      [
-       "chang",
-       "modif",
-       "adapt",
-       "remix"
-      ]
-     ],
-     "model": "On the Creative Commons website a creator answers a few questions in about a minute, for example whether other people can use the work commercially and whether they can change it."
-    },
-    {
-     "q": "Write what you heard about how much shared work exists now and what the film asks viewers to do.",
-     "hint": "How many works, what can people do with them, and the final invitation.",
-     "keys": [
-      [
-       "million"
-      ],
-      [
-       "share",
-       "reuse",
-       "remix"
-      ],
-      [
-       "join"
-      ]
-     ],
-     "model": "Millions of songs, pictures, videos and texts can now be shared, reused and remixed for free, and the film asks viewers to join the commons."
-    }
-   ],
-   "tasks": {
-    "syn": {
-     "title": "Summarise with synonyms",
-     "prompt": "Write your own summary of the video in 70–120 words. Replace every underlined word with a synonym.",
-     "text": "Creative Commons [helps] creators [keep] their copyright but change its [rules]. Choosing a licence is [quick], and it [tells] the public what they are [allowed] to do.",
-     "words": [
-      {
-       "w": "helps",
-       "syn": [
-        "assists",
-        "enables",
-        "supports",
-        "aids"
-       ]
-      },
-      {
-       "w": "keep",
-       "syn": [
-        "retain",
-        "hold on to",
-        "maintain",
-        "preserve"
-       ]
-      },
-      {
-       "w": "rules",
-       "syn": [
-        "terms",
-        "conditions",
-        "restrictions",
-        "regulations"
-       ]
-      },
-      {
-       "w": "quick",
-       "syn": [
-        "fast",
-        "rapid",
-        "speedy",
-        "swift"
-       ]
-      },
-      {
-       "w": "tells",
-       "syn": [
-        "informs",
-        "shows",
-        "explains to",
-        "indicates to"
-       ]
-      },
-      {
-       "w": "allowed",
-       "syn": [
-        "permitted",
-        "free",
-        "authorised",
-        "authorized",
-        "entitled"
-       ]
+      "tasks": {
+        "from": {
+          "type": "sent",
+          "title": "Where are you from?",
+          "prompt": "Write 3 or 4 short sentences about you, like Anna. Say where you are from, where you live now and who you live with. Use at least 2 of these words.",
+          "use": [
+            "from",
+            "small",
+            "town",
+            "city",
+            "apartment",
+            "roommate",
+            "live"
+          ],
+          "need": 2,
+          "sentences": 3,
+          "min": 15,
+          "starters": [
+            "I am from …",
+            "I live in …",
+            "My roommate is …"
+          ],
+          "model": "I am from a small town in Poland. Now I live in Kraków. I have a small apartment. My roommate is Ola. She is nice."
+        },
+        "intro": {
+          "type": "sent",
+          "title": "Introduce a friend",
+          "prompt": "Write a short conversation (4 or more lines). Introduce your friend to a neighbour, like Pete does. Use at least 2 of these words.",
+          "use": [
+            "friend",
+            "new",
+            "who",
+            "welcome",
+            "nice",
+            "meet",
+            "thank you"
+          ],
+          "need": 2,
+          "sentences": 4,
+          "min": 20,
+          "starters": [
+            "A: Hi! Who is your friend?",
+            "B: This is … . He/She is new here.",
+            "C: Nice to meet you!"
+          ],
+          "model": "A: Hi, Ewa! Who is your friend? B: This is Radu. He is new here. A: Welcome! I am Tom. C: Thank you. Nice to meet you, Tom!"
+        }
       }
-     ],
-     "min": 70,
-     "model": "The film explains that anyone who makes a photo, a song or a story owns the copyright automatically, so other people normally need permission to use it. For creators who want their work to travel widely, that can be too strict. Creative Commons assists them: they retain their copyright but set new terms. The process is fast, because on the website they answer a few questions, for example about commercial use and changes. The licence then informs the public what they are permitted to do. Today millions of works can be reused and remixed for free."
-    },
-    "adv": {
-     "title": "Use three adverbs",
-     "prompt": "Summarise the video in 60–100 words. Use all three adverbs below.",
-     "adverbs": [
-      "automatically",
-      "freely",
-      "ultimately"
-     ],
-     "min": 60,
-     "model": "The film explains that creators automatically own the copyright to their photos, songs and stories, so other people usually need permission to use them. However, some creators want their work to be used freely. Creative Commons gives them free licences, and choosing one takes about a minute: they decide whether others may use the work commercially or change it. Ultimately, the aim is a richer shared culture where millions of works can be reused and remixed."
-    },
-    "rep": {
-     "title": "Formal account in reported speech",
-     "prompt": "Imagine you are writing a short report for your manager. Give a formal account of what the narrator said, in reported speech (80–120 words). Use at least two different reporting verbs and no contractions.",
-     "verbs": [
-      "explained",
-      "stated",
-      "argued",
-      "claimed",
-      "pointed out",
-      "suggested",
-      "noted",
-      "emphasised",
-      "emphasized",
-      "reported",
-      "maintained",
-      "added",
-      "concluded",
-      "mentioned",
-      "observed",
-      "described"
-     ],
-     "min": 80,
-     "model": "The narrator explained that people who created photographs, songs or stories received copyright automatically. The narrator pointed out that other people therefore needed permission to use those works, except in cases of fair use. The narrator argued that full copyright could be too restrictive for creators who wanted their work to be shared. The narrator also stated that Creative Commons offered free licences and that a creator could choose one on its website in about a minute by deciding whether commercial use and changes were allowed. The narrator added that creators kept their copyright. Finally, the narrator concluded that millions of works could now be reused and invited viewers to join the commons."
-    }
-   },
-   "carry": true
-  },
-  {
-   "title": "Inside the mind of a master procrastinator",
-   "channel": "TED",
-   "speaker": "Tim Urban",
-   "yt": "arj7oStGLkU",
-   "source": "https://www.ted.com/talks/tim_urban_inside_the_mind_of_a_master_procrastinator",
-   "length": "14:03",
-   "level": "C1",
-   "intro": "A very funny and surprisingly serious talk about why we leave things to the last minute, with three cartoon characters who live in your head.",
-   "summary": "Tim Urban, the writer behind the blog Wait But Why, describes himself as a master procrastinator: he had a year to write his 90-page senior thesis and wrote it in the last 72 hours, pulling two all-nighters. He explains the procrastinator's brain with three characters. The Rational Decision-Maker wants to do sensible things, but the Instant Gratification Monkey takes the wheel and only cares about what is easy and fun right now. They spend time in the Dark Playground, where leisure activities happen when they should not, so the fun is full of guilt, dread and anxiety. The only thing the Monkey fears is the Panic Monster, which wakes up when a deadline is close or there is a risk of public embarrassment. The bigger problem, Urban argues, is procrastination with no deadline, such as starting a career project, seeing family, looking after your health or working on a relationship: the Panic Monster never appears, so people quietly become spectators of their own lives. He shows a Life Calendar with one box for every week of a 90-year life and concludes that everyone is procrastinating on something, so we all need to stay aware of the Monkey, starting today.",
-   "vocab": [
-    {
-     "w": "procrastinate",
-     "m": "to delay doing something you should do, often because it is unpleasant or difficult"
     },
     {
-     "w": "instant gratification",
-     "m": "the wish to have pleasure or a reward immediately, not later"
-    },
-    {
-     "w": "take the wheel",
-     "m": "to take control (literally: start driving)"
-    },
-    {
-     "w": "dread",
-     "m": "a strong feeling of fear about something that is going to happen"
-    },
-    {
-     "w": "unearned",
-     "m": "not deserved, because you have not done the work for it"
-    },
-    {
-     "w": "spectator",
-     "m": "someone who watches something but does not take part"
-    }
-   ],
-   "questions": [
-    {
-     "q": "How did Urban write his senior thesis?",
-     "a": "He had a year but wrote 90 pages in the last 72 hours.",
-     "o": [
-      "He wrote a little every week for a year.",
-      "He had a year but wrote 90 pages in the last 72 hours.",
-      "He never finished it.",
-      "He wrote it in a month with a friend."
-     ],
-     "why": "He planned to work steadily, but wrote 90 pages in 72 hours, pulling two all-nighters."
-    },
-    {
-     "q": "In a procrastinator's brain, who takes the wheel from the Rational Decision-Maker?",
-     "a": "The Instant Gratification Monkey",
-     "o": [
-      "The Panic Monster",
-      "The Instant Gratification Monkey",
-      "The Inner Critic",
-      "The Life Calendar"
-     ],
-     "why": "The Monkey grabs the wheel and steers towards whatever is easy and fun now."
-    },
-    {
-     "q": "What is special about the Dark Playground?",
-     "a": "The fun is unearned, so it comes with guilt, dread and anxiety.",
-     "o": [
-      "It is where the best work happens.",
-      "The fun is unearned, so it comes with guilt, dread and anxiety.",
-      "Only rational people go there.",
-      "It is a real place in New York."
-     ],
-     "why": "Leisure there happens when it should not, so it never feels truly enjoyable."
-    },
-    {
-     "q": "What is the only thing the Monkey is afraid of?",
-     "a": "The Panic Monster",
-     "o": [
-      "The Rational Decision-Maker",
-      "Hard work",
-      "The Panic Monster",
-      "Boredom"
-     ],
-     "why": "The Panic Monster wakes up near a deadline or when there is a danger of public embarrassment, and the Monkey runs away."
-    },
-    {
-     "q": "Which kind of procrastination does Urban think is the most worrying?",
-     "a": "Procrastination on things with no deadline",
-     "o": [
-      "Procrastination on school essays",
-      "Procrastination at work",
-      "Procrastination on things with no deadline",
-      "Procrastination at the weekend"
-     ],
-     "why": "Without a deadline the Panic Monster never appears, so things like health, family or a dream project can be put off for ever."
-    },
-    {
-     "q": "What does the Life Calendar show?",
-     "a": "One box for every week of a 90-year life",
-     "o": [
-      "One box for every day of a year",
-      "One box for every week of a 90-year life",
-      "Every deadline you have missed",
-      "The hours you spend online"
-     ],
-     "why": "Seeing the weeks of a 90-year life on one page shows that our time is limited."
-    },
-    {
-     "q": "What is the tone of the talk?",
-     "a": "Humorous, but with a serious message at the end",
-     "o": [
-      "Angry and critical",
-      "Purely academic",
-      "Humorous, but with a serious message at the end",
-      "Sad from start to finish"
-     ],
-     "why": "It is full of jokes and drawings, but the ending about deadline-free procrastination is serious."
-    },
-    {
-     "q": "What does he conclude?",
-     "a": "Everyone is procrastinating on something, so we must stay aware of the Monkey.",
-     "o": [
-      "Only some people procrastinate.",
-      "Procrastination can be cured in a week.",
-      "Everyone is procrastinating on something, so we must stay aware of the Monkey.",
-      "We should always work under pressure."
-     ],
-     "why": "He argues that we are all procrastinators and need to stay aware of the Instant Gratification Monkey, starting today."
-    }
-   ],
-   "listen": [
-    {
-     "q": "Explain the three characters in a procrastinator's brain.",
-     "hint": "Who wants to work, who wants fun, who is scary?",
-     "keys": [
-      [
-       "rational"
+      "title": "Let's Learn English - Level 2 - Lesson 2: The Interview",
+      "channel": "VOA Learning English",
+      "speaker": "Anna, Pete, Ms. Weaver and Professor Bot",
+      "yt": "xokbf-np33Q",
+      "source": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-2/3960471.html",
+      "length": "5:00",
+      "level": "A2",
+      "intro": "Anna's boss gives her a new job, and she must work with someone very different from her. Pete has a job interview. Does he get the job?",
+      "summary": "Ms. Weaver gives Anna new assignments at The Studio: Anna will go back to hosting and reporting, and she must team up with someone very different from her, someone who is not cheerful or outgoing. Pete is looking for a job, so Anna offers him an interview for a talk-show co-host job the next morning. In the interview Ms. Weaver asks Pete about his people skills. Pete says people talk too much, and he tells her he spent two months alone in a cabin writing a book. Ms. Weaver says he is not a people person, but Pete gets the job anyway. Anna is very happy and wants to celebrate. Professor Bot explains the two-word verbs in the story, such as team up, go back to and come in.",
+      "vocab": [
+        {
+          "w": "team up (with)",
+          "m": "to work together with another person"
+        },
+        {
+          "w": "cheerful",
+          "m": "happy and smiling a lot"
+        },
+        {
+          "w": "people person",
+          "m": "someone who likes being with other people and is good with them"
+        },
+        {
+          "w": "skills",
+          "m": "things you can do well because you learned or practised them"
+        },
+        {
+          "w": "cabin",
+          "m": "a small, simple wooden house, often in a forest"
+        },
+        {
+          "w": "celebrate",
+          "m": "to do something nice because something good happened"
+        }
       ],
-      [
-       "monkey"
+      "questions": [
+        {
+          "q": "Who gives Anna new assignments?",
+          "a": "Ms. Weaver",
+          "o": [
+            "Pete",
+            "Ms. Weaver",
+            "Professor Bot",
+            "Jonathan"
+          ],
+          "why": "Ms. Weaver is Anna's boss at The Studio."
+        },
+        {
+          "q": "What will Anna go back to?",
+          "a": "Hosting and reporting",
+          "o": [
+            "Teaching",
+            "Writing a book",
+            "Hosting and reporting",
+            "Looking for a job"
+          ],
+          "why": "Ms. Weaver says Anna will go back to hosting and reporting."
+        },
+        {
+          "q": "Who must Anna team up with?",
+          "a": "Someone very different from her",
+          "o": [
+            "Her best friend",
+            "Someone very different from her",
+            "Someone just like her",
+            "A famous reporter"
+          ],
+          "why": "Ms. Weaver wants a partner who is not cheerful and outgoing like Anna."
+        },
+        {
+          "q": "What is Pete doing at the start?",
+          "a": "Looking for a job",
+          "o": [
+            "Looking for a job",
+            "Making a TV show",
+            "Working at The Studio",
+            "Travelling"
+          ],
+          "why": "Pete is job hunting."
+        },
+        {
+          "q": "What job is the interview for?",
+          "a": "Talk-show co-host",
+          "o": [
+            "Camera operator",
+            "Talk-show co-host",
+            "Professor",
+            "Travel agent"
+          ],
+          "why": "Anna offers Pete an interview for a co-host job on a talk show."
+        },
+        {
+          "q": "What does Pete say about people?",
+          "a": "They talk too much",
+          "o": [
+            "They are very cheerful",
+            "They are always late",
+            "They talk too much",
+            "They are good listeners"
+          ],
+          "why": "When Ms. Weaver asks about his people skills, Pete says people talk too much."
+        },
+        {
+          "q": "Where did Pete spend two months alone?",
+          "a": "In a cabin",
+          "o": [
+            "In a hotel",
+            "In an office",
+            "On a boat",
+            "In a cabin"
+          ],
+          "why": "He spent two months alone in a cabin, writing a book."
+        },
+        {
+          "q": "What happens at the end?",
+          "a": "Pete gets the job",
+          "o": [
+            "Pete gets the job",
+            "Pete says no to the job",
+            "Anna loses her job",
+            "Ms. Weaver leaves"
+          ],
+          "why": "Ms. Weaver says he is not a people person, but he gets the job, and Anna wants to celebrate."
+        }
       ],
-      [
-       "panic"
-      ]
-     ],
-     "min": 25,
-     "model": "There is a Rational Decision-Maker who wants to do sensible, productive things, an Instant Gratification Monkey who takes the wheel and only cares about what is easy and fun now, and a Panic Monster who wakes up near a deadline and frightens the Monkey away."
-    },
-    {
-     "q": "Explain the Dark Playground.",
-     "hint": "What kind of fun happens there, and how does it feel?",
-     "keys": [
-      [
-       "leisure",
-       "fun"
+      "listen": [
+        {
+          "q": "Write what Ms. Weaver tells Anna.",
+          "hint": "What will Anna do? Who will she work with?",
+          "keys": [
+            [
+              "host",
+              "report"
+            ],
+            [
+              "team",
+              "partner",
+              "work with"
+            ],
+            [
+              "different"
+            ]
+          ],
+          "min": 10,
+          "model": "Ms. Weaver says Anna will go back to hosting and reporting. She must team up with someone very different from her."
+        },
+        {
+          "q": "Write about Pete's interview.",
+          "hint": "What does he say about people? Where was he for two months?",
+          "keys": [
+            [
+              "people",
+              "talk"
+            ],
+            [
+              "cabin"
+            ]
+          ],
+          "min": 10,
+          "model": "Ms. Weaver asks about his people skills. Pete says people talk too much. He spent two months alone in a cabin and wrote a book."
+        },
+        {
+          "q": "Write how the story ends.",
+          "hint": "Does Pete get the job? How does Anna feel?",
+          "keys": [
+            [
+              "job"
+            ],
+            [
+              "celebrate",
+              "happy",
+              "delighted",
+              "glad"
+            ]
+          ],
+          "min": 10,
+          "model": "Pete is not a people person, but he gets the job. Anna is very happy and wants to celebrate."
+        }
       ],
-      [
-       "guilt",
-       "dread",
-       "anxi",
-       "self-hat"
-      ]
-     ],
-     "min": 20,
-     "model": "The Dark Playground is where leisure activities happen at times when they should not. Because the fun is unearned, it is full of guilt, dread, anxiety and even self-hatred."
-    },
-    {
-     "q": "Explain the two kinds of procrastination and the Life Calendar.",
-     "hint": "With and without a deadline. What do the boxes show?",
-     "keys": [
-      [
-       "deadline"
-      ],
-      [
-       "week",
-       "box"
-      ],
-      [
-       "90",
-       "ninety"
-      ]
-     ],
-     "min": 25,
-     "model": "With a deadline, the Panic Monster eventually appears and the work gets done. Without a deadline, for example with health or relationships, it never appears, so the procrastination can go on for ever. The Life Calendar has one box for each week of a 90-year life, which shows how limited our time is."
-    }
-   ],
-   "tasks": {
-    "syn": {
-     "title": "Summarise with precise vocabulary",
-     "prompt": "Write a summary of the talk in 100–150 words. Replace every underlined word with a more precise or formal synonym.",
-     "text": "Urban [admits] that he [left] his thesis until the last minute. He [argues] that procrastinators are not [lazy], but that the [problem] becomes far more [serious] when there is no deadline.",
-     "words": [
-      {
-       "w": "admits",
-       "syn": [
-        "confesses",
-        "acknowledges",
-        "concedes",
-        "owns up"
-       ]
-      },
-      {
-       "w": "left",
-       "syn": [
-        "put off",
-        "postponed",
-        "delayed",
-        "deferred"
-       ]
-      },
-      {
-       "w": "argues",
-       "syn": [
-        "contends",
-        "maintains",
-        "claims",
-        "asserts"
-       ]
-      },
-      {
-       "w": "lazy",
-       "syn": [
-        "idle",
-        "indolent",
-        "work-shy",
-        "unmotivated"
-       ]
-      },
-      {
-       "w": "problem",
-       "syn": [
-        "issue",
-        "difficulty",
-        "challenge"
-       ]
-      },
-      {
-       "w": "serious",
-       "syn": [
-        "grave",
-        "severe",
-        "alarming",
-        "worrying"
-       ]
+      "tasks": {
+        "job": {
+          "type": "sent",
+          "title": "My dream job",
+          "prompt": "Write 4 or 5 sentences about a job you want. Say what you do in this job and why you are good for it. Use at least 3 of these words.",
+          "use": [
+            "job",
+            "skills",
+            "team up",
+            "people person",
+            "cheerful",
+            "interview",
+            "work on"
+          ],
+          "need": 3,
+          "sentences": 4,
+          "min": 30,
+          "starters": [
+            "I want to be a …",
+            "I am good at …",
+            "I am (not) a people person because …"
+          ],
+          "model": "I want to be a hotel manager. I am a people person and I like to help guests. I am usually cheerful, even early in the morning. I can team up with other people and solve problems quickly. Next month I have an interview, and I am practising my skills in English."
+        },
+        "news": {
+          "type": "sent",
+          "title": "Good news!",
+          "prompt": "Pete got the job! Write a short message (4 or 5 sentences) to a friend about good news in your life. Use the past simple and at least 3 of these words.",
+          "use": [
+            "celebrate",
+            "job",
+            "interview",
+            "offer",
+            "found out",
+            "congratulations",
+            "happy"
+          ],
+          "need": 3,
+          "sentences": 4,
+          "min": 30,
+          "starters": [
+            "Guess what! Last week I …",
+            "Yesterday I found out that …",
+            "Let's celebrate on …"
+          ],
+          "model": "Guess what! Last week I had an interview at a big bookshop. Yesterday I found out that I got the job! They made me a good offer, and I start on Monday. Let's celebrate on Saturday at my favourite café."
+        }
       }
-     ],
-     "min": 100,
-     "model": "Tim Urban confesses that he put off his 90-page senior thesis until the final 72 hours. To explain why, he describes three characters in the procrastinator's mind: a Rational Decision-Maker, an Instant Gratification Monkey that takes control and chooses whatever is easy and pleasant, and a Panic Monster that only wakes up when a deadline approaches. In between, procrastinators spend their time in the Dark Playground, where leisure is unearned and therefore full of guilt and dread. Urban contends that procrastinators are not idle; they are caught in an internal struggle. However, the issue becomes far more alarming when there is no deadline at all, as with health, relationships or personal projects, because the Panic Monster never appears. His Life Calendar, with one box for every week of a 90-year life, is a reminder that time is limited."
-    },
-    "rep": {
-     "title": "Formal report in reported speech",
-     "prompt": "Write a formal account of Urban's main points for a training newsletter at work (110–150 words), in reported speech. Use at least three different reporting verbs and no contractions.",
-     "verbs": [
-      "explained",
-      "stated",
-      "argued",
-      "claimed",
-      "pointed out",
-      "suggested",
-      "noted",
-      "emphasised",
-      "emphasized",
-      "reported",
-      "maintained",
-      "added",
-      "concluded",
-      "mentioned",
-      "observed",
-      "described",
-      "admitted",
-      "said",
-      "told",
-      "recommended",
-      "advised",
-      "acknowledged",
-      "conceded",
-      "contended",
-      "asserted",
-      "insisted",
-      "warned",
-      "remarked",
-      "confessed",
-      "proposed",
-      "stressed",
-      "highlighted",
-      "illustrated"
-     ],
-     "min": 110,
-     "starters": [
-      "Urban acknowledged that …",
-      "He contended that …",
-      "He warned that …"
-     ],
-     "model": "In his talk, Tim Urban acknowledged that he had written most of his senior thesis in the last three days before the deadline. He contended that procrastination was not a matter of laziness but of an internal conflict between a Rational Decision-Maker and an Instant Gratification Monkey, which preferred easy and enjoyable activities. He explained that the only thing the Monkey feared was the Panic Monster, which appeared when a deadline was approaching. He warned, however, that the most damaging form of procrastination occurred when there was no deadline at all, for example in relation to health, family or long-term ambitions. He concluded that everyone was procrastinating on something and recommended that people should remain aware of the Monkey, starting that very day."
-    },
-    "arg": {
-     "type": "arg",
-     "title": "Argue a position",
-     "prompt": "'Deadlines are the most effective cure for procrastination.' Write a formal argument (150–200 words). Use ideas from the talk, present the other side, and give your own view. No contractions.",
-     "min": 150,
-     "starters": [
-      "It is often argued that …",
-      "On the other hand, …",
-      "In my view, …"
-     ],
-     "model": "It is often argued that deadlines are the most effective cure for procrastination. Tim Urban's talk certainly supports this idea to some extent: the Panic Monster only wakes up when a deadline is close, and only then does the Instant Gratification Monkey let go of the wheel. Moreover, many students and employees would admit that a fixed date is what finally makes them start. However, this solution has clear limits. Work completed in a last-minute panic is rarely our best work, and the weeks before the deadline are spent in the Dark Playground, full of guilt and anxiety. Furthermore, as Urban points out, the most important things in life, such as health, relationships and personal projects, have no deadline at all. In my view, deadlines are therefore a useful tool rather than a cure. People who wish to stop procrastinating should create their own small, regular deadlines and, above all, remain aware of the Monkey before the Panic Monster is needed."
-    }
-   }
-  },
-  {
-   "title": "Do schools kill creativity?",
-   "channel": "TED",
-   "speaker": "Sir Ken Robinson",
-   "yt": "iG9CE55wbtY",
-   "source": "https://www.ted.com/talks/sir_ken_robinson_do_schools_kill_creativity",
-   "length": "19:24",
-   "level": "C2",
-   "intro": "One of the most-watched TED talks ever: a witty, very British argument that education systems teach children out of their creativity.",
-   "summary": "Ken Robinson argues that creativity is now as important in education as literacy and should be treated with the same status. Children, he says, are not frightened of being wrong: a girl drawing a picture of God tells her teacher that people will know what God looks like in a minute. If you are not prepared to be wrong, you will never come up with anything original, yet schools and companies stigmatise mistakes, so, as Picasso suggested, we do not grow into creativity but are educated out of it. Every education system has the same hierarchy of subjects, with mathematics and languages at the top, then the humanities, and the arts at the bottom; even within the arts, art and music rank above drama and dance. He explains that public education was invented to meet the needs of industrialism and is designed to produce university professors, who, he jokes, live in their heads. Meanwhile academic inflation means degrees are worth less than before. He tells the story of Gillian Lynne, a girl who could not sit still at school: a specialist saw that she was a dancer, she went to dance school and became a choreographer behind Cats and The Phantom of the Opera. He concludes that we must see our creative capacities as a richness and educate the whole being of children so they can face the future.",
-   "vocab": [
-    {
-     "w": "literacy",
-     "m": "the ability to read and write"
     },
     {
-     "w": "stigmatise",
-     "m": "to treat something as shameful or socially unacceptable"
-    },
-    {
-     "w": "hierarchy",
-     "m": "a system in which things are ranked one above another"
-    },
-    {
-     "w": "academic inflation",
-     "m": "the fall in value of degrees because so many people have them"
-    },
-    {
-     "w": "capacity",
-     "m": "the natural ability to do or develop something"
-    },
-    {
-     "w": "be educated out of something",
-     "m": "to lose an ability because the education system discourages it"
-    }
-   ],
-   "questions": [
-    {
-     "q": "What is Robinson's central claim?",
-     "a": "Creativity is as important in education as literacy and deserves the same status.",
-     "o": [
-      "Schools should abolish exams entirely.",
-      "Creativity is as important in education as literacy and deserves the same status.",
-      "Only artistically gifted children should study the arts.",
-      "Teachers are to blame for the decline in creativity."
-     ],
-     "why": "He states that creativity is now as important as literacy and should be treated with the same status."
-    },
-    {
-     "q": "What does the story of the girl drawing God illustrate?",
-     "a": "Children are not frightened of being wrong.",
-     "o": [
-      "Children are naturally religious.",
-      "Children are not frightened of being wrong.",
-      "Teachers should not discuss religion.",
-      "Drawing is more important than writing."
-     ],
-     "why": "When told nobody knows what God looks like, she replies that they will in a minute: she simply has a go."
-    },
-    {
-     "q": "What, according to Robinson, is the link between being wrong and creativity?",
-     "a": "If you are not prepared to be wrong, you will never come up with anything original.",
-     "o": [
-      "Being wrong is the opposite of creativity.",
-      "If you are not prepared to be wrong, you will never come up with anything original.",
-      "Creative people are rarely wrong.",
-      "Mistakes should be marked more strictly."
-     ],
-     "why": "He stresses that being wrong is not the same as being creative, but you need to be prepared to be wrong to create anything original."
-    },
-    {
-     "q": "Which idea does he borrow from Picasso?",
-     "a": "All children are born artists; the problem is remaining one as we grow up.",
-     "o": [
-      "Art cannot be taught.",
-      "All children are born artists; the problem is remaining one as we grow up.",
-      "Great artists steal.",
-      "Only adults can be truly creative."
-     ],
-     "why": "From this he concludes that we do not grow into creativity, we grow out of it, or rather are educated out of it."
-    },
-    {
-     "q": "How does he describe the hierarchy of subjects?",
-     "a": "Mathematics and languages at the top, the humanities next, the arts at the bottom",
-     "o": [
-      "The arts at the top, sciences at the bottom",
-      "Mathematics and languages at the top, the humanities next, the arts at the bottom",
-      "All subjects are treated equally in most countries",
-      "Sport at the top and languages at the bottom"
-     ],
-     "why": "He adds that within the arts, art and music are usually ranked above drama and dance."
-    },
-    {
-     "q": "Why, in his view, do education systems look the way they do?",
-     "a": "They were invented to meet the needs of industrialism.",
-     "o": [
-      "They were designed by artists.",
-      "They were invented to meet the needs of industrialism.",
-      "They copy the model of the ancient Greeks.",
-      "They were planned for the digital economy."
-     ],
-     "why": "Public education was created in the nineteenth century to serve an industrial economy, so the most useful subjects for work were placed at the top."
-    },
-    {
-     "q": "What does he mean by 'academic inflation'?",
-     "a": "Degrees are worth less than they used to be because so many people have them.",
-     "o": [
-      "University fees are rising every year.",
-      "Degrees are worth less than they used to be because so many people have them.",
-      "Students' grades are getting higher.",
-      "Professors are paid too much."
-     ],
-     "why": "He notes that a degree once guaranteed a job, but now graduates often struggle to find work."
-    },
-    {
-     "q": "What happened to Gillian Lynne?",
-     "a": "A specialist realised she was a dancer; she went to dance school and became a famous choreographer.",
-     "o": [
-      "She was given medication and did well at school.",
-      "A specialist realised she was a dancer; she went to dance school and became a famous choreographer.",
-      "She became a professor of education.",
-      "She left school and never danced again."
-     ],
-     "why": "Instead of being treated for a disorder, she was sent to dance school and later choreographed Cats and The Phantom of the Opera."
-    }
-   ],
-   "listen": [
-    {
-     "q": "Summarise his argument about mistakes and creativity.",
-     "hint": "Children vs adults; what happens at school and at work?",
-     "keys": [
-      [
-       "wrong",
-       "mistake"
+      "title": "Less stuff, more happiness",
+      "channel": "TED",
+      "speaker": "Graham Hill",
+      "yt": "L8YJtvHGeUU",
+      "source": "https://www.ted.com/talks/graham_hill_less_stuff_more_happiness",
+      "length": "5:50",
+      "level": "B1",
+      "intro": "Writer and designer Graham Hill lives in a very small flat. He asks: could less stuff and less space make us happier?",
+      "summary": "Graham Hill asks whether having less stuff in less space could make us happier. He says Americans have about three times as much space as 50 years ago, but there is still a 22-billion-dollar personal storage industry, and people are in debt and no happier. He started a project called LifeEdited and ran an online competition to design his 420-square-foot flat in Manhattan; more than 300 people sent ideas. Choosing 420 square feet instead of 600 saved him about 200,000 dollars and also means lower bills and a smaller footprint. He gives three rules: edit ruthlessly (get rid of things you do not need and think before you buy), think small (design for how you use things most of the time, choose things that nest or stack, and digitise books, films and papers), and make things multifunctional (a moving wall, a bed in the wall, fold-down guest beds and a coffee table that grows to seat ten). He does not say everyone must live in 420 square feet, but he asks people to imagine a smaller home and ends by saying that less might be more.",
+      "vocab": [
+        {
+          "w": "storage",
+          "m": "a place where you keep things you are not using"
+        },
+        {
+          "w": "footprint",
+          "m": "the effect a person has on the environment (how much energy and resources they use)"
+        },
+        {
+          "w": "edit",
+          "m": "to remove the parts you do not need (usually a text, here your things)"
+        },
+        {
+          "w": "ruthlessly",
+          "m": "strictly, without feeling sorry"
+        },
+        {
+          "w": "digitise",
+          "m": "to change books, photos or papers into computer files"
+        },
+        {
+          "w": "multifunctional",
+          "m": "having more than one use"
+        }
       ],
-      [
-       "original"
+      "questions": [
+        {
+          "q": "Compared with 50 years ago, how much living space do Americans have?",
+          "a": "About three times as much",
+          "o": [
+            "About half as much",
+            "About the same",
+            "About three times as much",
+            "About ten times as much"
+          ],
+          "why": "Hill says Americans have about three times the space they had 50 years ago."
+        },
+        {
+          "q": "Which business does Hill say is now very big?",
+          "a": "Personal storage",
+          "o": [
+            "Furniture design",
+            "Personal storage",
+            "Kitesurfing holidays",
+            "Hotels"
+          ],
+          "why": "He says the personal storage industry is worth about 22 billion dollars."
+        },
+        {
+          "q": "How big is Hill's flat?",
+          "a": "420 square feet",
+          "o": [
+            "420 square feet",
+            "600 square feet",
+            "1,500 square feet",
+            "3,000 square feet"
+          ],
+          "why": "He redesigned his 420-square-foot flat in Manhattan."
+        },
+        {
+          "q": "How did he find the design for his flat?",
+          "a": "He ran an online competition",
+          "o": [
+            "He copied a hotel room",
+            "He ran an online competition",
+            "He asked his parents",
+            "He did it all alone"
+          ],
+          "why": "He crowdsourced the design and got more than 300 entries."
+        },
+        {
+          "q": "About how much money did the smaller flat save him?",
+          "a": "About 200,000 dollars",
+          "o": [
+            "About 2,000 dollars",
+            "About 22,000 dollars",
+            "About 200,000 dollars",
+            "Nothing"
+          ],
+          "why": "Buying 420 square feet instead of 600 saved him about 200,000 dollars."
+        },
+        {
+          "q": "What does 'edit ruthlessly' mean in the talk?",
+          "a": "Get rid of things you do not need",
+          "o": [
+            "Buy more boxes",
+            "Write a book",
+            "Get rid of things you do not need",
+            "Move to a bigger home"
+          ],
+          "why": "His first rule is to clear out what you do not need and think before buying."
+        },
+        {
+          "q": "Why does he talk about a six-burner cooker?",
+          "a": "Most people rarely use more than a few burners",
+          "o": [
+            "It is his favourite thing",
+            "Most people rarely use more than a few burners",
+            "It is cheaper than a small one",
+            "It saves energy"
+          ],
+          "why": "Under 'think small' he says to design for how we use things most of the time."
+        },
+        {
+          "q": "What is his final message?",
+          "a": "Less might be more",
+          "o": [
+            "Everyone must live in 420 square feet",
+            "Buy only expensive things",
+            "Less might be more",
+            "Never invite guests"
+          ],
+          "why": "He asks people to imagine a smaller home and says less might equal more."
+        }
       ],
-      [
-       "stigma",
-       "worst thing",
-       "educat"
-      ]
-     ],
-     "min": 30,
-     "model": "Robinson argues that children are not frightened of being wrong, and that if you are not prepared to be wrong you will never come up with anything original. By the time they become adults, most people have lost this capacity, because schools and companies stigmatise mistakes. We are therefore educated out of creativity rather than growing out of it naturally."
-    },
-    {
-     "q": "Explain the hierarchy of subjects and why it exists.",
-     "hint": "Which subjects are at the top and bottom? What historical reason does he give?",
-     "keys": [
-      [
-       "math"
+      "listen": [
+        {
+          "q": "What problem does Hill describe at the start?",
+          "hint": "Space, storage, happiness.",
+          "keys": [
+            [
+              "three times",
+              "3 times",
+              "more space",
+              "more room"
+            ],
+            [
+              "storage"
+            ],
+            [
+              "happy",
+              "happier",
+              "happiness"
+            ]
+          ],
+          "min": 12,
+          "model": "He says Americans have about three times more space than fifty years ago, but they still need a huge storage industry, and they are not any happier."
+        },
+        {
+          "q": "Describe his small flat.",
+          "hint": "How big is it? What moves or changes?",
+          "keys": [
+            [
+              "420"
+            ],
+            [
+              "bed",
+              "table",
+              "wall"
+            ],
+            [
+              "guest",
+              "ten",
+              "10"
+            ]
+          ],
+          "min": 12,
+          "model": "His flat is only 420 square feet, but a moving wall, a bed in the wall and a table that grows for ten people make room for guests and dinners."
+        },
+        {
+          "q": "What are his three rules?",
+          "hint": "Edit … , think … , make it …",
+          "keys": [
+            [
+              "edit"
+            ],
+            [
+              "small"
+            ],
+            [
+              "multifunctional",
+              "more than one"
+            ]
+          ],
+          "min": 12,
+          "model": "First, edit ruthlessly and remove things you do not need. Second, think small and choose things that stack or are digital. Third, make spaces and furniture multifunctional."
+        }
       ],
-      [
-       "arts",
-       "dance"
-      ],
-      [
-       "industri"
-      ]
-     ],
-     "min": 30,
-     "model": "Everywhere, mathematics and languages are at the top, the humanities come next and the arts are at the bottom, with dance lowest of all. He explains that public education was invented to meet the needs of industrialism, so the subjects most useful for work were placed at the top."
-    },
-    {
-     "q": "Retell the story of Gillian Lynne and say what it shows.",
-     "hint": "School, the specialist, the result.",
-     "keys": [
-      [
-       "danc"
-      ],
-      [
-       "doctor",
-       "specialist"
-      ],
-      [
-       "school"
-      ]
-     ],
-     "min": 30,
-     "model": "Gillian Lynne could not concentrate or sit still at school, and her school thought she had a learning disorder. A specialist watched her move to music and told her mother that she was a dancer and should go to dance school. She became a famous choreographer, which shows that intelligence takes many forms."
-    }
-   ],
-   "tasks": {
-    "syn": {
-     "title": "Summarise with sophisticated vocabulary",
-     "prompt": "Write a summary of the talk in 120–170 words. Replace every underlined word with a more sophisticated synonym.",
-     "text": "Robinson [claims] that schools [kill] creativity. He is [sure] that children are [born] with huge talent, but that education [teaches] them to be [afraid] of mistakes.",
-     "words": [
-      {
-       "w": "claims",
-       "syn": [
-        "contends",
-        "asserts",
-        "maintains",
-        "argues"
-       ]
-      },
-      {
-       "w": "kill",
-       "syn": [
-        "stifle",
-        "suppress",
-        "crush",
-        "smother",
-        "extinguish",
-        "undermine"
-       ]
-      },
-      {
-       "w": "sure",
-       "syn": [
-        "convinced",
-        "certain",
-        "adamant",
-        "persuaded"
-       ]
-      },
-      {
-       "w": "born",
-       "syn": [
-        "endowed",
-        "blessed",
-        "gifted"
-       ]
-      },
-      {
-       "w": "teaches",
-       "syn": [
-        "conditions",
-        "trains",
-        "encourages",
-        "leads"
-       ]
-      },
-      {
-       "w": "afraid",
-       "syn": [
-        "fearful",
-        "wary",
-        "apprehensive",
-        "terrified"
-       ]
+      "tasks": {
+        "syn": {
+          "title": "Summarise with synonyms",
+          "prompt": "Write your own summary of the talk in 60–100 words. Replace every underlined word with a synonym.",
+          "text": "Hill [believes] that owning less can make people [happier]. He [suggests] that we [remove] [unnecessary] things and choose furniture with more than one [purpose].",
+          "words": [
+            {
+              "w": "believes",
+              "syn": [
+                "thinks",
+                "feels",
+                "is convinced",
+                "is sure"
+              ]
+            },
+            {
+              "w": "happier",
+              "syn": [
+                "more content",
+                "more cheerful",
+                "more satisfied",
+                "more joyful"
+              ]
+            },
+            {
+              "w": "suggests",
+              "syn": [
+                "recommends",
+                "proposes",
+                "advises"
+              ]
+            },
+            {
+              "w": "remove",
+              "syn": [
+                "get rid of",
+                "throw out",
+                "clear out",
+                "eliminate"
+              ]
+            },
+            {
+              "w": "unnecessary",
+              "syn": [
+                "needless",
+                "unneeded",
+                "useless",
+                "superfluous"
+              ]
+            },
+            {
+              "w": "purpose",
+              "syn": [
+                "function",
+                "use",
+                "role",
+                "job"
+              ]
+            }
+          ],
+          "min": 60,
+          "model": "Graham Hill thinks that owning less can make people more content. Americans have three times more space than fifty years ago, but they are not more satisfied. He recommends three rules. First, we should get rid of needless things and stop buying stuff we never use. Second, we should think small and digitise books and films. Third, we should choose furniture with more than one function, like a table that becomes a bed. In his tiny flat, these ideas save him money and time."
+        },
+        "adv": {
+          "title": "Use three adverbs",
+          "prompt": "Write about your home or your room and the things in it (50–90 words). Use all three adverbs below.",
+          "adverbs": [
+            "carefully",
+            "completely",
+            "rarely"
+          ],
+          "min": 50,
+          "model": "My room is small, so I choose new things carefully. Before I buy something, I ask myself if I really want it. I rarely use my old bike, so I am going to sell it. Last month I completely emptied my wardrobe and gave half of my clothes to a charity shop. Now my room feels bigger and it is easier to clean."
+        },
+        "rep": {
+          "title": "Report what he said",
+          "prompt": "Tell a friend what Graham Hill said, in reported speech (70–110 words). Use at least two different reporting verbs and no contractions.",
+          "verbs": [
+            "explained",
+            "stated",
+            "argued",
+            "claimed",
+            "pointed out",
+            "suggested",
+            "noted",
+            "emphasised",
+            "emphasized",
+            "reported",
+            "maintained",
+            "added",
+            "concluded",
+            "mentioned",
+            "observed",
+            "described",
+            "admitted",
+            "said",
+            "told",
+            "recommended",
+            "advised"
+          ],
+          "min": 70,
+          "starters": [
+            "Graham Hill explained that …",
+            "He pointed out that …"
+          ],
+          "model": "Graham Hill explained that Americans had about three times as much space as fifty years before, but he pointed out that they were not any happier. He said that he had chosen a very small flat and that this decision had saved him a lot of money. He suggested that people could edit their lives ruthlessly, think small and choose furniture that had more than one function. He added that a smaller home would also be better for the environment. Finally, he said that less might really mean more."
+        }
       }
-     ],
-     "min": 120,
-     "model": "Sir Ken Robinson contends that education systems stifle the creativity they ought to nurture. He is convinced that children are endowed with extraordinary talent and are not frightened of being wrong, as his anecdote about a girl drawing God illustrates. Yet, if one is not prepared to be wrong, one will never produce anything original, and schools, by stigmatising error, condition pupils to be fearful of mistakes. Echoing Picasso, he concludes that we do not grow into creativity but are educated out of it. He traces this to a hierarchy of subjects, with mathematics and languages at the summit and the arts, especially dance, at the bottom, a structure designed to meet the needs of industrialism. Academic inflation, he adds, has made degrees worth far less. The story of Gillian Lynne, who became a celebrated choreographer instead of being treated for a disorder, shows the cost of a narrow view of intelligence."
     },
-    "rep": {
-     "title": "Formal account in reported speech",
-     "prompt": "Write a formal account of the talk for an education journal (130–170 words), in reported speech. Use at least three different reporting verbs and no contractions.",
-     "verbs": [
-      "explained",
-      "stated",
-      "argued",
-      "claimed",
-      "pointed out",
-      "suggested",
-      "noted",
-      "emphasised",
-      "emphasized",
-      "reported",
-      "maintained",
-      "added",
-      "concluded",
-      "mentioned",
-      "observed",
-      "described",
-      "admitted",
-      "said",
-      "told",
-      "recommended",
-      "advised",
-      "acknowledged",
-      "conceded",
-      "contended",
-      "asserted",
-      "insisted",
-      "warned",
-      "remarked",
-      "confessed",
-      "proposed",
-      "stressed",
-      "highlighted",
-      "illustrated"
-     ],
-     "min": 130,
-     "starters": [
-      "Robinson contended that …",
-      "He illustrated this with …",
-      "He conceded that …"
-     ],
-     "model": "Sir Ken Robinson contended that creativity had become as important in education as literacy and that it should be accorded the same status. He observed that young children were not afraid of being wrong, and he illustrated this with the story of a girl who had insisted that people would soon know what God looked like. He argued that anyone who was not prepared to be wrong would never produce anything original, and he warned that schools and companies stigmatised mistakes. He asserted that every education system shared the same hierarchy of subjects, with the arts at the bottom, and he explained that this hierarchy had been designed to meet the needs of industrialism. He also remarked that academic inflation had reduced the value of degrees. Finally, he recounted the story of Gillian Lynne and concluded that education should develop the whole being of every child."
+    {
+      "title": "Why do cats act so weird?",
+      "channel": "TED-Ed",
+      "speaker": "Tony Buffington (lesson); narrated by Addison Anderson",
+      "yt": "sI8NsYIyQ2A",
+      "source": "https://ed.ted.com/lessons/why-do-cats-act-so-weird-tony-buffington",
+      "length": "4:47",
+      "level": "B2",
+      "intro": "Why do cats scratch the sofa, hide in boxes and want lots of small meals? A vet explains how their wild past shapes their behaviour today.",
+      "summary": "Cats are hugely popular online, and the vet Tony Buffington explains their strange habits through evolution. Their wild ancestors were solitary hunters of small animals, but they were also prey for larger carnivores, and both roles shaped instincts that pet cats still have. Because their prey was small, wild cats had to stalk, pounce, kill and eat many times a day, which is why house cats like chasing toys and prefer several small meals spread over the day and night. Scratching keeps their claws in good condition, stretches their back and leg muscles and relieves stress, so it does not mean a cat hates your furniture. Cats like high perches because they can watch their surroundings, and they hide in boxes, bags and other small spaces because of their wild past. They want a clean litter box because, in the wild, smells could give away their location to predators. Purring is one behaviour that science still cannot fully explain.",
+      "vocab": [
+        {
+          "w": "predator",
+          "m": "an animal that hunts and eats other animals"
+        },
+        {
+          "w": "prey",
+          "m": "an animal that is hunted and eaten by another animal"
+        },
+        {
+          "w": "stalk",
+          "m": "to follow an animal slowly and quietly in order to catch it"
+        },
+        {
+          "w": "pounce",
+          "m": "to jump suddenly onto something to catch it"
+        },
+        {
+          "w": "instinct",
+          "m": "a natural way of behaving that an animal is born with, not one it learns"
+        },
+        {
+          "w": "perch",
+          "m": "a high place where an animal sits and watches"
+        }
+      ],
+      "questions": [
+        {
+          "q": "What is Tony Buffington's profession?",
+          "a": "He is a vet",
+          "o": [
+            "He is a zookeeper",
+            "He is a vet",
+            "He is a film director",
+            "He designs cat food"
+          ],
+          "why": "The lesson is by veterinarian Tony Buffington."
+        },
+        {
+          "q": "How did cats' wild ancestors hunt?",
+          "a": "Alone",
+          "o": [
+            "In large groups",
+            "Alone",
+            "Together with dogs",
+            "Only in water"
+          ],
+          "why": "They were solitary hunters of small prey."
+        },
+        {
+          "q": "Besides being hunters, what were wild cats?",
+          "a": "Prey for larger carnivores",
+          "o": [
+            "Pets for farmers",
+            "Prey for larger carnivores",
+            "Plant eaters",
+            "Guards for villages"
+          ],
+          "why": "They were both predators and prey, and both roles shaped their instincts."
+        },
+        {
+          "q": "Why do pet cats prefer several small meals?",
+          "a": "Their ancestors caught small prey many times a day",
+          "o": [
+            "Big meals are too expensive",
+            "Their ancestors caught small prey many times a day",
+            "They cannot digest meat",
+            "Owners forget to feed them"
+          ],
+          "why": "Small prey meant wild cats had to stalk, pounce, kill and eat many times a day."
+        },
+        {
+          "q": "According to the video, why do cats scratch?",
+          "a": "To keep their claws in good condition and stretch their muscles",
+          "o": [
+            "Because they hate your furniture",
+            "Because they are bored with their toys",
+            "To keep their claws in good condition and stretch their muscles",
+            "To make a bed"
+          ],
+          "why": "Scratching keeps claws healthy, stretches back and leg muscles and relieves stress."
+        },
+        {
+          "q": "Why do cats like high places?",
+          "a": "They can watch their surroundings",
+          "o": [
+            "Floors are too cold",
+            "They can watch their surroundings",
+            "They want to sleep alone",
+            "They want to be near people"
+          ],
+          "why": "High perches are good places to watch everything around them."
+        },
+        {
+          "q": "Why do cats want a clean litter box?",
+          "a": "In the wild, smells could show predators where they were",
+          "o": [
+            "They like perfume",
+            "Owners train them to",
+            "In the wild, smells could show predators where they were",
+            "Dirty boxes are heavy"
+          ],
+          "why": "Not giving away their location helped wild cats stay safe."
+        },
+        {
+          "q": "What does the video say about purring?",
+          "a": "Science cannot fully explain it yet",
+          "o": [
+            "Cats purr only when they are happy",
+            "Only kittens purr",
+            "Science cannot fully explain it yet",
+            "Purring scares predators away"
+          ],
+          "why": "Purring is the one behaviour that still has no full scientific explanation."
+        }
+      ],
+      "listen": [
+        {
+          "q": "Explain how a cat's wild past affects the way it eats.",
+          "hint": "What size was their prey? How often did they eat?",
+          "keys": [
+            [
+              "small"
+            ],
+            [
+              "meal",
+              "eat"
+            ],
+            [
+              "hunt",
+              "prey",
+              "catch",
+              "caught"
+            ]
+          ],
+          "min": 12,
+          "model": "Wild cats hunted small prey, so they had to catch and eat many times a day. That is why pet cats like chasing toys and eating several small meals."
+        },
+        {
+          "q": "Why do cats scratch things?",
+          "hint": "Think of claws, muscles and feelings.",
+          "keys": [
+            [
+              "claw"
+            ],
+            [
+              "stretch",
+              "muscle"
+            ],
+            [
+              "stress"
+            ]
+          ],
+          "min": 12,
+          "model": "Scratching keeps their claws in good condition, stretches the muscles in their back and legs and helps them relieve stress. It does not mean they hate the sofa."
+        },
+        {
+          "q": "Describe one more strange behaviour and the reason for it.",
+          "hint": "Boxes, high places, the litter box or purring.",
+          "keys": [
+            [
+              "box",
+              "high",
+              "litter",
+              "purr",
+              "hid",
+              "perch"
+            ]
+          ],
+          "min": 12,
+          "model": "Cats love hiding in boxes and small spaces because their wild ancestors were also prey, and hidden places kept them safe from bigger predators."
+        }
+      ],
+      "tasks": {
+        "syn": {
+          "title": "Summarise with synonyms",
+          "prompt": "Write your own summary of the video in 70–120 words. Replace every underlined word with a synonym.",
+          "text": "Buffington [explains] that cats [behave] strangely because of their wild [past]. Their ancestors were [skilled] hunters, but they were also [eaten] by [bigger] animals.",
+          "words": [
+            {
+              "w": "explains",
+              "syn": [
+                "describes",
+                "clarifies",
+                "shows",
+                "points out"
+              ]
+            },
+            {
+              "w": "behave",
+              "syn": [
+                "act",
+                "react",
+                "carry on"
+              ]
+            },
+            {
+              "w": "past",
+              "syn": [
+                "history",
+                "origins",
+                "ancestry",
+                "background"
+              ]
+            },
+            {
+              "w": "skilled",
+              "syn": [
+                "expert",
+                "capable",
+                "talented",
+                "able"
+              ]
+            },
+            {
+              "w": "eaten",
+              "syn": [
+                "killed",
+                "caught",
+                "devoured",
+                "preyed on"
+              ]
+            },
+            {
+              "w": "bigger",
+              "syn": [
+                "larger",
+                "stronger",
+                "more powerful",
+                "heavier"
+              ]
+            }
+          ],
+          "min": 70,
+          "model": "Tony Buffington, a vet, describes why cats act so strangely: it is all about their wild history. Their ancestors were expert predators that caught small animals, but they were also killed by larger carnivores. Because their prey was tiny, wild cats had to stalk, pounce and eat many times a day, so pet cats still enjoy chasing toys and prefer several small meals. Scratching keeps their claws in good condition, stretches their muscles and relieves stress. Cats like high perches because they can watch everything around them, and they want a clean litter box because smells could reveal their location to enemies. Even today, scientists cannot fully clarify why cats purr."
+        },
+        "adv": {
+          "title": "Use three adverbs",
+          "prompt": "Write about a pet you know, or one you would like to have, and how it behaves (60–100 words). Use all three adverbs below.",
+          "adverbs": [
+            "instinctively",
+            "gradually",
+            "surprisingly"
+          ],
+          "min": 60,
+          "model": "Our cat, Mruczek, came from a shelter and was very shy at first. Gradually, he started to trust us and explore the flat. Surprisingly, his favourite toy is not an expensive mouse but an empty cardboard box. When he sees a bird through the window, he instinctively lowers his body and gets ready to pounce, just like a wild cat. Watching him, I understand that pets still carry the habits of their ancestors."
+        },
+        "rep": {
+          "title": "Report the explanations",
+          "prompt": "Tell a friend what Tony Buffington explained, in reported speech (80–120 words). Use at least two different reporting verbs and no contractions.",
+          "verbs": [
+            "explained",
+            "stated",
+            "argued",
+            "claimed",
+            "pointed out",
+            "suggested",
+            "noted",
+            "emphasised",
+            "emphasized",
+            "reported",
+            "maintained",
+            "added",
+            "concluded",
+            "mentioned",
+            "observed",
+            "described",
+            "admitted",
+            "said",
+            "told",
+            "recommended",
+            "advised"
+          ],
+          "min": 80,
+          "starters": [
+            "Tony Buffington explained that …",
+            "He pointed out that …"
+          ],
+          "model": "In the video, Tony Buffington explained that many strange cat habits came from their wild ancestors. He pointed out that wild cats had been solitary hunters but also prey for larger animals. He noted that, because their prey was small, they had needed to eat many times a day, which was why pet cats preferred several small meals. He added that scratching kept their claws in good condition and stretched their muscles, so it did not mean that they hated the furniture. He also mentioned that a clean litter box was important because smells could reveal where a cat was. Finally, he admitted that science could not fully explain purring."
+        }
+      }
     },
-    "arg": {
-     "type": "arg",
-     "title": "Write a balanced argument",
-     "prompt": "'Schools should give dance the same status as mathematics.' Write a formal, balanced argument (200–260 words). Engage with Robinson's ideas, present the strongest counter-argument, and reach a clear conclusion. No contractions.",
-     "min": 200,
-     "starters": [
-      "It could be argued that …",
-      "Admittedly, …",
-      "Nevertheless, …",
-      "In my view, …"
-     ],
-     "model": "Sir Ken Robinson's claim that schools should teach dance every day, just as they teach mathematics, is deliberately provocative. It could be argued that it is also justified. Children learn through their bodies as well as their heads, and, as the story of Gillian Lynne shows, a pupil who cannot sit still may be gifted in ways a traditional curriculum never notices. Moreover, the hierarchy of subjects was designed for an industrial economy that no longer exists, so it is reasonable to question whether it still serves young people. Furthermore, collaboration, confidence and the willingness to make mistakes, which dance develops, are precisely the qualities employers now value. Admittedly, there are strong objections. Mathematics underpins science, technology and finance, and a pupil who leaves school without basic numeracy faces serious disadvantages in daily life. Timetables are also finite, so giving dance equal hours would inevitably reduce time for other subjects, and many schools lack trained teachers and suitable spaces. Nevertheless, these objections concern resources rather than principle. In my view, schools should not necessarily give dance identical hours, but they should give it equal respect: it should be assessed seriously, taught by specialists and never treated as a reward for finishing 'real' work. Ultimately, Robinson's argument is less about dance itself than about recognising that intelligence is diverse, and on that point he is convincing."
+    {
+      "title": "How to speak so that people want to listen",
+      "channel": "TED",
+      "speaker": "Julian Treasure",
+      "yt": "eIho2S0ZahI",
+      "source": "https://www.ted.com/talks/julian_treasure_how_to_speak_so_that_people_want_to_listen",
+      "length": "9:44",
+      "level": "C1",
+      "intro": "Sound expert Julian Treasure names the seven 'deadly sins' of speaking, offers four foundations for being heard, and ends with a vocal warm-up you can try at home.",
+      "summary": "Julian Treasure calls the human voice the instrument we all play and perhaps the most powerful sound in the world, and asks why so many people feel they are not heard. He lists seven deadly sins of speaking: gossip, judging, negativity, complaining (which he jokes is a national sport in Britain), excuses, embroidery or exaggeration, and dogmatism, which means confusing facts with opinions. Against these he sets four foundations, HAIL: honesty, authenticity, integrity and love, explaining that by love he means wishing people well. He then opens a vocal toolbox: register (speaking from the chest gives weight and authority), timbre (people prefer rich, smooth, warm voices, which can be trained), prosody (a monotone, or ending every sentence like a question, is hard to listen to), pace and pauses (silence is powerful, so there is no need to fill it with 'um'), pitch and volume. He leads the audience through a warm-up: arms up and a sigh, 'ba ba' and a lip trill, 'la la' and a rolled 'r', and a siren from a high 'wee' to a low 'aw', which he says is the one to do if you only do one. He ends by imagining a world where people speak powerfully, listen consciously and design spaces for sound.",
+      "vocab": [
+        {
+          "w": "gossip",
+          "m": "talking about other people, often unkindly, when they are not present"
+        },
+        {
+          "w": "dogmatism",
+          "m": "presenting your opinions as if they were unquestionable facts"
+        },
+        {
+          "w": "embroidery",
+          "m": "here: adding exaggerated or invented details to make a story more impressive"
+        },
+        {
+          "w": "authenticity",
+          "m": "the quality of being genuinely yourself rather than playing a role"
+        },
+        {
+          "w": "timbre",
+          "m": "the particular quality or 'colour' of a voice, apart from its pitch and volume"
+        },
+        {
+          "w": "prosody",
+          "m": "the rhythm, stress and melody of speech that carry extra meaning"
+        }
+      ],
+      "questions": [
+        {
+          "q": "What does Treasure call perhaps the most powerful sound in the world?",
+          "a": "The human voice",
+          "o": [
+            "Music",
+            "Silence",
+            "The human voice",
+            "Applause"
+          ],
+          "why": "He opens by calling the voice the instrument we all play and the most powerful sound there is."
+        },
+        {
+          "q": "Which of these is one of his 'seven deadly sins' of speaking?",
+          "a": "Gossip",
+          "o": [
+            "Pausing",
+            "Gossip",
+            "Honesty",
+            "Speaking slowly"
+          ],
+          "why": "Gossip, speaking ill of someone who is not present, is the first sin."
+        },
+        {
+          "q": "How does he jokingly describe complaining in Britain?",
+          "a": "As a national sport",
+          "o": [
+            "As a national sport",
+            "As a dying habit",
+            "As a form of politeness",
+            "As a school subject"
+          ],
+          "why": "He says complaining, about the weather, sport and politics, is a national pastime."
+        },
+        {
+          "q": "What does he mean by dogmatism?",
+          "a": "Confusing facts with opinions",
+          "o": [
+            "Speaking too quietly",
+            "Telling long stories",
+            "Confusing facts with opinions",
+            "Refusing to apologise"
+          ],
+          "why": "Dogmatism is bombarding people with opinions presented as facts."
+        },
+        {
+          "q": "What does the L in HAIL stand for?",
+          "a": "Love",
+          "o": [
+            "Listening",
+            "Language",
+            "Loudness",
+            "Love"
+          ],
+          "why": "Honesty, authenticity, integrity and love, meaning wishing people well."
+        },
+        {
+          "q": "Why does he recommend speaking from the chest?",
+          "a": "It gives the voice weight and authority",
+          "o": [
+            "It is louder",
+            "It gives the voice weight and authority",
+            "It makes you sound younger",
+            "It saves breath"
+          ],
+          "why": "In the register section he links lower, chest resonance with power and authority."
+        },
+        {
+          "q": "What does he say about pauses?",
+          "a": "Silence is powerful and need not be filled",
+          "o": [
+            "They bore the audience",
+            "They show you have forgotten your words",
+            "Silence is powerful and need not be filled",
+            "They should always be filled with 'um'"
+          ],
+          "why": "Under pace he says silence is powerful and there is no need to fill it with 'ums' and 'ahs'."
+        },
+        {
+          "q": "Which warm-up exercise does he say to do if you only do one?",
+          "a": "The siren from 'wee' to 'aw'",
+          "o": [
+            "The lip trill",
+            "Arms up and sigh",
+            "The siren from 'wee' to 'aw'",
+            "Saying 'la la la'"
+          ],
+          "why": "He presents the siren as the single most useful exercise."
+        }
+      ],
+      "listen": [
+        {
+          "q": "Name at least three of the 'deadly sins' and explain why they put listeners off.",
+          "hint": "Gossip, judging, negativity, complaining, excuses, exaggeration, dogmatism.",
+          "keys": [
+            [
+              "gossip",
+              "judg"
+            ],
+            [
+              "negativ",
+              "complain"
+            ],
+            [
+              "excuse",
+              "exaggerat",
+              "embroider",
+              "dogmati",
+              "opinion"
+            ]
+          ],
+          "min": 22,
+          "model": "Gossip is a problem because anyone who talks badly about absent people will soon talk about you. Complaining spreads misery like a virus, and dogmatism, which means presenting opinions as facts, makes listeners feel bombarded."
+        },
+        {
+          "q": "What does HAIL stand for, and why does it matter?",
+          "hint": "Four foundations, one for each letter.",
+          "keys": [
+            [
+              "honest"
+            ],
+            [
+              "authentic"
+            ],
+            [
+              "integrity"
+            ],
+            [
+              "love"
+            ]
+          ],
+          "min": 22,
+          "model": "HAIL stands for honesty, authenticity, integrity and love. These four foundations make people trust you, because you are truthful, you are yourself, you do what you say and you wish your listeners well."
+        },
+        {
+          "q": "Describe two tools from his vocal toolbox and what they do.",
+          "hint": "Register, timbre, prosody, pace, pitch, volume.",
+          "keys": [
+            [
+              "register",
+              "timbre",
+              "prosody",
+              "pace",
+              "pitch",
+              "volume",
+              "silence"
+            ],
+            [
+              "chest",
+              "warm",
+              "monoton",
+              "slow",
+              "pause",
+              "quiet",
+              "loud",
+              "question"
+            ]
+          ],
+          "min": 22,
+          "model": "Register matters, because speaking from the chest gives your voice weight and authority. Pace is another tool: slowing down adds emphasis, and a pause can be powerful, so there is no need to fill every silence with um."
+        }
+      ],
+      "tasks": {
+        "syn": {
+          "title": "Summarise with precise vocabulary",
+          "prompt": "Write a summary of the talk in 100–150 words. Replace every underlined word with a more precise or formal synonym.",
+          "text": "Treasure [argues] that many people feel [ignored] when they speak. He [lists] seven [habits] that push listeners away and [offers] a [simple] alternative called HAIL.",
+          "words": [
+            {
+              "w": "argues",
+              "syn": [
+                "contends",
+                "maintains",
+                "claims",
+                "asserts"
+              ]
+            },
+            {
+              "w": "ignored",
+              "syn": [
+                "unheard",
+                "overlooked",
+                "disregarded",
+                "dismissed"
+              ]
+            },
+            {
+              "w": "lists",
+              "syn": [
+                "identifies",
+                "outlines",
+                "enumerates",
+                "sets out"
+              ]
+            },
+            {
+              "w": "habits",
+              "syn": [
+                "tendencies",
+                "patterns",
+                "behaviours",
+                "practices"
+              ]
+            },
+            {
+              "w": "offers",
+              "syn": [
+                "proposes",
+                "presents",
+                "puts forward",
+                "provides"
+              ]
+            },
+            {
+              "w": "simple",
+              "syn": [
+                "straightforward",
+                "accessible",
+                "uncomplicated",
+                "clear"
+              ]
+            }
+          ],
+          "min": 100,
+          "model": "Julian Treasure contends that many people feel unheard when they speak, and he begins by describing the human voice as the most powerful instrument we have. He identifies seven deadly sins of speaking: gossip, judging, negativity, complaining, excuses, exaggeration and dogmatism. Each of these tendencies makes listeners less willing to pay attention. He then proposes an uncomplicated alternative called HAIL, which stands for honesty, authenticity, integrity and love. In the second half of the talk, he presents a vocal toolbox that includes register, timbre, prosody, pace, pitch and volume, and he leads the audience through a brief warm-up. He concludes that if we spoke consciously and listened carefully, understanding would become the norm."
+        },
+        "rep": {
+          "title": "Formal account in reported speech",
+          "prompt": "Write a formal account of Treasure's main points for a staff newsletter (110–150 words), in reported speech. Use at least three different reporting verbs and no contractions.",
+          "verbs": [
+            "explained",
+            "stated",
+            "argued",
+            "claimed",
+            "pointed out",
+            "suggested",
+            "noted",
+            "emphasised",
+            "emphasized",
+            "reported",
+            "maintained",
+            "added",
+            "concluded",
+            "mentioned",
+            "observed",
+            "described",
+            "admitted",
+            "said",
+            "told",
+            "recommended",
+            "advised",
+            "acknowledged",
+            "conceded",
+            "contended",
+            "asserted",
+            "insisted",
+            "warned",
+            "remarked",
+            "confessed",
+            "proposed",
+            "stressed",
+            "highlighted",
+            "illustrated"
+          ],
+          "min": 110,
+          "starters": [
+            "Treasure acknowledged that …",
+            "He contended that …",
+            "He stressed that …"
+          ],
+          "model": "Julian Treasure began by stating that the human voice was the most powerful sound in the world. He acknowledged that many people felt that nobody listened to them and argued that seven common habits were partly responsible, including gossip, complaining and dogmatism. He remarked that complaining had become a national sport in Britain. He then proposed four foundations for powerful speech, namely honesty, authenticity, integrity and love, and stressed that love, in his sense, meant wishing people well. Turning to the voice itself, he explained that speaking from the chest gave a speaker more authority and that pauses could be extremely powerful. Finally, he recommended that everyone should warm up their voice before an important conversation, just as an athlete would warm up before a race."
+        },
+        "arg": {
+          "type": "arg",
+          "title": "Argue a position",
+          "prompt": "'How you say something matters more than what you say.' Write a formal argument (150–200 words). Use ideas from the talk, present the other side, and give your own view. No contractions.",
+          "min": 150,
+          "starters": [
+            "It is often claimed that …",
+            "Moreover, …",
+            "However, it could be argued that …",
+            "In my view, …"
+          ],
+          "model": "It is often claimed that how we say something matters more than what we say. The talk by Julian Treasure certainly supports this view to some extent. He shows that register, pace and pitch can change the meaning of a simple question, and that a monotonous voice makes even good ideas difficult to follow. Moreover, listeners often decide whether to trust a speaker within seconds, long before they have analysed the arguments. However, it could be argued that delivery without substance is empty. A confident, warm voice cannot make a dishonest message honest, and Treasure himself places honesty and integrity at the foundation of good speaking. Furthermore, in written communication, which is a large part of modern life, tone of voice disappears entirely and only the content remains. In my view, the two cannot really be separated. Content gives a message its value, while delivery decides whether anyone receives it. Therefore, speakers should first make sure that they have something true and useful to say, and only then work on saying it well."
+        }
+      }
+    },
+    {
+      "title": "How great leaders inspire action",
+      "channel": "TED",
+      "speaker": "Simon Sinek",
+      "yt": "qp0HIF3SfI4",
+      "source": "https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action",
+      "length": "17:47",
+      "level": "C2",
+      "intro": "Simon Sinek draws a 'golden circle' on a flip chart and argues that the leaders and companies who inspire us all start with one question: why?",
+      "summary": "Simon Sinek asks why some people and organisations, such as Apple, Martin Luther King Jr. and the Wright brothers, achieve more than others with the same resources. His golden circle has three rings: what you do, how you do it and why you do it; everyone knows their what, some know their how, but very few can articulate their why, and profit is a result, not a purpose. Most organisations communicate from the outside in, starting with product features, while inspiring ones communicate from the inside out, as Apple does by starting from its belief in challenging the status quo; this, he says, is why Dell and Gateway failed when they sold MP3 players and flat-screen TVs. He links the circle to biology: the neocortex handles rational thought and language, while the limbic brain handles feelings such as trust and loyalty and drives decisions but has no capacity for language, which is why we talk of gut feelings. Samuel Pierpont Langley had 50,000 dollars from the War Department, the best minds and the press, yet the Wright brothers, funded by their bicycle shop, flew first on 17 December 1903, and Langley simply quit. Using the law of diffusion of innovation (innovators 2.5%, early adopters 13.5%, early majority 34%), he argues that mass success comes after about 15 to 18% of the market, and that TiVo failed because it sold features rather than a belief. About 250,000 people came to hear Martin Luther King in 1963 because they shared his beliefs; he gave the 'I have a dream' speech, not the 'I have a plan' speech. Sinek concludes that leaders hold authority, but those who lead inspire us, and we follow them because we want to.",
+      "vocab": [
+        {
+          "w": "articulate (v.)",
+          "m": "to express an idea clearly and precisely in words"
+        },
+        {
+          "w": "status quo",
+          "m": "the existing state of affairs, especially when it is resistant to change"
+        },
+        {
+          "w": "limbic brain",
+          "m": "the part of the brain associated with emotions, trust, loyalty and decision-making"
+        },
+        {
+          "w": "gut feeling",
+          "m": "an instinctive sense that something is right or wrong, which you cannot fully explain"
+        },
+        {
+          "w": "early adopters",
+          "m": "people who buy or use a new product or idea before most others do"
+        },
+        {
+          "w": "tipping point",
+          "m": "the moment at which a gradual change suddenly becomes significant and unstoppable"
+        }
+      ],
+      "questions": [
+        {
+          "q": "What are the three rings of the golden circle?",
+          "a": "Why, how and what",
+          "o": [
+            "Who, where and when",
+            "Why, how and what",
+            "Past, present and future",
+            "Price, product and place"
+          ],
+          "why": "Sinek draws what on the outside, how in the middle and why at the centre."
+        },
+        {
+          "q": "How, according to Sinek, do inspiring organisations communicate?",
+          "a": "From the inside out, starting with why",
+          "o": [
+            "From the outside in, starting with what",
+            "From the inside out, starting with why",
+            "By listing technical features",
+            "By lowering their prices"
+          ],
+          "why": "Inspired leaders start with their purpose and only then explain how and what."
+        },
+        {
+          "q": "Why, in his view, did Dell's MP3 players fail?",
+          "a": "Customers did not connect them with what Dell stood for",
+          "o": [
+            "They were badly made",
+            "They were too expensive",
+            "Customers did not connect them with what Dell stood for",
+            "Apple took Dell to court"
+          ],
+          "why": "Dell was perfectly capable of making them, but people did not buy into the product from that brand."
+        },
+        {
+          "q": "Which part of the brain does he link to feelings and decisions?",
+          "a": "The limbic brain",
+          "o": [
+            "The neocortex",
+            "The limbic brain",
+            "The spinal cord",
+            "The left hemisphere"
+          ],
+          "why": "The limbic brain controls feelings and behaviour but has no capacity for language."
+        },
+        {
+          "q": "What advantages did Samuel Pierpont Langley have?",
+          "a": "Government money, the best people and the press",
+          "o": [
+            "A successful bicycle shop",
+            "Government money, the best people and the press",
+            "A brother who was an engineer",
+            "None at all"
+          ],
+          "why": "He had 50,000 dollars from the War Department, top minds and newspaper coverage."
+        },
+        {
+          "q": "What did Langley do after the Wright brothers flew?",
+          "a": "He quit",
+          "o": [
+            "He joined their team",
+            "He built a better plane",
+            "He quit",
+            "He sued them"
+          ],
+          "why": "Rather than improving on their technology, he gave up, which Sinek takes as proof of his motives."
+        },
+        {
+          "q": "After roughly what share of the market does Sinek say mass success comes?",
+          "a": "15–18%",
+          "o": [
+            "2.5%",
+            "15–18%",
+            "50%",
+            "90%"
+          ],
+          "why": "Once you pass about 15 to 18 per cent, the system tips."
+        },
+        {
+          "q": "Why does he contrast 'I have a dream' with 'I have a plan'?",
+          "a": "King spoke about what he believed, not about a detailed agenda",
+          "o": [
+            "King had no plan at all",
+            "King spoke about what he believed, not about a detailed agenda",
+            "Plans were forbidden at the rally",
+            "The crowd preferred short speeches"
+          ],
+          "why": "People came for their own beliefs; King told them what he believed."
+        }
+      ],
+      "listen": [
+        {
+          "q": "Explain the golden circle and how inspiring organisations use it.",
+          "hint": "Three rings; which direction do great leaders communicate in?",
+          "keys": [
+            [
+              "why"
+            ],
+            [
+              "how"
+            ],
+            [
+              "what"
+            ],
+            [
+              "inside",
+              "start with why",
+              "starting with why",
+              "begin with why"
+            ]
+          ],
+          "min": 27,
+          "model": "The golden circle has three rings: what you do, how you do it and why you do it. Most companies communicate from the outside in, but inspiring leaders work from the inside out and start with why."
+        },
+        {
+          "q": "Compare Langley with the Wright brothers.",
+          "hint": "Money, team, result and reaction.",
+          "keys": [
+            [
+              "money",
+              "50,000",
+              "funded",
+              "funding",
+              "dollars"
+            ],
+            [
+              "bicycle"
+            ],
+            [
+              "quit",
+              "gave up"
+            ]
+          ],
+          "min": 27,
+          "model": "Langley had fifty thousand dollars of government money, the best people and the press behind him, while the Wrights funded their work from a bicycle shop. Yet the Wrights flew first, and Langley simply quit instead of improving on their work."
+        },
+        {
+          "q": "What point does he make with Martin Luther King?",
+          "hint": "How many people came, and why? Dream or plan?",
+          "keys": [
+            [
+              "believ",
+              "belief"
+            ],
+            [
+              "dream"
+            ],
+            [
+              "250,000",
+              "quarter of a million",
+              "people came",
+              "crowd"
+            ]
+          ],
+          "min": 27,
+          "model": "About 250,000 people came to Washington without any invitations because they shared his beliefs. King talked about what he believed, so he said I have a dream, not I have a plan, and people followed him for themselves."
+        }
+      ],
+      "tasks": {
+        "syn": {
+          "title": "Summarise with sophisticated vocabulary",
+          "prompt": "Write a summary of the talk in 120–170 words. Replace every underlined word with a more precise or sophisticated synonym.",
+          "text": "Sinek [claims] that [successful] leaders [begin] with why. People buy why you do something, and this [belief] creates [loyal] customers and [committed] staff.",
+          "words": [
+            {
+              "w": "claims",
+              "syn": [
+                "contends",
+                "asserts",
+                "maintains",
+                "posits"
+              ]
+            },
+            {
+              "w": "successful",
+              "syn": [
+                "influential",
+                "accomplished",
+                "effective",
+                "thriving"
+              ]
+            },
+            {
+              "w": "begin",
+              "syn": [
+                "commence",
+                "start",
+                "open",
+                "set out"
+              ]
+            },
+            {
+              "w": "belief",
+              "syn": [
+                "conviction",
+                "creed",
+                "principle",
+                "ethos"
+              ]
+            },
+            {
+              "w": "loyal",
+              "syn": [
+                "devoted",
+                "faithful",
+                "steadfast",
+                "dedicated"
+              ]
+            },
+            {
+              "w": "committed",
+              "syn": [
+                "wholehearted",
+                "dedicated",
+                "devoted",
+                "engaged"
+              ]
+            }
+          ],
+          "min": 120,
+          "model": "Simon Sinek contends that the most influential leaders and organisations commence with why. He describes a golden circle of three rings, what, how and why, and observes that while every company knows what it does, very few can articulate why it exists. Profit, he insists, is a result rather than a purpose. Apple, in his account, communicates from the inside out, so customers buy into its conviction that the status quo should be challenged. He grounds this in biology: the limbic brain governs feelings and decisions but has no capacity for language, which is why we speak of gut feelings. The Wright brothers, funded only by a bicycle shop, defeated the lavishly resourced Samuel Pierpont Langley because their team shared a cause. Such shared conviction, Sinek maintains, produces devoted customers and wholehearted employees, and it explains why a quarter of a million people gathered to hear Martin Luther King."
+        },
+        "rep": {
+          "title": "Formal account in reported speech",
+          "prompt": "Write a formal account of Sinek's argument for a management newsletter (130–170 words), in reported speech. Use at least three different reporting verbs and no contractions.",
+          "verbs": [
+            "explained",
+            "stated",
+            "argued",
+            "claimed",
+            "pointed out",
+            "suggested",
+            "noted",
+            "emphasised",
+            "emphasized",
+            "reported",
+            "maintained",
+            "added",
+            "concluded",
+            "mentioned",
+            "observed",
+            "described",
+            "admitted",
+            "said",
+            "told",
+            "recommended",
+            "advised",
+            "acknowledged",
+            "conceded",
+            "contended",
+            "asserted",
+            "insisted",
+            "warned",
+            "remarked",
+            "confessed",
+            "proposed",
+            "stressed",
+            "highlighted",
+            "illustrated"
+          ],
+          "min": 130,
+          "starters": [
+            "Sinek contended that …",
+            "He observed that …",
+            "He illustrated this with …",
+            "He concluded that …"
+          ],
+          "model": "In his talk, Simon Sinek contended that great leaders and organisations thought, acted and communicated in the same way, which was the opposite of everyone else. He observed that every company knew what it did, but he insisted that very few could explain why they did it. He argued that people did not buy what a company did but why it did it, and he illustrated this with Apple, which, he claimed, had persuaded customers to share its belief in challenging the status quo. He stated that the part of the brain responsible for decisions had no capacity for language, which was why people often said that a choice did not feel right. He also noted that the Wright brothers had succeeded where a much better funded rival had failed. He concluded that leaders held authority, whereas those who led inspired people to follow them willingly."
+        },
+        "arg": {
+          "type": "arg",
+          "title": "Argue a position",
+          "prompt": "'Customers buy what a company believes, not what it sells.' Write a formal argument (200–260 words). Use ideas from the talk, present the other side, and give your own view. No contractions.",
+          "min": 200,
+          "starters": [
+            "Simon Sinek famously argues that …",
+            "It is undeniable that …",
+            "Nevertheless, critics would point out that …",
+            "I would argue that …"
+          ],
+          "model": "Simon Sinek famously argues that people do not buy what a company does but why it does it. It is undeniable that this idea captures something important about modern consumer behaviour. Brands such as Apple attract customers who identify with their values, and these customers often remain faithful even when competitors offer similar products at lower prices. Moreover, in crowded markets where products are increasingly alike, a clear sense of purpose may be one of the few genuine ways in which a company can distinguish itself. Nevertheless, critics would point out that this argument rests on carefully chosen success stories. For every company with an inspiring mission that thrives, there are others with equally noble statements that fail because their products are poor, their prices too high or their timing wrong. Furthermore, many everyday purchases, from petrol to washing powder, are driven largely by price and convenience, and few shoppers know or care what the manufacturer believes. Consequently, it would be naive to suggest that purpose alone can sustain a business. I would argue that belief and quality are complementary rather than competing. A compelling purpose can turn satisfied customers into devoted ones, but only if the product itself keeps its promise. In my opinion, the most enduring companies combine a credible why with a what that people actually need, so the insight is valuable as long as it is not mistaken for the whole story."
+        }
+      }
     }
-   }
-  }
- ],
- "past": [
-  {
-   "week": "2026-W42",
-   "title": "The benefits of a bilingual brain",
-   "yt": "MMmOLN5zBLY",
-   "doc": "https://claude.ai/code/artifact/b22ef9e7-f91f-4179-9aa9-8c602ccc5764"
-  }
- ],
- "doc": "https://claude.ai/code/artifact/b2d158ee-b42f-49b2-9e4a-6622015a9abb"
+  ],
+  "past": [
+    {
+      "week": "2026-W43",
+      "title": "Wanna Work Together?",
+      "yt": "q0VzUigrb_g",
+      "doc": "https://claude.ai/code/artifact/b2d158ee-b42f-49b2-9e4a-6622015a9abb"
+    },
+    {
+      "week": "2026-W42",
+      "title": "The benefits of a bilingual brain",
+      "yt": "MMmOLN5zBLY",
+      "doc": "https://claude.ai/code/artifact/b22ef9e7-f91f-4179-9aa9-8c602ccc5764"
+    }
+  ],
+  "doc": "https://claude.ai/code/artifact/9dbdb458-b077-4e5d-b929-7eb65a3124bb"
 }
