@@ -13,7 +13,6 @@ This folder is Psotek English (formerly English Engine), the practice site for D
 | `vocab-archive/` | Previous months' word sets, shown under "Previous vocabulary". |
 | `video.json`, `reading.json` | This week's six videos (one per level) and the reading. |
 | `word-grove.html` | Word Grove: Word Hunt, Tile Rush and Crossplay. |
-| `vacuum-racer.html` | Vacuum Racer (3D game). |
 | `favicon.*`, `icon-*.png`, `apple-touch-icon.png`, `site.webmanifest` | The Psotek icon in browser tabs and on phone home screens. |
 | `_headers` | Lets browsers keep `app.js` and `extra.js` for a year (their links change with every build). |
 | `.nojekyll` | Tells GitHub Pages to publish the files exactly as they are. |

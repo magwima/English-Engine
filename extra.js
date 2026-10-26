@@ -336,40 +336,84 @@ async function viewArchive(){
   $$("[data-arch]").forEach(b=>b.onclick=async()=>{ b.disabled=true; b.textContent="Loading…"; const ok=await useArchivedSet(b.dataset.arch); if(ok) go("words"); else { b.disabled=false; b.textContent="Couldn't load. Try again"; } });
 }
 const GAMES = [
-  {id:"grove", title:"Word Grove", file:"word-grove.html", tall:true, sub:"Word search · Tile Rush · Crossplay", blurb:"Three word games: find hidden words from A1 to C2, swipe tiles against the clock, or build a crossword against Moss, the computer."},
-  {id:"racer", title:"Vacuum Racer", file:"vacuum-racer.html", sub:"3D racing", blurb:"Pick Dave, Rosie or Dasz, race to the finish and suck up every ball on the way. Click the game first so the keys work."}];
-let gamePick = (()=>{ try{ return localStorage.getItem("ee-game")||"grove"; }catch(e){ return "grove"; } })();
-let gameSrc = {}, breakStart = 0, breakTimer = 0;
+  {id:"hunt", title:"Word Hunt", kind:"Word search", skills:"Spelling · meanings", blurb:"Find the hidden words in the grid. Drag from the first letter to the last, or switch to Meanings and hunt from the definitions instead."},
+  {id:"rush", title:"Tile Rush", kind:"Against the clock", skills:"Spelling · speed", blurb:"Swipe across touching tiles in any direction to spell words. Every word buys you time, and long words grow a seed tile that clears its whole row and column."},
+  {id:"cross", title:"Crossplay", kind:"Crossword duel", skills:"Vocabulary · strategy", blurb:"Build a crossword against Moss, the computer. Every new word scores, and the coloured squares multiply your points."}];
+let gamePick = null;
+let breakStart = 0, breakTimer = 0;
+function wgCover(kind) {
+    const tile = (x, y, s, ch, opt = {}) => `<g transform="translate(${x} ${y})${opt.rot ? ` rotate(${opt.rot})` : ""}"${opt.op ? ` opacity="${opt.op}"` : ""}>
+      <rect x="${-s / 2 + 4}" y="${-s / 2 + 7}" width="${s}" height="${s}" rx="${s * 0.16}" fill="#1c2a17" opacity=".35"/>
+      <rect x="${-s / 2}" y="${-s / 2}" width="${s}" height="${s}" rx="${s * 0.16}" fill="${opt.fill || "#efe2c4"}" stroke="${opt.edge || "#c9b285"}" stroke-width="3"/>
+      <text y="${s * 0.17}" text-anchor="middle" font-family="Zilla Slab,Rockwell,Georgia,serif" font-weight="700" font-size="${s * 0.5}" fill="#3b2e1f">${ch}</text></g>`;
+    const leaves = Array.from({ length: 16 }, (_, i) => { const x = (i * 211) % 1280, y = (i * 137) % 720, r = (i * 47) % 360, s = 0.9 + (i % 4) * 0.35;
+      return `<path transform="translate(${x} ${y}) rotate(${r}) scale(${s * 2.2})" d="M4 21C4 11 9 4 21 3c-1 12-7 17-17 18z" fill="#86a86a" opacity=".22"/>`; }).join("");
+    let body = "";
+    if (kind === "hunt") {
+      const rows = ["GLADEPOK", "RTWILLOW", "OMBRANCH", "VFERNSUA", "ESAPLING"], S = 104;
+      rows.forEach((row, r) => [...row].forEach((ch, c) => { body += tile(196 + c * (S + 6), 132 + r * (S + 6), S, ch); }));
+      body += `<rect x="${196 - 50 + 2 * 110}" y="${132 + 2 * 110 - 46}" width="${6 * 110 - 12}" height="92" rx="46" fill="none" stroke="#4f86a0" stroke-width="10" opacity=".85"/>`;
+      body += `<rect x="${196 - 46}" y="${132 - 46}" width="92" height="${4 * 110 + 92}" rx="46" fill="none" stroke="#cf9a33" stroke-width="10" opacity=".85"/>`;
+      body += `<g transform="translate(1135 590)"><circle r="70" fill="#f7f8f1" opacity=".95"/><circle cx="-10" cy="-10" r="32" fill="none" stroke="#47663a" stroke-width="12"/><path d="M14 14l30 30" stroke="#47663a" stroke-width="14" stroke-linecap="round"/></g>`;
+    } else if (kind === "rush") {
+      const grid = ["SEEDLR", "TAWORD", "RUSHEN", "IMBLOT", "PGRAVE"], S = 100;
+      grid.forEach((row, r) => [...row].forEach((ch, c) => { const seed = r === 2 && c === 2;
+        const inWord = r === 2 && c < 4;
+        body += tile(330 + c * 106, 170 + r * 106, S, ch, seed ? { fill: "#d3e0c4", edge: "#47663a" } : inWord ? { fill: "#f1d79f", edge: "#cf9a33" } : {}); }));
+      body += tile(1040, 90, 92, "Q", { rot: -14, op: .9 }) + tile(1150, 210, 80, "Z", { rot: 18, op: .75 }) + tile(1010, 300, 70, "K", { rot: 8, op: .55 });
+      body += `<g transform="translate(1080 570)"><circle r="96" fill="#f7f8f1" opacity=".95"/><circle r="70" fill="none" stroke="#c9d1bb" stroke-width="16"/><path d="M0 -70 A70 70 0 1 1 -66 24" fill="none" stroke="#b8683f" stroke-width="16" stroke-linecap="round"/><path d="M0 -38 V0 L22 18" stroke="#1e2a1d" stroke-width="10" stroke-linecap="round" fill="none"/></g>`;
+    } else {
+      const N = 9, S = 60, x0 = 361, y0 = 34, bonus = { "0,0": "#e3ab88", "0,8": "#e3ab88", "8,0": "#e3ab88", "8,8": "#e3ab88", "4,4": "#f1d79f", "2,6": "#a9cbd8", "6,2": "#a9cbd8", "1,3": "#cfe0c0", "7,5": "#cfe0c0", "3,7": "#f1d79f", "5,1": "#f1d79f" };
+      for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) body += `<rect x="${x0 + c * (S + 2)}" y="${y0 + r * (S + 2)}" width="${S}" height="${S}" rx="8" fill="${bonus[r + "," + c] || "#dfe4d2"}" opacity=".92"/>`;
+      const at = (r, c, ch, o) => tile(x0 + c * (S + 2) + S / 2, y0 + r * (S + 2) + S / 2, S - 4, ch, o);
+      [..."FOREST"].forEach((ch, i) => body += at(4, 1 + i, ch));
+      [..."MOSS"].forEach((ch, i) => i !== 1 && (body += at(3 + i, 2, ch)));              // crosses the O of FOREST
+      [..."TREE"].forEach((ch, i) => i && (body += at(4 + i, 6, ch, { fill: "#d3e0c4", edge: "#47663a" })));   // new move, hangs off the T
+      body += `<g transform="translate(640 660)">${[..."WORDS"].map((ch, i) => tile((i - 2) * 84, 0, 72, ch)).join("")}</g>`;
+    }
+    return `<svg class="gcart" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="pwg-${kind}" cx=".5" cy=".4" r=".8"><stop offset="0" stop-color="#5b7d49"/><stop offset="1" stop-color="#22351c"/></radialGradient></defs>
+      <rect width="1280" height="720" fill="url(#pwg-${kind})"/>${leaves}${body}</svg>`;
+  }
 function viewGame(){
-  const g = GAMES.find(x=>x.id===gamePick) || GAMES[0];
+  const g = GAMES.find(x=>x.id===gamePick);
+  if(!g){
+    $("#view").innerHTML = `
+    <header class="pagehead">
+      <p class="eyebrow">Coffee break</p>
+      <h1>Word games</h1>
+      <p class="lede">Three separate games for a short break, all with English words. Time spent here doesn't count as practice time.</p>
+    </header>
+    ${psoOn()?`<div class="psoend" aria-hidden="true">${psotek("cheeky")}<p class="psobub">Ten minutes, then back to English. I'm counting.</p></div>`:""}
+    <div class="gcards">${GAMES.map(x=>`<article class="gcard">
+      <button type="button" class="gcover" data-game="${x.id}" aria-label="Play ${esc(x.title)}">${wgCover(x.id)}</button>
+      <div class="gcbody"><p class="eyebrow">${esc(x.kind)}</p><h2>${esc(x.title)}</h2><p>${esc(x.blurb)}</p>
+        <p class="gcskills">${esc(x.skills)}</p>
+        <button class="btn" type="button" data-game="${x.id}">Play ${esc(x.title)}</button></div></article>`).join("")}</div>`;
+    $$("[data-game]").forEach(b=>b.onclick=()=>{ gamePick=b.dataset.game; viewGame(); window.scrollTo(0,0); });
+    return;
+  }
   $("#view").innerHTML = `
-  <header class="pagehead">
-    <p class="eyebrow">Coffee break</p>
-    <h1>Game</h1>
-    <p class="lede">Pick a game for a short break. Time spent here doesn't count as practice time.</p>
-  </header>
-  ${psoOn()?`<div class="psoend" aria-hidden="true">${psotek("race")}<p class="psobub">Gaz do dechy! Ten minutes, then back to English.</p></div>`:""}
-  <div class="gamepicks" role="group" aria-label="Choose a game">${GAMES.map(x=>`<button type="button" class="gamepick" data-game="${x.id}" aria-pressed="${x.id===g.id}"><b>${esc(x.title)}</b><small>${esc(x.sub)}</small></button>`).join("")}</div>
-  <p class="gameblurb">${esc(g.blurb)}</p>
+  <button class="back" type="button" id="gBack">${ico("back")}<span>All games</span></button>
+  <header class="pagehead tight"><p class="eyebrow">${esc(g.kind)}</p><h1>${esc(g.title)}</h1><p class="lede">${esc(g.blurb)}</p></header>
   <div class="gamebar">
     <span class="breakpill">${ico("game")}<span id="brk">Break 0:00</span></span>
     <span class="grow"></span>
     <button class="btn ghost" type="button" id="gFull" hidden>Full screen</button>
     <button class="btn ghost" type="button" data-go="today">Back to practice</button>
   </div>
-  <div class="gamewrap${g.tall?" tall":""}" id="gWrap"><div class="gmsg" id="gMsg">Loading the game…</div></div>
+  <div class="gamewrap tall" id="gWrap"><div class="gmsg" id="gMsg">Loading the game…</div></div>
   <div id="brkNote"></div>`;
+  $("#gBack").onclick=()=>{ gamePick=null; viewGame(); window.scrollTo(0,0); };
   breakStart = Date.now(); clearInterval(breakTimer);
   breakTimer = setInterval(()=>{ const el=$("#brk"); if(route!=="game"||!el){ clearInterval(breakTimer); return; }
     const sec=Math.floor((Date.now()-breakStart)/1000); el.textContent=`Break ${Math.floor(sec/60)}:${String(sec%60).padStart(2,"0")}`;
     if(sec===600){ $("#brkNote").innerHTML=`<div class="breaknote"><span>That's a ten-minute break. Ready to get back to English?</span><button class="btn" type="button" data-go="today">Back to Today</button></div>`; } },1000);
-  $$(".gamepick").forEach(b=>b.onclick=()=>{ if(b.dataset.game===gamePick) return; gamePick=b.dataset.game; try{ localStorage.setItem("ee-game",gamePick); }catch(e){} viewGame(); });
   const wrap=$("#gWrap"), fb=$("#gFull");
   try{ if(document.fullscreenEnabled && wrap.requestFullscreen){ fb.hidden=false; fb.onclick=()=>{ try{ wrap.requestFullscreen().catch(()=>{}); }catch(e){} }; } }catch(e){}
-  const mount = html => { if(route!=="game"||!$("#gWrap")) return; const f=document.createElement("iframe"); f.title=g.title; f.setAttribute("allow","fullscreen; autoplay"); f.srcdoc=html; wrap.innerHTML=""; wrap.appendChild(f); f.addEventListener("load",()=>{ try{ f.contentWindow.focus(); }catch(e){} }); };
-  if(gameSrc[g.id]) mount(gameSrc[g.id]);
-  else fetch(g.file,{cache:"no-cache"}).then(r=>{ if(!r.ok) throw 0; return r.text(); }).then(t=>{ gameSrc[g.id]=t; mount(t); })
-    .catch(()=>{ const m=$("#gMsg"); if(m) m.textContent="The game couldn't load just now. Check your connection and open this page again."; });
+  const f=document.createElement("iframe"); f.title=g.title; f.setAttribute("allow","fullscreen; autoplay"); f.src=`word-grove.html?solo#${g.id}`;
+  f.addEventListener("load",()=>{ try{ f.contentWindow.focus(); }catch(e){} });
+  f.addEventListener("error",()=>{ const m=$("#gMsg"); if(m) m.textContent="The game couldn't load just now. Check your connection and open this page again."; });
+  wrap.innerHTML=""; wrap.appendChild(f);
 }
 const USE = {
   "use:conv":{t:"Conversations", d:"Role-play real situations: a café, a hotel, a job interview. Choose the best reply each time.", min:4},

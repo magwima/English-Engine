@@ -1,4 +1,4 @@
-window.EXTRA_SRC="extra.js?v=dd0969dfae";
+window.EXTRA_SRC="extra.js?v=82d0cd68bf";
 
 /* SITE_MODE is true only in the GitHub Pages copy: there, YouTube videos can play inside the page. */
 const SITE_MODE = true;
@@ -1462,7 +1462,7 @@ const blankOut = (s, w) => { const m = s.match(w.stem); return m ? {txt:s.replac
 /* ---------- Navigation ---------- */
 const TENSE_ROOMS = ["table","map","machine","hunt","detective","time"];
 const NAV_FULL = [["today","Today"],["words","Words"],["lab","Tenses","Tenses"],["grammar","Grammar","Grammar"],["video","Video","Video"],["sounds","Pronunciation","Sounds"],["use","Use it"]];
-const MORE_FULL = [["practise","Practise"],["exam","Exam corner"],["progress","Progress"],["archive","Previous vocabulary"],["badges","Badges"],["game","Game"]];
+const MORE_FULL = [["practise","Practise"],["exam","Exam corner"],["progress","Progress"],["archive","Previous vocabulary"],["badges","Badges"],["game","Word games"]];
 /* New students see a short menu (Today, Words, Tenses, Video). Everything else waits under More until they have
    answered START_UNLOCK questions, or until they choose the full menu in Display. */
 const START_UNLOCK = 30, MENU_KEY = "psotek-menu";
@@ -1581,6 +1581,9 @@ function sayEn(text, rate=0.85){ try{ if(!canSpeak) return; speechSynthesis.canc
 
 
 /* ---------- Game (coffee break) ---------- */
+/* Three word games from Word Grove, each shown as its own game. word-grove.html?solo#hunt opens one game without the others (same as the portfolio). */
+
+ /* null = the list of games */
 
 
 
@@ -2182,7 +2185,7 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape" && !$("#disp").hidd
 const L1 = {
   pl: {
     name:"Polski", flag:"PL",
-    nav:{today:"Dziś",sounds:"Wymowa",words:"Słówka",lab:"Czasy",grammar:"Gramatyka",exam:"Egzaminy",verbs:"Czasowniki nieregularne",video:"Wideo",practise:"Ćwiczenia",use:"Użyj słów",progress:"Postępy",archive:"Poprzednie słówka",badges:"Odznaki",game:"Gra",more:"Więcej"},
+    nav:{today:"Dziś",sounds:"Wymowa",words:"Słówka",lab:"Czasy",grammar:"Gramatyka",exam:"Egzaminy",verbs:"Czasowniki nieregularne",video:"Wideo",practise:"Ćwiczenia",use:"Użyj słów",progress:"Postępy",archive:"Poprzednie słówka",badges:"Odznaki",game:"Gry słowne",more:"Więcej"},
     short:{today:"Dziś",sounds:"Wymowa",words:"Słówka",lab:"Czasy",grammar:"Gramat.",verbs:"Czasown.",video:"Wideo",practise:"Ćwicz",use:"Użyj",more:"Więcej"},
     ui:{help:"Po polsku: jak to działa",show:"Pokaż po polsku",hide:"Ukryj tłumaczenie",ff:"Fałszywy przyjaciel",tip:"Najpierw spróbuj zrozumieć angielską definicję. Tłumaczenie to pomoc, nie skrót."},
     help:{
@@ -2239,7 +2242,7 @@ const L1 = {
   },
   ro: {
     name:"Română", flag:"RO",
-    nav:{today:"Astăzi",sounds:"Pronunție",words:"Vocabular",lab:"Timpuri",grammar:"Gramatică",exam:"Examene",verbs:"Verbe neregulate",video:"Video",practise:"Exerciții",use:"Folosește cuvintele",progress:"Progres",archive:"Vocabular anterior",badges:"Insigne",game:"Joc",more:"Mai mult"},
+    nav:{today:"Astăzi",sounds:"Pronunție",words:"Vocabular",lab:"Timpuri",grammar:"Gramatică",exam:"Examene",verbs:"Verbe neregulate",video:"Video",practise:"Exerciții",use:"Folosește cuvintele",progress:"Progres",archive:"Vocabular anterior",badges:"Insigne",game:"Jocuri de cuvinte",more:"Mai mult"},
     short:{today:"Astăzi",sounds:"Sunete",words:"Cuvinte",lab:"Timpuri",grammar:"Gramatică",verbs:"Verbe",video:"Video",practise:"Exerciții",use:"Aplică",more:"Mai mult"},
     ui:{help:"În română: cum funcționează",show:"Arată în română",hide:"Ascunde traducerea",ff:"Prieten fals",tip:"Încearcă mai întâi să înțelegi definiția în engleză. Traducerea e un ajutor, nu o scurtătură."},
     help:{
