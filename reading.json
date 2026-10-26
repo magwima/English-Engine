@@ -1,161 +1,1082 @@
 {
-  "week": "2026-W44",
-  "title": "Killing them with kindness",
-  "level": "B1–B2",
-  "minutes": 6,
-  "intro": "A short magazine-style article about why so many houseplants die and how to keep yours alive. Tomasz is a made-up example, not a real person; the article was written for Psotek English",
-  "paras": [
+ "week": "2026-W44",
+ "title": "Killing them with kindness",
+ "level": "B1–B2",
+ "minutes": 6,
+ "intro": "A short magazine-style article about why so many houseplants die and how to keep yours alive. Tomasz is a made-up example, not a real person; the article was written for Psotek English",
+ "paras": [
+  "When Tomasz moved into his first flat, he bought six plants to make it feel like home. Within two months, all six were dead. \"I watered them every single day,\" he says. \"Nobody could say I didn't care.\" That, it turns out, was exactly the problem. His story is very common: experts say that more houseplants die from too much attention than from too little.",
+  "The biggest killer of indoor plants is overwatering. Roots need air as well as water, and when the soil stays wet for too long, they cannot breathe. Slowly they begin to rot, and the leaves above them turn yellow and droopy. Unfortunately, a thirsty plant and a drowning plant can look almost the same, so many owners react to the warning signs by reaching for the watering can again.",
+  "Instead of following a fixed timetable, gardeners recommend a simple test. Push a finger into the soil up to the second knuckle. If it feels dry, water the plant thoroughly, until water runs out of the hole at the bottom of the pot. If it still feels damp, leave it alone and check again in a few days. A pot without a drainage hole is a trap, because the extra water has nowhere to go.",
+  "Light is the other half of the story. Every plant comes from a particular natural home, and it does best when you copy those conditions. A cactus from the desert will be happy on a sunny windowsill, while many popular leafy plants come from the shady floor of tropical forests and can burn in strong, direct sun. Before you buy a plant, it is worth reading the small label in the pot rather than choosing it only because it looks pretty.",
+  "Last spring, Tomasz decided to give plants another chance. This time he chose just two easy species, put them near a bright window and felt the soil once a week before deciding whether to water. Both are still alive, and one has even produced three new leaves. \"I learned that looking after something sometimes means doing less,\" he says. \"Now I wait until they actually need me.\""
+ ],
+ "gloss": [
+  {
+   "w": "overwatering",
+   "m": "giving a plant more water than it needs"
+  },
+  {
+   "w": "rot",
+   "m": "to become soft and bad because of too much water or age"
+  },
+  {
+   "w": "droopy",
+   "m": "hanging down because it is weak or tired"
+  },
+  {
+   "w": "thoroughly",
+   "m": "completely and carefully"
+  },
+  {
+   "w": "drainage hole",
+   "m": "a small hole in the bottom of a pot that lets extra water out"
+  }
+ ],
+ "tfng": [
+  {
+   "s": "All of Tomasz's first plants died within two months.",
+   "a": "T",
+   "why": "\"Within two months, all six were dead.\""
+  },
+  {
+   "s": "Most houseplants die because their owners forget to water them.",
+   "a": "F",
+   "why": "Experts say more plants die from too much attention than from too little."
+  },
+  {
+   "s": "Plant roots need air as well as water.",
+   "a": "T",
+   "why": "\"Roots need air as well as water.\""
+  },
+  {
+   "s": "Gardeners advise watering every plant on the same day each week.",
+   "a": "F",
+   "why": "They recommend a finger test \"instead of following a fixed timetable\"."
+  },
+  {
+   "s": "A cactus usually likes a sunny windowsill.",
+   "a": "T",
+   "why": "\"A cactus from the desert will be happy on a sunny windowsill.\""
+  },
+  {
+   "s": "Tomasz bought his two new plants online.",
+   "a": "NG",
+   "why": "The text says what he chose and where he put them, but not where he bought them."
+  }
+ ],
+ "mc": [
+  {
+   "q": "Why do roots rot when the soil stays wet for too long?",
+   "a": "They cannot get enough air",
+   "o": [
+    "They get too much sunlight",
+    "They cannot get enough air",
+    "They grow too quickly",
+    "The pot becomes too small"
+   ],
+   "why": "Paragraph 2: roots need air, and in wet soil \"they cannot breathe\"."
+  },
+  {
+   "q": "What should you do if the soil still feels damp?",
+   "a": "Leave the plant and check again in a few days",
+   "o": [
+    "Water it a little more",
+    "Move it into the sun",
+    "Leave the plant and check again in a few days",
+    "Put it in a new pot at once"
+   ],
+   "why": "Paragraph 3: \"leave it alone and check again in a few days\"."
+  },
+  {
+   "q": "Why can strong, direct sun hurt many leafy plants?",
+   "a": "They come from the shady floor of tropical forests",
+   "o": [
+    "They come from the desert",
+    "They come from the shady floor of tropical forests",
+    "Their pots have no drainage hole",
+    "They need water every day"
+   ],
+   "why": "Paragraph 4: they come from shady forest floors and \"can burn in strong, direct sun\"."
+  },
+  {
+   "q": "What did Tomasz learn in the end?",
+   "a": "Looking after something can mean doing less",
+   "o": [
+    "Plants need water every day",
+    "Expensive plants live longer",
+    "Looking after something can mean doing less",
+    "Plants should never be near a window"
+   ],
+   "why": "He says looking after something \"sometimes means doing less\"."
+  }
+ ],
+ "words": [
+  {
+   "q": "In paragraph 1, \"it turns out\" means…",
+   "a": "it was later discovered",
+   "o": [
+    "it changes direction",
+    "it was later discovered",
+    "it is switched off",
+    "it is impossible"
+   ]
+  },
+  {
+   "q": "In paragraph 2, \"reaching for\" means…",
+   "a": "picking up to use",
+   "o": [
+    "trying to touch the sky",
+    "picking up to use",
+    "throwing away",
+    "arriving at"
+   ]
+  },
+  {
+   "q": "In paragraph 3, \"leave it alone\" means…",
+   "a": "do not touch or water it",
+   "o": [
+    "take it outside",
+    "give it to a friend",
+    "do not touch or water it",
+    "put it in a dark room"
+   ]
+  },
+  {
+   "q": "In paragraph 4, \"it is worth\" means…",
+   "a": "it is a good idea / useful",
+   "o": [
+    "it costs a lot of money",
+    "it is a good idea / useful",
+    "it is not allowed",
+    "it is very difficult"
+   ]
+  }
+ ],
+ "respond": {
+  "prompt": "Write 60–100 words: Do you have any plants or pets at home? Describe how you look after them, or explain why you do not have any.",
+  "min": 60,
+  "max": 100
+ },
+ "levels": [
+  {
+   "title": "My new neighbour",
+   "level": "A1",
+   "minutes": 3,
+   "tfOnly": true,
+   "intro": "A short, easy text about a woman and her new neighbour. Ewa and Mr Brown are made-up people; the text was written for Psotek English",
+   "paras": [
+    "My name is Ewa. I live in a small flat in Kraków. I am a teacher, and I work at a school near my home. I usually walk to work. It takes ten minutes.",
+    "Last month, a new neighbour came to live next to me. His name is Mr Brown. He is from Scotland, and he is seventy years old. He speaks English and a little Polish.",
+    "Mr Brown has a big black dog. Her name is Lady. Every morning at seven o'clock, Mr Brown and Lady go to the park. Lady loves the park, but she doesn't like cats!",
+    "On Sunday, I made a cake and took it to Mr Brown. He was very happy. We drank tea and talked for two hours. Now I practise my English with him, and he practises his Polish with me."
+   ],
+   "gloss": [
+    {
+     "w": "flat",
+     "m": "a home with rooms on one floor of a building"
+    },
+    {
+     "w": "neighbour",
+     "m": "a person who lives next to you"
+    },
+    {
+     "w": "next to",
+     "m": "very near, at the side of"
+    },
+    {
+     "w": "practise",
+     "m": "do something again and again to get better"
+    },
+    {
+     "w": "usually",
+     "m": "most of the time"
+    }
+   ],
+   "tfng": [
+    {
+     "s": "Ewa lives in Kraków.",
+     "a": "T",
+     "why": "\"I live in a small flat in Kraków.\""
+    },
+    {
+     "s": "Ewa goes to work by bus.",
+     "a": "F",
+     "why": "She usually walks to work."
+    },
+    {
+     "s": "Mr Brown is from Scotland.",
+     "a": "T",
+     "why": "\"He is from Scotland.\""
+    },
+    {
+     "s": "Lady is a cat.",
+     "a": "F",
+     "why": "Lady is a big black dog."
+    },
+    {
+     "s": "Ewa made a cake for Mr Brown.",
+     "a": "T",
+     "why": "\"I made a cake and took it to Mr Brown.\""
+    }
+   ],
+   "mc": [
+    {
+     "q": "What is Ewa's job?",
+     "a": "She is a teacher.",
+     "o": [
+      "She is a teacher.",
+      "She is a doctor.",
+      "She works in a park."
+     ],
+     "why": "\"I am a teacher.\""
+    },
+    {
+     "q": "When do Mr Brown and Lady go to the park?",
+     "a": "At seven o'clock in the morning",
+     "o": [
+      "At seven o'clock in the morning",
+      "On Sunday afternoon",
+      "In the evening"
+     ],
+     "why": "\"Every morning at seven o'clock\""
+    },
+    {
+     "q": "What do Ewa and Mr Brown do now?",
+     "a": "They help each other with languages.",
+     "o": [
+      "They help each other with languages.",
+      "They walk the dog together.",
+      "They work at the same school."
+     ],
+     "why": "She practises English with him, and he practises Polish with her."
+    }
+   ],
+   "words": [
+    {
+     "q": "In paragraph 1, \"It takes ten minutes\" means…",
+     "a": "The walk is ten minutes long.",
+     "o": [
+      "The walk is ten minutes long.",
+      "She is ten minutes late.",
+      "She works for ten minutes."
+     ]
+    },
+    {
+     "q": "In paragraph 3, \"she doesn't like cats\" means…",
+     "a": "Lady is not happy when she sees cats.",
+     "o": [
+      "Lady is not happy when she sees cats.",
+      "Lady has a cat.",
+      "Lady is a cat."
+     ]
+    },
+    {
+     "q": "In paragraph 4, \"He was very happy\" means…",
+     "a": "He felt very good.",
+     "o": [
+      "He felt very good.",
+      "He was very hungry.",
+      "He was very tired."
+     ]
+    }
+   ],
+   "respond": {
+    "prompt": "Write 20–50 words: Tell me about one of your neighbours. What is their name? What do they do?",
+    "min": 20,
+    "max": 50
+   }
+  },
+  {
+   "title": "Grandma's soup lessons",
+   "level": "A2",
+   "minutes": 4,
+   "tfOnly": true,
+   "intro": "An easy story about a young man who learns to cook from his grandmother. Piotr and his grandmother are made-up people; the text was written for Psotek English",
+   "paras": [
+    "Until last year, Piotr couldn't cook at all. He was twenty-four and lived alone, but he usually ate sandwiches or ordered pizza. \"I was too busy to cook,\" he says. \"And I didn't know where to start.\"",
+    "Everything changed when his grandmother broke her arm. She couldn't use the kitchen for six weeks, so Piotr visited her every Saturday to make lunch. She sat on a chair and told him what to do, step by step.",
+    "The first week was a disaster. He cut the vegetables too big, put in too much salt and forgot the soup on the cooker. It burned, and the whole flat smelled terrible. His grandmother laughed and said, \"Don't worry. Everybody burns their first soup.\"",
+    "Slowly, Piotr got better. He learned to make chicken soup, potato pancakes and a simple apple cake. He started writing his grandmother's recipes in a notebook, because she never used exact amounts. She always said, \"Just a little bit,\" or \"Until it looks right.\"",
+    "Now his grandmother's arm is fine, but Piotr still goes to her flat every Saturday. These days, they cook together. \"I come for the food,\" he says with a smile, \"but really, I come for the stories.\""
+   ],
+   "gloss": [
+    {
+     "w": "alone",
+     "m": "without other people"
+    },
+    {
+     "w": "a disaster",
+     "m": "something that goes very, very badly"
+    },
+    {
+     "w": "cooker",
+     "m": "the thing in a kitchen that you cook on"
+    },
+    {
+     "w": "recipe",
+     "m": "instructions for making a dish"
+    },
+    {
+     "w": "exact amounts",
+     "m": "how much of something, measured carefully"
+    }
+   ],
+   "tfng": [
+    {
+     "s": "Before last year, Piotr often cooked dinner.",
+     "a": "F",
+     "why": "He couldn't cook at all and usually ate sandwiches or ordered pizza."
+    },
+    {
+     "s": "Piotr's grandmother broke her arm.",
+     "a": "T",
+     "why": "\"Everything changed when his grandmother broke her arm.\""
+    },
+    {
+     "s": "Piotr's first soup was very good.",
+     "a": "F",
+     "why": "It burned and the flat smelled terrible."
+    },
+    {
+     "s": "His grandmother was angry about the soup.",
+     "a": "F",
+     "why": "She laughed and said, \"Don't worry.\""
+    },
+    {
+     "s": "Piotr writes the recipes in a notebook.",
+     "a": "T",
+     "why": "\"He started writing his grandmother's recipes in a notebook.\""
+    },
+    {
+     "s": "Piotr still visits his grandmother on Saturdays.",
+     "a": "T",
+     "why": "\"Piotr still goes to her flat every Saturday.\""
+    }
+   ],
+   "mc": [
+    {
+     "q": "Why did Piotr start cooking at his grandmother's flat?",
+     "a": "She couldn't use the kitchen for a few weeks.",
+     "o": [
+      "She couldn't use the kitchen for a few weeks.",
+      "He wanted to become a chef.",
+      "His own kitchen was broken.",
+      "She asked him to learn for a job."
+     ],
+     "why": "She broke her arm and couldn't use the kitchen for six weeks."
+    },
+    {
+     "q": "What did he NOT learn to make?",
+     "a": "Pizza",
+     "o": [
+      "Pizza",
+      "Chicken soup",
+      "Potato pancakes",
+      "Apple cake"
+     ],
+     "why": "He learned soup, pancakes and cake. Pizza is what he used to order."
+    },
+    {
+     "q": "Why did Piotr need a notebook?",
+     "a": "His grandmother didn't measure things exactly.",
+     "o": [
+      "His grandmother didn't measure things exactly.",
+      "He had a bad memory for names.",
+      "His teacher told him to write.",
+      "The recipes were in another language."
+     ],
+     "why": "\"She never used exact amounts.\""
+    },
+    {
+     "q": "What is the most important reason Piotr visits now?",
+     "a": "He enjoys his grandmother's stories.",
+     "o": [
+      "He enjoys his grandmother's stories.",
+      "He still has to cook for her.",
+      "He wants free food.",
+      "He needs to practise for a test."
+     ],
+     "why": "\"Really, I come for the stories.\""
+    }
+   ],
+   "words": [
+    {
+     "q": "In paragraph 1, \"I didn't know where to start\" means…",
+     "a": "He didn't know the first thing to do.",
+     "o": [
+      "He didn't know the first thing to do.",
+      "He didn't know the way to the shop.",
+      "He didn't want to start.",
+      "He forgot the start time."
+     ]
+    },
+    {
+     "q": "In paragraph 2, \"step by step\" means…",
+     "a": "one small part after another",
+     "o": [
+      "one small part after another",
+      "very fast",
+      "on the stairs",
+      "with her feet"
+     ]
+    },
+    {
+     "q": "In paragraph 4, \"got better\" means…",
+     "a": "improved",
+     "o": [
+      "improved",
+      "felt less ill",
+      "bought better things",
+      "won a prize"
+     ]
+    }
+   ],
+   "respond": {
+    "prompt": "Write 40–70 words: Who taught you something useful at home (for example cooking, fixing things or gardening)? What did you learn?",
+    "min": 40,
+    "max": 70
+   }
+  },
+  {
+   "title": "Killing them with kindness",
+   "level": "B1",
+   "minutes": 6,
+   "intro": "A short magazine-style article about why so many houseplants die and how to keep yours alive. Tomasz is a made-up example, not a real person; the article was written for Psotek English",
+   "paras": [
     "When Tomasz moved into his first flat, he bought six plants to make it feel like home. Within two months, all six were dead. \"I watered them every single day,\" he says. \"Nobody could say I didn't care.\" That, it turns out, was exactly the problem. His story is very common: experts say that more houseplants die from too much attention than from too little.",
     "The biggest killer of indoor plants is overwatering. Roots need air as well as water, and when the soil stays wet for too long, they cannot breathe. Slowly they begin to rot, and the leaves above them turn yellow and droopy. Unfortunately, a thirsty plant and a drowning plant can look almost the same, so many owners react to the warning signs by reaching for the watering can again.",
     "Instead of following a fixed timetable, gardeners recommend a simple test. Push a finger into the soil up to the second knuckle. If it feels dry, water the plant thoroughly, until water runs out of the hole at the bottom of the pot. If it still feels damp, leave it alone and check again in a few days. A pot without a drainage hole is a trap, because the extra water has nowhere to go.",
     "Light is the other half of the story. Every plant comes from a particular natural home, and it does best when you copy those conditions. A cactus from the desert will be happy on a sunny windowsill, while many popular leafy plants come from the shady floor of tropical forests and can burn in strong, direct sun. Before you buy a plant, it is worth reading the small label in the pot rather than choosing it only because it looks pretty.",
     "Last spring, Tomasz decided to give plants another chance. This time he chose just two easy species, put them near a bright window and felt the soil once a week before deciding whether to water. Both are still alive, and one has even produced three new leaves. \"I learned that looking after something sometimes means doing less,\" he says. \"Now I wait until they actually need me.\""
-  ],
-  "gloss": [
+   ],
+   "gloss": [
     {
-      "w": "overwatering",
-      "m": "giving a plant more water than it needs"
+     "w": "overwatering",
+     "m": "giving a plant more water than it needs"
     },
     {
-      "w": "rot",
-      "m": "to become soft and bad because of too much water or age"
+     "w": "rot",
+     "m": "to become soft and bad because of too much water or age"
     },
     {
-      "w": "droopy",
-      "m": "hanging down because it is weak or tired"
+     "w": "droopy",
+     "m": "hanging down because it is weak or tired"
     },
     {
-      "w": "thoroughly",
-      "m": "completely and carefully"
+     "w": "thoroughly",
+     "m": "completely and carefully"
     },
     {
-      "w": "drainage hole",
-      "m": "a small hole in the bottom of a pot that lets extra water out"
+     "w": "drainage hole",
+     "m": "a small hole in the bottom of a pot that lets extra water out"
     }
-  ],
-  "tfng": [
+   ],
+   "tfng": [
     {
-      "s": "All of Tomasz's first plants died within two months.",
-      "a": "T",
-      "why": "\"Within two months, all six were dead.\""
+     "s": "All of Tomasz's first plants died within two months.",
+     "a": "T",
+     "why": "\"Within two months, all six were dead.\""
     },
     {
-      "s": "Most houseplants die because their owners forget to water them.",
-      "a": "F",
-      "why": "Experts say more plants die from too much attention than from too little."
+     "s": "Most houseplants die because their owners forget to water them.",
+     "a": "F",
+     "why": "Experts say more plants die from too much attention than from too little."
     },
     {
-      "s": "Plant roots need air as well as water.",
-      "a": "T",
-      "why": "\"Roots need air as well as water.\""
+     "s": "Plant roots need air as well as water.",
+     "a": "T",
+     "why": "\"Roots need air as well as water.\""
     },
     {
-      "s": "Gardeners advise watering every plant on the same day each week.",
-      "a": "F",
-      "why": "They recommend a finger test \"instead of following a fixed timetable\"."
+     "s": "Gardeners advise watering every plant on the same day each week.",
+     "a": "F",
+     "why": "They recommend a finger test \"instead of following a fixed timetable\"."
     },
     {
-      "s": "A cactus usually likes a sunny windowsill.",
-      "a": "T",
-      "why": "\"A cactus from the desert will be happy on a sunny windowsill.\""
+     "s": "A cactus usually likes a sunny windowsill.",
+     "a": "T",
+     "why": "\"A cactus from the desert will be happy on a sunny windowsill.\""
     },
     {
-      "s": "Tomasz bought his two new plants online.",
-      "a": "NG",
-      "why": "The text says what he chose and where he put them, but not where he bought them."
+     "s": "Tomasz bought his two new plants online.",
+     "a": "NG",
+     "why": "The text says what he chose and where he put them, but not where he bought them."
     }
-  ],
-  "mc": [
+   ],
+   "mc": [
     {
-      "q": "Why do roots rot when the soil stays wet for too long?",
-      "a": "They cannot get enough air",
-      "o": [
-        "They get too much sunlight",
-        "They cannot get enough air",
-        "They grow too quickly",
-        "The pot becomes too small"
-      ],
-      "why": "Paragraph 2: roots need air, and in wet soil \"they cannot breathe\"."
+     "q": "Why do roots rot when the soil stays wet for too long?",
+     "a": "They cannot get enough air",
+     "o": [
+      "They get too much sunlight",
+      "They cannot get enough air",
+      "They grow too quickly",
+      "The pot becomes too small"
+     ],
+     "why": "Paragraph 2: roots need air, and in wet soil \"they cannot breathe\"."
     },
     {
-      "q": "What should you do if the soil still feels damp?",
-      "a": "Leave the plant and check again in a few days",
-      "o": [
-        "Water it a little more",
-        "Move it into the sun",
-        "Leave the plant and check again in a few days",
-        "Put it in a new pot at once"
-      ],
-      "why": "Paragraph 3: \"leave it alone and check again in a few days\"."
+     "q": "What should you do if the soil still feels damp?",
+     "a": "Leave the plant and check again in a few days",
+     "o": [
+      "Water it a little more",
+      "Move it into the sun",
+      "Leave the plant and check again in a few days",
+      "Put it in a new pot at once"
+     ],
+     "why": "Paragraph 3: \"leave it alone and check again in a few days\"."
     },
     {
-      "q": "Why can strong, direct sun hurt many leafy plants?",
-      "a": "They come from the shady floor of tropical forests",
-      "o": [
-        "They come from the desert",
-        "They come from the shady floor of tropical forests",
-        "Their pots have no drainage hole",
-        "They need water every day"
-      ],
-      "why": "Paragraph 4: they come from shady forest floors and \"can burn in strong, direct sun\"."
+     "q": "Why can strong, direct sun hurt many leafy plants?",
+     "a": "They come from the shady floor of tropical forests",
+     "o": [
+      "They come from the desert",
+      "They come from the shady floor of tropical forests",
+      "Their pots have no drainage hole",
+      "They need water every day"
+     ],
+     "why": "Paragraph 4: they come from shady forest floors and \"can burn in strong, direct sun\"."
     },
     {
-      "q": "What did Tomasz learn in the end?",
-      "a": "Looking after something can mean doing less",
-      "o": [
-        "Plants need water every day",
-        "Expensive plants live longer",
-        "Looking after something can mean doing less",
-        "Plants should never be near a window"
-      ],
-      "why": "He says looking after something \"sometimes means doing less\"."
+     "q": "What did Tomasz learn in the end?",
+     "a": "Looking after something can mean doing less",
+     "o": [
+      "Plants need water every day",
+      "Expensive plants live longer",
+      "Looking after something can mean doing less",
+      "Plants should never be near a window"
+     ],
+     "why": "He says looking after something \"sometimes means doing less\"."
     }
-  ],
-  "words": [
+   ],
+   "words": [
     {
-      "q": "In paragraph 1, \"it turns out\" means…",
-      "a": "it was later discovered",
-      "o": [
-        "it changes direction",
-        "it was later discovered",
-        "it is switched off",
-        "it is impossible"
-      ]
+     "q": "In paragraph 1, \"it turns out\" means…",
+     "a": "it was later discovered",
+     "o": [
+      "it changes direction",
+      "it was later discovered",
+      "it is switched off",
+      "it is impossible"
+     ]
     },
     {
-      "q": "In paragraph 2, \"reaching for\" means…",
-      "a": "picking up to use",
-      "o": [
-        "trying to touch the sky",
-        "picking up to use",
-        "throwing away",
-        "arriving at"
-      ]
+     "q": "In paragraph 2, \"reaching for\" means…",
+     "a": "picking up to use",
+     "o": [
+      "trying to touch the sky",
+      "picking up to use",
+      "throwing away",
+      "arriving at"
+     ]
     },
     {
-      "q": "In paragraph 3, \"leave it alone\" means…",
-      "a": "do not touch or water it",
-      "o": [
-        "take it outside",
-        "give it to a friend",
-        "do not touch or water it",
-        "put it in a dark room"
-      ]
+     "q": "In paragraph 3, \"leave it alone\" means…",
+     "a": "do not touch or water it",
+     "o": [
+      "take it outside",
+      "give it to a friend",
+      "do not touch or water it",
+      "put it in a dark room"
+     ]
     },
     {
-      "q": "In paragraph 4, \"it is worth\" means…",
-      "a": "it is a good idea / useful",
-      "o": [
-        "it costs a lot of money",
-        "it is a good idea / useful",
-        "it is not allowed",
-        "it is very difficult"
-      ]
+     "q": "In paragraph 4, \"it is worth\" means…",
+     "a": "it is a good idea / useful",
+     "o": [
+      "it costs a lot of money",
+      "it is a good idea / useful",
+      "it is not allowed",
+      "it is very difficult"
+     ]
     }
-  ],
-  "respond": {
+   ],
+   "respond": {
     "prompt": "Write 60–100 words: Do you have any plants or pets at home? Describe how you look after them, or explain why you do not have any.",
     "min": 60,
     "max": 100
+   }
+  },
+  {
+   "title": "Tomorrow, definitely",
+   "level": "B2",
+   "minutes": 7,
+   "intro": "A magazine-style article about why we put things off and what actually helps. Ioana is a made-up example, not a real person; the article was written for Psotek English",
+   "paras": [
+    "Ioana, a graphic designer from Cluj, had a tax form to fill in. It would have taken her forty minutes. Instead, it sat on her desk for five weeks, while she reorganised her bookshelves, cleaned the oven and learned to make sourdough bread. \"I was incredibly productive,\" she jokes. \"Just not at the one thing I actually had to do.\" Most of us will recognise the pattern. Procrastination is not the same as laziness: people who put things off are often extremely busy. They are simply busy with something else.",
+    "Psychologists increasingly describe procrastination as a problem of emotions rather than time management. We delay tasks that make us feel bad: bored, anxious, confused or afraid of failing. Putting the task off brings instant relief, and our brains reward us for it, which makes us more likely to do the same thing next time. The cost, of course, arrives later, usually in the form of stress, rushed work and a guilty conscience.",
+    "This explains why the classic advice, \"Just be more disciplined,\" rarely works. If the real issue is an unpleasant feeling, then a stricter timetable only adds pressure. What tends to help instead is making the first step so small that it no longer triggers the feeling. Rather than \"write the report\", the task becomes \"open the document and write one sentence\". Once people have started, they frequently carry on, partly because unfinished tasks tend to stay on our minds until we complete them.",
+    "Another useful technique is to be kinder to yourself. It sounds counterintuitive, but research on students suggests that those who forgave themselves for procrastinating before one exam were less likely to procrastinate before the next. Harsh self-criticism, it seems, makes the task feel even more threatening, and so the cycle continues. Changing your surroundings can also make a difference: leaving your phone in another room removes the easiest escape route.",
+    "In the end, Ioana finished her tax form on a Sunday morning, in a café, with her phone switched off. It took thirty-five minutes. \"The worst part was the five weeks of thinking about it,\" she admits. She now has a rule: if something will take less than ten minutes, she does it immediately. For bigger jobs, she promises herself just a quarter of an hour. \"Usually I keep going. And if I don't, at least I've started.\""
+   ],
+   "gloss": [
+    {
+     "w": "put off",
+     "m": "delay doing something until later"
+    },
+    {
+     "w": "instant relief",
+     "m": "a good feeling that comes immediately when a worry stops"
+    },
+    {
+     "w": "counterintuitive",
+     "m": "different from what you would naturally expect"
+    },
+    {
+     "w": "self-criticism",
+     "m": "judging yourself in a negative way"
+    },
+    {
+     "w": "escape route",
+     "m": "a way of getting out of a difficult situation"
+    }
+   ],
+   "tfng": [
+    {
+     "s": "Ioana's tax form would only have taken her under an hour.",
+     "a": "T",
+     "why": "It would have taken her forty minutes."
+    },
+    {
+     "s": "The article says that people who procrastinate are usually lazy.",
+     "a": "F",
+     "why": "\"Procrastination is not the same as laziness.\""
+    },
+    {
+     "s": "Psychologists see procrastination mainly as an emotional problem.",
+     "a": "T",
+     "why": "They describe it as \"a problem of emotions rather than time management\"."
+    },
+    {
+     "s": "A stricter timetable is presented as the best solution.",
+     "a": "F",
+     "why": "The article says a stricter timetable \"only adds pressure\"."
+    },
+    {
+     "s": "The research on self-forgiveness was carried out in Romania.",
+     "a": "NG",
+     "why": "The article mentions research on students but does not say where it was done."
+    },
+    {
+     "s": "Ioana now does short tasks straight away.",
+     "a": "T",
+     "why": "If something takes less than ten minutes, she does it immediately."
+    }
+   ],
+   "mc": [
+    {
+     "q": "What does the first paragraph suggest about people who procrastinate?",
+     "a": "They often keep busy with less important tasks.",
+     "o": [
+      "They often keep busy with less important tasks.",
+      "They rarely have enough work to do.",
+      "They usually work best under pressure.",
+      "They are bad at practical jobs like cooking."
+     ],
+     "why": "Ioana cleaned, reorganised and baked instead of doing the form."
+    },
+    {
+     "q": "Why does procrastination tend to repeat itself?",
+     "a": "Delaying a task gives an immediate good feeling.",
+     "o": [
+      "Delaying a task gives an immediate good feeling.",
+      "People forget their deadlines.",
+      "Most tasks become easier over time.",
+      "Other people encourage us to wait."
+     ],
+     "why": "\"Putting the task off brings instant relief, and our brains reward us for it.\""
+    },
+    {
+     "q": "According to the article, how should you begin a difficult task?",
+     "a": "Make the first step tiny.",
+     "o": [
+      "Make the first step tiny.",
+      "Plan every detail first.",
+      "Wait until you feel motivated.",
+      "Do the hardest part first."
+     ],
+     "why": "\"Making the first step so small that it no longer triggers the feeling.\""
+    },
+    {
+     "q": "What was Ioana's main lesson?",
+     "a": "Worrying about the task was worse than doing it.",
+     "o": [
+      "Worrying about the task was worse than doing it.",
+      "Cafés are the best place to work.",
+      "Tax forms are easier than they look.",
+      "Phones should be banned at work."
+     ],
+     "why": "\"The worst part was the five weeks of thinking about it.\""
+    }
+   ],
+   "words": [
+    {
+     "q": "In paragraph 1, \"recognise the pattern\" means…",
+     "a": "see that this kind of behaviour is familiar",
+     "o": [
+      "see that this kind of behaviour is familiar",
+      "remember a design",
+      "follow a set of instructions",
+      "notice a mistake in a drawing"
+     ]
+    },
+    {
+     "q": "In paragraph 2, \"a guilty conscience\" means…",
+     "a": "the bad feeling that you have done something wrong",
+     "o": [
+      "the bad feeling that you have done something wrong",
+      "a decision made by a court",
+      "fear of other people",
+      "a lack of sleep"
+     ]
+    },
+    {
+     "q": "In paragraph 3, \"carry on\" means…",
+     "a": "continue",
+     "o": [
+      "continue",
+      "take something with them",
+      "complain",
+      "stop suddenly"
+     ]
+    },
+    {
+     "q": "In paragraph 5, \"she admits\" means…",
+     "a": "she says something honestly, even if it's not flattering",
+     "o": [
+      "she says something honestly, even if it's not flattering",
+      "she lets someone come in",
+      "she refuses to say",
+      "she pretends"
+     ]
+    }
+   ],
+   "respond": {
+    "prompt": "Write 80–120 words: What kind of task do you usually put off, and why? Which tip from the article would you try, and how?",
+    "min": 80,
+    "max": 120
+   }
+  },
+  {
+   "title": "In defence of boredom",
+   "level": "C1",
+   "minutes": 8,
+   "intro": "An opinion piece arguing that boredom is useful, and that we may have lost something by filling every empty moment. Marek is a made-up example, not a real person; the article was written for Psotek English",
+   "paras": [
+    "When did you last feel genuinely bored? Not restless, not tired, but properly, achingly bored, with nothing to look at and nowhere to be? For many of us, the honest answer is that we can no longer remember. The queue at the post office, the wait for a bus, the five minutes before a meeting starts: every gap in the day is now instantly filled by a screen. Boredom, once an unavoidable part of life, has become something we can switch off at will. It is worth asking whether that is entirely a good thing.",
+    "For most of history, boredom has had a bad reputation. Philosophers treated it as a kind of spiritual emptiness; parents and teachers saw it as the first step towards mischief. Yet a growing number of researchers argue that it serves a purpose. Boredom, in their view, is a signal rather than a malfunction. It tells us that what we are doing is not meaningful enough and nudges us to look for something better. Like hunger or pain, it is unpleasant precisely because it is meant to make us act.",
+    "The trouble is that we have learned to answer the signal in the laziest possible way. Instead of changing direction, we reach for the nearest source of easy stimulation, which silences the feeling without addressing its cause. The result is a strange combination of constant entertainment and a vague sense of dissatisfaction. We are rarely bored, but we are not necessarily engaged either.",
+    "There is also some evidence that letting the mind wander has creative benefits. In one frequently cited type of experiment, participants who first completed a deliberately dull task, such as copying numbers from a phone book, later came up with more ideas in a creativity test than those who went straight to it. The findings are not conclusive, and the effect is probably modest. Still, they fit with what many writers and inventors have long claimed: that their best ideas tend to arrive in the shower, on a walk, or while staring out of a train window, rather than at the desk.",
+    "None of this means we should romanticise tedium or throw away our phones. Some boredom is simply a waste of time, and modern technology has brought enormous benefits. But it might be worth reclaiming a few empty moments on purpose. Marek, an engineer who started leaving his phone in his bag during his daily commute, describes the first week as \"mildly torturous\". By the third, he had sketched out a plan for a side project he had been postponing for years. \"I didn't need more time,\" he says. \"I needed fewer distractions in the time I already had.\""
+   ],
+   "gloss": [
+    {
+     "w": "at will",
+     "m": "whenever you want"
+    },
+    {
+     "w": "mischief",
+     "m": "slightly bad behaviour, especially by children"
+    },
+    {
+     "w": "a malfunction",
+     "m": "a failure to work properly"
+    },
+    {
+     "w": "nudge",
+     "m": "gently push someone towards doing something"
+    },
+    {
+     "w": "romanticise",
+     "m": "describe something as better or more attractive than it really is"
+    }
+   ],
+   "tfng": [
+    {
+     "s": "The writer believes most people now experience boredom less often than before.",
+     "a": "T",
+     "why": "Every gap is \"instantly filled by a screen\" and many cannot remember being bored."
+    },
+    {
+     "s": "Philosophers traditionally viewed boredom positively.",
+     "a": "F",
+     "why": "They treated it as \"a kind of spiritual emptiness\"."
+    },
+    {
+     "s": "Some researchers compare boredom to hunger because both push us to do something.",
+     "a": "T",
+     "why": "\"Like hunger or pain, it is unpleasant precisely because it is meant to make us act.\""
+    },
+    {
+     "s": "The writer claims the creativity experiments prove that boredom makes people more creative.",
+     "a": "F",
+     "why": "\"The findings are not conclusive, and the effect is probably modest.\""
+    },
+    {
+     "s": "Marek's side project was connected to his job as an engineer.",
+     "a": "NG",
+     "why": "The article says he planned a side project but not what it was about."
+    },
+    {
+     "s": "Marek found it difficult not to use his phone at first.",
+     "a": "T",
+     "why": "He describes the first week as \"mildly torturous\"."
+    }
+   ],
+   "mc": [
+    {
+     "q": "What is the writer's main point in paragraph 3?",
+     "a": "We remove the feeling of boredom without dealing with what causes it.",
+     "o": [
+      "We remove the feeling of boredom without dealing with what causes it.",
+      "Entertainment always makes people happier.",
+      "Boredom is more common than ever.",
+      "Phones are designed to make us bored."
+     ],
+     "why": "Stimulation \"silences the feeling without addressing its cause\"."
+    },
+    {
+     "q": "How does the writer treat the research on creativity?",
+     "a": "With cautious interest",
+     "o": [
+      "With cautious interest",
+      "With complete confidence",
+      "With open disbelief",
+      "With indifference"
+     ],
+     "why": "The writer says the results are not conclusive but \"fit with\" what writers and inventors claim."
+    },
+    {
+     "q": "What does the writer suggest in the final paragraph?",
+     "a": "Choosing to keep a few moments free of distraction",
+     "o": [
+      "Choosing to keep a few moments free of distraction",
+      "Giving up technology completely",
+      "Spending more time on dull tasks at work",
+      "Accepting that boredom is always useless"
+     ],
+     "why": "\"It might be worth reclaiming a few empty moments on purpose.\""
+    },
+    {
+     "q": "What does Marek's final comment suggest?",
+     "a": "His problem had been distraction, not a lack of time.",
+     "o": [
+      "His problem had been distraction, not a lack of time.",
+      "He wanted to change jobs.",
+      "His commute had become longer.",
+      "He preferred working at home."
+     ],
+     "why": "\"I didn't need more time. I needed fewer distractions.\""
+    }
+   ],
+   "words": [
+    {
+     "q": "In paragraph 1, \"achingly bored\" means…",
+     "a": "bored to a painful degree",
+     "o": [
+      "bored to a painful degree",
+      "bored but physically ill",
+      "slightly bored",
+      "pretending to be bored"
+     ]
+    },
+    {
+     "q": "In paragraph 2, \"a bad reputation\" means…",
+     "a": "a generally negative opinion held by people",
+     "o": [
+      "a generally negative opinion held by people",
+      "a poor memory",
+      "a dangerous habit",
+      "a weak argument"
+     ]
+    },
+    {
+     "q": "In paragraph 4, \"frequently cited\" means…",
+     "a": "often mentioned by other people",
+     "o": [
+      "often mentioned by other people",
+      "recently invented",
+      "often criticised",
+      "rarely repeated"
+     ]
+    },
+    {
+     "q": "In paragraph 5, \"on purpose\" means…",
+     "a": "deliberately",
+     "o": [
+      "deliberately",
+      "by accident",
+      "for money",
+      "as a punishment"
+     ]
+    }
+   ],
+   "respond": {
+    "prompt": "Write 120–170 words: Do you agree that we have lost something by filling every empty moment? Give examples from your own life and reach a clear conclusion.",
+    "min": 120,
+    "max": 170
+   }
+  },
+  {
+   "title": "The quiet etiquette of the queue",
+   "level": "C2",
+   "minutes": 9,
+   "intro": "An essay on what waiting in line reveals about fairness, patience and the unwritten rules we all obey. Helen is a made-up example, not a real person; the essay was written for Psotek English",
+   "paras": [
+    "Few social institutions are as mundane, or as fiercely defended, as the queue. Nobody votes on it, no law spells it out in detail, and yet try stepping in front of a dozen strangers at a ticket office and you will discover just how seriously it is taken. The reaction is rarely violent; it is usually something subtler and, in its way, more devastating: a collective intake of breath, a pointed cough, a remark delivered to no one in particular but clearly intended for you. The queue, it turns out, is a miniature legal system that runs almost entirely on shared assumptions.",
+    "At its heart lies a deceptively simple principle: first come, first served. What makes it so robust is not that it is efficient (it often isn't) but that it is transparent. Everyone can see where they stand, literally and figuratively, and everyone can verify that the rule is being applied. Researchers who study waiting have repeatedly found that people care less about how long they wait than about whether the wait is fair. A long line that moves in strict order is tolerated; a shorter one in which others appear to jump ahead provokes disproportionate fury.",
+    "This obsession with fairness explains some otherwise puzzling behaviour. Supermarkets that switch from several separate lines to a single, snaking queue feeding multiple tills often find that customers prefer it, even when the average waiting time barely changes. The single line removes the nagging suspicion that you have, once again, chosen the slowest checkout. Similarly, waiting feels noticeably shorter when people can see progress being made, or when they are given a reasonably accurate estimate. Uncertainty, not delay, is what grates.",
+    "Yet the queue is also more elastic than its reputation suggests. Most of us accept a whole repertoire of unwritten exceptions: the person with a single item allowed to go ahead, the friend who \"was holding a place\", the elderly neighbour waved through out of courtesy. These concessions are negotiated wordlessly and on the spot, and they are tolerated only as long as they remain modest. Push them too far, and the goodwill that sustains the system evaporates in seconds.",
+    "Helen, who spent a decade managing the box office of a provincial theatre, puts it more bluntly. \"People will forgive almost anything: a broken card machine, a sold-out show, the rain. What they won't forgive is the sense that someone else is getting away with something.\" There is a lesson here that extends well beyond the ticket window. Institutions, from hospitals to governments, are judged not only on the results they deliver but on whether the process looks even-handed. The humble queue, in other words, is a daily rehearsal for a much larger argument about what we owe one another."
+   ],
+   "gloss": [
+    {
+     "w": "mundane",
+     "m": "ordinary and not interesting"
+    },
+    {
+     "w": "pointed",
+     "m": "clearly aimed at a particular person, often as criticism"
+    },
+    {
+     "w": "transparent",
+     "m": "open and easy to understand or check"
+    },
+    {
+     "w": "grate",
+     "m": "annoy someone in a persistent, irritating way"
+    },
+    {
+     "w": "even-handed",
+     "m": "treating everyone fairly and equally"
+    }
+   ],
+   "tfng": [
+    {
+     "s": "According to the writer, the rules of queuing are mostly written into law.",
+     "a": "F",
+     "why": "\"No law spells it out in detail\"; it runs \"on shared assumptions\"."
+    },
+    {
+     "s": "People who are pushed in front of usually respond with physical aggression.",
+     "a": "F",
+     "why": "\"The reaction is rarely violent.\""
+    },
+    {
+     "s": "Research suggests fairness matters more to people than the length of the wait.",
+     "a": "T",
+     "why": "\"People care less about how long they wait than about whether the wait is fair.\""
+    },
+    {
+     "s": "A single queue for several tills always reduces the average waiting time.",
+     "a": "F",
+     "why": "Customers prefer it \"even when the average waiting time barely changes\"."
+    },
+    {
+     "s": "Helen's theatre eventually closed because of complaints about queues.",
+     "a": "NG",
+     "why": "The essay does not say what happened to the theatre."
+    },
+    {
+     "s": "The writer links queuing to how people judge larger institutions.",
+     "a": "T",
+     "why": "Institutions are judged on \"whether the process looks even-handed\"."
+    }
+   ],
+   "mc": [
+    {
+     "q": "Why, according to the writer, is the \"first come, first served\" principle so durable?",
+     "a": "Its fairness is visible to everyone involved.",
+     "o": [
+      "Its fairness is visible to everyone involved.",
+      "It always saves time.",
+      "It is enforced by staff.",
+      "It allows many exceptions."
+     ],
+     "why": "\"What makes it so robust is ... that it is transparent.\""
+    },
+    {
+     "q": "What does the example of the supermarket single queue illustrate?",
+     "a": "Removing doubt about fairness can matter more than speed.",
+     "o": [
+      "Removing doubt about fairness can matter more than speed.",
+      "Customers dislike change of any kind.",
+      "Single queues are cheaper for shops.",
+      "People prefer to choose their own checkout."
+     ],
+     "why": "It \"removes the nagging suspicion\" of choosing the slowest line, though waiting time barely changes."
+    },
+    {
+     "q": "In paragraph 4, what does the writer say about exceptions to the queue?",
+     "a": "They are accepted only if they stay small.",
+     "o": [
+      "They are accepted only if they stay small.",
+      "They are clearly defined in advance.",
+      "They are always resented.",
+      "They are decided by the person at the front."
+     ],
+     "why": "\"They are tolerated only as long as they remain modest.\""
+    },
+    {
+     "q": "Which best describes the tone of the essay?",
+     "a": "Wry and reflective",
+     "o": [
+      "Wry and reflective",
+      "Angry and accusatory",
+      "Neutral and purely technical",
+      "Nostalgic and sentimental"
+     ],
+     "why": "It uses gentle irony (\"a miniature legal system\") while drawing wider conclusions."
+    }
+   ],
+   "words": [
+    {
+     "q": "In paragraph 1, \"a collective intake of breath\" means…",
+     "a": "a shocked reaction shared by a group",
+     "o": [
+      "a shocked reaction shared by a group",
+      "a breathing exercise",
+      "a loud argument",
+      "a sign of boredom"
+     ]
+    },
+    {
+     "q": "In paragraph 2, \"disproportionate fury\" means…",
+     "a": "anger much stronger than the situation deserves",
+     "o": [
+      "anger much stronger than the situation deserves",
+      "anger shown only by a few people",
+      "calm disappointment",
+      "anger that is hidden"
+     ]
+    },
+    {
+     "q": "In paragraph 4, \"waved through\" means…",
+     "a": "allowed to go ahead with a gesture",
+     "o": [
+      "allowed to go ahead with a gesture",
+      "greeted from far away",
+      "sent to the back",
+      "asked to leave"
+     ]
+    },
+    {
+     "q": "In paragraph 5, \"getting away with something\" means…",
+     "a": "doing something unfair without being stopped or punished",
+     "o": [
+      "doing something unfair without being stopped or punished",
+      "leaving early",
+      "escaping from danger",
+      "taking a holiday"
+     ]
+    }
+   ],
+   "respond": {
+    "prompt": "Write 150–220 words: The essay claims people mind unfairness more than inconvenience. Do you agree? Support your view with examples from queues or from wider public life.",
+    "min": 150,
+    "max": 220
+   }
   }
+ ]
 }
