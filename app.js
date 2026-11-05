@@ -1414,10 +1414,7 @@ function norm(s){
     .replace(/\bwasn't\b/g,"was not").replace(/\bweren't\b/g,"were not");
 }
 const matches = (v,list)=>list.some(a=>norm(a)===norm(v));
-function speak(text){
-  try{ if(!("speechSynthesis" in window)) return; speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(text); u.lang="en-GB"; u.rate=.85; speechSynthesis.speak(u);}catch(e){}
-}
+function speak(text){ ttsSay(text,.85,null); }
 function sylHTML(w){
   if(w.syl.length===1) return `<span class="syl" aria-label="${esc(w.word)}"><span class="stress">${esc(w.word)}</span></span>`;
   return `<span class="syl" aria-label="${esc(w.word)}">${w.syl.map((p,i)=>`${i?'<b aria-hidden="true">·</b>':''}<span class="${i===w.stress?'stress':''}">${esc(p)}</span>`).join("")}</span>`;
@@ -1432,7 +1429,73 @@ let sample = null;
 /* ---------- Small helpers ---------- */
 const $$ = (s,el=document)=>[...el.querySelectorAll(s)];
 const canSpeak = (()=>{ try{ return "speechSynthesis" in window; }catch(e){ return false; } })();
-function speakSlow(text){ try{ if(!canSpeak) return; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang="en-GB"; u.rate=.6; speechSynthesis.speak(u);}catch(e){} }
+function speakSlow(text){ ttsSay(text,.6,null); }
+/* Spoken audio controls: while a sentence or longer text is read aloud, a bar offers
+   Rewind (back one sentence), Pause/Play, Forward (next sentence), Slower/Faster and Stop. */
+const TTS_ICO={back:'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M11 6v12l-8.5-6zM21 6v12l-8.5-6z"/></svg>',fwd:'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M13 6v12l8.5-6zM3 6v12l8.5-6z"/></svg>',play:'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M7 5v14l12-7z"/></svg>',pause:'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>'};
+const TTS_SPEEDS=[0.6,0.75,0.9,1,1.15,1.3];
+const tts={gen:0,text:"",rate:.85,voice:null,from:0,pos:0,t0:0,gotB:false,held:false,cut:false,ended:false,bar:null,timer:0,hideT:0,
+  mult:(()=>{ try{ const m=parseFloat(localStorage.getItem("pso_tts_speed")); return TTS_SPEEDS.includes(m)?m:1; }catch(e){ return 1; } })()};
+function ttsSay(text, rate, voice){ try{ if(!canSpeak) return; speechSynthesis.cancel(); ttsStart(String(text||""), rate, voice, 0); }catch(e){} }
+function ttsStart(text, rate, voice, from){
+  from=Math.max(0,Math.min(from,text.length));
+  const g=++tts.gen; Object.assign(tts,{text,rate,voice,from,pos:from,t0:Date.now(),gotB:false,held:false,cut:false,ended:false});
+  if(from>=text.length){ ttsEnd(); return; }
+  const u=new SpeechSynthesisUtterance(text.slice(from)); u.lang="en-GB"; if(voice) u.voice=voice;
+  u.rate=Math.max(.3,Math.min(2,rate*tts.mult));
+  u.onboundary=e=>{ if(g===tts.gen && (!e.name||e.name==="word")){ tts.gotB=true; tts.pos=from+(e.charIndex||0); } };
+  u.onend=()=>{ if(g===tts.gen && !tts.held && !tts.cut) ttsEnd(); };
+  speechSynthesis.speak(u);
+  if(text.trim().split(/\s+/).length>=4) ttsShow(); else ttsHide(); }
+function ttsNow(){ /* where we are in the text; estimated from time when the voice gives no word events */
+  if(tts.gotB || tts.held) return tts.pos;
+  return Math.min(tts.text.length, Math.round(tts.from + (Date.now()-tts.t0)/1000*14*tts.rate*tts.mult)); }
+function ttsStarts(){ const t=tts.text, out=[0], re=/[.!?…]+["'’”)\]]*\s+/g; let m; while((m=re.exec(t))) if(m.index+m[0].length<t.length) out.push(m.index+m[0].length); return out; }
+function ttsWordStart(i){ i=Math.max(0,Math.min(i,tts.text.length)); while(i>0 && !/\s/.test(tts.text[i-1])) i--; return i; }
+function ttsJump(to){ try{ clearTimeout(tts.hideT); tts.cut=true; speechSynthesis.cancel(); }catch(e){} ttsStart(tts.text,tts.rate,tts.voice,to); }
+function ttsBack(){ const now=ttsNow(), st=ttsStarts(); let k=0; st.forEach((x,j)=>{ if(x<=now) k=j; });
+  /* within the first moments of a sentence, go to the one before */
+  if(k>0 && now-st[k]<12) k--; ttsJump(tts.ended?st[st.length-1]:st[k]); }
+function ttsFwd(){ if(tts.ended) return; const now=ttsNow(), nx=ttsStarts().find(x=>x>now+1); if(nx===undefined){ ttsStop(); return; } ttsJump(nx); }
+function ttsSpeed(d){ const i=TTS_SPEEDS.indexOf(tts.mult), j=Math.max(0,Math.min(TTS_SPEEDS.length-1,(i<0?3:i)+d)); if(TTS_SPEEDS[j]===tts.mult) return;
+  const at=ttsWordStart(ttsNow()); tts.mult=TTS_SPEEDS[j]; try{ localStorage.setItem("pso_tts_speed",String(tts.mult)); }catch(e){}
+  if(tts.ended){ ttsLabel(); return; } if(tts.held){ tts.pos=at; tts.cut=true; try{ speechSynthesis.cancel(); }catch(e){} ttsLabel(); return; }
+  ttsJump(at); }
+function ttsBar(){ if(tts.bar) return tts.bar; const b=document.createElement("div"); b.className="ttsbar"; b.setAttribute("role","group"); b.setAttribute("aria-label","Audio controls"); b.hidden=true;
+  b.innerHTML=`<button type="button" data-tts="back" aria-label="Rewind: back one sentence" title="Back one sentence">${TTS_ICO.back}</button>`+
+    `<button type="button" class="main" data-tts="play" aria-label="Pause audio">${TTS_ICO.pause}</button>`+
+    `<button type="button" data-tts="fwd" aria-label="Forward: next sentence" title="Next sentence">${TTS_ICO.fwd}</button>`+
+    `<span class="ttssep" aria-hidden="true"></span>`+
+    `<button type="button" data-tts="slow" aria-label="Slower" title="Slower">−</button>`+
+    `<span class="ttsl" aria-live="polite">1×</span>`+
+    `<button type="button" data-tts="fast" aria-label="Faster" title="Faster">+</button>`+
+    `<button type="button" data-tts="stop" aria-label="Stop and close" title="Stop">✕</button>`;
+  const on=(k,f)=>b.querySelector(`[data-tts="${k}"]`).onclick=f;
+  on("play",()=> tts.ended ? ttsJump(0) : tts.held ? ttsResume() : ttsPause());
+  on("back",ttsBack); on("fwd",ttsFwd); on("slow",()=>ttsSpeed(-1)); on("fast",()=>ttsSpeed(1)); on("stop",ttsStop);
+  document.body.appendChild(b); return tts.bar=b; }
+function ttsLabel(){ const b=tts.bar; if(!b) return; const p=b.querySelector('[data-tts="play"]'), idle=tts.held||tts.ended;
+  p.innerHTML = idle ? TTS_ICO.play : TTS_ICO.pause; p.setAttribute("aria-label", tts.ended ? "Play again" : tts.held ? "Play" : "Pause audio");
+  b.querySelector('[data-tts="fwd"]').disabled=tts.ended;
+  b.querySelector('[data-tts="slow"]').disabled=tts.mult===TTS_SPEEDS[0];
+  b.querySelector('[data-tts="fast"]').disabled=tts.mult===TTS_SPEEDS[TTS_SPEEDS.length-1];
+  b.querySelector(".ttsl").textContent = (String(tts.mult).replace(/^0/,"")||"1")+"×"; }
+function ttsShow(){ const b=ttsBar(); clearTimeout(tts.hideT); b.hidden=false; ttsLabel(); clearInterval(tts.timer);
+  tts.timer=setInterval(()=>{ try{ if(!tts.held && !tts.ended && !tts.cut && !speechSynthesis.speaking && !speechSynthesis.pending) ttsEnd(); }catch(e){ ttsHide(); } },500); }
+function ttsEnd(){ clearInterval(tts.timer); tts.ended=true; tts.held=false; if(!tts.bar || tts.bar.hidden) return; ttsLabel();
+  clearTimeout(tts.hideT); tts.hideT=setTimeout(()=>{ if(tts.ended) ttsHide(); },8000); }
+function ttsHide(){ clearInterval(tts.timer); clearTimeout(tts.hideT); tts.held=false; if(tts.bar) tts.bar.hidden=true; }
+function ttsPause(){ tts.pos=ttsNow(); tts.held=true; ttsLabel();
+  try{ speechSynthesis.pause(); }catch(e){}
+  /* some phones ignore pause(): stop instead and continue later from the last word heard */
+  setTimeout(()=>{ try{ if(tts.held && !tts.cut && !speechSynthesis.paused){ tts.cut=true; speechSynthesis.cancel(); } }catch(e){} },300); }
+function ttsResume(){ tts.held=false; ttsLabel(); const at=ttsWordStart(tts.pos);
+  try{
+    if(!tts.cut && speechSynthesis.paused){ const p0=tts.pos; tts.t0=Date.now()-(p0-tts.from)/(14*tts.rate*tts.mult)*1000; speechSynthesis.resume();
+      setTimeout(()=>{ try{ if(!tts.held && !speechSynthesis.speaking) ttsJump(at); }catch(e){} },500); return; }
+    ttsJump(at);
+  }catch(e){ ttsHide(); } }
+function ttsStop(){ tts.held=false; tts.cut=true; try{ speechSynthesis.cancel(); }catch(e){} ttsHide(); }
 const listJoin = a => a.length<2 ? a.join("") : a.slice(0,-1).join(", ")+" and "+a[a.length-1];
 const ICON = {
   today:'<path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/>',
@@ -1543,7 +1606,7 @@ try{ const s=JSON.parse(localStorage.getItem("vocab5-sounds")||"null"); if(s){ s
 let enVoice=null;
 function pickVoice(){ try{ const vs=speechSynthesis.getVoices(); enVoice = vs.find(v=>/en-GB/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null; }catch(e){} }
 if(canSpeak){ pickVoice(); try{ speechSynthesis.onvoiceschanged=pickVoice; }catch(e){} }
-function sayEn(text, rate=0.85){ try{ if(!canSpeak) return; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang="en-GB"; if(enVoice) u.voice=enVoice; u.rate=rate; speechSynthesis.speak(u); }catch(e){} }
+function sayEn(text, rate=0.85){ ttsSay(text, rate, enVoice); }
 
 
 

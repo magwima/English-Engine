@@ -993,6 +993,14 @@ h1{letter-spacing:0}
 .herpso .pso{pointer-events:auto;cursor:pointer}
 @media (min-width:601px){ .todayhero .herobody .chips-row{padding-right:170px} }
 @media (max-width:600px){ .todayhero .herobody{padding-bottom:190px} }
+.ttsbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:46;display:flex;align-items:center;gap:8px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:6px;gap:6px;max-width:calc(100vw - 32px)}
+.ttsbar .ttsl{font-size:.85rem;font-weight:700;color:var(--muted);white-space:nowrap;min-width:3.2em;text-align:center}
+.ttsbar .ttssep{width:1px;align-self:stretch;background:var(--line);margin:4px 2px}
+.ttsbar button:disabled{opacity:.4}
+.ttsbar button{min-width:42px;min-height:42px;padding:6px 10px;font-size:1rem;line-height:1;border-radius:999px;border:1px solid var(--line);background:var(--sunk);color:var(--ink);font-weight:700;box-shadow:none}
+.ttsbar button.main{background:var(--sage);border-color:var(--sage);color:var(--on-accent)}
+@media (max-width:860px){ .ttsbar{bottom:calc(80px + env(safe-area-inset-bottom,0px))} }
+@media (max-width:420px){ .ttsbar{gap:3px;padding:5px} .ttsbar button{min-width:36px;min-height:40px;padding:4px 6px} .ttsbar .ttsl{min-width:2.4em;font-size:.8rem} .ttsbar .ttssep{display:none} }
 </style>
 
 <div class="shell">
@@ -1066,6 +1074,6 @@ if(location.hash.startsWith("#move=")){
   history.replaceState(null,"",location.pathname+location.search);
 }
 </script>
-<script src="app.js?v=388ba0f1ee"></script>
+<script src="app.js?v=614578f2d9"></script>
 
 </body></html>
